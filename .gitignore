@@ -1,0 +1,12 @@
+# Python
+.venv/
+__pycache__/
+
+# Daten
+responses.csv
+
+# Node
+node_modules/
+
+# Mac
+.DS_Store
