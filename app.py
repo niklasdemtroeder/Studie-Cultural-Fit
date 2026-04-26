@@ -954,24 +954,29 @@ elif st.session_state.phase == "questionnaire":
     )
 
     for key, question_text in current_block["items"]:
-        st.radio(
+        value = st.radio(
             question_text,
             options=[1, 2, 3, 4, 5],
             index=None,
             horizontal=True,
-            key=key,
+            key=f"{key}_radio",
         )
 
+        # SOFORT speichern
+        if value is not None:
+            st.session_state.questionnaire[key] = value
+
     current_keys = [key for key, _ in current_block["items"]]
-    current_complete = all(st.session_state.get(key) is not None for key in current_keys)
+    current_complete = all(
+        key in st.session_state.questionnaire
+        for key in current_keys
+    )
 
     col1, col2 = st.columns([1, 1])
 
     with col1:
         if current_step > 0:
             if st.button("Zurück", use_container_width=True):
-                for key in current_keys:
-                    st.session_state.questionnaire[key] = st.session_state.get(key)
                 st.session_state.questionnaire_step -= 1
                 st.rerun()
 
