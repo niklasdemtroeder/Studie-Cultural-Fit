@@ -347,9 +347,9 @@ questionnaire_items = [
         "section": "A. Dein Antwortgefühl",
         "items": [
             ("q1", "Ich habe mich bei meinen Antworten stark auf mein erstes Gefühl verlassen."),
-            ("q2", "Ich habe lange über meine Antworten nachgedacht. (invertiert)"),
+            ("q2", "Ich habe lange über meine Antworten nachgedacht."),
             ("q3", "Die Beantwortung fiel mir eher intuitiv als analytisch."),
-            ("q4", "Ich musste meine Antworten stark abwägen. (invertiert)"),
+            ("q4", "Ich musste meine Antworten stark abwägen."),
         ],
     },
     {
@@ -374,7 +374,7 @@ questionnaire_items = [
             ("q11", "Das Verfahren war einfach zu bedienen."),
             ("q12", "Die Bearbeitung war für mich verständlich und nachvollziehbar."),
             ("q13", "Ich fand die Beantwortung insgesamt angenehm."),
-            ("q14", "Das Verfahren wirkte auf mich unnötig kompliziert. (invertiert)"),
+            ("q14", "Das Verfahren wirkte auf mich unnötig kompliziert."),
         ],
     },
     {
