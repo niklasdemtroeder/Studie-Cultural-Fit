@@ -982,19 +982,10 @@ elif st.session_state.phase == "questionnaire":
     with col2:
         if current_step < total_blocks - 1:
             if st.button("Weiter", use_container_width=True, disabled=not current_complete):
-                for key in current_keys:
-                    st.session_state.questionnaire[key] = st.session_state.get(key)
                 st.session_state.questionnaire_step += 1
                 st.rerun()
         else:
             if st.button("Fragebogen absenden", use_container_width=True, disabled=not current_complete):
-                for key in current_keys:
-                    st.session_state.questionnaire[key] = st.session_state.get(key)
-
-                for block in questionnaire_items:
-                    for key, _ in block["items"]:
-                        st.session_state.questionnaire[key] = st.session_state.get(key)
-
                 st.session_state.phase = "end"
                 st.rerun()
 
