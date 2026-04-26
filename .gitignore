@@ -13,4 +13,4 @@ node_modules/
 
 # Streamlit Custom Component Build erlauben
 !swipe_component/frontend/dist/
-!swipe_component/frontend/dist/**
+!swipe_component/frontend/dist/**credentials.json

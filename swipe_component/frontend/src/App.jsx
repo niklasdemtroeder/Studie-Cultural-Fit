@@ -26,7 +26,7 @@ function App({ args }) {
 
   useEffect(() => {
     Streamlit.setComponentReady();
-    Streamlit.setFrameHeight(isMobile ? 790 : 890);
+    Streamlit.setFrameHeight(isMobile ? 760 : 850);
   }, [isMobile, mode, currentIndex]);
 
   const finishAssessment = (updatedAnswers) => {
@@ -54,7 +54,6 @@ function App({ args }) {
     if (finished || !currentItem) return;
 
     setSwipeDirection(direction);
-
     const value = direction === "right" ? 5 : 1;
 
     const answer = {
@@ -91,19 +90,11 @@ function App({ args }) {
   };
 
   if (finished) {
-    return (
-      <div style={centerMessageStyle}>
-        Antworten werden verarbeitet …
-      </div>
-    );
+    return <div style={centerMessageStyle}>Antworten werden verarbeitet …</div>;
   }
 
   if (!currentItem) {
-    return (
-      <div style={centerMessageStyle}>
-        Keine Items vorhanden.
-      </div>
-    );
+    return <div style={centerMessageStyle}>Keine Items vorhanden.</div>;
   }
 
   const progressPercent = Math.round(((currentIndex + 1) / items.length) * 100);
@@ -193,7 +184,6 @@ function App({ args }) {
             padding: "6px 12px",
             fontSize: isMobile ? "13px" : "14px",
             fontWeight: 600,
-            letterSpacing: "0.02em",
           }}
         >
           {currentItem.dimension}
@@ -297,7 +287,6 @@ function SwipeAssessment({
                 fontSize: isMobile ? "14px" : "15px",
                 marginBottom: isMobile ? "14px" : "16px",
                 fontWeight: 600,
-                letterSpacing: "0.01em",
               }}
             >
               Arbeitspräferenz
@@ -310,24 +299,6 @@ function SwipeAssessment({
 
       <div
         style={{
-          display: "flex",
-          gap: "12px",
-          width: cardWidth,
-          justifyContent: "center",
-          flexWrap: "wrap",
-        }}
-      >
-        <button onClick={() => onSwipe("left")} style={mainButtonStyle(isMobile)}>
-          ← Ablehnung
-        </button>
-
-        <button onClick={() => onSwipe("right")} style={mainButtonStyle(isMobile)}>
-          Zustimmung →
-        </button>
-      </div>
-
-      <div
-        style={{
           textAlign: "center",
           color: "#94a3b8",
           fontSize: isMobile ? "14px" : "15px",
@@ -335,9 +306,9 @@ function SwipeAssessment({
           maxWidth: cardWidth,
         }}
       >
-        Links = eher keine Zustimmung
+        Wische nach links für eher keine Zustimmung.
         <br />
-        Rechts = eher Zustimmung
+        Wische nach rechts für eher Zustimmung.
       </div>
     </>
   );
@@ -478,22 +449,6 @@ function LikertAssessment({ item, cardWidth, isMobile, selectedValue, onSelect }
       </div>
     </div>
   );
-}
-
-function mainButtonStyle(isMobile) {
-  return {
-    minWidth: isMobile ? "132px" : "160px",
-    padding: isMobile ? "14px 18px" : "14px 22px",
-    borderRadius: "14px",
-    border: "1px solid rgba(255,255,255,0.10)",
-    background: "#1e293b",
-    color: "#e5e7eb",
-    fontSize: isMobile ? "16px" : "17px",
-    fontWeight: 600,
-    cursor: "pointer",
-    boxShadow: "0 6px 16px rgba(0,0,0,0.18)",
-    transition: "all 0.15s ease",
-  };
 }
 
 const centerMessageStyle = {
