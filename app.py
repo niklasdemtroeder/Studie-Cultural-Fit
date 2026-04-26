@@ -962,7 +962,6 @@ elif st.session_state.phase == "questionnaire":
             key=f"{key}_radio",
         )
 
-        # SOFORT speichern
         if value is not None:
             st.session_state.questionnaire[key] = value
 
