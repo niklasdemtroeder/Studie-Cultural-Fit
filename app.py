@@ -511,9 +511,21 @@ def calculate_ranking(user_profile):
 
 
 def build_export_row():
+    end_time = datetime.utcnow()
+    start_time = st.session_state.get("start_time")
+
+    if start_time:
+        duration_seconds = round((end_time - start_time).total_seconds(), 2)
+        duration_minutes = round(duration_seconds / 60, 2)
+    else:
+        duration_seconds = ""
+        duration_minutes = ""
+
     row = {
         "participant_id": st.session_state.participant_id,
-        "timestamp_utc": datetime.utcnow().isoformat(),
+        "timestamp_utc": end_time.isoformat(),
+        "duration_seconds": duration_seconds,
+        "duration_minutes": duration_minutes,
         "condition": st.session_state.condition,
         "self_assessment": st.session_state.self_assessment,
     }
@@ -688,6 +700,7 @@ if st.session_state.phase == "consent":
     consent = st.checkbox("Ich stimme der Teilnahme an der Studie zu.")
 
     if consent and st.button("Weiter"):
+        st.session_state.start_time = datetime.utcnow()
         st.session_state.phase = "intro"
         st.rerun()
 
