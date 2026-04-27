@@ -19,6 +19,17 @@ from swipe_component import swipe_component
 
 st.set_page_config(page_title="Cultural Fit Prototype", layout="centered")
 
+st.markdown(
+    """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 SHOW_ADMIN_PANEL = False
 CSV_FILEPATH = "responses.csv"
 DEBUG_MODE = False
