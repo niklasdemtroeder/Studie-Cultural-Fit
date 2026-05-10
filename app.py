@@ -293,39 +293,67 @@ st.markdown(
 
 items = [
     {"id": 1, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Mir ist ein unterstützendes Miteinander im Team wichtig."},
-    {"id": 2, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich arbeite am liebsten in einem Umfeld, in dem Zusammenhalt spürbar ist."},
-    {"id": 3, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ein gutes Arbeitsklima ist mir wichtiger als interner Wettbewerb."},
-    {"id": 4, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Mir ist ein harmonisches Teamklima wichtiger als persönliche Karrierechancen."},
-    {"id": 5, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Mir ist wichtig, dass im Team offen miteinander kommuniziert wird."},
-    {"id": 6, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich arbeite lieber in kooperativen als in stark konkurrenzorientierten Teams."},
-    {"id": 7, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich arbeite lieber in einem harmonischen Team als in einem leistungsstarken Team mit vielen Konflikten."},
-    {"id": 8, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Auch wenn die Stimmung im Team schwierig ist, kann gute Leistung für mich wichtiger sein."},
 
-    {"id": 9, "dimension": "Leistung / Wettbewerb", "text": "Klare Ziele und hohe Erwartungen motivieren mich."},
-    {"id": 10, "dimension": "Leistung / Wettbewerb", "text": "Ich arbeite gerne in einem Umfeld, in dem Leistung sichtbar anerkannt wird."},
-    {"id": 11, "dimension": "Leistung / Wettbewerb", "text": "Ein gewisser Wettbewerb im Arbeitsalltag spornt mich an."},
-    {"id": 12, "dimension": "Leistung / Wettbewerb", "text": "Sichtbarer beruflicher Erfolg ist für mich ein wichtiger Antrieb."},
-    {"id": 13, "dimension": "Leistung / Wettbewerb", "text": "Ich möchte beruflich möglichst erfolgreich sein."},
-    {"id": 14, "dimension": "Leistung / Wettbewerb", "text": "Hohe Leistungsanforderungen empfinde ich eher als motivierend als belastend."},
-    {"id": 15, "dimension": "Leistung / Wettbewerb", "text": "Ich finde es motivierend, wenn Kolleginnen und Kollegen um die besten Ergebnisse konkurrieren."},
-    {"id": 16, "dimension": "Leistung / Wettbewerb", "text": "Karrierechancen sind mir wichtiger als ein besonders familiäres Arbeitsumfeld."},
+    {"id": 2, "dimension": "Leistung / Wettbewerb", "text": "Klare Ziele und hohe Erwartungen motivieren mich."},
 
-    {"id": 17, "dimension": "Innovation / Flexibilität", "text": "Ich bevorzuge ein Arbeitsumfeld, in dem neue Ideen willkommen sind."},
-    {"id": 18, "dimension": "Innovation / Flexibilität", "text": "Ich mag es, wenn Dinge ausprobiert und weiterentwickelt werden."},
-    {"id": 19, "dimension": "Innovation / Flexibilität", "text": "Zu viel Routine im Arbeitsalltag empfinde ich als einschränkend."},
-    {"id": 20, "dimension": "Innovation / Flexibilität", "text": "Ich nehme unklare Abläufe in Kauf, wenn dadurch mehr Raum für neue Ideen entsteht."},
-    {"id": 21, "dimension": "Innovation / Flexibilität", "text": "Veränderung im Arbeitsalltag empfinde ich eher als spannend als belastend."},
-    {"id": 22, "dimension": "Innovation / Flexibilität", "text": "Ich fühle mich in dynamischen Arbeitsumfeldern wohler als in stark routinierten."},
-    {"id": 23, "dimension": "Innovation / Flexibilität", "text": "Ich nehme organisatorisches Chaos in Kauf, wenn dadurch Innovation möglich wird."},
-    {"id": 24, "dimension": "Innovation / Flexibilität", "text": "Klare Regeln sind für mich weniger wichtig als kreative Freiheit."},
+    {"id": 3, "dimension": "Innovation / Flexibilität", "text": "Ich bevorzuge ein Arbeitsumfeld, in dem neue Ideen willkommen sind."},
 
-    {"id": 25, "dimension": "Struktur / Stabilität", "text": "Klare Prozesse und feste Abläufe geben mir Sicherheit."},
-    {"id": 26, "dimension": "Struktur / Stabilität", "text": "Ich arbeite gerne in einem Umfeld mit eindeutigen Regeln und Zuständigkeiten."},
-    {"id": 27, "dimension": "Struktur / Stabilität", "text": "Ich bevorzuge ein gut organisiertes Arbeitsumfeld."},
-    {"id": 28, "dimension": "Struktur / Stabilität", "text": "Ein vorhersehbarer Arbeitsalltag ist mir wichtiger als maximale Flexibilität."},
-    {"id": 29, "dimension": "Struktur / Stabilität", "text": "Ich schätze Arbeitsumfelder, in denen Verantwortlichkeiten klar verteilt sind."},
-    {"id": 30, "dimension": "Struktur / Stabilität", "text": "Feste Strukturen helfen mir dabei, effizient zu arbeiten."},
-    {"id": 31, "dimension": "Struktur / Stabilität", "text": "Zu viel Freiheit im Arbeitsalltag kann die Zusammenarbeit erschweren."},
+    {"id": 4, "dimension": "Struktur / Stabilität", "text": "Klare Prozesse und feste Abläufe geben mir Sicherheit."},
+
+    {"id": 5, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ein gutes Arbeitsklima ist mir wichtiger als interner Wettbewerb."},
+
+    {"id": 6, "dimension": "Leistung / Wettbewerb", "text": "Ein gewisser Wettbewerb im Arbeitsalltag spornt mich an."},
+
+    {"id": 7, "dimension": "Innovation / Flexibilität", "text": "Zu viel Routine im Arbeitsalltag empfinde ich als einschränkend."},
+
+    {"id": 8, "dimension": "Struktur / Stabilität", "text": "Ich bevorzuge ein gut organisiertes Arbeitsumfeld."},
+
+    {"id": 9, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Mir ist wichtig, dass im Team offen miteinander kommuniziert wird."},
+
+    {"id": 10, "dimension": "Leistung / Wettbewerb", "text": "Sichtbarer beruflicher Erfolg ist für mich ein wichtiger Antrieb."},
+
+    {"id": 11, "dimension": "Innovation / Flexibilität", "text": "Ich mag es, wenn Dinge ausprobiert und weiterentwickelt werden."},
+
+    {"id": 12, "dimension": "Struktur / Stabilität", "text": "Ein vorhersehbarer Arbeitsalltag ist mir wichtiger als maximale Flexibilität."},
+
+    {"id": 13, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich arbeite lieber in kooperativen als in stark konkurrenzorientierten Teams."},
+
+    {"id": 14, "dimension": "Leistung / Wettbewerb", "text": "Ich arbeite gerne in einem Umfeld, in dem Leistung sichtbar anerkannt wird."},
+
+    {"id": 15, "dimension": "Innovation / Flexibilität", "text": "Veränderung im Arbeitsalltag empfinde ich eher als spannend als belastend."},
+
+    {"id": 16, "dimension": "Struktur / Stabilität", "text": "Feste Strukturen helfen mir dabei, effizient zu arbeiten."},
+
+    {"id": 17, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Mir ist ein harmonisches Teamklima wichtiger als persönliche Karrierechancen."},
+
+    {"id": 18, "dimension": "Leistung / Wettbewerb", "text": "Ich möchte beruflich möglichst erfolgreich sein."},
+
+    {"id": 19, "dimension": "Innovation / Flexibilität", "text": "Ich fühle mich in dynamischen Arbeitsumfeldern wohler als in stark routinierten."},
+
+    {"id": 20, "dimension": "Struktur / Stabilität", "text": "Ich schätze Arbeitsumfelder, in denen Verantwortlichkeiten klar verteilt sind."},
+
+    {"id": 21, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich arbeite am liebsten in einem Umfeld, in dem Zusammenhalt spürbar ist."},
+
+    {"id": 22, "dimension": "Leistung / Wettbewerb", "text": "Hohe Leistungsanforderungen empfinde ich eher als motivierend als belastend."},
+
+    {"id": 23, "dimension": "Innovation / Flexibilität", "text": "Ich nehme unklare Abläufe in Kauf, wenn dadurch mehr Raum für neue Ideen entsteht."},
+
+    {"id": 24, "dimension": "Struktur / Stabilität", "text": "Ich arbeite gerne in einem Umfeld mit eindeutigen Regeln und Zuständigkeiten."},
+
+    {"id": 25, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich lege Wert darauf, dass Kolleginnen und Kollegen sich gegenseitig unterstützen."},
+
+    {"id": 26, "dimension": "Leistung / Wettbewerb", "text": "Ich finde es motivierend, wenn Kolleginnen und Kollegen um die besten Ergebnisse konkurrieren."},
+
+    {"id": 27, "dimension": "Innovation / Flexibilität", "text": "Ich nehme organisatorisches Chaos in Kauf, wenn dadurch Innovation möglich wird."},
+
+    {"id": 28, "dimension": "Struktur / Stabilität", "text": "Zu viel Freiheit im Arbeitsalltag kann die Zusammenarbeit erschweren."},
+
+    {"id": 29, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich arbeite lieber in einem harmonischen Team als in einem leistungsstarken Team mit vielen Konflikten."},
+
+    {"id": 30, "dimension": "Leistung / Wettbewerb", "text": "Karrierechancen sind mir wichtiger als ein besonders familiäres Arbeitsumfeld."},
+
+    {"id": 31, "dimension": "Innovation / Flexibilität", "text": "Klare Regeln sind für mich weniger wichtig als kreative Freiheit."},
+
     {"id": 32, "dimension": "Struktur / Stabilität", "text": "Ich arbeite lieber nach klaren Vorgaben als völlig eigenständig."},
 ]
 
