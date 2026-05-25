@@ -1548,6 +1548,32 @@ div[class*="st-key-consent_action_area"] .stButton {
     margin-top: 0 !important;
 }
 
+.consent-clean-wrap .screen-card-info {
+    background:
+        radial-gradient(circle at top left, rgba(49,92,99,0.05), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(242,184,114,0.08), transparent 34%),
+        rgba(255,255,255,0.96) !important;
+}
+
+/* Screen vor Abschlussfragebogen: saubere Informationskarte ohne äußeren Farbverlaufsrahmen */
+.pre-questionnaire-clean-wrap {
+    width: 100% !important;
+    margin: 0 auto 0.75rem auto !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.pre-questionnaire-clean-wrap .screen-card-info {
+    width: min(820px, 100%) !important;
+    margin: 0 auto !important;
+    background: rgba(255,255,255,0.96) !important;
+    border: 1px solid rgba(49,92,99,0.12) !important;
+    border-radius: 30px !important;
+    box-shadow: 0 20px 48px rgba(49,92,99,0.11) !important;
+}
+
     </style>
     """,
     unsafe_allow_html=True,
@@ -2300,7 +2326,7 @@ elif st.session_state.phase == "pre_questionnaire":
     )
 
     pre_questionnaire_html = (
-        '<div class="screen-frame-soft screen-fade">'
+        '<div class="pre-questionnaire-clean-wrap screen-fade">'
         '<div class="screen-card-info">'
         '<p>Bitte bewerte im folgenden kurzen Fragebogen, wie du die Bearbeitung, das Ergebnis und die Darstellung des Verfahrens erlebt hast.</p>'
         '<div class="info-grid">'
