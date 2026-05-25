@@ -1561,7 +1561,7 @@ div[class*="st-key-consent_action_area"] .stButton {
 /* Screen vor Abschlussfragebogen: saubere Informationskarte ohne äußeren Farbverlaufsrahmen */
 .pre-questionnaire-clean-wrap {
     width: 100% !important;
-    margin: 0 auto 1.65rem auto !important;
+    margin: 0 auto 1.35rem auto !important;
     padding: 0 !important;
     background: transparent !important;
     box-shadow: none !important;
@@ -1569,7 +1569,9 @@ div[class*="st-key-consent_action_area"] .stButton {
 }
 
 .pre-questionnaire-clean-wrap .screen-card-info {
-    width: min(800px, 100%) !important;
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
     margin: 0 auto !important;
     background: rgba(255,255,255,0.96) !important;
     border: 1px solid rgba(49,92,99,0.12) !important;
