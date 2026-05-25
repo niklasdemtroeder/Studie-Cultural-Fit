@@ -43,9 +43,9 @@ const cardHeight = isSmallMobile ? 370 : isMobile ? 400 : 500;
 const fontSize = isSmallMobile ? "19px" : isMobile ? "21px" : "28px";
 
   useEffect(() => {
-    Streamlit.setComponentReady();
-    Streamlit.setFrameHeight(isSmallMobile ? 620 : isMobile ? 660 : 760);
-  }, [isMobile, mode, currentIndex]);
+  Streamlit.setComponentReady();
+  Streamlit.setFrameHeight(isSmallMobile ? 620 : isMobile ? 660 : 760);
+}, [isMobile, isSmallMobile, mode, currentIndex]);
 
   const finishAssessment = (updatedAnswers) => {
     setFinished(true);
@@ -324,7 +324,14 @@ function SwipeAssessment({
   );
 }
 
-function LikertAssessment({ item, cardWidth, isMobile, selectedValue, onSelect }) {
+function LikertAssessment({
+  item,
+  cardWidth,
+  isMobile,
+  isSmallMobile,
+  selectedValue,
+  onSelect,
+}) {
   return (
     <div
       style={{
