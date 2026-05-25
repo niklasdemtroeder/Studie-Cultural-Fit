@@ -39,116 +39,454 @@ GOOGLE_SHEET_ID = "1F43LmzUGQRqwCpcHsuAMMEEV6xB95FVXa8nVzMDD-rE"
 st.markdown(
     """
     <style>
-    .stApp {
-        background:
-            radial-gradient(circle at top, rgba(59,130,246,0.09), transparent 32%),
-            #0f172a;
-        color: #e5e7eb;
+    :root {
+        --primary-color: #6BAA75 !important;
+        --primary-color-rgb: 107, 170, 117 !important;
+
+        --bg: #FAF7F2;
+        --card: #FFFFFF;
+        --primary: #315C63;
+        --primary-dark: #1F3A5F;
+        --accent: #F2B872;
+        --text: #2B2B2B;
+        --muted: #667085;
+        --border: #E5E1DA;
+        --soft: #F3EEE7;
+        --success: #6BAA75;
+        --danger: #D98282;
     }
+
+    .stApp {
+    background: var(--bg);
+    color: var(--text);
+    --primary-color: #6BAA75 !important;
+    --primary-color-rgb: 107, 170, 117 !important;
+}
 
     .block-container {
         max-width: 920px;
-        padding-top: 3.4rem;
+        padding-top: 3.2rem;
         padding-bottom: 2.5rem;
     }
 
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+
     h1, h2, h3 {
-        color: #f8fafc !important;
-        letter-spacing: -0.02em;
+        color: var(--primary) !important;
+        letter-spacing: -0.025em;
     }
 
     p, li, label, .stMarkdown, .stCaption {
-        color: #cbd5e1 !important;
+        color: var(--text) !important;
     }
 
     div[data-testid="stProgressBar"] > div > div > div {
-        background: linear-gradient(90deg, #3b82f6, #60a5fa);
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+
+.welcome-wrap {
+    min-height: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    border-radius: 32px;
+    padding: 2.6rem 1.4rem 3.2rem 1.4rem;
+    background:
+        radial-gradient(circle at top left, rgba(49,92,99,0.16), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(242,184,114,0.28), transparent 34%),
+        linear-gradient(135deg, #FAF7F2 0%, #E8F0EF 48%, #F6EBDD 100%);
+    box-shadow: inset 0 0 0 1px rgba(49,92,99,0.08);
+    position: relative;
+}
+
+    .welcome-card {
+        width: min(720px, 100%);
+        background: rgba(255,255,255,0.92);
+        border: 1px solid rgba(49,92,99,0.12);
+        border-radius: 30px;
+        padding: 2.1rem 2.2rem;
+        box-shadow: 0 22px 55px rgba(49,92,99,0.15);
+        backdrop-filter: blur(8px);
+        text-align: left;
+    }
+
+    .screen-frame {
+    border-radius: 32px;
+    padding: 2.6rem 1.4rem 3.2rem 1.4rem;
+    background:
+        radial-gradient(circle at top left, rgba(49,92,99,0.16), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(242,184,114,0.28), transparent 34%),
+        linear-gradient(135deg, #FAF7F2 0%, #E8F0EF 48%, #F6EBDD 100%);
+    box-shadow: inset 0 0 0 1px rgba(49,92,99,0.08);
+    margin-bottom: 1rem;
+}
+
+.screen-frame-soft {
+    border-radius: 32px;
+    padding: 2.4rem 1.4rem 2.8rem 1.4rem;
+    background:
+        radial-gradient(circle at top left, rgba(49,92,99,0.11), transparent 36%),
+        radial-gradient(circle at bottom right, rgba(242,184,114,0.18), transparent 36%),
+        linear-gradient(135deg, #FAF7F2 0%, #EDF3F1 50%, #F8EBD8 100%);
+    box-shadow: inset 0 0 0 1px rgba(49,92,99,0.07);
+    margin-bottom: 1rem;
+}
+
+.screen-card-main {
+    width: min(720px, 100%);
+    margin: 0 auto;
+    background: rgba(255,255,255,0.94);
+    border: 1px solid rgba(49,92,99,0.12);
+    border-radius: 30px;
+    padding: 2.1rem 2.2rem;
+    box-shadow: 0 22px 55px rgba(49,92,99,0.13);
+    backdrop-filter: blur(8px);
+    text-align: left;
+}
+
+.result-assessment-inner h3 {
+    color: var(--primary) !important;
+    font-size: 1.65rem;
+    font-weight: 850;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.45rem;
+}
+
+.result-assessment-wrap h3 {
+    color: var(--primary) !important;
+    font-size: 1.65rem;
+    font-weight: 850;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.45rem;
+}
+
+.result-assessment-wrap p {
+    margin-bottom: 0.7rem;
+}
+
+.result-assessment-wrap div[data-testid="stRadio"] {
+    margin-top: -0.2rem;
+}
+
+.result-assessment-wrap div[role="radiogroup"] {
+    gap: 0.25rem;
+}
+
+.result-assessment-wrap .stButton {
+    margin-top: 0.65rem;
+}
+
+.result-assessment-inner p {
+    margin-bottom: 1rem;
+}
+
+.screen-card-info {
+    width: min(820px, 100%);
+    margin: 0 auto;
+    background: rgba(255,255,255,0.95);
+    border: 1px solid rgba(49,92,99,0.12);
+    border-radius: 30px 30px 20px 20px;
+    padding: 1.7rem 1.8rem;
+    box-shadow: 0 20px 48px rgba(49,92,99,0.11);
+    backdrop-filter: blur(8px);
+    text-align: left;
+    line-height: 1.65;
+}
+
+.screen-card-info p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.consent-action-area [data-testid="stCheckbox"] label {
+    font-size: 1rem;
+    color: var(--text) !important;
+}
+
+.consent-action-area .custom-muted {
+    text-align: center;
+}
+
+.consent-spacing {
+    height: 0.7rem;
+}
+
+.screen-fade {
+    animation: screenFade 0.28s ease-out both;
+}
+
+@keyframes screenFade {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+    .welcome-pill {
+        display: inline-block;
+        background: rgba(242,184,114,0.26);
+        border: 1px solid rgba(242,184,114,0.55);
+        color: var(--primary);
+        border-radius: 999px;
+        padding: 0.32rem 0.8rem;
+        font-size: 0.88rem;
+        font-weight: 750;
+        margin-bottom: 1rem;
     }
 
     .hero-title {
-        font-size: 2.4rem;
+        font-size: 2.35rem;
         font-weight: 850;
-        color: #f8fafc;
-        margin-bottom: 0.45rem;
-        letter-spacing: -0.035em;
+        color: var(--primary);
+        margin-bottom: 0.55rem;
+        letter-spacing: -0.04em;
+        line-height: 1.08;
     }
 
     .hero-subtitle {
-        color: #94a3b8;
+        color: var(--muted);
         font-size: 1.05rem;
-        line-height: 1.6;
+        line-height: 1.65;
         margin-bottom: 1.2rem;
     }
 
     .text-card {
-        background: rgba(30, 41, 59, 0.96);
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 22px;
-        padding: 1.25rem 1.4rem;
-        box-shadow: 0 16px 40px rgba(0,0,0,0.28);
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 1.35rem 1.45rem;
+        box-shadow: 0 16px 38px rgba(49,92,99,0.10);
         margin-bottom: 1rem;
-        backdrop-filter: blur(6px);
-        color: #cbd5e1;
+        color: var(--text);
         line-height: 1.65;
     }
 
     .topmatch-card {
-        background: linear-gradient(180deg, #1e293b 0%, #172554 100%);
-        border: 1px solid rgba(96,165,250,0.24);
-        border-radius: 24px;
-        padding: 1.45rem 1.5rem;
-        box-shadow: 0 18px 42px rgba(0,0,0,0.32);
+        background:
+            radial-gradient(circle at top right, rgba(242,184,114,0.22), transparent 38%),
+            linear-gradient(180deg, #FFFFFF 0%, #F8F4ED 100%);
+        border: 1px solid rgba(49,92,99,0.14);
+        border-radius: 26px;
+        padding: 1.5rem 1.55rem;
+        box-shadow: 0 18px 42px rgba(49,92,99,0.13);
         margin-bottom: 1rem;
-        color: #cbd5e1;
+        color: var(--text);
         line-height: 1.65;
     }
 
+    .result-hero-card {
+    background:
+        radial-gradient(circle at top right, rgba(242,184,114,0.26), transparent 38%),
+        radial-gradient(circle at bottom left, rgba(49,92,99,0.10), transparent 40%),
+        linear-gradient(135deg, #FFFFFF 0%, #F8F4ED 100%);
+    border: 1px solid rgba(49,92,99,0.14);
+    border-radius: 28px;
+    padding: 1.55rem 1.65rem;
+    box-shadow: 0 20px 48px rgba(49,92,99,0.13);
+    margin-bottom: 1rem;
+    color: var(--text);
+}
+
+.result-kicker {
+    color: var(--primary);
+    font-size: 0.9rem;
+    font-weight: 800;
+    margin-bottom: 0.45rem;
+}
+
+.result-company {
+    color: var(--primary);
+    font-size: 2.15rem;
+    font-weight: 850;
+    letter-spacing: -0.04em;
+    line-height: 1.08;
+    margin-bottom: 0.75rem;
+}
+
+.result-score-row {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.result-score {
+    background: var(--primary);
+    color: #FFFFFF;
+    border-radius: 999px;
+    padding: 0.55rem 0.95rem;
+    font-size: 1.35rem;
+    font-weight: 850;
+    box-shadow: 0 10px 24px rgba(49,92,99,0.16);
+}
+
+.result-score-label {
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.result-meta-row {
+    display: flex;
+    gap: 0.55rem;
+    flex-wrap: wrap;
+    margin-top: 0.75rem;
+}
+
+.result-assessment-inner h3 {
+    color: var(--primary) !important;
+    font-size: 1.65rem;
+    font-weight: 850;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.45rem;
+}
+
+.result-assessment-inner p {
+    margin-bottom: 0.9rem;
+}
+
+.result-pill {
+    display: inline-block;
+    background: rgba(49,92,99,0.09);
+    border: 1px solid rgba(49,92,99,0.16);
+    color: var(--primary);
+    border-radius: 999px;
+    padding: 0.35rem 0.8rem;
+    font-size: 0.86rem;
+    font-weight: 750;
+}
+
+.result-next-note {
+    background: rgba(242,184,114,0.16);
+    border: 1px solid rgba(242,184,114,0.42);
+    border-radius: 18px;
+    padding: 0.9rem 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.55;
+}
+
+.result-details-title {
+    color: var(--primary);
+    font-size: 1.45rem;
+    font-weight: 850;
+    letter-spacing: -0.03em;
+    margin-top: 1.4rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Schöne Streamlit-Karte für die erste Einschätzung */
+div[data-testid="stVerticalBlockBorderWrapper"]:has(.result-assessment-marker) {
+    background: rgba(255,255,255,0.96) !important;
+    border: 1px solid rgba(49,92,99,0.13) !important;
+    border-radius: 26px !important;
+    box-shadow: 0 18px 42px rgba(49,92,99,0.11) !important;
+    margin-top: 0.9rem !important;
+    margin-bottom: 1.25rem !important;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"]:has(.result-assessment-marker) > div {
+    padding: 1.3rem 1.5rem 1.25rem 1.5rem !important;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"]:has(.result-assessment-marker) div[data-testid="stVerticalBlock"] {
+    gap: 0.35rem !important;
+}
+
+.result-assessment-marker {
+    display: none;
+}
+
+.result-assessment-inner h3 {
+    color: var(--primary) !important;
+    font-size: 1.65rem;
+    font-weight: 850;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.35rem;
+}
+
+.result-assessment-inner p {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    color: var(--text) !important;
+}
+
+.result-radio-label {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-top: 0.2rem;
+    margin-bottom: -0.15rem;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"]:has(.result-assessment-marker) div[data-testid="stRadio"] {
+    margin-top: 0 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"]:has(.result-assessment-marker) div[role="radiogroup"] {
+    gap: 0.18rem !important;
+}
+
+.result-assessment-hint {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-top: 0.2rem;
+}
+
     .ranking-card {
-        background: rgba(30, 41, 59, 0.96);
-        border: 1px solid rgba(255,255,255,0.06);
-        border-radius: 16px;
-        padding: 0.95rem 1rem;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 1rem 1.05rem;
         margin-bottom: 0.75rem;
+        box-shadow: 0 10px 25px rgba(49,92,99,0.07);
     }
 
     .custom-muted {
-        color: #94a3b8;
+        color: var(--muted);
         font-size: 0.95rem;
     }
 
     .small-pill {
         display: inline-block;
-        background: rgba(96,165,250,0.13);
-        border: 1px solid rgba(96,165,250,0.24);
-        color: #bfdbfe;
+        background: rgba(49,92,99,0.09);
+        border: 1px solid rgba(49,92,99,0.16);
+        color: var(--primary);
         border-radius: 999px;
         padding: 0.28rem 0.75rem;
         font-size: 0.86rem;
+        font-weight: 700;
         margin-top: 0.35rem;
     }
 
     .big-number {
         font-size: 2rem;
         font-weight: 850;
-        color: #f8fafc;
+        color: var(--primary);
         margin: 0.2rem 0 0.2rem 0;
         letter-spacing: -0.03em;
     }
 
     .assessment-help {
         text-align: center;
-        color: #94a3b8;
+        color: var(--muted);
         font-size: 0.95rem;
         margin-top: 0.4rem;
         margin-bottom: 0.8rem;
     }
 
     .thanks-card {
-        background: linear-gradient(180deg, rgba(30,41,59,1) 0%, rgba(15,23,42,1) 100%);
-        border: 1px solid rgba(255,255,255,0.08);
+        background: var(--card);
+        border: 1px solid var(--border);
         border-radius: 24px;
         padding: 1.4rem;
-        box-shadow: 0 18px 40px rgba(0,0,0,0.28);
+        box-shadow: 0 18px 40px rgba(49,92,99,0.11);
     }
 
     .info-grid {
@@ -160,21 +498,21 @@ st.markdown(
     }
 
     .info-box {
-        background: rgba(15,23,42,0.72);
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 16px;
-        padding: 0.9rem;
+        background: #F8F4ED;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 0.95rem;
         text-align: center;
     }
 
     .info-box strong {
-        color: #f8fafc;
+        color: var(--primary);
         display: block;
         margin-bottom: 0.25rem;
     }
 
     .info-box span {
-        color: #94a3b8;
+        color: var(--muted);
         font-size: 0.9rem;
     }
 
@@ -188,36 +526,37 @@ st.markdown(
 
     .instruction-box {
         flex: 1;
-        background: rgba(15,23,42,0.72);
-        border: 1px solid rgba(255,255,255,0.08);
+        background: #F8F4ED;
+        border: 1px solid var(--border);
         border-radius: 18px;
         padding: 1rem;
         text-align: center;
     }
 
     .instruction-box strong {
-        color: #f8fafc;
+        color: var(--primary);
         display: block;
         margin-bottom: 0.3rem;
     }
 
     .instruction-box span {
-        color: #94a3b8;
+        color: var(--muted);
         font-size: 0.95rem;
     }
 
     .study-progress {
-        background: rgba(15,23,42,0.66);
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 20px;
-        padding: 0.9rem 1rem;
+        background: rgba(255,255,255,0.78);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        padding: 0.95rem 1rem;
         margin-bottom: 1.2rem;
+        box-shadow: 0 12px 30px rgba(49,92,99,0.08);
     }
 
     .study-progress-label {
-        color: #93c5fd;
+        color: var(--primary);
         font-size: 0.86rem;
-        font-weight: 700;
+        font-weight: 750;
         margin-bottom: 0.55rem;
     }
 
@@ -232,44 +571,293 @@ st.markdown(
         padding: 0.55rem 0.75rem;
         text-align: center;
         font-size: 0.86rem;
-        border: 1px solid rgba(255,255,255,0.08);
-        color: #94a3b8;
-        background: rgba(30,41,59,0.75);
+        border: 1px solid var(--border);
+        color: var(--muted);
+        background: #F8F4ED;
     }
 
     .study-progress-step.done {
-        color: #bfdbfe;
-        border-color: rgba(96,165,250,0.35);
-        background: rgba(59,130,246,0.16);
+        color: var(--primary);
+        border-color: rgba(49,92,99,0.22);
+        background: rgba(49,92,99,0.08);
+        font-weight: 700;
     }
 
     .study-progress-step.active {
-        color: #f8fafc;
-        border-color: rgba(96,165,250,0.65);
-        background: linear-gradient(90deg, rgba(37,99,235,0.35), rgba(59,130,246,0.18));
+        color: #FFFFFF;
+        border-color: var(--primary);
+        background: linear-gradient(90deg, var(--primary), #47747A);
         font-weight: 750;
     }
 
+    .result-profile-text {
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--text) !important;
+    margin-top: 0.75rem;
+    margin-bottom: 0.55rem;
+    max-width: 760px;
+}
+
+.result-method-text {
+    font-size: 0.94rem;
+    line-height: 1.5;
+    color: var(--muted) !important;
+    margin-bottom: 0.75rem;
+}
+
     .soft-note {
-        background: rgba(37,99,235,0.12);
-        border: 1px solid rgba(96,165,250,0.22);
+        background: rgba(242,184,114,0.18);
+        border: 1px solid rgba(242,184,114,0.46);
         border-radius: 18px;
         padding: 1rem 1.1rem;
-        color: #cbd5e1;
+        color: var(--text);
         margin-bottom: 1rem;
         line-height: 1.65;
     }
 
     .questionnaire-header {
-        background: linear-gradient(180deg, rgba(30,41,59,0.98), rgba(15,23,42,0.98));
-        border: 1px solid rgba(96,165,250,0.16);
+        background: var(--card);
+        border: 1px solid var(--border);
         border-radius: 24px;
         padding: 1.35rem 1.45rem;
         margin-bottom: 1rem;
-        box-shadow: 0 16px 38px rgba(0,0,0,0.25);
+        box-shadow: 0 16px 38px rgba(49,92,99,0.10);
     }
 
+    .stButton > button {
+        background: var(--primary);
+        color: #FFFFFF;
+        border: 1px solid var(--primary);
+        border-radius: 999px;
+        padding: 0.62rem 1.15rem;
+        font-weight: 750;
+        transition: all 0.18s ease;
+    }
+
+    .stButton > button:hover {
+        background: #274E55;
+        border-color: #274E55;
+        color: #FFFFFF;
+        transform: translateY(-1px);
+        box-shadow: 0 10px 24px rgba(49,92,99,0.18);
+    }
+
+    .stCheckbox label, .stRadio label {
+        color: var(--text) !important;
+    }
+
+    /* Checkbox-Farbe auf Grün/Teal setzen */
+div[data-testid="stCheckbox"] input[type="checkbox"] {
+    accent-color: var(--success) !important;
+}
+
+div[data-testid="stCheckbox"] input[type="checkbox"]:checked {
+    accent-color: var(--success) !important;
+}
+
+/* Fallback für neuere Streamlit/BaseWeb-Checkboxen */
+[data-testid="stCheckbox"] [data-baseweb="checkbox"] div[aria-checked="true"] {
+    background-color: var(--success) !important;
+    border-color: var(--success) !important;
+}
+
+[data-testid="stCheckbox"] [data-baseweb="checkbox"] svg {
+    fill: #FFFFFF !important;
+}
+
+/* Stärkerer Override gegen Streamlit-Standard-Rot */
+[data-testid="stCheckbox"] div[role="checkbox"][aria-checked="true"] {
+    background-color: var(--success) !important;
+    border-color: var(--success) !important;
+}
+
+[data-testid="stCheckbox"] div[role="checkbox"][aria-checked="true"] svg {
+    fill: #FFFFFF !important;
+}
+
+    .stAlert {
+        border-radius: 18px;
+    }
+
+        .stButton > button,
+    .stButton > button *,
+    button[kind="primary"],
+    button[kind="primary"] * {
+        color: #FFFFFF !important;
+    }
+
+    .stButton > button {
+        background: var(--primary) !important;
+        color: #FFFFFF !important;
+        border: 1px solid var(--primary) !important;
+        border-radius: 999px !important;
+        padding: 0.68rem 1.25rem !important;
+        font-weight: 750 !important;
+        transition: all 0.18s ease !important;
+        box-shadow: 0 10px 24px rgba(49,92,99,0.16);
+    }
+
+    .stButton > button:hover {
+        background: #274E55 !important;
+        border-color: #274E55 !important;
+        color: #FFFFFF !important;
+        transform: translateY(-1px);
+        box-shadow: 0 10px 24px rgba(49,92,99,0.18);
+    }
+
+    .stButton > button:disabled,
+    .stButton > button:disabled * {
+        color: rgba(255,255,255,0.72) !important;
+    }
+
+    div[data-testid="stRadio"] input[type="radio"] {
+        accent-color: var(--primary) !important;
+    }
+
+    div[data-testid="stRadio"] input[type="radio"]:checked {
+        accent-color: var(--success) !important;
+    }
+
+    .stRadio [role="radiogroup"] label {
+        color: var(--text) !important;
+    }
+
+.welcome-action {
+    margin-top: 0.8rem;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 20;
+}
+
+    div[data-testid="stRadio"] input[type="radio"] {
+        accent-color: var(--success) !important;
+    }
+
+    div[data-testid="stRadio"] input[type="radio"]:checked {
+        accent-color: var(--success) !important;
+    }
+
+    div[data-testid="stRadio"] label:has(input[type="radio"]:checked) span {
+        color: var(--primary) !important;
+        font-weight: 700 !important;
+    }
+
+    div[role="radiogroup"] input[type="radio"] {
+        accent-color: var(--success) !important;
+    }
+
+    div[role="radiogroup"] input[type="radio"]:checked {
+        accent-color: var(--success) !important;
+    }
+    
+    /* Ergebnis-Screen: weiße Karte für die erste Einschätzung */
+div[data-testid="column"]:has(.result-assessment-marker) div[data-testid="stVerticalBlockBorderWrapper"] {
+    background: #FFFFFF !important;
+    border: 1px solid rgba(49,92,99,0.12) !important;
+    border-radius: 28px !important;
+    box-shadow: 0 18px 42px rgba(49,92,99,0.10) !important;
+    margin-top: 0.35rem !important;
+    margin-bottom: 1.35rem !important;
+}
+
+div[data-testid="column"]:has(.result-assessment-marker) div[data-testid="stVerticalBlock"] {
+    gap: 0.35rem !important;
+}
+
+.result-assessment-marker {
+    display: none;
+}
+
+.result-assessment-inner h3 {
+    color: var(--primary) !important;
+    font-size: 1.65rem;
+    font-weight: 850;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.35rem;
+}
+
+.result-assessment-inner p {
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+    color: var(--text) !important;
+}
+
+.result-radio-label {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-top: 0.15rem;
+    margin-bottom: -0.15rem;
+}
+
+div[data-testid="column"]:has(.result-assessment-marker) div[data-testid="stRadio"] {
+    margin-top: 0 !important;
+    margin-bottom: 0.45rem !important;
+}
+
+div[data-testid="column"]:has(.result-assessment-marker) div[role="radiogroup"] {
+    gap: 0.12rem !important;
+}
+
+.result-assessment-hint {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-top: 0.25rem;
+}
+
+.result-assessment-inner h3 {
+    color: var(--primary) !important;
+    font-size: 1.65rem;
+    font-weight: 850;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.35rem;
+}
+
+.result-assessment-inner p {
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+    color: var(--text) !important;
+}
+
+.result-radio-label {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-top: 0.15rem;
+}
+
+.result-assessment-hint {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-top: 0.25rem;
+}
+
     @media (max-width: 700px) {
+        .block-container {
+            padding-top: 1.6rem;
+        }
+
+.welcome-wrap {
+    min-height: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    border-radius: 32px;
+    padding: 2.6rem 1.4rem 3.2rem 1.4rem;
+    background:
+        radial-gradient(circle at top left, rgba(49,92,99,0.16), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(242,184,114,0.28), transparent 34%),
+        linear-gradient(135deg, #FAF7F2 0%, #E8F0EF 48%, #F6EBDD 100%);
+    box-shadow: inset 0 0 0 1px rgba(49,92,99,0.08);
+    position: relative;
+}
+
+        .welcome-card {
+            padding: 1.45rem 1.25rem;
+            border-radius: 20px;
+        }
+
         .info-grid {
             grid-template-columns: 1fr;
         }
@@ -286,6 +874,630 @@ st.markdown(
             font-size: 2rem;
         }
     }
+
+/* FINAL OVERRIDE: Einschätzungskarte weiß machen */
+div[data-testid="column"]:has(.result-assessment-marker) {
+    background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+    border: 1px solid rgba(49,92,99,0.12) !important;
+    border-radius: 28px !important;
+    box-shadow: 0 18px 42px rgba(49,92,99,0.10) !important;
+    padding: 1.25rem 1.45rem 1.15rem 1.45rem !important;
+    margin-top: 0.35rem !important;
+    margin-bottom: 1.35rem !important;
+}
+
+/* Innere Ebenen ebenfalls weiß halten */
+div[data-testid="column"]:has(.result-assessment-marker) > div,
+div[data-testid="column"]:has(.result-assessment-marker) div[data-testid="stVerticalBlock"],
+div[data-testid="column"]:has(.result-assessment-marker) div[data-testid="element-container"],
+div[data-testid="column"]:has(.result-assessment-marker) div[data-testid="stHorizontalBlock"] {
+    background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+}
+
+.result-assessment-marker {
+    display: none !important;
+}
+
+.result-assessment-inner h3 {
+    color: var(--primary) !important;
+    font-size: 1.65rem !important;
+    font-weight: 850 !important;
+    letter-spacing: -0.03em !important;
+    margin-top: 0 !important;
+    margin-bottom: 0.35rem !important;
+}
+
+.result-assessment-inner p {
+    margin-top: 0 !important;
+    margin-bottom: 0.8rem !important;
+    color: var(--text) !important;
+}
+
+.result-radio-label {
+    color: var(--muted) !important;
+    font-size: 0.95rem !important;
+    margin-top: 0.15rem !important;
+    margin-bottom: -0.15rem !important;
+}
+
+div[data-testid="column"]:has(.result-assessment-marker) div[data-testid="stRadio"] {
+    margin-top: 0 !important;
+    margin-bottom: 0.45rem !important;
+}
+
+div[data-testid="column"]:has(.result-assessment-marker) div[role="radiogroup"] {
+    gap: 0.12rem !important;
+}
+
+.result-assessment-hint {
+    text-align: center !important;
+    color: var(--muted) !important;
+    font-size: 0.95rem !important;
+    margin-top: 0.25rem !important;
+}
+
+.result-radio-label {
+    color: var(--muted) !important;
+    font-size: 0.95rem !important;
+    margin-top: 0.15rem !important;
+    margin-bottom: -0.15rem !important;
+}
+
+.result-assessment-hint {
+    text-align: center !important;
+    color: var(--muted) !important;
+    font-size: 0.95rem !important;
+    margin-top: 0.25rem !important;
+}
+
+/* FINAL: Einschätzungskarte über Streamlit-Key stylen */
+.st-key-result_assessment_card,
+div[class*="st-key-result_assessment_card"] {
+    background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+    border: 1px solid rgba(49,92,99,0.12) !important;
+    border-radius: 28px !important;
+    box-shadow: 0 18px 42px rgba(49,92,99,0.10) !important;
+    padding: 1.25rem 1.45rem 1.15rem 1.45rem !important;
+    margin-top: 0.35rem !important;
+    margin-bottom: 1.35rem !important;
+}
+
+.st-key-result_assessment_card div[data-testid="stVerticalBlock"],
+.st-key-result_assessment_card div[data-testid="element-container"],
+.st-key-result_assessment_card div[data-testid="stHorizontalBlock"],
+div[class*="st-key-result_assessment_card"] div[data-testid="stVerticalBlock"],
+div[class*="st-key-result_assessment_card"] div[data-testid="element-container"],
+div[class*="st-key-result_assessment_card"] div[data-testid="stHorizontalBlock"] {
+    background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+}
+
+.st-key-result_assessment_card div[data-testid="stRadio"],
+div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] {
+    margin-top: 0 !important;
+    margin-bottom: 0.45rem !important;
+}
+
+.st-key-result_assessment_card div[role="radiogroup"],
+div[class*="st-key-result_assessment_card"] div[role="radiogroup"] {
+    gap: 0.12rem !important;
+}
+
+.result-assessment-inner h3 {
+    color: var(--primary) !important;
+    font-size: 1.65rem !important;
+    font-weight: 850 !important;
+    letter-spacing: -0.03em !important;
+    margin-top: 0 !important;
+    margin-bottom: 0.35rem !important;
+}
+
+.result-assessment-inner p {
+    margin-top: 0 !important;
+    margin-bottom: 0.8rem !important;
+    color: var(--text) !important;
+}
+
+.result-radio-label {
+    color: var(--muted) !important;
+    font-size: 0.95rem !important;
+    margin-top: 0.15rem !important;
+    margin-bottom: -0.15rem !important;
+}
+
+.result-assessment-hint {
+    text-align: center !important;
+    color: var(--muted) !important;
+    font-size: 0.95rem !important;
+    margin-top: 0.25rem !important;
+}
+
+/* Radio-Buttons in der Ergebnis-Einschätzung sichtbar machen */
+.st-key-result_assessment_card div[data-testid="stRadio"] label {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.45rem !important;
+    cursor: pointer !important;
+}
+
+.st-key-result_assessment_card input[type="radio"],
+div[class*="st-key-result_assessment_card"] input[type="radio"] {
+    appearance: auto !important;
+    -webkit-appearance: radio !important;
+    accent-color: var(--success) !important;
+    width: 16px !important;
+    height: 16px !important;
+    opacity: 1 !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    margin-right: 0.45rem !important;
+}
+
+/* Abschlussfragebogen: Header, Progressbar, Legende und Item-Karte */
+.questionnaire-title {
+    text-align: center;
+    color: var(--primary);
+    font-size: 2.35rem;
+    font-weight: 850;
+    letter-spacing: -0.04em;
+    line-height: 1.08;
+    margin-top: 0.4rem;
+    margin-bottom: 0.35rem;
+}
+
+.questionnaire-subtitle {
+    text-align: center;
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin-bottom: 1.1rem;
+}
+
+.questionnaire-progress-wrap {
+    width: min(420px, 100%);
+    margin: 0 auto 1.25rem auto;
+}
+
+.questionnaire-progress-track {
+    width: 100%;
+    height: 7px;
+    border-radius: 999px;
+    background: rgba(49,92,99,0.10);
+    overflow: hidden;
+}
+
+.questionnaire-progress-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+.questionnaire-section-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(49,92,99,0.12);
+    border-radius: 24px;
+    padding: 1.2rem 1.35rem;
+    box-shadow: 0 16px 38px rgba(49,92,99,0.09);
+    margin-bottom: 1rem;
+}
+
+.questionnaire-section-label {
+    color: var(--muted);
+    font-size: 0.86rem;
+    font-weight: 750;
+    margin-bottom: 0.2rem;
+}
+
+.questionnaire-section-title {
+    color: var(--primary);
+    font-size: 1.35rem;
+    font-weight: 850;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.85rem;
+}
+
+.scale-legend-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.65rem;
+}
+
+.scale-legend-box {
+    background: #F8F4ED;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 0.7rem 0.75rem;
+    text-align: center;
+}
+
+.scale-legend-box strong {
+    display: block;
+    color: var(--primary);
+    font-size: 1.05rem;
+    margin-bottom: 0.15rem;
+}
+
+.scale-legend-box span {
+    display: block;
+    color: var(--muted);
+    font-size: 0.86rem;
+    line-height: 1.35;
+}
+
+.st-key-questionnaire_item_card,
+div[class*="st-key-questionnaire_item_card"] {
+    background: #FFFFFF !important;
+    border: 1px solid rgba(49,92,99,0.12) !important;
+    border-radius: 26px !important;
+    box-shadow: 0 18px 42px rgba(49,92,99,0.10) !important;
+    padding: 1.1rem 1.35rem 0.45rem 1.35rem !important;
+    margin-bottom: 1.1rem !important;
+}
+
+.st-key-questionnaire_item_card div[data-testid="stRadio"],
+div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] {
+    margin-bottom: 0.65rem !important;
+}
+
+.st-key-questionnaire_item_card div[data-testid="stRadio"] > label,
+div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label {
+    color: var(--text) !important;
+    font-weight: 500 !important;
+    margin-bottom: 0.35rem !important;
+}
+
+.st-key-questionnaire_item_card div[role="radiogroup"],
+div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] {
+    gap: 0.9rem !important;
+}
+
+.questionnaire-button-row {
+    margin-top: 0.45rem;
+}
+
+.questionnaire-hint {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-top: 0.35rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Feinschliff Abschlussfragebogen */
+.questionnaire-section-helper {
+    color: var(--text) !important;
+    font-size: 1rem;
+    line-height: 1.55;
+    margin-top: -0.25rem;
+    margin-bottom: 0.95rem;
+}
+
+.st-key-questionnaire_item_card,
+div[class*="st-key-questionnaire_item_card"] {
+    margin-bottom: 0.45rem !important;
+}
+
+/* Item-Texte größer und besser lesbar */
+.st-key-questionnaire_item_card div[data-testid="stRadio"] > label,
+div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label {
+    margin-bottom: 0.45rem !important;
+}
+
+.st-key-questionnaire_item_card div[data-testid="stRadio"] > label p,
+div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label p {
+    font-size: 1.2rem !important;
+    line-height: 1.55 !important;
+    font-weight: 500 !important;
+    color: var(--text) !important;
+}
+
+/* Skalenwerte etwas besser lesbar */
+.st-key-questionnaire_item_card div[role="radiogroup"] label,
+div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] label {
+    font-size: 1rem !important;
+}
+
+.questionnaire-hint {
+    margin-top: 0.3rem !important;
+}
+
+/* Footer im Abschlussfragebogen näher an die Item-Karte ziehen */
+.st-key-questionnaire_footer,
+div[class*="st-key-questionnaire_footer"] {
+    margin-top: -0.45rem !important;
+    padding-top: 0 !important;
+}
+
+.st-key-questionnaire_footer div[data-testid="stHorizontalBlock"],
+div[class*="st-key-questionnaire_footer"] div[data-testid="stHorizontalBlock"] {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+.st-key-questionnaire_footer .stButton,
+div[class*="st-key-questionnaire_footer"] .stButton {
+    margin-top: 0 !important;
+}
+
+.st-key-questionnaire_footer .questionnaire-hint,
+div[class*="st-key-questionnaire_footer"] .questionnaire-hint {
+    text-align: center !important;
+    margin-top: 0.35rem !important;
+}
+
+/* Screen 2: Checkbox und Button näher an die Info-Karte rücken */
+.st-key-consent_action_area,
+div[class*="st-key-consent_action_area"] {
+    margin-top: -0.2rem !important;
+}
+
+.st-key-consent_action_area div[data-testid="stCheckbox"],
+div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
+    margin-top: -0.35rem !important;
+    margin-bottom: 0.15rem !important;
+}
+
+.st-key-consent_action_area div[data-testid="stCheckbox"],
+div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
+    margin-bottom: -0.25rem !important;
+}
+
+.st-key-consent_action_area .stButton,
+div[class*="st-key-consent_action_area"] .stButton {
+    margin-top: 0 !important;
+}
+
+/* FINAL MOBILE OPTIMIZATION */
+@media (max-width: 700px) {
+
+    html, body, .stApp {
+        overflow-x: hidden !important;
+    }
+
+    .block-container {
+        max-width: 100% !important;
+        padding-top: 1rem !important;
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+        padding-bottom: 1.4rem !important;
+    }
+
+    .welcome-wrap,
+    .screen-frame,
+    .screen-frame-soft {
+        border-radius: 22px !important;
+        padding: 1.15rem 0.75rem 1.4rem 0.75rem !important;
+        margin-bottom: 0.8rem !important;
+    }
+
+    .welcome-card,
+    .screen-card-info,
+    .screen-card-main,
+    .text-card,
+    .result-hero-card,
+    .topmatch-card,
+    .thanks-card,
+    .questionnaire-section-card,
+    .st-key-questionnaire_item_card,
+    div[class*="st-key-questionnaire_item_card"],
+    .st-key-result_assessment_card,
+    div[class*="st-key-result_assessment_card"] {
+        border-radius: 20px !important;
+        padding: 1.05rem 1rem !important;
+        box-shadow: 0 12px 28px rgba(49,92,99,0.10) !important;
+    }
+
+    .hero-title,
+    .questionnaire-title {
+        font-size: 1.75rem !important;
+        line-height: 1.12 !important;
+        letter-spacing: -0.04em !important;
+        text-align: center !important;
+        margin-bottom: 0.55rem !important;
+    }
+
+    .hero-subtitle,
+    .questionnaire-subtitle,
+    .assessment-help {
+        font-size: 0.95rem !important;
+        line-height: 1.45 !important;
+        text-align: center !important;
+    }
+
+    .screen-card-info p,
+    .text-card p,
+    .result-profile-text,
+    .result-method-text,
+    .result-next-note {
+        font-size: 0.96rem !important;
+        line-height: 1.55 !important;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.55rem !important;
+        margin-top: 0.8rem !important;
+        margin-bottom: 0.8rem !important;
+    }
+
+    .info-box,
+    .instruction-box,
+    .scale-legend-box {
+        border-radius: 16px !important;
+        padding: 0.75rem 0.85rem !important;
+    }
+
+    .instruction-row {
+        flex-direction: column !important;
+        gap: 0.55rem !important;
+        margin-top: 0.8rem !important;
+        margin-bottom: 0.8rem !important;
+    }
+
+    .study-progress {
+        border-radius: 18px !important;
+        padding: 0.7rem !important;
+        margin-bottom: 0.9rem !important;
+    }
+
+    .study-progress-label {
+        font-size: 0.78rem !important;
+        margin-bottom: 0.45rem !important;
+    }
+
+    .study-progress-track {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 0.35rem !important;
+    }
+
+    .study-progress-step {
+        font-size: 0.72rem !important;
+        padding: 0.42rem 0.25rem !important;
+        line-height: 1.2 !important;
+        white-space: normal !important;
+    }
+
+    .result-company {
+        font-size: 1.65rem !important;
+        line-height: 1.12 !important;
+    }
+
+    .result-score-row {
+        gap: 0.55rem !important;
+        align-items: center !important;
+    }
+
+    .result-score {
+        font-size: 1.05rem !important;
+        padding: 0.45rem 0.75rem !important;
+    }
+
+    .result-score-label {
+        font-size: 0.88rem !important;
+    }
+
+    .result-meta-row {
+        gap: 0.4rem !important;
+    }
+
+    .result-pill {
+        font-size: 0.78rem !important;
+        padding: 0.28rem 0.6rem !important;
+    }
+
+    .result-details-title {
+        font-size: 1.25rem !important;
+        margin-top: 1rem !important;
+        margin-bottom: 0.6rem !important;
+    }
+
+    .questionnaire-progress-wrap {
+        width: min(320px, 90%) !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .questionnaire-section-title {
+        font-size: 1.15rem !important;
+        margin-bottom: 0.65rem !important;
+    }
+
+    .questionnaire-section-helper {
+        font-size: 0.94rem !important;
+        line-height: 1.45 !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    .scale-legend-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 0.4rem !important;
+    }
+
+    .scale-legend-box strong {
+        font-size: 0.95rem !important;
+    }
+
+    .scale-legend-box span {
+        font-size: 0.74rem !important;
+        line-height: 1.25 !important;
+    }
+
+    .st-key-questionnaire_item_card div[data-testid="stRadio"] > label p,
+    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label p {
+        font-size: 1.02rem !important;
+        line-height: 1.45 !important;
+    }
+
+    .st-key-questionnaire_item_card div[role="radiogroup"],
+    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] {
+        gap: 0.45rem !important;
+        flex-wrap: wrap !important;
+    }
+
+    .st-key-questionnaire_footer,
+    div[class*="st-key-questionnaire_footer"] {
+        margin-top: -0.15rem !important;
+    }
+
+    .questionnaire-hint {
+        font-size: 0.86rem !important;
+        line-height: 1.35 !important;
+        padding-left: 0.3rem !important;
+        padding-right: 0.3rem !important;
+    }
+
+    .stButton > button {
+        min-height: 46px !important;
+        padding: 0.7rem 1rem !important;
+        font-size: 0.96rem !important;
+    }
+
+    .consent-spacing {
+        height: 0.25rem !important;
+    }
+
+    .st-key-consent_action_area,
+    div[class*="st-key-consent_action_area"] {
+        margin-top: -0.55rem !important;
+    }
+
+    .st-key-consent_action_area div[data-testid="stCheckbox"],
+    div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
+        margin-top: 0 !important;
+        margin-bottom: -0.15rem !important;
+    }
+}
+
+@media (max-width: 390px) {
+    .hero-title,
+    .questionnaire-title {
+        font-size: 1.55rem !important;
+    }
+
+    .study-progress-step {
+        font-size: 0.66rem !important;
+        padding: 0.38rem 0.18rem !important;
+    }
+
+    .scale-legend-grid {
+        gap: 0.3rem !important;
+    }
+
+    .scale-legend-box {
+        padding: 0.6rem 0.45rem !important;
+    }
+
+    .scale-legend-box span {
+        font-size: 0.68rem !important;
+    }
+
+    .result-company {
+        font-size: 1.45rem !important;
+    }
+}
+
     </style>
     """,
     unsafe_allow_html=True,
@@ -366,6 +1578,7 @@ companies = {
             "Struktur / Stabilität": 4,
         },
         "archetype": "gemeinschaftsorientierter Arbeitgeber",
+        "short_profile": "Dieses Profil steht für ein teamorientiertes Arbeitsumfeld mit viel Zusammenhalt, gegenseitiger Unterstützung und klarer Orientierung im Arbeitsalltag.",
         "description": "Nordlicht Care Solutions steht für ein stark teamorientiertes Arbeitsumfeld, in dem Zusammenhalt und gegenseitige Unterstützung eine zentrale Rolle spielen. Die Zusammenarbeit ist geprägt von Vertrauen, Wertschätzung und einem offenen Austausch auf Augenhöhe. Mitarbeitende erleben hier eine Kultur, in der man sich aufeinander verlassen kann und Erfolge gemeinsam erzielt werden. Klare Strukturen sorgen gleichzeitig für Orientierung und Stabilität im Arbeitsalltag.",
     },
     "Strive Consulting Group": {
@@ -376,6 +1589,7 @@ companies = {
             "Struktur / Stabilität": 3,
         },
         "archetype": "leistungsorientierter Arbeitgeber",
+        "short_profile": "Dieses Profil steht für ein leistungsorientiertes Arbeitsumfeld mit ambitionierten Zielen, sichtbarer Anerkennung und hoher Eigenverantwortung.",
         "description": "Die Strive Consulting Group bietet ein leistungsorientiertes Umfeld, in dem ambitionierte Ziele und hohe Erwartungen den Arbeitsalltag prägen. Mitarbeitende werden aktiv gefordert und gefördert, ihre individuellen Stärken einzubringen und kontinuierlich weiterzuentwickeln. Erfolge werden sichtbar anerkannt und Leistung hat einen hohen Stellenwert. Gleichzeitig eröffnet das dynamische Umfeld Raum für innovative Lösungsansätze und eigenverantwortliches Arbeiten.",
     },
     "Vireon Labs": {
@@ -386,6 +1600,7 @@ companies = {
             "Struktur / Stabilität": 2,
         },
         "archetype": "innovationsorientierter Arbeitgeber",
+        "short_profile": "Dieses Profil steht für ein innovationsorientiertes Arbeitsumfeld mit viel Offenheit, Experimentierfreude und Raum für neue Ideen.",
         "description": "Vireon Labs steht für ein kreatives und innovationsgetriebenes Arbeitsumfeld, in dem neue Ideen ausdrücklich willkommen sind. Mitarbeitende haben die Möglichkeit, aktiv an der Gestaltung von Prozessen und Lösungen mitzuwirken. Flexibilität, Offenheit und Experimentierfreude prägen die Unternehmenskultur. Feste Strukturen treten dabei bewusst in den Hintergrund, um Raum für Weiterentwicklung und neue Denkansätze zu schaffen.",
     },
     "Clarion Systems": {
@@ -396,6 +1611,7 @@ companies = {
             "Struktur / Stabilität": 5,
         },
         "archetype": "strukturorientierter Arbeitgeber",
+        "short_profile": "Dieses Profil steht für ein strukturiertes Arbeitsumfeld mit klaren Prozessen, eindeutigen Zuständigkeiten und hoher Verlässlichkeit.",
         "description": "Clarion Systems bietet ein klar strukturiertes und verlässliches Arbeitsumfeld, in dem definierte Prozesse und eindeutige Zuständigkeiten im Mittelpunkt stehen. Mitarbeitende profitieren von stabilen Rahmenbedingungen, die Sicherheit und Planbarkeit im Arbeitsalltag ermöglichen. Die Organisation legt großen Wert auf Effizienz, Verlässlichkeit und eine klare Rollenverteilung, wodurch ein ruhiges und geordnetes Arbeitsumfeld entsteht.",
     },
 }
@@ -466,7 +1682,7 @@ if "condition" not in st.session_state:
     st.session_state.condition = random.choice(["swipe", "likert"])
 
 if "phase" not in st.session_state:
-    st.session_state.phase = "consent"
+    st.session_state.phase = "welcome"
 
 if "answers" not in st.session_state:
     st.session_state.answers = []
@@ -524,7 +1740,7 @@ def text_card(html_content):
 
 def reset_app():
     st.session_state.participant_id = str(uuid.uuid4())
-    st.session_state.phase = "consent"
+    st.session_state.phase = "welcome"
     st.session_state.answers = []
     st.session_state.questionnaire = {}
     st.session_state.questionnaire_step = 0
@@ -558,6 +1774,7 @@ def calculate_ranking(user_profile):
             {
                 "company": company_name,
                 "score": match_score,
+                "short_profile": company_data["short_profile"],
                 "differences": {dim: round(abs(user_profile[dim] - company_profile[dim]), 2) for dim in user_profile},
                 "profile": company_profile,
                 "archetype": company_data["archetype"],
@@ -733,120 +1950,133 @@ if DEBUG_MODE:
         reset_app()
         st.rerun()
 
-
-if st.session_state.phase == "consent":
-    st.markdown('<div class="hero-title">Studienteilnahme</div>', unsafe_allow_html=True)
-    st.markdown('<div class="hero-subtitle">Vielen Dank, dass du an dieser kurzen Studie teilnimmst.</div>', unsafe_allow_html=True)
-
-    text_card(
-        """
-        <p>Im Rahmen dieser Masterarbeit wird untersucht, wie Personen ihre Präferenzen in Bezug auf Arbeitsumfelder angeben und wie daraus eine kulturelle Passung zu Unternehmen abgeleitet werden kann.</p>
-
-        <div class="info-grid">
-            <div class="info-box"><strong>Dauer</strong><span>ca. 5–7 Minuten</span></div>
-            <div class="info-box"><strong>Anonym</strong><span>Es werden keine personenbezogenen Daten erhoben.</span></div>
-            <div class="info-box"><strong>Freiwillig</strong><span>Abbruch jederzeit möglich</span></div>
-        </div>
-
-        <p>Alle Angaben werden anonym gespeichert und ausschließlich zu wissenschaftlichen Zwecken ausgewertet. Mit dem Aktivieren der Checkbox und dem Klick auf „Weiter“ erklärst du dich mit der Teilnahme einverstanden. Die Teilnahme ist freiwillig und kann jederzeit ohne Angabe von Gründen abgebrochen werden.</p>
-
-        <p><strong>Kontakt bei Rückfragen:</strong><br>
-        Niklas Demtröder · niklas.demtroeder@iu-study.org</p>
-        """
-    )
-
-    consent = st.checkbox("Ich stimme der Teilnahme an der Studie zu.")
-
-    if consent and st.button("Weiter"):
-        st.session_state.start_time = datetime.utcnow()
-        st.session_state.phase = "intro"
-        st.rerun()
-
-
-elif st.session_state.phase == "intro":
-    render_progress(0)
-
-    st.markdown('<div class="hero-title">Cultural Fit Matcher</div>', unsafe_allow_html=True)
-    st.markdown('<div class="hero-subtitle">Welche Arbeitsumgebung passt wirklich zu dir?</div>', unsafe_allow_html=True)
-
-    text_card(
-        """
-        <p>Stell dir vor, du befindest dich aktuell auf Jobsuche. Im folgenden Verfahren gibst du an, welche Merkmale dir in einem Arbeitsumfeld wichtig sind.</p>
-
-        <p>Anschließend erhältst du ein Matching mit mehreren fiktiven Unternehmen, die unterschiedliche Unternehmenskulturen repräsentieren.</p>
-
-        <p>Danach folgt noch eine kurze Einschätzung dazu, wie du das Verfahren erlebt hast.</p>
-
-        <p><strong>Ablauf dieser Studie</strong></p>
-
-        <div class="info-grid">
-            <div class="info-box"><strong>1. Präferenzen</strong><span>Arbeitsumfeld bewerten</span></div>
-            <div class="info-box"><strong>2. Ergebnis</strong><span>Matching ansehen</span></div>
-            <div class="info-box"><strong>3. Einschätzung</strong><span>kurzer Fragebogen</span></div>
-        </div>
-
-        <p>Es gibt keine richtigen oder falschen Antworten. Entscheidend ist, was zu deinen persönlichen Präferenzen passt.</p>
-        """
-    )
-
-    if st.button("Jetzt starten"):
-        st.session_state.phase = "instructions"
-        st.rerun()
-
-
-elif st.session_state.phase == "instructions":
-    render_progress(0)
-
-    st.markdown('<div class="hero-title">Hinweise zum Ablauf</div>', unsafe_allow_html=True)
+if st.session_state.phase == "welcome":
     st.markdown(
-        '<div class="hero-subtitle">Bitte beantworte die Aussagen so, wie sie deinen persönlichen Präferenzen entsprechen.</div>',
+        """
+        <div class="welcome-wrap">
+            <div class="welcome-card">
+                <div class="hero-title">Finde heraus, welches Arbeitsumfeld zu dir passt</div>
+                <div class="hero-subtitle">
+                    Stell dir vor, du suchst nicht einfach irgendeinen Job, sondern ein Arbeitsumfeld, das wirklich zu dir passt: ein Umfeld, in dem du dich wohlfühlst, gut arbeiten kannst und deine Art zu arbeiten ernst genommen wird.
+                    <br><br>
+                    Denn zwei Jobs können auf dem Papier ähnlich wirken, sich im Arbeitsalltag aber ganz unterschiedlich anfühlen. Oft liegt der Unterschied darin, wie Menschen zusammenarbeiten, wie viel Freiheit man hat, wie Leistung bewertet wird oder wie klar Strukturen sind.
+                    <br><br>
+                    In dieser Studie geht es um genau diese Unterschiede.
+                </div>
+            </div>
+        </div>
+        """,
         unsafe_allow_html=True,
     )
 
+    st.markdown('<div class="start-button-anchor"></div>', unsafe_allow_html=True)
+
+    left, center, right = st.columns([1.45, 1.25, 1.45])
+    with center:
+        if st.button("Weiter", use_container_width=True):
+            st.session_state.phase = "consent"
+            st.rerun()
+
+elif st.session_state.phase == "consent":
+    consent_html = (
+        '<div class="screen-frame-soft screen-fade">'
+        '<div class="screen-card-info">'
+        '<div class="hero-title">Kurz zur Studie</div>'
+        '<div class="hero-subtitle">Bevor es losgeht, erhältst du die wichtigsten Informationen zur Teilnahme.</div>'
+        '<p>Gleich geht es los. Du bewertest kurze Aussagen zu Arbeitsumfeldern. Es geht zum Beispiel um Teamarbeit, Leistung, Veränderung und klare Strukturen.</p>'
+        '<p>Es gibt keine richtigen oder falschen Antworten. Wichtig ist nur, was zu dir passt.</p>'
+        '<div class="info-grid">'
+        '<div class="info-box"><strong>Dauer</strong><span>ca. 8–10 Minuten</span></div>'
+        '<div class="info-box"><strong>Anonym</strong><span>Keine personenbezogenen Daten</span></div>'
+        '<div class="info-box"><strong>Freiwillig</strong><span>Abbruch jederzeit möglich</span></div>'
+        '</div>'
+        '<p>Deine Angaben werden <strong>anonym</strong> gespeichert und nur für diese Masterarbeit ausgewertet. Die Teilnahme ist <strong>freiwillig</strong>. Du kannst die Studie jederzeit abbrechen, ohne dass dir dadurch Nachteile entstehen.</p>'
+        '<p>Wenn du die Checkbox unten aktivierst und auf „Studie beginnen“ klickst, stimmst du der Teilnahme zu.</p>'
+        '<p><strong>Bei Fragen kannst du mich kontaktieren:</strong><br>'
+        'Niklas Demtröder - niklas.demtroeder@iu-study.org</p>'
+        '</div>'
+        '</div>'
+    )
+
+    st.markdown(consent_html, unsafe_allow_html=True)
+
+    st.markdown('<div class="consent-spacing"></div>', unsafe_allow_html=True)
+
+    with st.container(key="consent_action_area"):
+        left, center, right = st.columns([1.0, 2.2, 1.0])
+
+    with center:
+        consent = st.checkbox(
+            "Ich stimme der Teilnahme an der Studie zu.",
+            key="consent_checkbox_unique",
+        )
+
+        if st.button(
+            "Studie beginnen",
+            key="start_after_consent_unique",
+            use_container_width=True,
+            disabled=not consent,
+        ):
+            st.session_state.start_time = datetime.utcnow()
+            st.session_state.phase = "instructions"
+            st.rerun()
+            
+elif st.session_state.phase == "instructions":
+    render_progress(0)
+
+    st.markdown(
+    '<div class="hero-title" style="text-align:center; margin-bottom:1.4rem;">So funktioniert die Bewertung</div>',
+    unsafe_allow_html=True,
+)
+
     if st.session_state.condition == "swipe":
         text_card(
-            """
-            <h3>Deine Aufgabe</h3>
-            <p>Beurteile jede Aussage über die Wischrichtung.</p>
+    """
+    <h3><strong>Deine Aufgabe</strong></h3>
+    <p>Du siehst gleich kurze Aussagen zu Arbeitsumfeldern. Entscheide bei jeder Aussage spontan, ob sie zu dir passt.</p>
 
-            <div class="instruction-row">
-                <div class="instruction-box"><strong>← Nach links</strong><span>eher keine Zustimmung</span></div>
-                <div class="instruction-box"><strong>Nach rechts →</strong><span>eher Zustimmung</span></div>
-            </div>
+    <div class="instruction-row">
+        <div class="instruction-box"><strong>← Nach links wischen</strong><span>passt nicht zu mir</span></div>
+        <div class="instruction-box"><strong>Nach rechts wischen →</strong><span>passt zu mir</span></div>
+    </div>
 
-            <p>Bitte nutze für die Bewertung die Wischbewegung.</p>
-            """
-        )
+    <p>Nutze am besten dein erstes Gefühl. Es gibt keine richtigen oder falschen Antworten.</p>
+    """
+)
     else:
         text_card(
-            """
-            <h3>Deine Aufgabe</h3>
-            <p>Bewerte jede Aussage auf einer Skala von 1 bis 5.</p>
+    """
+    <h3><strong>Deine Aufgabe</strong></h3>
+    <p>Du siehst gleich kurze Aussagen zu Arbeitsumfeldern. Entscheide bei jeder Aussage spontan auf einer Skala von 1 bis 5, wie gut sie zu dir passt.</p>
 
-            <div class="instruction-row">
-                <div class="instruction-box"><strong>1</strong><span>stimme überhaupt nicht zu</span></div>
-                <div class="instruction-box"><strong>5</strong><span>stimme voll zu</span></div>
-            </div>
+    <div class="instruction-row">
+        <div class="instruction-box"><strong>1</strong><span>passt nicht zu mir</span></div>
+        <div class="instruction-box"><strong>5</strong><span>passt zu mir</span></div>
+    </div>
 
-            <p>Wähle jeweils die Antwort aus, die am besten zu dir passt.</p>
-            """
-        )
+    <p>Nutze am besten dein erstes Gefühl. Es gibt keine richtigen oder falschen Antworten.</p>
+    """
+)
 
-    if st.button("Bewertung starten"):
-        st.session_state.phase = "assessment"
-        st.rerun()
-
+    left, center, right = st.columns([1.2, 1.4, 1.2])
+    with center:
+        if st.button("Bewertung starten", use_container_width=True):
+            st.session_state.phase = "assessment"
+            st.rerun()
 
 elif st.session_state.phase == "assessment":
     render_progress(1)
 
-    st.title("Cultural Fit Matcher")
+    st.markdown(
+        '<div class="hero-title" style="text-align:center;">Cultural Fit Matcher</div>',
+        unsafe_allow_html=True,
+    )
 
     if st.session_state.condition == "swipe":
         st.markdown(
             """
             <div class="assessment-help">
-                Nach rechts bedeutet eher Zustimmung, nach links eher keine Zustimmung.
+                Wische nach links oder rechts – je nachdem, ob die Aussage zu dir passt.
             </div>
             """,
             unsafe_allow_html=True,
@@ -856,7 +2086,7 @@ elif st.session_state.phase == "assessment":
         st.markdown(
             """
             <div class="assessment-help">
-                Wähle jeweils einen Wert von 1 bis 5.
+                Bewerte auf einer Skala von 1 bis 5, wie gut die Aussage zu dir passt.
             </div>
             """,
             unsafe_allow_html=True,
@@ -868,133 +2098,179 @@ elif st.session_state.phase == "assessment":
         st.session_state.phase = "results"
         st.rerun()
 
-
 elif st.session_state.phase == "results":
     render_progress(2)
-
-    st.markdown('<div class="hero-title">Dein Ergebnis – kurze Einordnung</div>', unsafe_allow_html=True)
-    st.markdown(
-        '<div class="hero-subtitle">Auf Basis deiner Antworten wurde ein fiktives Unternehmensprofil mit hoher kultureller Übereinstimmung berechnet.</div>',
-        unsafe_allow_html=True,
-    )
-
-    st.markdown(
-        """
-        <div class="soft-note">
-            Die Studie ist nach dieser Ergebnisanzeige noch nicht abgeschlossen.
-            Im nächsten Schritt geht es darum, wie du das Ergebnis und das Verfahren wahrgenommen hast.
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
 
     user_profile = calculate_user_profile(st.session_state.answers)
     ranking = calculate_ranking(user_profile)
     top_match = ranking[0]
 
-    sorted_user_dims = sorted(user_profile.items(), key=lambda x: x[1], reverse=True)
-    top_dims = [d[0] for d in sorted_user_dims[:2]]
+    sorted_dims = sorted(top_match["differences"].items(), key=lambda x: x[1])
+    best_dims = [d[0] for d in sorted_dims[:2]]
+    best_dims_html = "".join([f"<li>{escape(dim)}</li>" for dim in best_dims])
+
+    st.markdown('<div class="hero-title">Dein Ergebnis</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="hero-subtitle">Auf Basis deiner Antworten wurde ein fiktives Unternehmensprofil mit der höchsten berechneten Übereinstimmung ermittelt.</div>',
+        unsafe_allow_html=True,
+    )
+
+    result_hero_html = (
+        '<div class="result-hero-card">'
+        '<div class="result-kicker">Höchste berechnete Übereinstimmung</div>'
+        f'<div class="result-company">{escape(top_match["company"])}</div>'
+        '<div class="result-score-row">'
+        f'<div class="result-score">{top_match["score"]} %</div>'
+        '<div class="result-score-label">berechnete kulturelle Übereinstimmung</div>'
+        '</div>'
+        f'<p class="result-profile-text">{escape(top_match["short_profile"])}</p>'
+'<p class="result-method-text">Dieses Ergebnis basiert auf dem Vergleich deiner Antworten mit einem hinterlegten, fiktiven Unternehmensprofil.</p>'
+        '<div class="result-meta-row">'
+        '<div class="result-pill">Fiktives Unternehmensprofil</div>'
+        f'<div class="result-pill">{escape(top_match["archetype"])}</div>'
+        '</div>'
+        '</div>'
+    )
+
+    st.markdown(result_hero_html, unsafe_allow_html=True)
 
     st.markdown(
-        f"""
-        <div class="topmatch-card">
-            <h3>Höchste Übereinstimmung</h3>
-            <div class="big-number">{escape(top_match["company"])}</div>
-            <p>Basierend auf deinen Antworten ergibt sich die höchste Übereinstimmung mit <strong>{escape(top_match["company"])}</strong>. Die berechnete kulturelle Übereinstimmung liegt bei <strong>{top_match["score"]} %</strong>.</p>
-            <div class="small-pill">{escape(top_match["archetype"])}</div>
+        """
+        <div class="result-next-note">
+            Bitte gib nun deine erste Einschätzung zum Ergebnis ab. Danach folgt ein kurzer Abschlussfragebogen von etwa 1–2 Minuten.
         </div>
         """,
         unsafe_allow_html=True,
     )
 
-    text_card(
-        f"""
-        <h3>Über dieses Unternehmen</h3>
-        <p>Bei dem folgenden Unternehmensprofil handelt es sich um ein fiktives Beispielunternehmen, das eine bestimmte Unternehmenskultur repräsentiert.</p>
-        <p>{escape(top_match["description"])}</p>
-        """
-    )
+    left, card_col, right = st.columns([0.025, 0.90, 0.025])
 
-    sorted_dims = sorted(top_match["differences"].items(), key=lambda x: x[1])
-    best_dims = [d[0] for d in sorted_dims[:2]]
-    best_dims_html = "".join([f"<li>{escape(dim)}</li>" for dim in best_dims])
+    with card_col:
+        with st.container(key="result_assessment_card"):
+            st.markdown(
+                """
+                <div class="result-assessment-inner">
+                    <h3>Deine erste Einschätzung</h3>
+                    <p>Wie passend erscheint dir das angezeigte Ergebnis?</p>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
 
-    text_card(
-        f"""
-        <h3>Warum dieses Ergebnis zustande kommt</h3>
-        <p>Deine Antworten zeigen, dass dir besonders <strong>{escape(top_dims[0])}</strong> und <strong>{escape(top_dims[1])}</strong> wichtig sind.</p>
-        <p>Die größte Übereinstimmung mit diesem Unternehmen zeigt sich vor allem in:</p>
-        <ul>{best_dims_html}</ul>
-        <p>Das bedeutet: Es gibt in diesen Bereichen eine höhere Übereinstimmung zwischen deinen angegebenen Präferenzen und dem dargestellten Unternehmensprofil.</p>
-        """
-    )
+            self_assessment = st.radio(
+                "Bitte wähle eine Antwort aus:",
+                options=[
+                    "Sehr passend",
+                    "Eher passend",
+                    "Teils / teils",
+                    "Eher nicht passend",
+                    "Gar nicht passend",
+                ],
+                index=None,
+                key="result_self_assessment",
+                label_visibility="collapsed",
+            )
 
-    with st.expander("Wie wurde das Ergebnis berechnet?"):
-        st.write(
-            "Deine Antworten wurden zu vier Kulturdimensionen zusammengefasst und mit den "
-            "hinterlegten Kulturprofilen der Unternehmen verglichen. Je geringer die Abweichung, "
-            "desto höher ist die angezeigte Übereinstimmung."
-        )
+            btn_left, btn_center, btn_right = st.columns([0.01, 0.70, 0.01])
+            with btn_center:
+                if st.button(
+                    "Zum Abschlussfragebogen",
+                    use_container_width=True,
+                    disabled=self_assessment is None,
+                    key="continue_to_questionnaire",
+                ):
+                    st.session_state.self_assessment = self_assessment
+                    st.session_state.phase = "pre_questionnaire"
+                    st.rerun()
 
-    st.subheader("Weitere mögliche Matches")
+            if self_assessment is None:
+                st.markdown(
+                    '<div class="result-assessment-hint">Bitte wähle eine Einschätzung aus, um fortzufahren.</div>',
+                    unsafe_allow_html=True,
+                )
 
-    for i, entry in enumerate(ranking[1:], start=2):
+    st.markdown('<div class="result-details-title">Mehr zum Ergebnis anzeigen</div>', unsafe_allow_html=True)
+
+    with st.expander("Warum dieses Ergebnis?"):
         st.markdown(
             f"""
-            <div class="ranking-card">
-                <strong>{i}. {escape(entry['company'])}</strong><br>
-                <span class="custom-muted">{entry['score']} % Übereinstimmung · {escape(entry['archetype'])}</span>
-            </div>
+            Deine Antworten wurden mit dem Kulturprofil des angezeigten Unternehmens verglichen.
+            Die höchste Übereinstimmung mit diesem Profil zeigt sich vor allem in:
+
+            <ul>{best_dims_html}</ul>
+
+            In diesen Bereichen liegen deine angegebenen Präferenzen besonders nah am dargestellten Unternehmensprofil.
             """,
             unsafe_allow_html=True,
         )
 
-    st.subheader("Deine erste Einschätzung")
+    with st.expander("Über dieses Unternehmen"):
+        st.markdown(
+            f"""
+            Bei dem folgenden Unternehmensprofil handelt es sich um ein fiktives Beispielunternehmen,
+            das eine bestimmte Unternehmenskultur repräsentiert.
 
-    self_assessment = st.radio(
-        "Wie passend erscheint dir das angezeigte Ergebnis?",
-        options=[
-            "Sehr passend",
-            "Eher passend",
-            "Teils / teils",
-            "Eher nicht passend",
-            "Gar nicht passend",
-        ],
-        index=None,
-    )
+            <br><br>
 
-    if self_assessment is None:
-        st.info("Bitte gib zuerst deine Einschätzung zum Ergebnis ab, bevor du fortfährst.")
-    else:
-        left, center, right = st.columns([1.1, 1.4, 1.1])
-        with center:
-            if st.button("Ergebnis bewerten & fortfahren", use_container_width=True):
-                st.session_state.self_assessment = self_assessment
-                st.session_state.phase = "pre_questionnaire"
-                st.rerun()
+            {escape(top_match["description"])}
+            """,
+            unsafe_allow_html=True,
+        )
 
+    with st.expander("Weitere mögliche Matches"):
+        for i, entry in enumerate(ranking[1:], start=2):
+            st.markdown(
+                f"""
+                <div class="ranking-card">
+                    <strong>{i}. {escape(entry['company'])}</strong><br>
+                    <span class="custom-muted">{entry['score']} % Übereinstimmung · {escape(entry['archetype'])}</span>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+    with st.expander("Wie wurde das Ergebnis berechnet?"):
+        st.write(
+            "Deine Antworten wurden zu vier Kulturdimensionen zusammengefasst und mit den "
+            "hinterlegten Kulturprofilen der fiktiven Unternehmen verglichen. Je geringer die "
+            "Abweichung zwischen deinem Antwortprofil und einem Unternehmensprofil, desto höher "
+            "ist die angezeigte berechnete Übereinstimmung."
+        )
 
 elif st.session_state.phase == "pre_questionnaire":
     render_progress(3)
 
-    st.markdown('<div class="hero-title">Deine Einschätzung zum Verfahren</div>', unsafe_allow_html=True)
     st.markdown(
-        '<div class="hero-subtitle">Im letzten Teil geht es darum, wie du das Verfahren erlebt hast.</div>',
+        '<div class="hero-title" style="text-align:center; margin-bottom:0.45rem;">Deine Einschätzung zum Verfahren</div>',
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        '<div class="hero-subtitle" style="text-align:center; margin-bottom:1.4rem;">Im letzten Teil geht es darum, wie du das Verfahren erlebt hast.</div>',
         unsafe_allow_html=True,
     )
 
-    text_card(
-        """
-        <p>Bitte bewerte im folgenden kurzen Fragebogen, wie du die Bearbeitung, das Ergebnis und die Darstellung des Verfahrens wahrgenommen hast.</p>
-        <p>Die Einschätzung dauert etwa 1–2 Minuten. Auch hier gibt es keine richtigen oder falschen Antworten.</p>
-        """
+    pre_questionnaire_html = (
+        '<div class="screen-frame-soft screen-fade">'
+        '<div class="screen-card-info">'
+        '<p>Bitte bewerte im folgenden kurzen Fragebogen, wie du die Bearbeitung, das Ergebnis und die Darstellung des Verfahrens erlebt hast.</p>'
+        '<div class="info-grid">'
+        '<div class="info-box"><strong>Dauer</strong><span>ca. 1–2 Minuten</span></div>'
+        '<div class="info-box"><strong>Bewertung</strong><span>Keine richtigen oder falschen Antworten</span></div>'
+        '<div class="info-box"><strong>Anonym</strong><span>Auswertung nur für die Masterarbeit</span></div>'
+        '</div>'
+        '<p>Antworte auch hier möglichst ehrlich und spontan.</p>'
+        '</div>'
+        '</div>'
     )
 
-    if st.button("Einschätzung starten"):
-        st.session_state.phase = "questionnaire"
-        st.session_state.questionnaire_step = 0
-        st.rerun()
+    st.markdown(pre_questionnaire_html, unsafe_allow_html=True)
 
+    left, center, right = st.columns([1.25, 1.5, 1.25])
+    with center:
+        if st.button("Einschätzung starten", use_container_width=True):
+            st.session_state.phase = "questionnaire"
+            st.session_state.questionnaire_step = 0
+            st.rerun()
 
 elif st.session_state.phase == "questionnaire":
     render_progress(3)
@@ -1003,38 +2279,62 @@ elif st.session_state.phase == "questionnaire":
     current_block = questionnaire_items[current_step]
     total_blocks = len(questionnaire_items)
 
-    st.markdown('<div class="hero-title">Deine Einschätzung</div>', unsafe_allow_html=True)
+    progress_percent = round(((current_step + 1) / total_blocks) * 100, 1)
+
     st.markdown(
-        f'<div class="hero-subtitle">Abschnitt {current_step + 1} von {total_blocks}</div>',
+        '<div class="questionnaire-title">Deine Einschätzung</div>',
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        f'<div class="questionnaire-subtitle">Abschnitt {current_step + 1} von {total_blocks}</div>',
         unsafe_allow_html=True,
     )
 
-    st.progress((current_step + 1) / total_blocks)
-
     st.markdown(
         f"""
-        <div class="questionnaire-header">
-            <h3>{escape(current_block["section"])}</h3>
-            <p style="color:#94a3b8; font-size:0.92rem;">
-                1 = stimme überhaupt nicht zu | 2 = stimme eher nicht zu |
-                3 = teils/teils | 4 = stimme eher zu | 5 = stimme voll zu
-            </p>
+        <div class="questionnaire-progress-wrap">
+            <div class="questionnaire-progress-track">
+                <div class="questionnaire-progress-fill" style="width: {progress_percent}%;"></div>
+            </div>
         </div>
         """,
         unsafe_allow_html=True,
     )
 
-    for key, question_text in current_block["items"]:
-        value = st.radio(
-            question_text,
-            options=[1, 2, 3, 4, 5],
-            index=None,
-            horizontal=True,
-            key=f"{key}_radio",
-        )
+    section_text = current_block["section"]
+    if ". " in section_text:
+        section_letter, section_title = section_text.split(". ", 1)
+    else:
+        section_letter = f"{current_step + 1}"
+        section_title = section_text
 
-        if value is not None:
-            st.session_state.questionnaire[key] = value
+    questionnaire_section_html = (
+    '<div class="questionnaire-section-card">'
+    f'<div class="questionnaire-section-label">Abschnitt {escape(section_letter)}</div>'
+    f'<div class="questionnaire-section-title">{escape(section_title)}</div>'
+    '<p class="questionnaire-section-helper">Bitte bewerte die folgenden Aussagen danach, wie sehr du ihnen zustimmst.</p>'
+    '<div class="scale-legend-grid">'
+    '<div class="scale-legend-box"><strong>1</strong><span>stimme gar nicht zu</span></div>'
+    '<div class="scale-legend-box"><strong>3</strong><span>teils / teils</span></div>'
+    '<div class="scale-legend-box"><strong>5</strong><span>stimme voll zu</span></div>'
+    '</div>'
+    '</div>'
+)
+
+    st.markdown(questionnaire_section_html, unsafe_allow_html=True)
+
+    with st.container(key="questionnaire_item_card"):
+        for key, question_text in current_block["items"]:
+            value = st.radio(
+                question_text,
+                options=[1, 2, 3, 4, 5],
+                index=None,
+                horizontal=True,
+                key=f"{key}_radio",
+            )
+
+            if value is not None:
+                st.session_state.questionnaire[key] = value
 
     current_keys = [key for key, _ in current_block["items"]]
     current_complete = all(
@@ -1042,27 +2342,57 @@ elif st.session_state.phase == "questionnaire":
         for key in current_keys
     )
 
-    col1, col2 = st.columns([1, 1])
+    with st.container(key="questionnaire_footer"):
+        if current_step == 0:
+            left, center, right = st.columns([1.25, 1.5, 1.25])
 
-    with col1:
-        if current_step > 0:
-            if st.button("Zurück", use_container_width=True):
-                st.session_state.questionnaire_step -= 1
-                st.rerun()
+            with center:
+                if st.button(
+                    "Weiter",
+                    use_container_width=True,
+                    disabled=not current_complete,
+                    key=f"questionnaire_next_first_{current_step}",
+                ):
+                    st.session_state.questionnaire_step += 1
+                    st.rerun()
 
-    with col2:
-        if current_step < total_blocks - 1:
-            if st.button("Weiter", use_container_width=True, disabled=not current_complete):
-                st.session_state.questionnaire_step += 1
-                st.rerun()
         else:
-            if st.button("Fragebogen absenden", use_container_width=True, disabled=not current_complete):
-                st.session_state.phase = "end"
-                st.rerun()
+            left, back_col, gap, next_col, right = st.columns([0.85, 1.15, 0.2, 1.15, 0.85])
+
+            with back_col:
+                if st.button(
+                    "Zurück",
+                    use_container_width=True,
+                    key=f"questionnaire_back_{current_step}",
+                ):
+                    st.session_state.questionnaire_step -= 1
+                    st.rerun()
+
+            with next_col:
+                if current_step < total_blocks - 1:
+                    if st.button(
+                        "Weiter",
+                        use_container_width=True,
+                        disabled=not current_complete,
+                        key=f"questionnaire_next_{current_step}",
+                    ):
+                        st.session_state.questionnaire_step += 1
+                        st.rerun()
+                else:
+                    if st.button(
+                    "Fragebogen absenden",
+                    use_container_width=True,
+                    disabled=not current_complete,
+                    key="questionnaire_submit",
+                ):
+                        st.session_state.phase = "end"
+                        st.rerun()
 
     if not current_complete:
-        st.info("Bitte beantworte alle Aussagen in diesem Abschnitt, bevor du fortfährst.")
-
+        st.markdown(
+            '<div class="questionnaire-hint">Bitte beantworte alle Aussagen in diesem Abschnitt, bevor du fortfährst.</div>',
+            unsafe_allow_html=True,
+        )
 
 elif st.session_state.phase == "end":
     if not st.session_state.data_saved:

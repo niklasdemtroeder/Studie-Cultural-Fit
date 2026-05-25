@@ -2,6 +2,20 @@ import React, { useEffect, useMemo, useState } from "react";
 import TinderCard from "react-tinder-card";
 import { Streamlit, withStreamlitConnection } from "streamlit-component-lib";
 
+const colors = {
+  bg: "#FAF7F2",
+  card: "#FFFFFF",
+  primary: "#315C63",
+  primaryDark: "#1F3A5F",
+  accent: "#F2B872",
+  text: "#303030",
+  muted: "#667085",
+  border: "#E5E1DA",
+  soft: "#F8F4ED",
+  success: "#6BAA75",
+  danger: "#D98282",
+};
+
 function App({ args }) {
   const items = args?.items || [];
   const mode = args?.mode || "swipe";
@@ -12,21 +26,25 @@ function App({ args }) {
   const [selectedValue, setSelectedValue] = useState(null);
   const [finished, setFinished] = useState(false);
 
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 600;
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 700;
+  const isSmallMobile = typeof window !== "undefined" && window.innerWidth < 390;
   const currentItem = items[currentIndex];
 
   const cardWidth = useMemo(() => {
-    if (typeof window === "undefined") return 340;
-    const maxWidth = isMobile ? window.innerWidth - 32 : 440;
-    return Math.min(Math.max(maxWidth, 280), 440);
-  }, [isMobile]);
+  if (typeof window === "undefined") return 340;
 
-  const cardHeight = isMobile ? 420 : 500;
-  const fontSize = isMobile ? "22px" : "28px";
+  const sidePadding = window.innerWidth < 390 ? 22 : 32;
+  const maxWidth = isMobile ? window.innerWidth - sidePadding : 440;
+
+  return Math.min(Math.max(maxWidth, 286), 440);
+}, [isMobile]);
+
+const cardHeight = isSmallMobile ? 370 : isMobile ? 400 : 500;
+const fontSize = isSmallMobile ? "19px" : isMobile ? "21px" : "28px";
 
   useEffect(() => {
     Streamlit.setComponentReady();
-    Streamlit.setFrameHeight(isMobile ? 760 : 850);
+    Streamlit.setFrameHeight(isSmallMobile ? 620 : isMobile ? 660 : 760);
   }, [isMobile, mode, currentIndex]);
 
   const finishAssessment = (updatedAnswers) => {
@@ -103,45 +121,45 @@ function App({ args }) {
   const hintText =
     mode === "swipe"
       ? swipeDirection === "right"
-        ? "Zustimmung"
+        ? "Passt eher"
         : swipeDirection === "left"
-        ? "keine Zustimmung"
+        ? "Passt eher nicht"
         : remaining <= 3
         ? "Fast geschafft"
         : "Aussage bewerten"
       : remaining <= 3
       ? "Fast geschafft"
-      : "Antwort auswählen";
+      : "Wert auswählen";
 
   const cardBackground =
     swipeDirection === "right"
-      ? "rgba(59, 130, 246, 0.18)"
+      ? "linear-gradient(180deg, rgba(107,170,117,0.20), #FFFFFF 70%)"
       : swipeDirection === "left"
-      ? "rgba(148, 163, 184, 0.18)"
-      : "linear-gradient(180deg, #1e293b 0%, #0f172a 100%)";
+      ? "linear-gradient(180deg, rgba(217,130,130,0.20), #FFFFFF 70%)"
+      : "linear-gradient(180deg, #FFFFFF 0%, #F8F4ED 100%)";
 
   return (
     <div
       style={{
         minHeight: "100vh",
         width: "100%",
-        padding: isMobile ? "16px" : "24px",
+        padding: isSmallMobile ? "8px 10px 12px" : isMobile ? "10px 12px 14px" : "10px 24px 18px",
         boxSizing: "border-box",
         background:
-          "radial-gradient(circle at top, rgba(59,130,246,0.10), transparent 30%), #0f172a",
+            "linear-gradient(180deg, #FAF7F2 0%, #F8F4ED 100%)",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
+        justifyContent: "flex-start",
         alignItems: "center",
-        gap: isMobile ? "16px" : "22px",
-        fontFamily: "system-ui, sans-serif",
+        gap: isSmallMobile ? "8px" : isMobile ? "10px" : "14px",
+        fontFamily: "Arial, system-ui, sans-serif",
       }}
     >
       <div
         style={{
           width: cardWidth,
           height: "8px",
-          background: "rgba(255,255,255,0.08)",
+          background: colors.border,
           borderRadius: "999px",
           overflow: "hidden",
         }}
@@ -150,7 +168,7 @@ function App({ args }) {
           style={{
             height: "100%",
             width: `${progressPercent}%`,
-            background: "linear-gradient(90deg, #3b82f6, #60a5fa)",
+            background: `linear-gradient(90deg, ${colors.primary}, ${colors.accent})`,
             borderRadius: "999px",
             transition: "width 0.25s ease",
           }}
@@ -163,7 +181,7 @@ function App({ args }) {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          color: "#64748b",
+          color: colors.muted,
           fontSize: isMobile ? "13px" : "14px",
         }}
       >
@@ -173,41 +191,26 @@ function App({ args }) {
         <span>{hintText}</span>
       </div>
 
-      <div style={{ width: cardWidth, textAlign: "left" }}>
-        <span
-          style={{
-            display: "inline-block",
-            background: "rgba(59,130,246,0.18)",
-            border: "1px solid rgba(59,130,246,0.35)",
-            color: "#e0ecff",
-            borderRadius: "999px",
-            padding: "6px 12px",
-            fontSize: isMobile ? "13px" : "14px",
-            fontWeight: 600,
-          }}
-        >
-          {currentItem.dimension}
-        </span>
-      </div>
-
       {mode === "likert" ? (
         <LikertAssessment
           item={currentItem}
           cardWidth={cardWidth}
           isMobile={isMobile}
+          isSmallMobile={isSmallMobile}
           selectedValue={selectedValue}
           onSelect={sendLikertDecision}
         />
       ) : (
         <SwipeAssessment
-          item={currentItem}
-          cardWidth={cardWidth}
-          cardHeight={cardHeight}
-          fontSize={fontSize}
-          isMobile={isMobile}
-          cardBackground={cardBackground}
-          onSwipe={sendSwipeDecision}
-        />
+  item={currentItem}
+  cardWidth={cardWidth}
+  cardHeight={cardHeight}
+  fontSize={fontSize}
+  isMobile={isMobile}
+  isSmallMobile={isSmallMobile}
+  cardBackground={cardBackground}
+  onSwipe={sendSwipeDecision}
+/>
       )}
     </div>
   );
@@ -219,6 +222,7 @@ function SwipeAssessment({
   cardHeight,
   fontSize,
   isMobile,
+  isSmallMobile,
   cardBackground,
   onSwipe,
 }) {
@@ -240,8 +244,8 @@ function SwipeAssessment({
             width: cardWidth - 14,
             height: cardHeight - 10,
             borderRadius: "26px",
-            background: "rgba(255,255,255,0.03)",
-            border: "1px solid rgba(255,255,255,0.04)",
+            background: "#F3EEE7",
+            border: `1px solid ${colors.border}`,
             transform: "translateY(8px) scale(0.985)",
           }}
         />
@@ -259,21 +263,22 @@ function SwipeAssessment({
               background: cardBackground,
               width: cardWidth,
               height: cardHeight,
+              position: "relative",
               borderRadius: "26px",
-              boxShadow: "0 22px 52px rgba(0,0,0,0.36)",
-              border: "1px solid rgba(255,255,255,0.06)",
+              boxShadow: "0 22px 52px rgba(49,92,99,0.16)",
+              border: `1px solid ${colors.border}`,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
               textAlign: "center",
-              padding: isMobile ? "26px 20px" : "34px 30px",
+              padding: isSmallMobile ? "24px 16px 44px" : isMobile ? "26px 18px 46px" : "34px 30px",
               fontSize,
               fontWeight: 750,
               lineHeight: 1.5,
               letterSpacing: "-0.01em",
               boxSizing: "border-box",
-              color: "#e5e7eb",
+              color: colors.text,
               cursor: "grab",
               userSelect: "none",
               WebkitUserSelect: "none",
@@ -281,35 +286,40 @@ function SwipeAssessment({
               transition: "background 0.18s ease",
             }}
           >
-            <div
-              style={{
-                color: "#93c5fd",
-                fontSize: isMobile ? "14px" : "15px",
-                marginBottom: isMobile ? "14px" : "16px",
-                fontWeight: 600,
-              }}
-            >
-              Arbeitspräferenz
-            </div>
 
-            <div>{item.text}</div>
+            <div
+  style={{
+    position: "absolute",
+    left: isMobile ? "18px" : "24px",
+    bottom: isMobile ? "18px" : "22px",
+    color: colors.primary,
+    fontSize: isMobile ? "12px" : "13px",
+    fontWeight: 750,
+    opacity: 0.78,
+  }}
+>
+  Passt eher nicht
+</div>
+
+<div
+  style={{
+    position: "absolute",
+    right: isMobile ? "18px" : "24px",
+    bottom: isMobile ? "18px" : "22px",
+    color: colors.primary,
+    fontSize: isMobile ? "12px" : "13px",
+    fontWeight: 750,
+    opacity: 0.78,
+  }}
+>
+  Passt eher
+</div>
+
+<div>{item.text}</div>
           </div>
         </TinderCard>
       </div>
 
-      <div
-        style={{
-          textAlign: "center",
-          color: "#94a3b8",
-          fontSize: isMobile ? "14px" : "15px",
-          lineHeight: 1.45,
-          maxWidth: cardWidth,
-        }}
-      >
-        Wische nach links für eher keine Zustimmung.
-        <br />
-        Wische nach rechts für eher Zustimmung.
-      </div>
     </>
   );
 }
@@ -319,44 +329,33 @@ function LikertAssessment({ item, cardWidth, isMobile, selectedValue, onSelect }
     <div
       style={{
         width: cardWidth,
-        background: "rgba(15, 23, 42, 0.72)",
-        border: "1px solid rgba(255,255,255,0.06)",
+        background: colors.card,
+        border: `1px solid ${colors.border}`,
         borderRadius: "24px",
-        padding: isMobile ? "22px 18px" : "28px 30px",
+        padding: isSmallMobile ? "18px 14px" : isMobile ? "20px 16px" : "28px 30px",
         boxSizing: "border-box",
-        boxShadow: "0 18px 42px rgba(0,0,0,0.26)",
+        boxShadow: "0 18px 42px rgba(49,92,99,0.13)",
       }}
     >
       <div
         style={{
-          background:
-            "linear-gradient(180deg, rgba(30,41,59,1) 0%, rgba(15,23,42,1) 100%)",
-          border: "1px solid rgba(255,255,255,0.06)",
+          background: "linear-gradient(180deg, #FFFFFF 0%, #F8F4ED 100%)",
+          border: `1px solid ${colors.border}`,
           borderRadius: "24px",
-          padding: isMobile ? "26px 20px" : "34px 30px",
+          padding: isSmallMobile ? "24px 16px" : isMobile ? "26px 18px" : "34px 30px",
           textAlign: "center",
-          color: "#e5e7eb",
-          minHeight: isMobile ? "250px" : "280px",
+          color: colors.text,
+          minHeight: isSmallMobile ? "190px" : isMobile ? "215px" : "250px",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          boxShadow: "0 20px 50px rgba(0,0,0,0.35)",
+          boxShadow: "0 20px 50px rgba(49,92,99,0.12)",
         }}
       >
-        <div
-          style={{
-            color: "#93c5fd",
-            fontSize: isMobile ? "14px" : "15px",
-            marginBottom: "16px",
-            fontWeight: 600,
-          }}
-        >
-          Arbeitspräferenz
-        </div>
 
         <div
           style={{
-            fontSize: isMobile ? "22px" : "28px",
+            fontSize: isSmallMobile ? "18px" : isMobile ? "20px" : "26px",
             fontWeight: 750,
             lineHeight: 1.5,
             letterSpacing: "-0.01em",
@@ -368,7 +367,7 @@ function LikertAssessment({ item, cardWidth, isMobile, selectedValue, onSelect }
 
       <div
         style={{
-          borderTop: "1px solid rgba(255,255,255,0.08)",
+          borderTop: `1px solid ${colors.border}`,
           marginTop: "20px",
           paddingTop: "18px",
           textAlign: "center",
@@ -376,20 +375,20 @@ function LikertAssessment({ item, cardWidth, isMobile, selectedValue, onSelect }
       >
         <div
           style={{
-            color: "#f8fafc",
+            color: colors.primary,
             fontSize: "16px",
-            fontWeight: 700,
+            fontWeight: 750,
             marginBottom: "12px",
           }}
         >
-          Bitte wähle deine Antwort:
+          Wie gut passt die Aussage zu dir?
         </div>
 
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(5, 1fr)",
-            gap: isMobile ? "8px" : "10px",
+            gap: isSmallMobile ? "5px" : isMobile ? "8px" : "10px",
             maxWidth: "320px",
             margin: "0 auto",
           }}
@@ -398,7 +397,7 @@ function LikertAssessment({ item, cardWidth, isMobile, selectedValue, onSelect }
             <div key={value} style={{ textAlign: "center" }}>
               <div
                 style={{
-                  color: "#f8fafc",
+                  color: colors.text,
                   fontWeight: 800,
                   fontSize: "15px",
                   marginBottom: "6px",
@@ -410,22 +409,24 @@ function LikertAssessment({ item, cardWidth, isMobile, selectedValue, onSelect }
               <button
                 onClick={() => onSelect(value)}
                 style={{
-                  width: isMobile ? "38px" : "40px",
-                  height: isMobile ? "38px" : "40px",
+                  width: isSmallMobile ? "34px" : isMobile ? "38px" : "40px",
+                  height: isSmallMobile ? "34px" : isMobile ? "38px" : "40px",
                   borderRadius: "999px",
                   border:
                     selectedValue === value
-                      ? "1px solid #3b82f6"
-                      : "1px solid rgba(255,255,255,0.16)",
+                      ? `1px solid ${colors.primary}`
+                      : `1px solid ${colors.border}`,
                   background:
-                    selectedValue === value
-                      ? "rgba(59,130,246,0.35)"
-                      : "#1e293b",
-                  color: "#e5e7eb",
+                    selectedValue === value ? colors.primary : colors.soft,
+                  color: selectedValue === value ? "#FFFFFF" : colors.primary,
                   fontSize: "18px",
                   cursor: "pointer",
-                  boxShadow: "0 6px 16px rgba(0,0,0,0.18)",
-                  transform: selectedValue === value ? "scale(1.08)" : "scale(1)",
+                  boxShadow:
+                    selectedValue === value
+                      ? "0 8px 20px rgba(49,92,99,0.22)"
+                      : "0 6px 16px rgba(49,92,99,0.08)",
+                  transform:
+                    selectedValue === value ? "scale(1.08)" : "scale(1)",
                   transition: "all 0.15s ease",
                 }}
               >
@@ -438,13 +439,12 @@ function LikertAssessment({ item, cardWidth, isMobile, selectedValue, onSelect }
         <div
           style={{
             marginTop: "14px",
-            color: "#94a3b8",
+            color: colors.muted,
             fontSize: isMobile ? "13px" : "14px",
             lineHeight: 1.45,
           }}
         >
-          1 = stimme überhaupt nicht zu · 2 = stimme eher nicht zu · 3 =
-          teils/teils · 4 = stimme eher zu · 5 = stimme voll zu
+          1 = passt gar nicht · 3 = teils/teils · 5 = passt sehr gut
         </div>
       </div>
     </div>
@@ -454,13 +454,13 @@ function LikertAssessment({ item, cardWidth, isMobile, selectedValue, onSelect }
 const centerMessageStyle = {
   minHeight: "280px",
   width: "100%",
-  background: "#0f172a",
-  color: "#e5e7eb",
+  background: "#FAF7F2",
+  color: "#303030",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   textAlign: "center",
-  fontFamily: "system-ui, sans-serif",
+  fontFamily: "Arial, system-ui, sans-serif",
 };
 
 export default withStreamlitConnection(App);
