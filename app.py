@@ -1465,6 +1465,9 @@ div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
     margin-bottom: 0.25rem !important;
 }
 
+/* Ende FINAL MOBILE OPTIMIZATION */
+}
+
 @media (max-width: 390px) {
     .hero-title,
     .questionnaire-title {
@@ -1557,9 +1560,8 @@ div[class*="st-key-consent_action_area"] .stButton {
 
 /* Screen vor Abschlussfragebogen: saubere Informationskarte ohne äußeren Farbverlaufsrahmen */
 .pre-questionnaire-clean-wrap {
-    margin-bottom: 1.35rem !important;
     width: 100% !important;
-    margin: 0 auto 0.75rem auto !important;
+    margin: 0 auto 1.65rem auto !important;
     padding: 0 !important;
     background: transparent !important;
     box-shadow: none !important;
@@ -1567,7 +1569,7 @@ div[class*="st-key-consent_action_area"] .stButton {
 }
 
 .pre-questionnaire-clean-wrap .screen-card-info {
-    width: min(760px, 100%) !important;
+    width: min(740px, 100%) !important;
     margin: 0 auto !important;
     background: rgba(255,255,255,0.96) !important;
     border: 1px solid rgba(49,92,99,0.12) !important;
