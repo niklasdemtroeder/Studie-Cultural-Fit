@@ -1493,25 +1493,47 @@ div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
     }
 }
 
-/* Screen 2: Farbverlaufsrahmen kompakter und sauber begrenzen */
-.consent-frame {
-    padding: 1.25rem !important;
-    margin-bottom: 0.65rem !important;
-    overflow: hidden !important;
-    border-radius: 32px !important;
-}
-
-.consent-frame .screen-card-info {
-    width: 100% !important;
-    max-width: none !important;
-    box-sizing: border-box !important;
-    border-radius: 28px !important;
-}
-
 /* Consent-Interaktion sauber unter der Karte */
 .st-key-consent_action_area,
 div[class*="st-key-consent_action_area"] {
     margin-top: 0.15rem !important;
+    padding-top: 0 !important;
+}
+
+.st-key-consent_action_area div[data-testid="stCheckbox"],
+div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
+    margin-top: 0 !important;
+    margin-bottom: 0.35rem !important;
+}
+
+.st-key-consent_action_area .stButton,
+div[class*="st-key-consent_action_area"] .stButton {
+    margin-top: 0 !important;
+}
+
+/* Screen 2: saubere Informationskarte ohne äußeren Farbverlaufsrahmen */
+.consent-clean-wrap {
+    width: 100% !important;
+    margin: 0 auto 0.75rem auto !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.consent-clean-wrap .screen-card-info {
+    width: min(820px, 100%) !important;
+    margin: 0 auto !important;
+    background: rgba(255,255,255,0.96) !important;
+    border: 1px solid rgba(49,92,99,0.12) !important;
+    border-radius: 30px !important;
+    box-shadow: 0 20px 48px rgba(49,92,99,0.11) !important;
+}
+
+/* Screen 2: Checkbox und Button sauber unter der Karte */
+.st-key-consent_action_area,
+div[class*="st-key-consent_action_area"] {
+    margin-top: 0.25rem !important;
     padding-top: 0 !important;
 }
 
@@ -2007,7 +2029,7 @@ if st.session_state.phase == "welcome":
 
 elif st.session_state.phase == "consent":
     consent_html = (
-        '<div class="screen-frame-soft consent-frame screen-fade">'
+        '<div class="consent-clean-wrap screen-fade">'
         '<div class="screen-card-info">'
         '<div class="hero-title">Kurz zur Studie</div>'
         '<div class="hero-subtitle">Bevor es losgeht, erhältst du die wichtigsten Informationen zur Teilnahme.</div>'
