@@ -1569,7 +1569,7 @@ div[class*="st-key-consent_action_area"] .stButton {
 }
 
 .pre-questionnaire-clean-wrap .screen-card-info {
-    width: min(740px, 100%) !important;
+    width: min(800px, 100%) !important;
     margin: 0 auto !important;
     background: rgba(255,255,255,0.96) !important;
     border: 1px solid rgba(49,92,99,0.12) !important;
