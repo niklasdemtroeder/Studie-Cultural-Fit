@@ -1228,21 +1228,17 @@ div[class*="st-key-questionnaire_footer"] .questionnaire-hint {
     margin-top: 0.35rem !important;
 }
 
-/* Screen 2: Checkbox und Button näher an die Info-Karte rücken */
+/* Screen 2: Consent-Bereich sauber unter der Info-Karte platzieren */
 .st-key-consent_action_area,
 div[class*="st-key-consent_action_area"] {
-    margin-top: -0.2rem !important;
+    margin-top: 0.15rem !important;
+    padding-top: 0 !important;
 }
 
 .st-key-consent_action_area div[data-testid="stCheckbox"],
 div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
-    margin-top: -0.35rem !important;
-    margin-bottom: 0.15rem !important;
-}
-
-.st-key-consent_action_area div[data-testid="stCheckbox"],
-div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
-    margin-bottom: -0.25rem !important;
+    margin-top: 0 !important;
+    margin-bottom: 0.35rem !important;
 }
 
 .st-key-consent_action_area .stButton,
@@ -1459,15 +1455,14 @@ div[class*="st-key-consent_action_area"] .stButton {
     }
 
     .st-key-consent_action_area,
-    div[class*="st-key-consent_action_area"] {
-        margin-top: -0.55rem !important;
-    }
+div[class*="st-key-consent_action_area"] {
+    margin-top: 0.15rem !important;
+}
 
-    .st-key-consent_action_area div[data-testid="stCheckbox"],
-    div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
-        margin-top: 0 !important;
-        margin-bottom: -0.15rem !important;
-    }
+.st-key-consent_action_area div[data-testid="stCheckbox"],
+div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
+    margin-top: 0 !important;
+    margin-bottom: 0.25rem !important;
 }
 
 @media (max-width: 390px) {
