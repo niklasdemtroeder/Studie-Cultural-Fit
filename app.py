@@ -1493,6 +1493,39 @@ div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
     }
 }
 
+/* Screen 2: Farbverlaufsrahmen kompakter und sauber begrenzen */
+.consent-frame {
+    padding: 1.25rem !important;
+    margin-bottom: 0.65rem !important;
+    overflow: hidden !important;
+    border-radius: 32px !important;
+}
+
+.consent-frame .screen-card-info {
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+    border-radius: 28px !important;
+}
+
+/* Consent-Interaktion sauber unter der Karte */
+.st-key-consent_action_area,
+div[class*="st-key-consent_action_area"] {
+    margin-top: 0.15rem !important;
+    padding-top: 0 !important;
+}
+
+.st-key-consent_action_area div[data-testid="stCheckbox"],
+div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
+    margin-top: 0 !important;
+    margin-bottom: 0.35rem !important;
+}
+
+.st-key-consent_action_area .stButton,
+div[class*="st-key-consent_action_area"] .stButton {
+    margin-top: 0 !important;
+}
+
     </style>
     """,
     unsafe_allow_html=True,
@@ -1974,7 +2007,7 @@ if st.session_state.phase == "welcome":
 
 elif st.session_state.phase == "consent":
     consent_html = (
-        '<div class="screen-frame-soft screen-fade">'
+        '<div class="screen-frame-soft consent-frame screen-fade">'
         '<div class="screen-card-info">'
         '<div class="hero-title">Kurz zur Studie</div>'
         '<div class="hero-subtitle">Bevor es losgeht, erhältst du die wichtigsten Informationen zur Teilnahme.</div>'
