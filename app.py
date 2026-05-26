@@ -146,14 +146,6 @@ st.markdown(
     text-align: left;
 }
 
-.result-assessment-inner h3 {
-    color: var(--primary) !important;
-    font-size: 1.65rem;
-    font-weight: 850;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.45rem;
-}
-
 .result-assessment-wrap h3 {
     color: var(--primary) !important;
     font-size: 1.65rem;
@@ -176,10 +168,6 @@ st.markdown(
 
 .result-assessment-wrap .stButton {
     margin-top: 0.65rem;
-}
-
-.result-assessment-inner p {
-    margin-bottom: 1rem;
 }
 
 .screen-card-info {
@@ -339,18 +327,6 @@ st.markdown(
     margin-top: 0.75rem;
 }
 
-.result-assessment-inner h3 {
-    color: var(--primary) !important;
-    font-size: 1.65rem;
-    font-weight: 850;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.45rem;
-}
-
-.result-assessment-inner p {
-    margin-bottom: 0.9rem;
-}
-
 .result-pill {
     display: inline-block;
     background: rgba(49,92,99,0.09);
@@ -400,20 +376,6 @@ div[data-testid="stVerticalBlockBorderWrapper"]:has(.result-assessment-marker) d
 
 .result-assessment-marker {
     display: none;
-}
-
-.result-assessment-inner h3 {
-    color: var(--primary) !important;
-    font-size: 1.65rem;
-    font-weight: 850;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.35rem;
-}
-
-.result-assessment-inner p {
-    margin-top: 0;
-    margin-bottom: 0.75rem;
-    color: var(--text) !important;
 }
 
 .result-radio-label {
@@ -808,20 +770,6 @@ div[data-testid="column"]:has(.result-assessment-marker) div[data-testid="stVert
     display: none;
 }
 
-.result-assessment-inner h3 {
-    color: var(--primary) !important;
-    font-size: 1.65rem;
-    font-weight: 850;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.35rem;
-}
-
-.result-assessment-inner p {
-    margin-top: 0;
-    margin-bottom: 0.8rem;
-    color: var(--text) !important;
-}
-
 .result-radio-label {
     color: var(--muted);
     font-size: 0.95rem;
@@ -843,20 +791,6 @@ div[data-testid="column"]:has(.result-assessment-marker) div[role="radiogroup"] 
     color: var(--muted);
     font-size: 0.95rem;
     margin-top: 0.25rem;
-}
-
-.result-assessment-inner h3 {
-    color: var(--primary) !important;
-    font-size: 1.65rem;
-    font-weight: 850;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.35rem;
-}
-
-.result-assessment-inner p {
-    margin-top: 0;
-    margin-bottom: 0.8rem;
-    color: var(--text) !important;
 }
 
 .result-radio-label {
@@ -956,21 +890,6 @@ div[data-testid="column"]:has(.result-assessment-marker) div[data-testid="stHori
     display: none !important;
 }
 
-.result-assessment-inner h3 {
-    color: var(--primary) !important;
-    font-size: 1.65rem !important;
-    font-weight: 850 !important;
-    letter-spacing: -0.03em !important;
-    margin-top: 0 !important;
-    margin-bottom: 0.35rem !important;
-}
-
-.result-assessment-inner p {
-    margin-top: 0 !important;
-    margin-bottom: 0.8rem !important;
-    color: var(--text) !important;
-}
-
 .result-radio-label {
     color: var(--muted) !important;
     font-size: 0.95rem !important;
@@ -1008,17 +927,18 @@ div[data-testid="column"]:has(.result-assessment-marker) div[role="radiogroup"] 
     margin-top: 0.25rem !important;
 }
 
-/* FINAL: Einschätzungskarte über Streamlit-Key stylen */
+/* Ergebnis-Screen: gesamte Einschätzungsbox als Karte */
 .st-key-result_assessment_card,
 div[class*="st-key-result_assessment_card"] {
-    background: #FFFFFF !important;
-    background-color: #FFFFFF !important;
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+    background: rgba(255,255,255,0.96) !important;
     border: 1px solid rgba(49,92,99,0.12) !important;
-    border-radius: 28px !important;
-    box-shadow: 0 18px 42px rgba(49,92,99,0.10) !important;
-    padding: 1.25rem 1.45rem 1.15rem 1.45rem !important;
-    margin-top: 0.35rem !important;
-    margin-bottom: 1.35rem !important;
+    border-radius: 30px !important;
+    box-shadow: 0 20px 48px rgba(49,92,99,0.11) !important;
+    padding: 1.55rem 1.75rem 1.15rem 1.75rem !important;
+    margin: 1.05rem auto 1.85rem auto !important;
 }
 
 .st-key-result_assessment_card div[data-testid="stVerticalBlock"],
@@ -1042,19 +962,34 @@ div[class*="st-key-result_assessment_card"] div[role="radiogroup"] {
     gap: 0.12rem !important;
 }
 
+/* Innerer HTML-Block soll keine eigene Karte sein */
+.result-assessment-inner {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 0 0.85rem 0 !important;
+}
+
 .result-assessment-inner h3 {
     color: var(--primary) !important;
     font-size: 1.65rem !important;
     font-weight: 850 !important;
-    letter-spacing: -0.03em !important;
-    margin-top: 0 !important;
-    margin-bottom: 0.35rem !important;
+    letter-spacing: -0.035em !important;
+    margin: 0 0 0.75rem 0 !important;
 }
 
 .result-assessment-inner p {
-    margin-top: 0 !important;
-    margin-bottom: 0.8rem !important;
+    margin: 0 0 0.5rem 0 !important;
     color: var(--text) !important;
+}
+
+/* Hinweis unter Button zentrieren */
+.result-assessment-hint {
+    text-align: center !important;
+    color: var(--muted) !important;
+    margin-top: 0.8rem !important;
+    font-weight: 650 !important;
 }
 
 .result-radio-label {
