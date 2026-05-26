@@ -481,13 +481,52 @@ div[data-testid="stVerticalBlockBorderWrapper"]:has(.result-assessment-marker) d
         margin-bottom: 0.8rem;
     }
 
-    .thanks-card {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 24px;
-        padding: 1.4rem;
-        box-shadow: 0 18px 40px rgba(49,92,99,0.11);
-    }
+    .thanks-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 4.5rem;
+}
+
+.thanks-card {
+    width: min(760px, 100%);
+    background: rgba(255,255,255,0.96);
+    border: 1px solid rgba(49,92,99,0.12);
+    border-radius: 30px;
+    padding: 2.2rem 2.4rem;
+    box-shadow: 0 22px 55px rgba(49,92,99,0.12);
+    text-align: center;
+}
+
+.thanks-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 999px;
+    background: rgba(107,170,117,0.16);
+    border: 1px solid rgba(107,170,117,0.35);
+    color: var(--success);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 850;
+    margin: 0 auto 1rem auto;
+}
+
+.thanks-title {
+    color: var(--primary);
+    font-size: 2.1rem;
+    font-weight: 850;
+    letter-spacing: -0.04em;
+    line-height: 1.12;
+    margin-bottom: 0.65rem;
+}
+
+.thanks-text {
+    color: var(--text);
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
 
     .info-grid {
         display: grid;
@@ -836,6 +875,23 @@ div[data-testid="column"]:has(.result-assessment-marker) div[role="radiogroup"] 
     @media (max-width: 700px) {
         .block-container {
             padding-top: 1.6rem;
+        .thanks-wrap {
+    margin-top: 2.2rem !important;
+}
+
+.thanks-card {
+    width: 100% !important;
+    padding: 1.45rem 1.15rem !important;
+    border-radius: 22px !important;
+}
+
+.thanks-title {
+    font-size: 1.65rem !important;
+}
+
+.thanks-text {
+    font-size: 0.96rem !important;
+}
         }
 
 .welcome-wrap {
@@ -1577,6 +1633,34 @@ div[class*="st-key-consent_action_area"] .stButton {
     border: 1px solid rgba(49,92,99,0.12) !important;
     border-radius: 30px !important;
     box-shadow: 0 20px 48px rgba(49,92,99,0.11) !important;
+}
+
+/* Finale Radio-Button-Optimierung */
+div[data-testid="stRadio"] input[type="radio"] {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    width: 17px !important;
+    height: 17px !important;
+    border: 2px solid rgba(49,92,99,0.22) !important;
+    border-radius: 999px !important;
+    background: #FFFFFF !important;
+    cursor: pointer !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin-right: 0.45rem !important;
+}
+
+div[data-testid="stRadio"] input[type="radio"]:checked {
+    border-color: var(--success) !important;
+    background:
+        radial-gradient(circle at center, var(--success) 0 42%, transparent 45%) !important;
+}
+
+div[data-testid="stRadio"] label:has(input[type="radio"]:checked) p,
+div[data-testid="stRadio"] label:has(input[type="radio"]:checked) span {
+    color: var(--primary) !important;
+    font-weight: 700 !important;
 }
 
     </style>
@@ -2480,11 +2564,18 @@ elif st.session_state.phase == "end":
         save_response()
         st.session_state.data_saved = True
 
-    st.title("Vielen Dank für deine Teilnahme")
     st.markdown(
         """
-        <div class="thanks-card">
-            Deine Antworten wurden erfolgreich gespeichert.
+        <div class="thanks-wrap screen-fade">
+            <div class="thanks-card">
+                <div class="thanks-icon">✓</div>
+                <div class="thanks-title">Vielen Dank für deine Teilnahme</div>
+                <div class="thanks-text">
+                    Deine Antworten wurden erfolgreich gespeichert.
+                    <br>
+                    Du kannst das Browserfenster nun schließen.
+                </div>
+            </div>
         </div>
         """,
         unsafe_allow_html=True,
