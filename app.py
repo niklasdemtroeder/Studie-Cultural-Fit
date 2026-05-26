@@ -1623,94 +1623,36 @@ div[class*="st-key-consent_action_area"] .stButton {
 }
 
 /* =========================================================
-   FINAL OVERRIDE: Checkbox & Radio Buttons
-   Grün/Teal statt Streamlit-Rot/Schwarz
+   FINAL: Native Checkbox & Radio Styling
+   Theme-Farbe nutzen, native Kreise sichtbar lassen
    ========================================================= */
 
-/* ---------- Checkbox: native input ---------- */
+/* Checkboxen: native Darstellung behalten, nur Akzentfarbe setzen */
 div[data-testid="stCheckbox"] input[type="checkbox"] {
+    appearance: auto !important;
+    -webkit-appearance: checkbox !important;
     accent-color: var(--success) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
-/* ---------- Checkbox: BaseWeb sichtbare Box ---------- */
-div[data-testid="stCheckbox"] [data-baseweb="checkbox"] div,
-div[data-testid="stCheckbox"] div[role="checkbox"] {
-    border-color: rgba(49,92,99,0.28) !important;
-}
-
-/* Checkbox ausgewählt */
-div[data-testid="stCheckbox"] [data-baseweb="checkbox"] div[aria-checked="true"],
-div[data-testid="stCheckbox"] div[role="checkbox"][aria-checked="true"] {
-    background-color: var(--success) !important;
-    border-color: var(--success) !important;
-}
-
-/* Haken weiß */
-div[data-testid="stCheckbox"] [data-baseweb="checkbox"] svg,
-div[data-testid="stCheckbox"] div[role="checkbox"] svg {
-    fill: #FFFFFF !important;
-    color: #FFFFFF !important;
-}
-
-
-/* ---------- Radio: Grundzustand ---------- */
-div[data-testid="stRadio"] input[type="radio"] {
-    appearance: none !important;
-    -webkit-appearance: none !important;
-    width: 17px !important;
-    height: 17px !important;
-    min-width: 17px !important;
-    min-height: 17px !important;
-    border: 2px solid rgba(49,92,99,0.26) !important;
-    border-radius: 999px !important;
-    background: #FFFFFF !important;
-    background-color: #FFFFFF !important;
-    box-shadow: none !important;
-    outline: none !important;
+/* Radio-Buttons: native Darstellung behalten, nur Akzentfarbe setzen */
+div[data-testid="stRadio"] input[type="radio"],
+div[role="radiogroup"] input[type="radio"] {
+    appearance: auto !important;
+    -webkit-appearance: radio !important;
+    accent-color: var(--success) !important;
+    width: 16px !important;
+    height: 16px !important;
+    min-width: 16px !important;
+    min-height: 16px !important;
     opacity: 1 !important;
     visibility: visible !important;
     display: inline-block !important;
-    cursor: pointer !important;
     margin-right: 0.45rem !important;
 }
 
-/* Radio: ausgewählt */
-div[data-testid="stRadio"] input[type="radio"]:checked {
-    border-color: var(--success) !important;
-    background:
-        radial-gradient(circle at center, var(--success) 0 42%, transparent 45%) !important;
-    background-color: #FFFFFF !important;
-}
-
-/* ---------- Radio: BaseWeb Fallback ---------- */
-div[data-testid="stRadio"] [data-baseweb="radio"] div,
-div[data-testid="stRadio"] div[role="radio"] {
-    border-color: rgba(49,92,99,0.26) !important;
-    background-color: #FFFFFF !important;
-    box-shadow: none !important;
-}
-
-/* BaseWeb Radio ausgewählt */
-div[data-testid="stRadio"] [data-baseweb="radio"] div[aria-checked="true"],
-div[data-testid="stRadio"] div[role="radio"][aria-checked="true"] {
-    border-color: var(--success) !important;
-    background-color: #FFFFFF !important;
-}
-
-/* Innerer Punkt bei BaseWeb Radio */
-div[data-testid="stRadio"] [data-baseweb="radio"] div[aria-checked="true"]::after,
-div[data-testid="stRadio"] div[role="radio"][aria-checked="true"]::after {
-    background-color: var(--success) !important;
-}
-
-
-/* ---------- Harte Korrektur für schwarze Kreise ---------- */
-div[data-testid="stRadio"] label span:first-child,
-div[data-testid="stRadio"] label div:first-child {
-    color: var(--success) !important;
-}
-
-/* Nur ausgewählte Antwort textlich hervorheben */
+/* Ausgewählte Antwort dezent hervorheben */
 div[data-testid="stRadio"] label:has(input[type="radio"]:checked) p,
 div[data-testid="stRadio"] label:has(input[type="radio"]:checked) span {
     color: var(--primary) !important;
