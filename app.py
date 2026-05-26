@@ -2304,51 +2304,48 @@ elif st.session_state.phase == "results":
         unsafe_allow_html=True,
     )
 
-    left, card_col, right = st.columns([0.025, 0.90, 0.025])
+    with st.container(key="result_assessment_card"):
+        st.markdown(
+        """
+        <div class="result-assessment-inner">
+            <h3>Deine erste Einschätzung</h3>
+            <p>Wie passend erscheint dir das angezeigte Ergebnis?</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
-    with card_col:
-        with st.container(key="result_assessment_card"):
-            st.markdown(
-                """
-                <div class="result-assessment-inner">
-                    <h3>Deine erste Einschätzung</h3>
-                    <p>Wie passend erscheint dir das angezeigte Ergebnis?</p>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
+    self_assessment = st.radio(
+        "Bitte wähle eine Antwort aus:",
+        options=[
+            "Sehr passend",
+            "Eher passend",
+            "Teils / teils",
+            "Eher nicht passend",
+            "Gar nicht passend",
+        ],
+        index=None,
+        key="result_self_assessment",
+        label_visibility="collapsed",
+    )
 
-            self_assessment = st.radio(
-                "Bitte wähle eine Antwort aus:",
-                options=[
-                    "Sehr passend",
-                    "Eher passend",
-                    "Teils / teils",
-                    "Eher nicht passend",
-                    "Gar nicht passend",
-                ],
-                index=None,
-                key="result_self_assessment",
-                label_visibility="collapsed",
-            )
+    btn_left, btn_center, btn_right = st.columns([0.05, 0.90, 0.05])
+    with btn_center:
+        if st.button(
+            "Zum Abschlussfragebogen",
+            use_container_width=True,
+            disabled=self_assessment is None,
+            key="continue_to_questionnaire",
+        ):
+            st.session_state.self_assessment = self_assessment
+            st.session_state.phase = "pre_questionnaire"
+            st.rerun()
 
-            btn_left, btn_center, btn_right = st.columns([0.01, 0.70, 0.01])
-            with btn_center:
-                if st.button(
-                    "Zum Abschlussfragebogen",
-                    use_container_width=True,
-                    disabled=self_assessment is None,
-                    key="continue_to_questionnaire",
-                ):
-                    st.session_state.self_assessment = self_assessment
-                    st.session_state.phase = "pre_questionnaire"
-                    st.rerun()
-
-            if self_assessment is None:
-                st.markdown(
-                    '<div class="result-assessment-hint">Bitte wähle eine Einschätzung aus, um fortzufahren.</div>',
-                    unsafe_allow_html=True,
-                )
+    if self_assessment is None:
+        st.markdown(
+            '<div class="result-assessment-hint">Bitte wähle eine Einschätzung aus, um fortzufahren.</div>',
+            unsafe_allow_html=True,
+        )
 
     st.markdown('<div class="result-details-title">Mehr zum Ergebnis anzeigen</div>', unsafe_allow_html=True)
 
