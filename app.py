@@ -1147,7 +1147,7 @@ div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] {
 /* Feinschliff Abschlussfragebogen */
 .questionnaire-section-helper {
     color: var(--text) !important;
-    font-size: 0.8rem;
+    font-size: 1rem;
     line-height: 1.55;
     margin-top: -0.25rem;
     margin-bottom: 0.95rem;
@@ -1166,8 +1166,8 @@ div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label 
 
 .st-key-questionnaire_item_card div[data-testid="stRadio"] > label p,
 div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label p {
-    font-size: 1.2rem !important;
-    line-height: 1.55 !important;
+    font-size: 1.08rem !important;
+    line-height: 1.5 !important;
     font-weight: 500 !important;
     color: var(--text) !important;
 }
