@@ -2264,7 +2264,7 @@ elif st.session_state.phase == "results":
             label_visibility="collapsed",
         )
 
-        btn_left, btn_center, btn_right = st.columns([0.05, 0.90, 0.05])
+        btn_left, btn_center, btn_right = st.columns([0.18, 0.64, 0.18])
         with btn_center:
             if st.button(
                 "Zum Abschlussfragebogen",
