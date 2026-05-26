@@ -1635,28 +1635,74 @@ div[class*="st-key-consent_action_area"] .stButton {
     box-shadow: 0 20px 48px rgba(49,92,99,0.11) !important;
 }
 
-/* Finale Radio-Button-Optimierung */
+/* FINAL: Checkbox und Radio-Buttons in Grün/Teal statt Rot/Schwarz */
+
+/* Checkbox */
+div[data-testid="stCheckbox"] input[type="checkbox"] {
+    accent-color: var(--success) !important;
+}
+
+div[data-testid="stCheckbox"] input[type="checkbox"]:checked {
+    accent-color: var(--success) !important;
+}
+
+/* Streamlit/BaseWeb Checkbox-Fallback */
+div[data-testid="stCheckbox"] div[role="checkbox"] {
+    border-color: rgba(49,92,99,0.24) !important;
+}
+
+div[data-testid="stCheckbox"] div[role="checkbox"][aria-checked="true"] {
+    background-color: var(--success) !important;
+    border-color: var(--success) !important;
+}
+
+div[data-testid="stCheckbox"] div[role="checkbox"][aria-checked="true"] svg {
+    fill: #FFFFFF !important;
+}
+
+/* Radio-Buttons: Standardzustand */
 div[data-testid="stRadio"] input[type="radio"] {
     appearance: none !important;
     -webkit-appearance: none !important;
     width: 17px !important;
     height: 17px !important;
-    border: 2px solid rgba(49,92,99,0.22) !important;
-    border-radius: 999px !important;
+    min-width: 17px !important;
+    min-height: 17px !important;
+    border: 2px solid rgba(49,92,99,0.28) !important;
+    border-radius: 50% !important;
     background: #FFFFFF !important;
-    cursor: pointer !important;
+    box-shadow: none !important;
+    outline: none !important;
+    opacity: 1 !important;
     display: inline-block !important;
     visibility: visible !important;
-    opacity: 1 !important;
+    cursor: pointer !important;
     margin-right: 0.45rem !important;
 }
 
+/* Radio-Buttons: ausgewählt */
 div[data-testid="stRadio"] input[type="radio"]:checked {
     border-color: var(--success) !important;
     background:
-        radial-gradient(circle at center, var(--success) 0 42%, transparent 45%) !important;
+        radial-gradient(circle at center, var(--success) 0 42%, transparent 46%) !important;
 }
 
+/* Falls Streamlit zusätzlich innere BaseWeb-Elemente rendert */
+div[data-testid="stRadio"] div[role="radio"] {
+    border-color: rgba(49,92,99,0.28) !important;
+    background-color: #FFFFFF !important;
+}
+
+div[data-testid="stRadio"] div[role="radio"][aria-checked="true"] {
+    border-color: var(--success) !important;
+    background-color: #FFFFFF !important;
+}
+
+div[data-testid="stRadio"] div[role="radio"][aria-checked="true"]::after {
+    background-color: var(--success) !important;
+}
+
+/* Ausgewählte Antwort textlich leicht hervorheben */
 div[data-testid="stRadio"] label:has(input[type="radio"]:checked) p,
 div[data-testid="stRadio"] label:has(input[type="radio"]:checked) span {
     color: var(--primary) !important;
