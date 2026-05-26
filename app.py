@@ -1147,7 +1147,7 @@ div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] {
 /* Feinschliff Abschlussfragebogen */
 .questionnaire-section-helper {
     color: var(--text) !important;
-    font-size: 1rem;
+    font-size: 0.8rem;
     line-height: 1.55;
     margin-top: -0.25rem;
     margin-bottom: 0.95rem;
