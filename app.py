@@ -1079,19 +1079,6 @@ div[class*="st-key-result_assessment_card"] div[role="radiogroup"] {
     cursor: pointer !important;
 }
 
-.st-key-result_assessment_card input[type="radio"],
-div[class*="st-key-result_assessment_card"] input[type="radio"] {
-    appearance: auto !important;
-    -webkit-appearance: radio !important;
-    accent-color: var(--success) !important;
-    width: 16px !important;
-    height: 16px !important;
-    opacity: 1 !important;
-    display: inline-block !important;
-    visibility: visible !important;
-    margin-right: 0.45rem !important;
-}
-
 /* Abschlussfragebogen: Header, Progressbar, Legende und Item-Karte */
 .questionnaire-title {
     text-align: center;
@@ -1635,32 +1622,38 @@ div[class*="st-key-consent_action_area"] .stButton {
     box-shadow: 0 20px 48px rgba(49,92,99,0.11) !important;
 }
 
-/* FINAL: Checkbox und Radio-Buttons in Grün/Teal statt Rot/Schwarz */
+/* =========================================================
+   FINAL OVERRIDE: Checkbox & Radio Buttons
+   Grün/Teal statt Streamlit-Rot/Schwarz
+   ========================================================= */
 
-/* Checkbox */
+/* ---------- Checkbox: native input ---------- */
 div[data-testid="stCheckbox"] input[type="checkbox"] {
     accent-color: var(--success) !important;
 }
 
-div[data-testid="stCheckbox"] input[type="checkbox"]:checked {
-    accent-color: var(--success) !important;
-}
-
-/* Streamlit/BaseWeb Checkbox-Fallback */
+/* ---------- Checkbox: BaseWeb sichtbare Box ---------- */
+div[data-testid="stCheckbox"] [data-baseweb="checkbox"] div,
 div[data-testid="stCheckbox"] div[role="checkbox"] {
-    border-color: rgba(49,92,99,0.24) !important;
+    border-color: rgba(49,92,99,0.28) !important;
 }
 
+/* Checkbox ausgewählt */
+div[data-testid="stCheckbox"] [data-baseweb="checkbox"] div[aria-checked="true"],
 div[data-testid="stCheckbox"] div[role="checkbox"][aria-checked="true"] {
     background-color: var(--success) !important;
     border-color: var(--success) !important;
 }
 
-div[data-testid="stCheckbox"] div[role="checkbox"][aria-checked="true"] svg {
+/* Haken weiß */
+div[data-testid="stCheckbox"] [data-baseweb="checkbox"] svg,
+div[data-testid="stCheckbox"] div[role="checkbox"] svg {
     fill: #FFFFFF !important;
+    color: #FFFFFF !important;
 }
 
-/* Radio-Buttons: Standardzustand */
+
+/* ---------- Radio: Grundzustand ---------- */
 div[data-testid="stRadio"] input[type="radio"] {
     appearance: none !important;
     -webkit-appearance: none !important;
@@ -1668,41 +1661,56 @@ div[data-testid="stRadio"] input[type="radio"] {
     height: 17px !important;
     min-width: 17px !important;
     min-height: 17px !important;
-    border: 2px solid rgba(49,92,99,0.28) !important;
-    border-radius: 50% !important;
+    border: 2px solid rgba(49,92,99,0.26) !important;
+    border-radius: 999px !important;
     background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
     box-shadow: none !important;
     outline: none !important;
     opacity: 1 !important;
-    display: inline-block !important;
     visibility: visible !important;
+    display: inline-block !important;
     cursor: pointer !important;
     margin-right: 0.45rem !important;
 }
 
-/* Radio-Buttons: ausgewählt */
+/* Radio: ausgewählt */
 div[data-testid="stRadio"] input[type="radio"]:checked {
     border-color: var(--success) !important;
     background:
-        radial-gradient(circle at center, var(--success) 0 42%, transparent 46%) !important;
-}
-
-/* Falls Streamlit zusätzlich innere BaseWeb-Elemente rendert */
-div[data-testid="stRadio"] div[role="radio"] {
-    border-color: rgba(49,92,99,0.28) !important;
+        radial-gradient(circle at center, var(--success) 0 42%, transparent 45%) !important;
     background-color: #FFFFFF !important;
 }
 
+/* ---------- Radio: BaseWeb Fallback ---------- */
+div[data-testid="stRadio"] [data-baseweb="radio"] div,
+div[data-testid="stRadio"] div[role="radio"] {
+    border-color: rgba(49,92,99,0.26) !important;
+    background-color: #FFFFFF !important;
+    box-shadow: none !important;
+}
+
+/* BaseWeb Radio ausgewählt */
+div[data-testid="stRadio"] [data-baseweb="radio"] div[aria-checked="true"],
 div[data-testid="stRadio"] div[role="radio"][aria-checked="true"] {
     border-color: var(--success) !important;
     background-color: #FFFFFF !important;
 }
 
+/* Innerer Punkt bei BaseWeb Radio */
+div[data-testid="stRadio"] [data-baseweb="radio"] div[aria-checked="true"]::after,
 div[data-testid="stRadio"] div[role="radio"][aria-checked="true"]::after {
     background-color: var(--success) !important;
 }
 
-/* Ausgewählte Antwort textlich leicht hervorheben */
+
+/* ---------- Harte Korrektur für schwarze Kreise ---------- */
+div[data-testid="stRadio"] label span:first-child,
+div[data-testid="stRadio"] label div:first-child {
+    color: var(--success) !important;
+}
+
+/* Nur ausgewählte Antwort textlich hervorheben */
 div[data-testid="stRadio"] label:has(input[type="radio"]:checked) p,
 div[data-testid="stRadio"] label:has(input[type="radio"]:checked) span {
     color: var(--primary) !important;
