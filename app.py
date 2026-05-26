@@ -2101,21 +2101,21 @@ elif st.session_state.phase == "consent":
     with st.container(key="consent_action_area"):
         left, center, right = st.columns([1.0, 2.2, 1.0])
 
-    with center:
-        consent = st.checkbox(
-            "Ich stimme der Teilnahme an der Studie zu.",
-            key="consent_checkbox_unique",
-        )
+        with center:
+            consent = st.checkbox(
+                "Ich stimme der Teilnahme an der Studie zu.",
+                key="consent_checkbox_unique",
+            )
 
-        if st.button(
-            "Studie beginnen",
-            key="start_after_consent_unique",
-            use_container_width=True,
-            disabled=not consent,
-        ):
-            st.session_state.start_time = datetime.utcnow()
-            st.session_state.phase = "instructions"
-            st.rerun()
+            if st.button(
+                "Studie beginnen",
+                key="start_after_consent_unique",
+                use_container_width=True,
+                disabled=not consent,
+            ):
+                st.session_state.start_time = datetime.utcnow()
+                st.session_state.phase = "instructions"
+                st.rerun()
             
 elif st.session_state.phase == "instructions":
     render_progress(0)
@@ -2241,46 +2241,46 @@ elif st.session_state.phase == "results":
 
     with st.container(key="result_assessment_card"):
         st.markdown(
-        """
-        <div class="result-assessment-inner">
-            <h3>Deine erste Einschätzung</h3>
-            <p>Wie passend erscheint dir das angezeigte Ergebnis?</p>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    self_assessment = st.radio(
-        "Bitte wähle eine Antwort aus:",
-        options=[
-            "Sehr passend",
-            "Eher passend",
-            "Teils / teils",
-            "Eher nicht passend",
-            "Gar nicht passend",
-        ],
-        index=None,
-        key="result_self_assessment",
-        label_visibility="collapsed",
-    )
-
-    btn_left, btn_center, btn_right = st.columns([0.05, 0.90, 0.05])
-    with btn_center:
-        if st.button(
-            "Zum Abschlussfragebogen",
-            use_container_width=True,
-            disabled=self_assessment is None,
-            key="continue_to_questionnaire",
-        ):
-            st.session_state.self_assessment = self_assessment
-            st.session_state.phase = "pre_questionnaire"
-            st.rerun()
-
-    if self_assessment is None:
-        st.markdown(
-            '<div class="result-assessment-hint">Bitte wähle eine Einschätzung aus, um fortzufahren.</div>',
+            """
+            <div class="result-assessment-inner">
+                <h3>Deine erste Einschätzung</h3>
+                <p>Wie passend erscheint dir das angezeigte Ergebnis?</p>
+            </div>
+            """,
             unsafe_allow_html=True,
         )
+
+        self_assessment = st.radio(
+            "Bitte wähle eine Antwort aus:",
+            options=[
+                "Sehr passend",
+                "Eher passend",
+                "Teils / teils",
+                "Eher nicht passend",
+                "Gar nicht passend",
+            ],
+            index=None,
+            key="result_self_assessment",
+            label_visibility="collapsed",
+        )
+
+        btn_left, btn_center, btn_right = st.columns([0.05, 0.90, 0.05])
+        with btn_center:
+            if st.button(
+                "Zum Abschlussfragebogen",
+                use_container_width=True,
+                disabled=self_assessment is None,
+                key="continue_to_questionnaire",
+            ):
+                st.session_state.self_assessment = self_assessment
+                st.session_state.phase = "pre_questionnaire"
+                st.rerun()
+
+        if self_assessment is None:
+            st.markdown(
+                '<div class="result-assessment-hint">Bitte wähle eine Einschätzung aus, um fortzufahren.</div>',
+                unsafe_allow_html=True,
+            )
 
     st.markdown('<div class="result-details-title">Mehr zum Ergebnis anzeigen</div>', unsafe_allow_html=True)
 
