@@ -65,9 +65,9 @@ useEffect(() => {
         ? 675
         : 760
       : isSmallMobile
-      ? 610
+      ? 595
       : isMobile
-      ? 645
+      ? 625
       : 760;
 
   Streamlit.setFrameHeight(frameHeight);
@@ -361,7 +361,7 @@ function LikertAssessment({
   onSelect,
 }) {
   const statementFontSize = isSmallMobile ? "18px" : isMobile ? "19px" : "26px";
-  const optionNumberSize = statementFontSize;
+  const optionNumberSize = isSmallMobile ? "16px" : isMobile ? "17px" : "24px";
 
   return (
     <div
@@ -413,7 +413,7 @@ function LikertAssessment({
         <div
           style={{
             color: colors.primary,
-            fontSize: isSmallMobile ? "14px" : isMobile ? "15px" : "16px",
+            fontSize: isSmallMobile ? "13px" : isMobile ? "14px" : "16px",
             fontWeight: 750,
             marginBottom: isMobile ? "10px" : "12px",
             lineHeight: 1.3,

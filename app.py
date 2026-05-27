@@ -2460,7 +2460,372 @@ div[data-testid="stRadio"] label:has(input[type="radio"]:checked) span {
     }
 }
 
-    </style>
+    
+
+/* =========================================================
+   FINAL MOBILE POLISH V4
+   Einheitliches Spacing, schmalere Buttons, klarere Cards
+   ========================================================= */
+
+/* Einheitliche Button-Logik: Primary CTA schmaler und ruhiger */
+@media (max-width: 900px) {
+    .stButton > button {
+        width: min(300px, 70vw) !important;
+        max-width: 300px !important;
+        min-height: 43px !important;
+        padding: 0.58rem 0.95rem !important;
+        font-size: 0.92rem !important;
+        letter-spacing: 0.01em !important;
+        display: block !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        box-shadow: 0 8px 20px rgba(49,92,99,0.13) !important;
+    }
+
+    /* Grundlayout etwas luftiger oben, aber kompakt zwischen Elementen */
+    .block-container {
+        padding-top: 0.85rem !important;
+        padding-left: 0.72rem !important;
+        padding-right: 0.72rem !important;
+        padding-bottom: calc(5.8rem + env(safe-area-inset-bottom)) !important;
+    }
+
+    /* 1. Startscreen: zentriert, Button näher an die Karte */
+    .welcome-wrap {
+        margin-bottom: 0.15rem !important;
+        padding: 1.05rem 0.7rem 1.15rem 0.7rem !important;
+    }
+
+    .welcome-card {
+        text-align: center !important;
+        padding: 1.25rem 1.05rem !important;
+    }
+
+    .welcome-card .hero-title {
+        text-align: center !important;
+        margin-bottom: 0.9rem !important;
+    }
+
+    .welcome-card .hero-subtitle {
+        text-align: center !important;
+        line-height: 1.42 !important;
+    }
+
+    .start-button-anchor {
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .start-button-anchor + div,
+    div:has(.start-button-anchor) + div {
+        margin-top: -0.55rem !important;
+    }
+
+    /* 2. Consent: Meta-Elemente zentriert, Fließtext lesbar, CTA näher */
+    .consent-clean-wrap {
+        margin-bottom: 0.25rem !important;
+    }
+
+    .consent-clean-wrap .screen-card-info {
+        padding: 1.1rem 1rem !important;
+    }
+
+    .consent-clean-wrap .hero-title,
+    .consent-clean-wrap .hero-subtitle {
+        text-align: center !important;
+    }
+
+    .consent-clean-wrap .info-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 0.35rem !important;
+        margin-top: 0.55rem !important;
+        margin-bottom: 0.65rem !important;
+    }
+
+    .consent-clean-wrap .info-box {
+        min-height: 58px !important;
+        padding: 0.46rem 0.25rem !important;
+        border-radius: 14px !important;
+    }
+
+    .consent-clean-wrap .info-box strong {
+        font-size: 0.76rem !important;
+        line-height: 1.15 !important;
+    }
+
+    .consent-clean-wrap .info-box span {
+        font-size: 0.64rem !important;
+        line-height: 1.15 !important;
+        overflow-wrap: anywhere !important;
+    }
+
+    .st-key-consent_action_area,
+    div[class*="st-key-consent_action_area"] {
+        margin-top: -0.45rem !important;
+        margin-bottom: 0.55rem !important;
+        text-align: center !important;
+    }
+
+    .st-key-consent_action_area div[data-testid="stCheckbox"],
+    div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
+        width: fit-content !important;
+        max-width: 100% !important;
+        margin: 0 auto 0.2rem auto !important;
+    }
+
+    .st-key-consent_action_area div[data-testid="stCheckbox"] label,
+    div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] label {
+        justify-content: center !important;
+        font-size: 0.9rem !important;
+        line-height: 1.3 !important;
+    }
+
+    /* 3/4. Anleitungen: zentrierter, kompakter, etwas mehr Luft nach Progress */
+    .study-progress {
+        margin-bottom: 1.05rem !important;
+    }
+
+    .text-card {
+        text-align: center !important;
+        padding: 1.05rem 1rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    .text-card h3 {
+        text-align: center !important;
+        margin-bottom: 0.35rem !important;
+    }
+
+    .text-card p {
+        text-align: center !important;
+        margin-bottom: 0.55rem !important;
+    }
+
+    .instruction-row {
+        flex-direction: row !important;
+        gap: 0.45rem !important;
+        margin-top: 0.6rem !important;
+        margin-bottom: 0.6rem !important;
+    }
+
+    .instruction-box {
+        min-height: 58px !important;
+        padding: 0.48rem 0.35rem !important;
+        border-radius: 14px !important;
+    }
+
+    .instruction-box strong {
+        font-size: 0.75rem !important;
+        line-height: 1.15 !important;
+    }
+
+    .instruction-box span {
+        font-size: 0.68rem !important;
+        line-height: 1.16 !important;
+    }
+
+    /* 7. Ergebnis-Screen: Hinweisbox symmetrischer, Einschätzung zentriert */
+    .result-next-note {
+        margin: 0.9rem auto 0.8rem auto !important;
+        padding: 0.78rem 0.9rem !important;
+        text-align: center !important;
+        border-radius: 16px !important;
+    }
+
+    .st-key-result_assessment_card,
+    div[class*="st-key-result_assessment_card"] {
+        text-align: center !important;
+        padding: 1.15rem 1rem 1rem 1rem !important;
+        margin-top: 0.65rem !important;
+        margin-bottom: 1.05rem !important;
+    }
+
+    .result-assessment-inner {
+        margin-bottom: 0.55rem !important;
+        text-align: center !important;
+    }
+
+    .result-assessment-inner h3 {
+        text-align: center !important;
+        margin-bottom: 0.35rem !important;
+    }
+
+    .result-assessment-inner p {
+        text-align: center !important;
+        margin-bottom: 0.35rem !important;
+    }
+
+    .st-key-result_assessment_card div[role="radiogroup"],
+    div[class*="st-key-result_assessment_card"] div[role="radiogroup"] {
+        width: fit-content !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        gap: 0.08rem !important;
+    }
+
+    .st-key-result_assessment_card div[data-testid="stRadio"] label p,
+    div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] label p {
+        font-size: 0.95rem !important;
+        line-height: 1.28 !important;
+    }
+
+    /* 8. Pre-Questionnaire: zentriert, Kacheln nebeneinander */
+    .pre-questionnaire-clean-wrap {
+        margin-bottom: 0.55rem !important;
+    }
+
+    .pre-questionnaire-clean-wrap .screen-card-info {
+        text-align: center !important;
+        padding: 1.1rem 1rem !important;
+    }
+
+    .pre-questionnaire-clean-wrap .screen-card-info p {
+        text-align: center !important;
+    }
+
+    .pre-questionnaire-clean-wrap .info-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 0.35rem !important;
+        margin-top: 0.55rem !important;
+        margin-bottom: 0.6rem !important;
+    }
+
+    .pre-questionnaire-clean-wrap .info-box {
+        min-height: 58px !important;
+        padding: 0.45rem 0.25rem !important;
+        border-radius: 14px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+    }
+
+    .pre-questionnaire-clean-wrap .info-box strong {
+        font-size: 0.75rem !important;
+        line-height: 1.15 !important;
+    }
+
+    .pre-questionnaire-clean-wrap .info-box span {
+        font-size: 0.63rem !important;
+        line-height: 1.14 !important;
+        overflow-wrap: anywhere !important;
+    }
+
+    /* 9. Abschlussfragebogen: Header zentriert, Items bewusst linksbündig */
+    .questionnaire-section-card {
+        text-align: center !important;
+        padding: 1.0rem 1rem !important;
+        margin-bottom: 0.7rem !important;
+    }
+
+    .questionnaire-section-helper {
+        text-align: center !important;
+    }
+
+    .st-key-questionnaire_item_card,
+    div[class*="st-key-questionnaire_item_card"] {
+        text-align: left !important;
+        padding: 1.15rem 1rem 0.55rem 1rem !important;
+        margin-bottom: 0.7rem !important;
+        border-radius: 22px !important;
+        box-shadow: 0 14px 30px rgba(49,92,99,0.08) !important;
+    }
+
+    .st-key-questionnaire_item_card div[data-testid="stRadio"],
+    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] {
+        padding: 0 0 0.95rem 0 !important;
+        margin-bottom: 0.85rem !important;
+        border-bottom: 1px solid rgba(49,92,99,0.08) !important;
+    }
+
+    .st-key-questionnaire_item_card div[data-testid="stRadio"]:last-of-type,
+    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"]:last-of-type {
+        border-bottom: none !important;
+        margin-bottom: 0.2rem !important;
+    }
+
+    .st-key-questionnaire_item_card div[data-testid="stRadio"] > label p,
+    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label p {
+        font-size: 1.02rem !important;
+        line-height: 1.42 !important;
+        font-weight: 500 !important;
+        margin-bottom: 0.5rem !important;
+        color: var(--text) !important;
+    }
+
+    .st-key-questionnaire_item_card div[role="radiogroup"],
+    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] {
+        justify-content: space-between !important;
+        gap: 0.18rem !important;
+        flex-wrap: nowrap !important;
+        padding-right: 0.1rem !important;
+    }
+
+    .st-key-questionnaire_item_card div[role="radiogroup"] label,
+    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] label {
+        font-size: 0.96rem !important;
+        line-height: 1.15 !important;
+    }
+
+    .st-key-questionnaire_footer,
+    div[class*="st-key-questionnaire_footer"] {
+        margin-top: -0.1rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    /* Secondary Back Button: sichtbar, grün, outlined */
+    .st-key-back_button_soft .stButton > button,
+    div[class*="st-key-back_button_soft"] .stButton > button {
+        background: rgba(255,255,255,0.35) !important;
+        border: 2px solid rgba(49,92,99,0.48) !important;
+        color: var(--primary) !important;
+        box-shadow: none !important;
+    }
+
+    .st-key-back_button_soft .stButton > button *,
+    div[class*="st-key-back_button_soft"] .stButton > button * {
+        color: var(--primary) !important;
+    }
+
+    .st-key-back_button_soft .stButton > button:hover,
+    div[class*="st-key-back_button_soft"] .stButton > button:hover {
+        background: rgba(49,92,99,0.07) !important;
+        border-color: var(--primary) !important;
+        color: var(--primary) !important;
+        transform: none !important;
+        box-shadow: none !important;
+    }
+}
+
+@media (max-width: 430px) {
+    .stButton > button {
+        width: min(285px, 72vw) !important;
+        max-width: 285px !important;
+    }
+
+    .welcome-card .hero-title {
+        font-size: 1.36rem !important;
+    }
+
+    .welcome-card .hero-subtitle {
+        font-size: 0.86rem !important;
+        line-height: 1.4 !important;
+    }
+
+    .consent-clean-wrap .info-box span,
+    .pre-questionnaire-clean-wrap .info-box span {
+        font-size: 0.6rem !important;
+    }
+
+    .instruction-box strong {
+        font-size: 0.7rem !important;
+    }
+
+    .instruction-box span {
+        font-size: 0.64rem !important;
+    }
+}
+</style>
     """,
     unsafe_allow_html=True,
 )
@@ -2933,7 +3298,7 @@ if st.session_state.phase == "welcome":
 
     st.markdown('<div class="start-button-anchor"></div>', unsafe_allow_html=True)
 
-    left, center, right = st.columns([1.45, 1.25, 1.45])
+    left, center, right = st.columns([1.7, 1.0, 1.7])
     with center:
         if st.button("Weiter", use_container_width=True):
             st.session_state.phase = "consent"
@@ -3020,7 +3385,7 @@ elif st.session_state.phase == "instructions":
     """
 )
 
-    left, center, right = st.columns([1.2, 1.4, 1.2])
+    left, center, right = st.columns([1.55, 1.0, 1.55])
     with center:
         if st.button("Bewertung starten", use_container_width=True):
             st.session_state.phase = "assessment"
@@ -3130,7 +3495,7 @@ elif st.session_state.phase == "results":
             label_visibility="collapsed",
         )
 
-        btn_left, btn_center, btn_right = st.columns([0.22, 0.56, 0.22])
+        btn_left, btn_center, btn_right = st.columns([0.28, 0.44, 0.28])
         with btn_center:
             if st.button(
                 "Zum Abschlussfragebogen",
@@ -3224,7 +3589,7 @@ elif st.session_state.phase == "pre_questionnaire":
 
     st.markdown(pre_questionnaire_html, unsafe_allow_html=True)
 
-    left, center, right = st.columns([1.25, 1.5, 1.25])
+    left, center, right = st.columns([1.55, 1.0, 1.55])
     with center:
         if st.button("Einschätzung starten", use_container_width=True):
             st.session_state.phase = "questionnaire"
@@ -3303,7 +3668,7 @@ elif st.session_state.phase == "questionnaire":
 
     with st.container(key="questionnaire_footer"):
         if current_step == 0:
-            left, center, right = st.columns([1.25, 1.5, 1.25])
+            left, center, right = st.columns([1.55, 1.0, 1.55])
 
             with center:
                 if st.button(
@@ -3316,7 +3681,7 @@ elif st.session_state.phase == "questionnaire":
                     st.rerun()
 
         else:
-            top_left, top_center, top_right = st.columns([1.0, 1.6, 1.0])
+            top_left, top_center, top_right = st.columns([1.55, 1.0, 1.55])
 
             with top_center:
                 if current_step < total_blocks - 1:
@@ -3338,7 +3703,7 @@ elif st.session_state.phase == "questionnaire":
                         st.session_state.phase = "end"
                         st.rerun()
 
-            back_left, back_center, back_right = st.columns([1.15, 1.3, 1.15])
+            back_left, back_center, back_right = st.columns([1.65, 0.9, 1.65])
 
             with back_center:
                 with st.container(key="back_button_soft"):
