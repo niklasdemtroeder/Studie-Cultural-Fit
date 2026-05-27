@@ -3141,6 +3141,372 @@ div[data-testid="stRadio"] label:has(input[type="radio"]:checked) span {
     }
 }
 
+/* =========================================================
+   FINAL MOBILE MICRO POLISH
+   Abstände, Kacheln, Buttons, Fragebogen, Ergebnisbox
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    /* 1. Genereller Abstand oben minimal reduzieren */
+    .block-container {
+        padding-top: 0.75rem !important;
+    }
+
+    /* Einheitliche, etwas schmalere Buttons */
+    .stButton {
+        display: flex !important;
+        justify-content: center !important;
+        margin-top: 0.15rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+
+    .stButton > button {
+        width: min(70vw, 285px) !important;
+        max-width: 285px !important;
+        min-height: 50px !important;
+        padding: 0.58rem 1rem !important;
+        font-size: 1rem !important;
+        border-radius: 999px !important;
+    }
+
+    /* 1. Startscreen: Abstand Box -> Button reduzieren */
+    .welcome-wrap {
+        margin-bottom: 0 !important;
+        padding-bottom: 0.7rem !important;
+    }
+
+    .start-button-anchor {
+        height: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* Startscreen bewusst NICHT komplett zentrieren:
+       Der längere Text bleibt linksbündig besser lesbar. */
+    .welcome-card .hero-title {
+        margin-bottom: 1rem !important;
+    }
+
+    .welcome-card .hero-subtitle {
+        margin-top: 0.15rem !important;
+    }
+
+    .welcome-card p {
+        margin-bottom: 0.9rem !important;
+    }
+
+    /* 2 / 3 / 4 / 8: Info- und Anleitungskacheln wieder etwas größer */
+    .info-grid {
+        gap: 0.55rem !important;
+        margin-top: 0.85rem !important;
+        margin-bottom: 0.85rem !important;
+    }
+
+    .info-box {
+        padding: 0.78rem 0.42rem !important;
+        min-height: 74px !important;
+        border-radius: 16px !important;
+    }
+
+    .info-box strong {
+        font-size: 0.98rem !important;
+        line-height: 1.16 !important;
+        margin-bottom: 0.18rem !important;
+    }
+
+    .info-box span {
+        font-size: 0.82rem !important;
+        line-height: 1.22 !important;
+    }
+
+    /* 2. Einwilligung: Checkbox-Text kleiner und besser ausgerichtet */
+    div[data-testid="stCheckbox"] {
+        display: flex !important;
+        justify-content: center !important;
+        margin-top: 0.25rem !important;
+        margin-bottom: 0.15rem !important;
+    }
+
+    div[data-testid="stCheckbox"] label {
+        font-size: 0.98rem !important;
+        line-height: 1.3 !important;
+        color: #2B2B2B !important;
+        max-width: 88vw !important;
+        text-align: left !important;
+    }
+
+    div[data-testid="stCheckbox"] label p {
+        font-size: 0.98rem !important;
+        line-height: 1.3 !important;
+    }
+
+    .consent-spacing {
+        height: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* 3 / 4. Anleitung: Header-Abstände etwas großzügiger */
+    .progress-card {
+        margin-bottom: 1.05rem !important;
+    }
+
+    .page-title,
+    .screen-title,
+    h1 {
+        margin-top: 0.8rem !important;
+        margin-bottom: 0.7rem !important;
+    }
+
+    .text-card {
+        margin-top: 0.65rem !important;
+        margin-bottom: 0.45rem !important;
+        padding: 1.45rem 1.25rem !important;
+    }
+
+    .text-card h3 {
+        margin-bottom: 0.45rem !important;
+    }
+
+    .instruction-row {
+        gap: 0.65rem !important;
+        margin-top: 0.85rem !important;
+        margin-bottom: 0.85rem !important;
+    }
+
+    .instruction-box {
+        padding: 0.82rem 0.45rem !important;
+        min-height: 74px !important;
+        border-radius: 16px !important;
+    }
+
+    .instruction-box strong {
+        font-size: 0.94rem !important;
+        line-height: 1.18 !important;
+    }
+
+    .instruction-box span {
+        font-size: 0.84rem !important;
+        line-height: 1.2 !important;
+    }
+
+    /* Anleitung: Button näher an Box */
+    .text-card + div .stButton,
+    .text-card ~ div .stButton {
+        margin-top: 0.1rem !important;
+    }
+
+    /* 5. Matcher Likert: Ziffern leicht kleiner */
+    .likert-options,
+    .likert-scale,
+    .likert-number,
+    .option-number {
+        font-size: 0.92em !important;
+    }
+
+    /* 7. Ergebnis-Screen: Hinweisbox gleichmäßig einbetten */
+    .result-next-note,
+    .soft-note {
+        margin-top: 0.75rem !important;
+        margin-bottom: 0.75rem !important;
+        padding: 0.8rem 0.9rem !important;
+        text-align: center !important;
+    }
+
+    /* 7. Box "Deine erste Einschätzung": komplett linksbündig und ruhiger */
+    .st-key-result_assessment_card,
+    div[class*="st-key-result_assessment_card"] {
+        text-align: left !important;
+        padding: 1.45rem 1.25rem 1.1rem 1.25rem !important;
+        margin-top: 0.85rem !important;
+        margin-bottom: 1.05rem !important;
+    }
+
+    .result-assessment-inner {
+        text-align: left !important;
+        margin-bottom: 0.35rem !important;
+    }
+
+    .result-assessment-inner h3 {
+        text-align: left !important;
+        font-size: 1.42rem !important;
+        margin-bottom: 0.65rem !important;
+        line-height: 1.18 !important;
+    }
+
+    .result-assessment-inner p {
+        text-align: left !important;
+        margin-top: 0 !important;
+        margin-bottom: 0.55rem !important;
+        line-height: 1.42 !important;
+    }
+
+    div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] {
+        margin-top: 0.15rem !important;
+        margin-bottom: 0.7rem !important;
+    }
+
+    div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] label {
+        justify-content: flex-start !important;
+        text-align: left !important;
+        font-size: 1rem !important;
+        line-height: 1.3 !important;
+    }
+
+    div[class*="st-key-result_assessment_card"] div[role="radiogroup"] {
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+    }
+
+    .result-assessment-hint {
+        margin-top: 0.25rem !important;
+        padding-top: 0 !important;
+        font-size: 0.9rem !important;
+        line-height: 1.35 !important;
+        text-align: center !important;
+    }
+
+    /* 8. Pre-Questionnaire: Kacheln etwas größer, Abstände ruhiger */
+    .pre-questionnaire-clean-wrap .info-grid,
+    .screen-frame-soft .info-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 0.55rem !important;
+        margin-top: 0.9rem !important;
+        margin-bottom: 0.9rem !important;
+    }
+
+    .pre-questionnaire-clean-wrap .info-box,
+    .screen-frame-soft .info-box {
+        min-height: 76px !important;
+        padding: 0.75rem 0.4rem !important;
+    }
+
+    /* 9. Abschlussfragebogen: Abschnittsbox sauber zentrieren */
+    .questionnaire-section-card {
+        text-align: center !important;
+        padding: 1.35rem 1.15rem !important;
+        margin-bottom: 0.7rem !important;
+    }
+
+    .questionnaire-section-card * {
+        text-align: center !important;
+    }
+
+    .questionnaire-section-title {
+        margin-bottom: 0.5rem !important;
+    }
+
+    .questionnaire-section-helper {
+        margin-bottom: 0.8rem !important;
+    }
+
+    .scale-legend-grid {
+        gap: 0.55rem !important;
+    }
+
+    .scale-legend-box {
+        padding: 0.68rem 0.35rem !important;
+        min-height: 68px !important;
+    }
+
+    .scale-legend-box strong {
+        font-size: 0.96rem !important;
+    }
+
+    .scale-legend-box span {
+        font-size: 0.78rem !important;
+        line-height: 1.18 !important;
+    }
+
+    /* 9. Abschlussfragebogen: Itembox clean und responsiv zentriert */
+    .st-key-questionnaire_item_card,
+    div[class*="st-key-questionnaire_item_card"] {
+        padding: 1.35rem 1.05rem 1.15rem 1.05rem !important;
+        margin-bottom: 0.75rem !important;
+        border-radius: 24px !important;
+    }
+
+    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] {
+        margin-bottom: 1.05rem !important;
+    }
+
+    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label {
+        text-align: center !important;
+        justify-content: center !important;
+        font-size: 1.04rem !important;
+        line-height: 1.42 !important;
+        font-weight: 600 !important;
+        margin-bottom: 0.75rem !important;
+        width: 100% !important;
+    }
+
+    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label p {
+        text-align: center !important;
+        width: 100% !important;
+    }
+
+    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100% !important;
+        max-width: 92% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        gap: 0 !important;
+    }
+
+    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] label {
+        font-size: 1.02rem !important;
+        line-height: 1.2 !important;
+        min-width: auto !important;
+    }
+
+    /* 9. Weiter-/Zurück-Buttons näher an die Box */
+    .st-key-questionnaire_footer,
+    div[class*="st-key-questionnaire_footer"] {
+        margin-top: 0.1rem !important;
+    }
+
+    .st-key-questionnaire_footer .stButton,
+    div[class*="st-key-questionnaire_footer"] .stButton {
+        margin-top: 0.15rem !important;
+        margin-bottom: 0.45rem !important;
+    }
+
+    .st-key-questionnaire_footer + div,
+    div[class*="st-key-questionnaire_footer"] + div {
+        margin-top: 0.25rem !important;
+    }
+
+    /* Zurück-Button: sichtbar, aber weiterhin sekundär */
+    .st-key-back_button_soft button,
+    div[class*="st-key-back_button_soft"] button {
+        background: transparent !important;
+        color: #315C63 !important;
+        border: 2px solid rgba(49, 92, 99, 0.55) !important;
+        box-shadow: none !important;
+    }
+
+    .st-key-back_button_soft button *,
+    div[class*="st-key-back_button_soft"] button * {
+        color: #315C63 !important;
+    }
+
+    .st-key-back_button_soft button:hover,
+    div[class*="st-key-back_button_soft"] button:hover {
+        background: rgba(49, 92, 99, 0.06) !important;
+        border-color: #315C63 !important;
+        color: #315C63 !important;
+    }
+
+    .questionnaire-hint {
+        margin-top: 0.35rem !important;
+        padding-top: 0 !important;
+        font-size: 0.9rem !important;
+        line-height: 1.35 !important;
+    }
+}
+
 </style>
     """,
     unsafe_allow_html=True,
