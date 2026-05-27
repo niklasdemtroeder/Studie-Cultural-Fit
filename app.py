@@ -1982,6 +1982,484 @@ div[data-testid="stRadio"] label:has(input[type="radio"]:checked) span {
     }
 }
 
+/* =========================================================
+   FINAL MOBILE POLISH V3
+   Kompakter, ruhiger, einheitlicher auf Smartphone
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    html, body, .stApp {
+        overflow-x: hidden !important;
+    }
+
+    .block-container {
+        max-width: 100% !important;
+        padding-top: 0.85rem !important;
+        padding-left: 0.85rem !important;
+        padding-right: 0.85rem !important;
+        padding-bottom: calc(6.2rem + env(safe-area-inset-bottom)) !important;
+    }
+
+    /* Einheitliche Buttonbreite mobil */
+    .stButton > button {
+        width: min(360px, 78vw) !important;
+        max-width: 360px !important;
+        min-height: 44px !important;
+        padding: 0.62rem 1rem !important;
+        font-size: 0.95rem !important;
+        display: block !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        border-radius: 999px !important;
+    }
+
+    /* Buttonbereiche näher an Karten ziehen */
+    .st-key-consent_action_area,
+    div[class*="st-key-consent_action_area"] {
+        margin-top: -0.15rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    .st-key-consent_action_area div[data-testid="stCheckbox"],
+    div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
+        margin-bottom: 0.25rem !important;
+    }
+
+    .st-key-questionnaire_footer,
+    div[class*="st-key-questionnaire_footer"] {
+        margin-top: -0.2rem !important;
+        margin-bottom: 0.9rem !important;
+    }
+
+    /* Startscreen kompakter */
+    .welcome-wrap {
+        padding: 1.05rem 0.75rem 1.3rem 0.75rem !important;
+        border-radius: 22px !important;
+        margin-bottom: 0.55rem !important;
+    }
+
+    .welcome-card {
+        padding: 1.2rem 1.05rem !important;
+        border-radius: 22px !important;
+    }
+
+    .welcome-card .hero-title {
+        font-size: 1.55rem !important;
+        line-height: 1.12 !important;
+        text-align: left !important;
+        margin-bottom: 0.8rem !important;
+    }
+
+    .welcome-card .hero-subtitle {
+        font-size: 0.92rem !important;
+        line-height: 1.42 !important;
+        text-align: left !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* etwas weniger Luft zwischen Startscreen-Karte und Button */
+    .start-button-anchor + div,
+    div:has(.start-button-anchor) + div {
+        margin-top: -0.25rem !important;
+    }
+
+    /* Allgemeine Karten */
+    .screen-card-info,
+    .screen-card-main,
+    .text-card,
+    .result-hero-card,
+    .topmatch-card,
+    .questionnaire-section-card,
+    .st-key-questionnaire_item_card,
+    div[class*="st-key-questionnaire_item_card"],
+    .st-key-result_assessment_card,
+    div[class*="st-key-result_assessment_card"] {
+        border-radius: 22px !important;
+        padding: 1rem 1rem !important;
+        box-shadow: 0 12px 28px rgba(49,92,99,0.09) !important;
+    }
+
+    /* Überschriften allgemein */
+    .hero-title,
+    .questionnaire-title {
+        font-size: 1.58rem !important;
+        line-height: 1.12 !important;
+        letter-spacing: -0.04em !important;
+        margin-top: 0.15rem !important;
+        margin-bottom: 0.55rem !important;
+        text-align: center !important;
+    }
+
+    .hero-subtitle,
+    .questionnaire-subtitle,
+    .assessment-help {
+        font-size: 0.92rem !important;
+        line-height: 1.42 !important;
+        margin-bottom: 0.8rem !important;
+    }
+
+    .screen-card-info p,
+    .text-card p,
+    .result-profile-text,
+    .result-method-text,
+    .result-next-note {
+        font-size: 0.92rem !important;
+        line-height: 1.45 !important;
+        margin-bottom: 0.68rem !important;
+    }
+
+    /* Fortschrittsanzeige bleibt kompakt */
+    .study-progress {
+        border-radius: 18px !important;
+        padding: 0.68rem 0.75rem !important;
+        margin-bottom: 0.85rem !important;
+    }
+
+    .study-progress-label {
+        font-size: 0.78rem !important;
+        margin-bottom: 0.45rem !important;
+    }
+
+    .study-progress-track {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 0.35rem !important;
+    }
+
+    .study-progress-step {
+        font-size: 0.72rem !important;
+        min-height: 34px !important;
+        padding: 0.42rem 0.2rem !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        line-height: 1.15 !important;
+    }
+
+    /* Screen 2: Info-Kacheln nebeneinander, aber kleiner */
+    .consent-clean-wrap .info-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 0.35rem !important;
+        margin-top: 0.6rem !important;
+        margin-bottom: 0.65rem !important;
+    }
+
+    .consent-clean-wrap .info-box {
+        padding: 0.52rem 0.35rem !important;
+        border-radius: 14px !important;
+        min-height: 64px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+    }
+
+    .consent-clean-wrap .info-box strong {
+        font-size: 0.78rem !important;
+        margin-bottom: 0.1rem !important;
+    }
+
+    .consent-clean-wrap .info-box span {
+        font-size: 0.68rem !important;
+        line-height: 1.18 !important;
+    }
+
+    /* Pre-Questionnaire: Kacheln untereinander, aber kompakter */
+    .pre-questionnaire-clean-wrap .info-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.45rem !important;
+        margin-top: 0.65rem !important;
+        margin-bottom: 0.65rem !important;
+    }
+
+    .pre-questionnaire-clean-wrap .info-box {
+        padding: 0.58rem 0.7rem !important;
+        border-radius: 14px !important;
+        min-height: 58px !important;
+    }
+
+    .pre-questionnaire-clean-wrap .info-box strong {
+        font-size: 0.86rem !important;
+        margin-bottom: 0.08rem !important;
+    }
+
+    .pre-questionnaire-clean-wrap .info-box span {
+        font-size: 0.78rem !important;
+        line-height: 1.22 !important;
+    }
+
+    /* Anleitung Swipe/Likert */
+    .text-card h3 {
+        font-size: 1.32rem !important;
+        line-height: 1.15 !important;
+        margin-bottom: 0.45rem !important;
+    }
+
+    .instruction-row {
+        flex-direction: row !important;
+        gap: 0.42rem !important;
+        margin-top: 0.65rem !important;
+        margin-bottom: 0.65rem !important;
+    }
+
+    .instruction-box {
+        border-radius: 15px !important;
+        padding: 0.6rem 0.4rem !important;
+        min-height: 70px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+    }
+
+    .instruction-box strong {
+        font-size: 0.8rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 0.15rem !important;
+    }
+
+    .instruction-box span {
+        font-size: 0.72rem !important;
+        line-height: 1.2 !important;
+    }
+
+    /* Ergebnis-Screen kompakter */
+    .result-company {
+        font-size: 1.5rem !important;
+        line-height: 1.12 !important;
+        margin-bottom: 0.6rem !important;
+    }
+
+    .result-kicker {
+        font-size: 0.76rem !important;
+        margin-bottom: 0.35rem !important;
+    }
+
+    .result-score-row {
+        gap: 0.5rem !important;
+        margin-bottom: 0.6rem !important;
+    }
+
+    .result-score {
+        font-size: 1rem !important;
+        padding: 0.4rem 0.72rem !important;
+    }
+
+    .result-score-label {
+        font-size: 0.82rem !important;
+        line-height: 1.25 !important;
+    }
+
+    /* Redundante grüne Pills auf Ergebnis-Screen mobil ausblenden */
+    .result-meta-row {
+        display: none !important;
+    }
+
+    .result-next-note {
+        border-radius: 15px !important;
+        padding: 0.72rem 0.82rem !important;
+        margin-bottom: 0.85rem !important;
+    }
+
+    .result-assessment-inner h3 {
+        font-size: 1.35rem !important;
+        line-height: 1.15 !important;
+        margin-bottom: 0.35rem !important;
+    }
+
+    .result-assessment-inner p {
+        font-size: 0.95rem !important;
+        line-height: 1.38 !important;
+        margin-bottom: 0.4rem !important;
+    }
+
+    .st-key-result_assessment_card div[data-testid="stRadio"] label p,
+    div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] label p {
+        font-size: 0.95rem !important;
+        line-height: 1.35 !important;
+    }
+
+    .result-assessment-hint {
+        font-size: 0.82rem !important;
+        line-height: 1.3 !important;
+        margin-top: 0.55rem !important;
+    }
+
+    .result-details-title {
+        font-size: 1.14rem !important;
+        margin-top: 0.9rem !important;
+        margin-bottom: 0.55rem !important;
+    }
+
+    /* Abschlussfragebogen */
+    .questionnaire-title {
+        font-size: 1.58rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+
+    .questionnaire-subtitle {
+        margin-bottom: 0.75rem !important;
+    }
+
+    .questionnaire-progress-wrap {
+        width: min(330px, 88%) !important;
+        margin-bottom: 0.85rem !important;
+    }
+
+    .questionnaire-section-card {
+        margin-bottom: 0.75rem !important;
+    }
+
+    .questionnaire-section-label {
+        font-size: 0.76rem !important;
+    }
+
+    .questionnaire-section-title {
+        font-size: 1.12rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .questionnaire-section-helper {
+        font-size: 0.9rem !important;
+        line-height: 1.38 !important;
+        margin-bottom: 0.65rem !important;
+    }
+
+    .scale-legend-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 0.35rem !important;
+    }
+
+    .scale-legend-box {
+        padding: 0.52rem 0.32rem !important;
+        border-radius: 14px !important;
+    }
+
+    .scale-legend-box strong {
+        font-size: 0.88rem !important;
+    }
+
+    .scale-legend-box span {
+        font-size: 0.66rem !important;
+        line-height: 1.18 !important;
+    }
+
+    .st-key-questionnaire_item_card,
+    div[class*="st-key-questionnaire_item_card"] {
+        padding: 1.1rem 0.95rem 0.55rem 0.95rem !important;
+        margin-bottom: 0.65rem !important;
+    }
+
+    .st-key-questionnaire_item_card div[data-testid="stRadio"],
+    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] {
+        margin-bottom: 0.78rem !important;
+    }
+
+    .st-key-questionnaire_item_card div[data-testid="stRadio"] > label p,
+    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label p {
+        font-size: 0.98rem !important;
+        line-height: 1.42 !important;
+        font-weight: 500 !important;
+        margin-bottom: 0.4rem !important;
+    }
+
+    .st-key-questionnaire_item_card div[role="radiogroup"],
+    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] {
+        gap: 0.25rem !important;
+        justify-content: space-between !important;
+        flex-wrap: nowrap !important;
+    }
+
+    .st-key-questionnaire_item_card div[role="radiogroup"] label,
+    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] label {
+        font-size: 0.98rem !important;
+        line-height: 1.2 !important;
+    }
+
+    div[data-testid="stRadio"] input[type="radio"],
+    div[role="radiogroup"] input[type="radio"] {
+        width: 16px !important;
+        height: 16px !important;
+        min-width: 16px !important;
+        min-height: 16px !important;
+        margin-right: 0.28rem !important;
+    }
+
+    .questionnaire-hint {
+        font-size: 0.82rem !important;
+        line-height: 1.32 !important;
+        margin-top: 0.35rem !important;
+        margin-bottom: 0.65rem !important;
+        padding-left: 0.25rem !important;
+        padding-right: 0.25rem !important;
+    }
+
+    /* Zurück-Button subtiler, falls er in eigenem Container liegt */
+    .st-key-back_button_soft .stButton > button,
+    div[class*="st-key-back_button_soft"] .stButton > button {
+        background: transparent !important;
+        color: var(--primary) !important;
+        border: 1px solid rgba(49,92,99,0.28) !important;
+        box-shadow: none !important;
+    }
+
+    .st-key-back_button_soft .stButton > button:hover,
+    div[class*="st-key-back_button_soft"] .stButton > button:hover {
+        background: rgba(49,92,99,0.06) !important;
+        color: var(--primary) !important;
+        transform: none !important;
+        box-shadow: none !important;
+    }
+}
+
+@media (max-width: 430px) {
+
+    .block-container {
+        padding-left: 0.72rem !important;
+        padding-right: 0.72rem !important;
+    }
+
+    .hero-title,
+    .questionnaire-title {
+        font-size: 1.48rem !important;
+    }
+
+    .welcome-card .hero-title {
+        font-size: 1.42rem !important;
+    }
+
+    .hero-subtitle,
+    .questionnaire-subtitle,
+    .assessment-help,
+    .welcome-card .hero-subtitle {
+        font-size: 0.88rem !important;
+    }
+
+    .screen-card-info p,
+    .text-card p,
+    .result-profile-text,
+    .result-method-text,
+    .result-next-note {
+        font-size: 0.88rem !important;
+    }
+
+    .study-progress-step {
+        font-size: 0.66rem !important;
+        padding: 0.36rem 0.14rem !important;
+    }
+
+    .instruction-box strong {
+        font-size: 0.76rem !important;
+    }
+
+    .instruction-box span {
+        font-size: 0.68rem !important;
+    }
+
+    .result-company {
+        font-size: 1.36rem !important;
+    }
+}
+
     </style>
     """,
     unsafe_allow_html=True,
@@ -2560,7 +3038,7 @@ elif st.session_state.phase == "assessment":
         st.markdown(
             """
             <div class="assessment-help">
-                Wische nach links oder rechts – je nachdem, ob die Aussage zu dir passt.
+                Wische die Karte nach links oder rechts – je nachdem, ob die Aussage zu dir passt.
             </div>
             """,
             unsafe_allow_html=True,
@@ -2838,18 +3316,9 @@ elif st.session_state.phase == "questionnaire":
                     st.rerun()
 
         else:
-            left, back_col, gap, next_col, right = st.columns([0.85, 1.15, 0.2, 1.15, 0.85])
+            top_left, top_center, top_right = st.columns([1.0, 1.6, 1.0])
 
-            with back_col:
-                if st.button(
-                    "Zurück",
-                    use_container_width=True,
-                    key=f"questionnaire_back_{current_step}",
-                ):
-                    st.session_state.questionnaire_step -= 1
-                    st.rerun()
-
-            with next_col:
+            with top_center:
                 if current_step < total_blocks - 1:
                     if st.button(
                         "Weiter",
@@ -2861,12 +3330,24 @@ elif st.session_state.phase == "questionnaire":
                         st.rerun()
                 else:
                     if st.button(
-                    "Fragebogen absenden",
-                    use_container_width=True,
-                    disabled=not current_complete,
-                    key="questionnaire_submit",
-                ):
+                        "Fragebogen absenden",
+                        use_container_width=True,
+                        disabled=not current_complete,
+                        key="questionnaire_submit",
+                    ):
                         st.session_state.phase = "end"
+                        st.rerun()
+
+            back_left, back_center, back_right = st.columns([1.15, 1.3, 1.15])
+
+            with back_center:
+                with st.container(key="back_button_soft"):
+                    if st.button(
+                        "Zurück",
+                        use_container_width=True,
+                        key=f"questionnaire_back_{current_step}",
+                    ):
+                        st.session_state.questionnaire_step -= 1
                         st.rerun()
 
     if not current_complete:

@@ -39,12 +39,38 @@ function App({ args }) {
   return Math.min(Math.max(maxWidth, 286), 440);
 }, [isMobile]);
 
-const cardHeight = isSmallMobile ? 370 : isMobile ? 400 : 500;
-const fontSize = isSmallMobile ? "19px" : isMobile ? "21px" : "28px";
+const cardHeight =
+  mode === "swipe"
+    ? isSmallMobile
+      ? 430
+      : isMobile
+      ? 455
+      : 500
+    : isSmallMobile
+    ? 360
+    : isMobile
+    ? 390
+    : 500;
 
-  useEffect(() => {
+const fontSize = isSmallMobile ? "19px" : isMobile ? "20px" : "28px";
+
+useEffect(() => {
   Streamlit.setComponentReady();
-  Streamlit.setFrameHeight(isSmallMobile ? 620 : isMobile ? 660 : 760);
+
+  const frameHeight =
+    mode === "swipe"
+      ? isSmallMobile
+        ? 640
+        : isMobile
+        ? 675
+        : 760
+      : isSmallMobile
+      ? 610
+      : isMobile
+      ? 645
+      : 760;
+
+  Streamlit.setFrameHeight(frameHeight);
 }, [isMobile, isSmallMobile, mode, currentIndex]);
 
   const finishAssessment = (updatedAnswers) => {
@@ -231,7 +257,7 @@ function SwipeAssessment({
       <div
         style={{
           width: cardWidth,
-          height: cardHeight + 16,
+          height: cardHeight + 14,
           position: "relative",
           display: "flex",
           justifyContent: "center",
@@ -243,7 +269,7 @@ function SwipeAssessment({
             position: "absolute",
             width: cardWidth - 14,
             height: cardHeight - 10,
-            borderRadius: "26px",
+            borderRadius: isMobile ? "28px" : "26px",
             background: "#F3EEE7",
             border: `1px solid ${colors.border}`,
             transform: "translateY(8px) scale(0.985)",
@@ -255,7 +281,7 @@ function SwipeAssessment({
           onSwipe={onSwipe}
           preventSwipe={["up", "down"]}
           swipeRequirementType="position"
-          swipeThreshold={isMobile ? 50 : 70}
+          swipeThreshold={isMobile ? 48 : 70}
           flickOnSwipe={true}
         >
           <div
@@ -264,7 +290,7 @@ function SwipeAssessment({
               width: cardWidth,
               height: cardHeight,
               position: "relative",
-              borderRadius: "26px",
+              borderRadius: isMobile ? "28px" : "26px",
               boxShadow: "0 22px 52px rgba(49,92,99,0.16)",
               border: `1px solid ${colors.border}`,
               display: "flex",
@@ -272,10 +298,14 @@ function SwipeAssessment({
               alignItems: "center",
               justifyContent: "center",
               textAlign: "center",
-              padding: isSmallMobile ? "24px 16px 44px" : isMobile ? "26px 18px 46px" : "34px 30px",
+              padding: isSmallMobile
+                ? "28px 18px 58px"
+                : isMobile
+                ? "30px 20px 60px"
+                : "34px 30px",
               fontSize,
               fontWeight: 750,
-              lineHeight: 1.5,
+              lineHeight: 1.45,
               letterSpacing: "-0.01em",
               boxSizing: "border-box",
               color: colors.text,
@@ -286,40 +316,38 @@ function SwipeAssessment({
               transition: "background 0.18s ease",
             }}
           >
+            <div
+              style={{
+                position: "absolute",
+                left: isMobile ? "18px" : "24px",
+                bottom: isMobile ? "22px" : "22px",
+                color: colors.primary,
+                fontSize: isMobile ? "11px" : "13px",
+                fontWeight: 750,
+                opacity: 0.78,
+              }}
+            >
+              Passt eher nicht
+            </div>
 
             <div
-  style={{
-    position: "absolute",
-    left: isMobile ? "18px" : "24px",
-    bottom: isMobile ? "18px" : "22px",
-    color: colors.primary,
-    fontSize: isMobile ? "12px" : "13px",
-    fontWeight: 750,
-    opacity: 0.78,
-  }}
->
-  Passt eher nicht
-</div>
+              style={{
+                position: "absolute",
+                right: isMobile ? "18px" : "24px",
+                bottom: isMobile ? "22px" : "22px",
+                color: colors.primary,
+                fontSize: isMobile ? "11px" : "13px",
+                fontWeight: 750,
+                opacity: 0.78,
+              }}
+            >
+              Passt eher
+            </div>
 
-<div
-  style={{
-    position: "absolute",
-    right: isMobile ? "18px" : "24px",
-    bottom: isMobile ? "18px" : "22px",
-    color: colors.primary,
-    fontSize: isMobile ? "12px" : "13px",
-    fontWeight: 750,
-    opacity: 0.78,
-  }}
->
-  Passt eher
-</div>
-
-<div>{item.text}</div>
+            <div>{item.text}</div>
           </div>
         </TinderCard>
       </div>
-
     </>
   );
 }
@@ -332,14 +360,17 @@ function LikertAssessment({
   selectedValue,
   onSelect,
 }) {
+  const statementFontSize = isSmallMobile ? "18px" : isMobile ? "19px" : "26px";
+  const optionNumberSize = statementFontSize;
+
   return (
     <div
       style={{
         width: cardWidth,
         background: colors.card,
         border: `1px solid ${colors.border}`,
-        borderRadius: "24px",
-        padding: isSmallMobile ? "18px 14px" : isMobile ? "20px 16px" : "28px 30px",
+        borderRadius: isMobile ? "24px" : "24px",
+        padding: isSmallMobile ? "16px 13px" : isMobile ? "18px 15px" : "28px 30px",
         boxSizing: "border-box",
         boxShadow: "0 18px 42px rgba(49,92,99,0.13)",
       }}
@@ -348,23 +379,22 @@ function LikertAssessment({
         style={{
           background: "linear-gradient(180deg, #FFFFFF 0%, #F8F4ED 100%)",
           border: `1px solid ${colors.border}`,
-          borderRadius: "24px",
-          padding: isSmallMobile ? "24px 16px" : isMobile ? "26px 18px" : "34px 30px",
+          borderRadius: isMobile ? "22px" : "24px",
+          padding: isSmallMobile ? "30px 16px" : isMobile ? "34px 18px" : "34px 30px",
           textAlign: "center",
           color: colors.text,
-          minHeight: isSmallMobile ? "190px" : isMobile ? "215px" : "250px",
+          minHeight: isSmallMobile ? "230px" : isMobile ? "255px" : "250px",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          boxShadow: "0 20px 50px rgba(49,92,99,0.12)",
+          boxShadow: "0 18px 42px rgba(49,92,99,0.10)",
         }}
       >
-
         <div
           style={{
-            fontSize: isSmallMobile ? "18px" : isMobile ? "20px" : "26px",
+            fontSize: statementFontSize,
             fontWeight: 750,
-            lineHeight: 1.5,
+            lineHeight: 1.45,
             letterSpacing: "-0.01em",
           }}
         >
@@ -375,17 +405,18 @@ function LikertAssessment({
       <div
         style={{
           borderTop: `1px solid ${colors.border}`,
-          marginTop: "20px",
-          paddingTop: "18px",
+          marginTop: isMobile ? "16px" : "20px",
+          paddingTop: isMobile ? "15px" : "18px",
           textAlign: "center",
         }}
       >
         <div
           style={{
             color: colors.primary,
-            fontSize: "16px",
+            fontSize: isSmallMobile ? "14px" : isMobile ? "15px" : "16px",
             fontWeight: 750,
-            marginBottom: "12px",
+            marginBottom: isMobile ? "10px" : "12px",
+            lineHeight: 1.3,
           }}
         >
           Wie gut passt die Aussage zu dir?
@@ -395,8 +426,8 @@ function LikertAssessment({
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(5, 1fr)",
-            gap: isSmallMobile ? "5px" : isMobile ? "8px" : "10px",
-            maxWidth: "320px",
+            gap: isSmallMobile ? "4px" : isMobile ? "6px" : "10px",
+            maxWidth: isMobile ? "300px" : "320px",
             margin: "0 auto",
           }}
         >
@@ -405,9 +436,10 @@ function LikertAssessment({
               <div
                 style={{
                   color: colors.text,
-                  fontWeight: 800,
-                  fontSize: "15px",
-                  marginBottom: "6px",
+                  fontWeight: 750,
+                  fontSize: optionNumberSize,
+                  marginBottom: isMobile ? "5px" : "6px",
+                  lineHeight: 1.1,
                 }}
               >
                 {value}
@@ -415,25 +447,26 @@ function LikertAssessment({
 
               <button
                 onClick={() => onSelect(value)}
+                aria-label={`Antwort ${value}`}
                 style={{
-                  width: isSmallMobile ? "34px" : isMobile ? "38px" : "40px",
-                  height: isSmallMobile ? "34px" : isMobile ? "38px" : "40px",
+                  width: isSmallMobile ? "32px" : isMobile ? "34px" : "40px",
+                  height: isSmallMobile ? "32px" : isMobile ? "34px" : "40px",
                   borderRadius: "999px",
                   border:
                     selectedValue === value
-                      ? `1px solid ${colors.primary}`
+                      ? `2px solid ${colors.primary}`
                       : `1px solid ${colors.border}`,
                   background:
                     selectedValue === value ? colors.primary : colors.soft,
                   color: selectedValue === value ? "#FFFFFF" : colors.primary,
-                  fontSize: "18px",
+                  fontSize: isMobile ? "15px" : "18px",
                   cursor: "pointer",
                   boxShadow:
                     selectedValue === value
-                      ? "0 8px 20px rgba(49,92,99,0.22)"
-                      : "0 6px 16px rgba(49,92,99,0.08)",
+                      ? "0 8px 18px rgba(49,92,99,0.20)"
+                      : "0 5px 12px rgba(49,92,99,0.07)",
                   transform:
-                    selectedValue === value ? "scale(1.08)" : "scale(1)",
+                    selectedValue === value ? "scale(1.06)" : "scale(1)",
                   transition: "all 0.15s ease",
                 }}
               >
@@ -443,16 +476,18 @@ function LikertAssessment({
           ))}
         </div>
 
-        <div
-          style={{
-            marginTop: "14px",
-            color: colors.muted,
-            fontSize: isMobile ? "13px" : "14px",
-            lineHeight: 1.45,
-          }}
-        >
-          1 = passt gar nicht · 3 = teils/teils · 5 = passt sehr gut
-        </div>
+        {!isMobile && (
+          <div
+            style={{
+              marginTop: "14px",
+              color: colors.muted,
+              fontSize: "14px",
+              lineHeight: 1.45,
+            }}
+          >
+            1 = passt gar nicht · 3 = teils/teils · 5 = passt sehr gut
+          </div>
+        )}
       </div>
     </div>
   );
