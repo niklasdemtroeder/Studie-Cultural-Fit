@@ -361,7 +361,7 @@ function LikertAssessment({
   onSelect,
 }) {
   const statementFontSize = isSmallMobile ? "18px" : isMobile ? "19px" : "26px";
-  const optionNumberSize = isSmallMobile ? "16px" : isMobile ? "17px" : "24px";
+  const optionNumberSize = isSmallMobile ? "17px" : isMobile ? "18px" : "24px";
 
   return (
     <div

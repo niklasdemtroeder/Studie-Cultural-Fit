@@ -2825,6 +2825,322 @@ div[data-testid="stRadio"] label:has(input[type="radio"]:checked) span {
         font-size: 0.64rem !important;
     }
 }
+
+/* =========================================================
+   FINAL MOBILE POLISH
+   Buttons, Abstände, Kacheln, Ergebnisbox, Fragebogen
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    /* Grundlayout mobil etwas ruhiger */
+    .block-container {
+        padding-top: 1.25rem !important;
+        padding-left: 0.85rem !important;
+        padding-right: 0.85rem !important;
+        padding-bottom: 2.2rem !important;
+    }
+
+    /* Einheitliche Buttonbreite auf Mobile */
+    .stButton {
+        display: flex !important;
+        justify-content: center !important;
+        margin-top: 0.35rem !important;
+        margin-bottom: 0.35rem !important;
+    }
+
+    .stButton > button {
+        width: min(76vw, 310px) !important;
+        max-width: 310px !important;
+        min-height: 52px !important;
+        padding: 0.62rem 1.1rem !important;
+        font-size: 1.02rem !important;
+        border-radius: 999px !important;
+    }
+
+    /* Startscreen: Button näher an Karte */
+    .start-button-anchor {
+        height: 0.15rem !important;
+        margin: 0 !important;
+    }
+
+    .welcome-wrap {
+        padding-bottom: 1.45rem !important;
+        margin-bottom: 0.15rem !important;
+    }
+
+    .welcome-card {
+        padding: 1.55rem 1.25rem !important;
+    }
+
+    .welcome-card .hero-title {
+        margin-bottom: 0.85rem !important;
+    }
+
+    .welcome-card .hero-subtitle {
+        line-height: 1.58 !important;
+    }
+
+    /* Einwilligung: kompakter und näher an Checkbox/Button */
+    .consent-spacing {
+        height: 0.25rem !important;
+    }
+
+    .consent-clean-wrap,
+    .pre-questionnaire-clean-wrap,
+    .screen-frame-soft {
+        margin-bottom: 0.45rem !important;
+    }
+
+    .screen-card-info {
+        padding: 1.35rem 1.2rem !important;
+        border-radius: 24px !important;
+        line-height: 1.55 !important;
+        text-align: center !important;
+    }
+
+    .screen-card-info p {
+        margin-bottom: 0.8rem !important;
+    }
+
+    .screen-card-info .hero-title,
+    .screen-card-info .hero-subtitle {
+        text-align: center !important;
+    }
+
+    /* Info-Kacheln mobil nebeneinander, aber kompakter */
+    .info-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 0.45rem !important;
+        margin-top: 0.75rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    .info-box {
+        min-height: auto !important;
+        padding: 0.62rem 0.35rem !important;
+        border-radius: 15px !important;
+    }
+
+    .info-box strong {
+        font-size: 0.9rem !important;
+        margin-bottom: 0.12rem !important;
+        line-height: 1.15 !important;
+    }
+
+    .info-box span {
+        font-size: 0.76rem !important;
+        line-height: 1.22 !important;
+        word-break: normal !important;
+        hyphens: none !important;
+    }
+
+    /* Anleitung: kompaktere Boxen und Button näher heran */
+    .text-card {
+        padding: 1.35rem 1.2rem !important;
+        border-radius: 24px !important;
+        text-align: center !important;
+        margin-bottom: 0.6rem !important;
+    }
+
+    .text-card h3 {
+        margin-bottom: 0.5rem !important;
+    }
+
+    .instruction-row {
+        flex-direction: row !important;
+        gap: 0.55rem !important;
+        margin-top: 0.75rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    .instruction-box {
+        padding: 0.72rem 0.35rem !important;
+        border-radius: 15px !important;
+    }
+
+    .instruction-box strong {
+        font-size: 0.86rem !important;
+        line-height: 1.15 !important;
+        margin-bottom: 0.18rem !important;
+    }
+
+    .instruction-box span {
+        font-size: 0.78rem !important;
+        line-height: 1.2 !important;
+    }
+
+    /* Ergebnis-Screen: Hinweisbox gleichmäßiger */
+    .result-next-note,
+    .soft-note {
+        padding: 0.85rem 0.9rem !important;
+        margin-top: 0.65rem !important;
+        margin-bottom: 0.85rem !important;
+        border-radius: 16px !important;
+        line-height: 1.5 !important;
+        text-align: center !important;
+    }
+
+    /* Ergebnis-Einschätzung: kompakter, zentrierter */
+    .st-key-result_assessment_card,
+    div[class*="st-key-result_assessment_card"] {
+        padding: 1.3rem 1.15rem 1.15rem 1.15rem !important;
+        margin-top: 0.75rem !important;
+        margin-bottom: 1.2rem !important;
+        text-align: center !important;
+    }
+
+    .result-assessment-inner {
+        text-align: center !important;
+        margin-bottom: 0.45rem !important;
+    }
+
+    .result-assessment-inner h3 {
+        font-size: 1.45rem !important;
+        margin-bottom: 0.45rem !important;
+    }
+
+    .result-assessment-inner p {
+        margin-bottom: 0.45rem !important;
+    }
+
+    .st-key-result_assessment_card div[data-testid="stRadio"] label,
+    div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] label {
+        font-size: 1rem !important;
+        justify-content: flex-start !important;
+    }
+
+    .result-assessment-hint {
+        margin-top: 0.55rem !important;
+        margin-bottom: 0 !important;
+        font-size: 0.9rem !important;
+        line-height: 1.35 !important;
+    }
+
+    /* Pre-Questionnaire: Kacheln nebeneinander und kompakter */
+    .pre-questionnaire-clean-wrap .info-grid,
+    .screen-frame-soft .info-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 0.45rem !important;
+    }
+
+    .pre-questionnaire-clean-wrap .info-box,
+    .screen-frame-soft .info-box {
+        padding: 0.58rem 0.3rem !important;
+    }
+
+    /* Abschlussfragebogen: Box cleaner */
+    .questionnaire-section-card {
+        padding: 1.25rem 1.05rem !important;
+        border-radius: 24px !important;
+        text-align: center !important;
+        margin-bottom: 0.8rem !important;
+    }
+
+    .questionnaire-section-title {
+        font-size: 1.35rem !important;
+        margin-bottom: 0.45rem !important;
+    }
+
+    .questionnaire-section-helper {
+        font-size: 0.98rem !important;
+        line-height: 1.45 !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    .scale-legend-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 0.45rem !important;
+    }
+
+    .scale-legend-box {
+        padding: 0.55rem 0.25rem !important;
+        border-radius: 14px !important;
+    }
+
+    .scale-legend-box strong {
+        font-size: 0.95rem !important;
+    }
+
+    .scale-legend-box span {
+        font-size: 0.74rem !important;
+        line-height: 1.15 !important;
+    }
+
+    /* Fragebogen-Items: linksbündig lassen, aber luftiger/cleaner */
+    .st-key-questionnaire_item_card,
+    div[class*="st-key-questionnaire_item_card"] {
+        padding: 1.25rem 1.05rem 1.1rem 1.05rem !important;
+        border-radius: 24px !important;
+        margin-bottom: 0.85rem !important;
+    }
+
+    .st-key-questionnaire_item_card div[data-testid="stRadio"],
+    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] {
+        margin-bottom: 1.3rem !important;
+    }
+
+    .st-key-questionnaire_item_card div[data-testid="stRadio"] > label,
+    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label {
+        font-size: 1.02rem !important;
+        line-height: 1.45 !important;
+        font-weight: 600 !important;
+        margin-bottom: 0.65rem !important;
+    }
+
+    .st-key-questionnaire_item_card div[role="radiogroup"],
+    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] {
+        justify-content: space-between !important;
+        gap: 0.25rem !important;
+    }
+
+    .st-key-questionnaire_item_card div[role="radiogroup"] label,
+    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] label {
+        font-size: 1.02rem !important;
+        line-height: 1.2 !important;
+    }
+
+    /* Fragebogen-Footer: Buttons näher an die Karte */
+    .st-key-questionnaire_footer,
+    div[class*="st-key-questionnaire_footer"] {
+        margin-top: 0.35rem !important;
+    }
+
+    .st-key-questionnaire_footer .stButton,
+    div[class*="st-key-questionnaire_footer"] .stButton {
+        margin-top: 0.25rem !important;
+        margin-bottom: 0.65rem !important;
+    }
+
+    /* Zurück-Button subtil, aber sichtbar */
+    .st-key-back_button_soft button,
+    div[class*="st-key-back_button_soft"] button {
+        background: transparent !important;
+        color: var(--primary) !important;
+        border: 2px solid rgba(49,92,99,0.45) !important;
+        box-shadow: none !important;
+    }
+
+    .st-key-back_button_soft button *,
+    div[class*="st-key-back_button_soft"] button * {
+        color: var(--primary) !important;
+    }
+
+    .st-key-back_button_soft button:hover,
+    div[class*="st-key-back_button_soft"] button:hover {
+        background: rgba(49,92,99,0.06) !important;
+        border-color: var(--primary) !important;
+        color: var(--primary) !important;
+        box-shadow: none !important;
+    }
+
+    .questionnaire-hint {
+        margin-top: 0.45rem !important;
+        font-size: 0.92rem !important;
+        line-height: 1.4 !important;
+    }
+}
+
 </style>
     """,
     unsafe_allow_html=True,
@@ -3314,7 +3630,7 @@ elif st.session_state.phase == "consent":
         '<p>Es gibt keine richtigen oder falschen Antworten. Wichtig ist nur, was zu dir passt.</p>'
         '<div class="info-grid">'
         '<div class="info-box"><strong>Dauer</strong><span>ca. 8–10 Minuten</span></div>'
-        '<div class="info-box"><strong>Anonym</strong><span>Keine personenbezogenen Daten</span></div>'
+        '<div class="info-box"><strong>Anonym</strong><span>Ohne Personendaten</span></div>'
         '<div class="info-box"><strong>Freiwillig</strong><span>Abbruch jederzeit möglich</span></div>'
         '</div>'
         '<p>Deine Angaben werden <strong>anonym</strong> gespeichert und nur für diese Masterarbeit ausgewertet. Die Teilnahme ist <strong>freiwillig</strong>. Du kannst die Studie jederzeit abbrechen, ohne dass dir dadurch Nachteile entstehen.</p>'
