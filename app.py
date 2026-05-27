@@ -1594,6 +1594,394 @@ div[data-testid="stRadio"] label:has(input[type="radio"]:checked) span {
     font-weight: 700 !important;
 }
 
+/* =========================================================
+   FINAL MOBILE OVERRIDE V2
+   Kompaktere Darstellung für Smartphone / WhatsApp-Browser
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    html, body, .stApp {
+        overflow-x: hidden !important;
+    }
+
+    .block-container {
+        max-width: 100% !important;
+        padding-top: 0.85rem !important;
+        padding-left: 0.85rem !important;
+        padding-right: 0.85rem !important;
+        padding-bottom: calc(6.5rem + env(safe-area-inset-bottom)) !important;
+    }
+
+    /* Fortschritt kompakter */
+    .study-progress {
+        border-radius: 18px !important;
+        padding: 0.7rem 0.75rem !important;
+        margin-bottom: 0.9rem !important;
+        box-shadow: 0 10px 24px rgba(49,92,99,0.07) !important;
+    }
+
+    .study-progress-label {
+        font-size: 0.78rem !important;
+        margin-bottom: 0.45rem !important;
+    }
+
+    .study-progress-track {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 0.35rem !important;
+    }
+
+    .study-progress-step {
+        font-size: 0.72rem !important;
+        padding: 0.45rem 0.18rem !important;
+        line-height: 1.15 !important;
+        min-height: 34px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        white-space: normal !important;
+    }
+
+    /* Allgemeine Karten kompakter */
+    .welcome-wrap,
+    .screen-frame,
+    .screen-frame-soft {
+        border-radius: 22px !important;
+        padding: 0.95rem 0.65rem 1.25rem 0.65rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    .welcome-card,
+    .screen-card-info,
+    .screen-card-main,
+    .text-card,
+    .result-hero-card,
+    .topmatch-card,
+    .thanks-card,
+    .questionnaire-section-card,
+    .st-key-questionnaire_item_card,
+    div[class*="st-key-questionnaire_item_card"],
+    .st-key-result_assessment_card,
+    div[class*="st-key-result_assessment_card"] {
+        border-radius: 21px !important;
+        padding: 1.05rem 1rem !important;
+        box-shadow: 0 12px 28px rgba(49,92,99,0.09) !important;
+    }
+
+    /* Hauptüberschriften */
+    .hero-title,
+    .questionnaire-title {
+        font-size: 1.7rem !important;
+        line-height: 1.12 !important;
+        letter-spacing: -0.04em !important;
+        margin-top: 0.15rem !important;
+        margin-bottom: 0.55rem !important;
+        text-align: center !important;
+    }
+
+    .welcome-card .hero-title {
+        font-size: 1.55rem !important;
+        line-height: 1.12 !important;
+        text-align: left !important;
+    }
+
+    .hero-subtitle,
+    .questionnaire-subtitle,
+    .assessment-help {
+        font-size: 0.94rem !important;
+        line-height: 1.45 !important;
+        margin-bottom: 0.85rem !important;
+    }
+
+    .welcome-card .hero-subtitle {
+        text-align: left !important;
+        font-size: 0.94rem !important;
+        line-height: 1.48 !important;
+    }
+
+    .screen-card-info p,
+    .text-card p,
+    .result-profile-text,
+    .result-method-text,
+    .result-next-note,
+    .soft-note {
+        font-size: 0.95rem !important;
+        line-height: 1.48 !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    /* Info-Kacheln mobil kompakter */
+    .info-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.55rem !important;
+        margin-top: 0.75rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    .info-box,
+    .instruction-box,
+    .scale-legend-box {
+        border-radius: 16px !important;
+        padding: 0.68rem 0.75rem !important;
+    }
+
+    .info-box strong,
+    .instruction-box strong {
+        font-size: 0.95rem !important;
+        margin-bottom: 0.15rem !important;
+    }
+
+    .info-box span,
+    .instruction-box span {
+        font-size: 0.86rem !important;
+        line-height: 1.3 !important;
+    }
+
+    .instruction-row {
+        flex-direction: column !important;
+        gap: 0.55rem !important;
+        margin-top: 0.75rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    .text-card h3 {
+        font-size: 1.35rem !important;
+        line-height: 1.15 !important;
+        margin-bottom: 0.65rem !important;
+    }
+
+    /* Buttons kompakter und mit Abstand zur Browserleiste */
+    .stButton > button {
+        min-height: 46px !important;
+        padding: 0.65rem 1rem !important;
+        font-size: 0.94rem !important;
+    }
+
+    .welcome-action,
+    .st-key-consent_action_area,
+    div[class*="st-key-consent_action_area"],
+    .st-key-questionnaire_footer,
+    div[class*="st-key-questionnaire_footer"] {
+        margin-bottom: 1.2rem !important;
+    }
+
+    /* Ergebnis-Screen */
+    .result-company {
+        font-size: 1.55rem !important;
+        line-height: 1.12 !important;
+        margin-bottom: 0.65rem !important;
+    }
+
+    .result-kicker {
+        font-size: 0.78rem !important;
+    }
+
+    .result-score-row {
+        gap: 0.55rem !important;
+        margin-bottom: 0.65rem !important;
+    }
+
+    .result-score {
+        font-size: 1rem !important;
+        padding: 0.42rem 0.72rem !important;
+    }
+
+    .result-score-label {
+        font-size: 0.84rem !important;
+        line-height: 1.25 !important;
+    }
+
+    .result-pill {
+        font-size: 0.76rem !important;
+        padding: 0.28rem 0.58rem !important;
+    }
+
+    .result-next-note {
+        border-radius: 16px !important;
+        padding: 0.78rem 0.85rem !important;
+    }
+
+    .result-details-title {
+        font-size: 1.18rem !important;
+        margin-top: 1rem !important;
+        margin-bottom: 0.55rem !important;
+    }
+
+    .result-assessment-inner h3 {
+        font-size: 1.35rem !important;
+        line-height: 1.15 !important;
+        margin-bottom: 0.65rem !important;
+    }
+
+    .result-assessment-inner p {
+        font-size: 0.95rem !important;
+        line-height: 1.45 !important;
+    }
+
+    .result-radio-label,
+    .result-assessment-hint {
+        font-size: 0.84rem !important;
+        line-height: 1.35 !important;
+    }
+
+    /* Abschlussfragebogen */
+    .questionnaire-progress-wrap {
+        width: min(320px, 90%) !important;
+        margin-bottom: 0.9rem !important;
+    }
+
+    .questionnaire-section-card {
+        margin-bottom: 0.75rem !important;
+    }
+
+    .questionnaire-section-label {
+        font-size: 0.76rem !important;
+    }
+
+    .questionnaire-section-title {
+        font-size: 1.12rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 0.6rem !important;
+    }
+
+    .questionnaire-section-helper {
+        font-size: 0.9rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 0.7rem !important;
+    }
+
+    .scale-legend-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 0.35rem !important;
+    }
+
+    .scale-legend-box {
+        padding: 0.55rem 0.35rem !important;
+    }
+
+    .scale-legend-box strong {
+        font-size: 0.9rem !important;
+    }
+
+    .scale-legend-box span {
+        font-size: 0.68rem !important;
+        line-height: 1.2 !important;
+    }
+
+    .st-key-questionnaire_item_card,
+    div[class*="st-key-questionnaire_item_card"] {
+        padding: 0.95rem 0.9rem 0.45rem 0.9rem !important;
+        margin-bottom: 0.65rem !important;
+    }
+
+    .st-key-questionnaire_item_card div[data-testid="stRadio"] > label p,
+    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label p {
+        font-size: 0.98rem !important;
+        line-height: 1.42 !important;
+    }
+
+    .st-key-questionnaire_item_card div[role="radiogroup"],
+    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] {
+        gap: 0.28rem !important;
+        justify-content: space-between !important;
+        flex-wrap: nowrap !important;
+    }
+
+    .st-key-questionnaire_item_card div[role="radiogroup"] label,
+    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] label {
+        font-size: 0.9rem !important;
+    }
+
+    div[data-testid="stRadio"] input[type="radio"],
+    div[role="radiogroup"] input[type="radio"] {
+        width: 15px !important;
+        height: 15px !important;
+        min-width: 15px !important;
+        min-height: 15px !important;
+        margin-right: 0.28rem !important;
+    }
+
+    .questionnaire-hint {
+        font-size: 0.82rem !important;
+        line-height: 1.35 !important;
+        margin-top: 0.35rem !important;
+        padding-left: 0.25rem !important;
+        padding-right: 0.25rem !important;
+    }
+
+    /* Danke-Screen */
+    .thanks-wrap {
+        margin-top: 2rem !important;
+    }
+
+    .thanks-card {
+        padding: 1.45rem 1.05rem !important;
+    }
+
+    .thanks-icon {
+        width: 46px !important;
+        height: 46px !important;
+        font-size: 1.45rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    .thanks-title {
+        font-size: 1.45rem !important;
+        line-height: 1.15 !important;
+    }
+
+    .thanks-text {
+        font-size: 0.94rem !important;
+        line-height: 1.45 !important;
+    }
+}
+
+@media (max-width: 430px) {
+    .block-container {
+        padding-left: 0.7rem !important;
+        padding-right: 0.7rem !important;
+    }
+
+    .hero-title,
+    .questionnaire-title {
+        font-size: 1.55rem !important;
+    }
+
+    .welcome-card .hero-title {
+        font-size: 1.45rem !important;
+    }
+
+    .hero-subtitle,
+    .questionnaire-subtitle,
+    .assessment-help,
+    .welcome-card .hero-subtitle {
+        font-size: 0.9rem !important;
+    }
+
+    .screen-card-info p,
+    .text-card p,
+    .result-profile-text,
+    .result-method-text,
+    .result-next-note,
+    .soft-note {
+        font-size: 0.9rem !important;
+    }
+
+    .study-progress-step {
+        font-size: 0.66rem !important;
+        padding: 0.38rem 0.14rem !important;
+    }
+
+    .result-company {
+        font-size: 1.42rem !important;
+    }
+
+    .st-key-questionnaire_item_card div[data-testid="stRadio"] > label p,
+    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label p {
+        font-size: 0.94rem !important;
+    }
+}
+
     </style>
     """,
     unsafe_allow_html=True,
