@@ -4740,7 +4740,6 @@ elif st.session_state.phase == "results":
                 <h3>Deine erste Einschätzung</h3>
                 <p>Wie passend erscheint dir das angezeigte Ergebnis?</p>
             </div>
-            <div class="result-radio-label">Bitte wähle eine Antwort aus:</div>
             """,
             unsafe_allow_html=True,
         )
