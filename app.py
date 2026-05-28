@@ -3897,6 +3897,197 @@ div[data-testid="stRadio"] label:has(input[type="radio"]:checked) span {
     }
 }
 
+/* === FINAL CLEANUP: Consent / Result / Questionnaire === */
+
+/* 1) Screen "Kurz zur Studie" – cleaner Aktionsbereich */
+.st-key-consent_action_area,
+div[class*="st-key-consent_action_area"] {
+    max-width: 620px !important;
+    margin: 0.25rem auto 0 auto !important;
+    padding: 0.85rem 0.95rem 0.35rem 0.95rem !important;
+    background: rgba(255,255,255,0.72) !important;
+    border: 1px solid rgba(49,92,99,0.10) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 12px 30px rgba(49,92,99,0.08) !important;
+}
+
+.st-key-consent_action_area div[data-testid="stCheckbox"],
+div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
+    display: flex !important;
+    justify-content: center !important;
+    margin: 0 0 0.45rem 0 !important;
+}
+
+.st-key-consent_action_area div[data-testid="stCheckbox"] label,
+div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] label {
+    width: auto !important;
+    margin: 0 auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.6rem !important;
+    font-size: 0.96rem !important;
+    line-height: 1.35 !important;
+    text-align: left !important;
+}
+
+.st-key-consent_action_area .stButton,
+div[class*="st-key-consent_action_area"] .stButton {
+    max-width: 520px !important;
+    margin: 0 auto !important;
+}
+
+/* 2) Ergebnisscreen – Einschätzungsbox sauberer */
+.st-key-result_assessment_card,
+div[class*="st-key-result_assessment_card"] {
+    background: #FFFFFF !important;
+    border: 1px solid rgba(49,92,99,0.12) !important;
+    border-radius: 28px !important;
+    box-shadow: 0 18px 42px rgba(49,92,99,0.10) !important;
+    padding: 1.35rem 1.45rem 1rem 1.45rem !important;
+    margin-top: 0.3rem !important;
+    margin-bottom: 1rem !important;
+}
+
+.result-assessment-inner,
+.result-assessment-inner * {
+    text-align: left !important;
+}
+
+.result-assessment-inner h3 {
+    color: var(--primary) !important;
+    font-size: 1.65rem !important;
+    font-weight: 850 !important;
+    letter-spacing: -0.03em !important;
+    margin-top: 0 !important;
+    margin-bottom: 0.6rem !important;
+}
+
+.result-assessment-inner p {
+    margin-top: 0 !important;
+    margin-bottom: 0.5rem !important;
+    color: var(--text) !important;
+    line-height: 1.45 !important;
+}
+
+.result-radio-label {
+    text-align: left !important;
+    color: var(--text) !important;
+    font-size: 1rem !important;
+    margin-top: 0.05rem !important;
+    margin-bottom: 0.25rem !important;
+}
+
+.st-key-result_assessment_card div[data-testid="stRadio"],
+div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] {
+    margin-top: 0 !important;
+    margin-bottom: 0.15rem !important;
+}
+
+.st-key-result_assessment_card div[role="radiogroup"],
+div[class*="st-key-result_assessment_card"] div[role="radiogroup"] {
+    gap: 0.18rem !important;
+}
+
+.st-key-result_assessment_card div[data-testid="stRadio"] label,
+div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] label {
+    justify-content: flex-start !important;
+}
+
+.st-key-result_assessment_card .stButton,
+div[class*="st-key-result_assessment_card"] .stButton {
+    max-width: 520px !important;
+    margin: 0.3rem auto 0 auto !important;
+}
+
+.result-assessment-hint {
+    text-align: center !important;
+    color: var(--muted) !important;
+    font-size: 0.95rem !important;
+    margin-top: 0.15rem !important;
+    margin-bottom: 0 !important;
+}
+
+/* 3) Abschlussfragebogen – Aussagen lesbarer, klarer getrennt */
+.st-key-questionnaire_item_card,
+div[class*="st-key-questionnaire_item_card"] {
+    background: #FFFFFF !important;
+    border: 1px solid rgba(49,92,99,0.12) !important;
+    border-radius: 26px !important;
+    box-shadow: 0 18px 42px rgba(49,92,99,0.10) !important;
+    padding: 0.8rem 1.15rem 0.35rem 1.15rem !important;
+    margin-bottom: 0.55rem !important;
+}
+
+.st-key-questionnaire_item_card div[data-testid="stRadio"],
+div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] {
+    padding: 0.95rem 0 1rem 0 !important;
+    margin-bottom: 0 !important;
+    border-bottom: 1px solid rgba(49,92,99,0.09) !important;
+}
+
+.st-key-questionnaire_item_card div[data-testid="stRadio"]:last-of-type,
+div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"]:last-of-type {
+    border-bottom: none !important;
+    padding-bottom: 0.4rem !important;
+}
+
+.st-key-questionnaire_item_card div[data-testid="stRadio"] > label,
+div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label {
+    display: block !important;
+    text-align: left !important;
+    margin-bottom: 0.65rem !important;
+}
+
+.st-key-questionnaire_item_card div[data-testid="stRadio"] > label p,
+div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label p {
+    text-align: left !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    font-size: 1.08rem !important;
+    line-height: 1.5 !important;
+    font-weight: 600 !important;
+    color: var(--text) !important;
+}
+
+.st-key-questionnaire_item_card div[role="radiogroup"],
+div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
+    max-width: 540px !important;
+    margin: 0 auto !important;
+    padding: 0 0.15rem !important;
+    flex-wrap: nowrap !important;
+}
+
+.st-key-questionnaire_item_card div[role="radiogroup"] label,
+div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] label {
+    margin: 0 !important;
+}
+
+/* Footer enger an die Box ziehen */
+.st-key-questionnaire_footer,
+div[class*="st-key-questionnaire_footer"] {
+    margin-top: 0.05rem !important;
+    padding-top: 0 !important;
+}
+
+.st-key-questionnaire_footer .stButton,
+div[class*="st-key-questionnaire_footer"] .stButton {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.questionnaire-hint {
+    text-align: center !important;
+    color: var(--muted) !important;
+    font-size: 0.95rem !important;
+    margin-top: 0.3rem !important;
+    margin-bottom: 0.1rem !important;
+}
+
 </style>
     """,
     unsafe_allow_html=True,
@@ -4402,7 +4593,7 @@ elif st.session_state.phase == "consent":
     st.markdown('<div class="consent-spacing"></div>', unsafe_allow_html=True)
 
     with st.container(key="consent_action_area"):
-        left, center, right = st.columns([1.0, 2.2, 1.0])
+        left, center, right = st.columns([0.85, 2.3, 0.85])
 
         with center:
             consent = st.checkbox(
@@ -4544,18 +4735,18 @@ elif st.session_state.phase == "results":
 
     with st.container(key="result_assessment_card"):
         st.markdown(
-        """
-        <div class="result-assessment-inner">
-            <h3>Deine erste Einschätzung</h3>
-            <p>Wie passend erscheint dir das angezeigte Ergebnis?</p>
-            <div class="result-radio-question">Bitte wähle eine Antwort aus:</div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+            """
+            <div class="result-assessment-inner">
+                <h3>Deine erste Einschätzung</h3>
+                <p>Wie passend erscheint dir das angezeigte Ergebnis?</p>
+            </div>
+            <div class="result-radio-label">Bitte wähle eine Antwort aus:</div>
+            """,
+            unsafe_allow_html=True,
+        )
 
         self_assessment = st.radio(
-            "Bitte wähle eine Antwort aus:",
+            " ",
             options=[
                 "Sehr passend",
                 "Eher passend",
@@ -4568,7 +4759,7 @@ elif st.session_state.phase == "results":
             label_visibility="collapsed",
         )
 
-        btn_left, btn_center, btn_right = st.columns([0.28, 0.44, 0.28])
+        btn_left, btn_center, btn_right = st.columns([0.12, 0.76, 0.12])
         with btn_center:
             if st.button(
                 "Zum Abschlussfragebogen",
@@ -4740,41 +4931,41 @@ elif st.session_state.phase == "questionnaire":
     )
 
     with st.container(key="questionnaire_footer"):
-        if current_step == 0:
-            left, center, right = st.columns([1.55, 1.0, 1.55])
+        primary_left, primary_center, primary_right = st.columns([1.2, 1.7, 1.2])
 
-            with center:
+        with primary_center:
+            if current_step < total_blocks - 1:
                 if st.button(
                     "Weiter",
                     use_container_width=True,
                     disabled=not current_complete,
-                    key=f"questionnaire_next_first_{current_step}",
+                    key=f"questionnaire_next_{current_step}",
                 ):
                     st.session_state.questionnaire_step += 1
                     st.rerun()
+            else:
+                if st.button(
+                    "Fragebogen absenden",
+                    use_container_width=True,
+                    disabled=not current_complete,
+                    key="questionnaire_submit",
+                ):
+                    st.session_state.phase = "end"
+                    st.rerun()
 
-        else:
-            top_left, top_center, top_right = st.columns([1.55, 1.0, 1.55])
+        if current_step > 0:
+            st.markdown('<div style="height:0.35rem;"></div>', unsafe_allow_html=True)
 
-            with top_center:
-                if current_step < total_blocks - 1:
-                    if st.button(
-                        "Weiter",
-                        use_container_width=True,
-                        disabled=not current_complete,
-                        key=f"questionnaire_next_{current_step}",
-                    ):
-                        st.session_state.questionnaire_step += 1
-                        st.rerun()
-                else:
-                    if st.button(
-                        "Fragebogen absenden",
-                        use_container_width=True,
-                        disabled=not current_complete,
-                        key="questionnaire_submit",
-                    ):
-                        st.session_state.phase = "end"
-                        st.rerun()
+            secondary_left, secondary_center, secondary_right = st.columns([1.2, 1.7, 1.2])
+
+            with secondary_center:
+                if st.button(
+                    "Zurück",
+                    use_container_width=True,
+                    key=f"questionnaire_back_{current_step}",
+                ):
+                    st.session_state.questionnaire_step -= 1
+                    st.rerun()
 
             back_left, back_center, back_right = st.columns([1.65, 0.9, 1.65])
 
