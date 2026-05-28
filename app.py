@@ -19,17 +19,6 @@ from swipe_component import swipe_component
 
 st.set_page_config(page_title="Cultural Fit Prototype", layout="centered")
 
-st.markdown(
-    """
-    <style>
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-
 SHOW_ADMIN_PANEL = False
 CSV_FILEPATH = "responses.csv"
 DEBUG_MODE = False
@@ -40,38 +29,33 @@ st.markdown(
     """
     <style>
     :root {
-        --primary-color: #6BAA75 !important;
-        --primary-color-rgb: 107, 170, 117 !important;
-
         --bg: #FAF7F2;
         --card: #FFFFFF;
         --primary: #315C63;
-        --primary-dark: #1F3A5F;
         --accent: #F2B872;
         --text: #2B2B2B;
         --muted: #667085;
         --border: #E5E1DA;
-        --soft: #F3EEE7;
+        --soft: #F8F4ED;
         --success: #6BAA75;
-        --danger: #D98282;
+        --primary-color: #6BAA75 !important;
+        --primary-color-rgb: 107, 170, 117 !important;
     }
 
+    #MainMenu, footer, header { visibility: hidden; }
+
     .stApp {
-    background: var(--bg);
-    color: var(--text);
-    --primary-color: #6BAA75 !important;
-    --primary-color-rgb: 107, 170, 117 !important;
-}
+        background: var(--bg);
+        color: var(--text);
+        --primary-color: #6BAA75 !important;
+        --primary-color-rgb: 107, 170, 117 !important;
+    }
 
     .block-container {
         max-width: 920px;
         padding-top: 3.2rem;
         padding-bottom: 2.5rem;
     }
-
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
 
     h1, h2, h3 {
         color: var(--primary) !important;
@@ -82,159 +66,22 @@ st.markdown(
         color: var(--text) !important;
     }
 
-    div[data-testid="stProgressBar"] > div > div > div {
-        background: linear-gradient(90deg, var(--primary), var(--accent));
+    .screen-fade {
+        animation: screenFade 0.28s ease-out both;
     }
 
-.welcome-wrap {
-    min-height: auto;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    border-radius: 32px;
-    padding: 2.6rem 1.4rem 3.2rem 1.4rem;
-    background:
-        radial-gradient(circle at top left, rgba(49,92,99,0.16), transparent 34%),
-        radial-gradient(circle at bottom right, rgba(242,184,114,0.28), transparent 34%),
-        linear-gradient(135deg, #FAF7F2 0%, #E8F0EF 48%, #F6EBDD 100%);
-    box-shadow: inset 0 0 0 1px rgba(49,92,99,0.08);
-    position: relative;
-}
-
-    .welcome-card {
-        width: min(720px, 100%);
-        background: rgba(255,255,255,0.92);
-        border: 1px solid rgba(49,92,99,0.12);
-        border-radius: 30px;
-        padding: 2.1rem 2.2rem;
-        box-shadow: 0 22px 55px rgba(49,92,99,0.15);
-        backdrop-filter: blur(8px);
-        text-align: left;
-    }
-
-    .screen-frame {
-    border-radius: 32px;
-    padding: 2.6rem 1.4rem 3.2rem 1.4rem;
-    background:
-        radial-gradient(circle at top left, rgba(49,92,99,0.16), transparent 34%),
-        radial-gradient(circle at bottom right, rgba(242,184,114,0.28), transparent 34%),
-        linear-gradient(135deg, #FAF7F2 0%, #E8F0EF 48%, #F6EBDD 100%);
-    box-shadow: inset 0 0 0 1px rgba(49,92,99,0.08);
-    margin-bottom: 1rem;
-}
-
-.screen-frame-soft {
-    border-radius: 32px;
-    padding: 2.4rem 1.4rem 2.8rem 1.4rem;
-    background:
-        radial-gradient(circle at top left, rgba(49,92,99,0.11), transparent 36%),
-        radial-gradient(circle at bottom right, rgba(242,184,114,0.18), transparent 36%),
-        linear-gradient(135deg, #FAF7F2 0%, #EDF3F1 50%, #F8EBD8 100%);
-    box-shadow: inset 0 0 0 1px rgba(49,92,99,0.07);
-    margin-bottom: 1rem;
-}
-
-.screen-card-main {
-    width: min(720px, 100%);
-    margin: 0 auto;
-    background: rgba(255,255,255,0.94);
-    border: 1px solid rgba(49,92,99,0.12);
-    border-radius: 30px;
-    padding: 2.1rem 2.2rem;
-    box-shadow: 0 22px 55px rgba(49,92,99,0.13);
-    backdrop-filter: blur(8px);
-    text-align: left;
-}
-
-.result-assessment-wrap h3 {
-    color: var(--primary) !important;
-    font-size: 1.65rem;
-    font-weight: 850;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.45rem;
-}
-
-.result-assessment-wrap p {
-    margin-bottom: 0.7rem;
-}
-
-.result-assessment-wrap div[data-testid="stRadio"] {
-    margin-top: -0.2rem;
-}
-
-.result-assessment-wrap div[role="radiogroup"] {
-    gap: 0.25rem;
-}
-
-.result-assessment-wrap .stButton {
-    margin-top: 0.65rem;
-}
-
-.screen-card-info {
-    width: min(820px, 100%);
-    margin: 0 auto;
-    background: rgba(255,255,255,0.95);
-    border: 1px solid rgba(49,92,99,0.12);
-    border-radius: 30px 30px 20px 20px;
-    padding: 1.7rem 1.8rem;
-    box-shadow: 0 20px 48px rgba(49,92,99,0.11);
-    backdrop-filter: blur(8px);
-    text-align: left;
-    line-height: 1.65;
-}
-
-.screen-card-info p {
-    margin-top: 0;
-    margin-bottom: 1rem;
-}
-
-.consent-action-area [data-testid="stCheckbox"] label {
-    font-size: 1rem;
-    color: var(--text) !important;
-}
-
-.consent-action-area .custom-muted {
-    text-align: center;
-}
-
-.consent-spacing {
-    height: 0.7rem;
-}
-
-.screen-fade {
-    animation: screenFade 0.28s ease-out both;
-}
-
-@keyframes screenFade {
-    from {
-        opacity: 0;
-        transform: translateY(6px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-    .welcome-pill {
-        display: inline-block;
-        background: rgba(242,184,114,0.26);
-        border: 1px solid rgba(242,184,114,0.55);
-        color: var(--primary);
-        border-radius: 999px;
-        padding: 0.32rem 0.8rem;
-        font-size: 0.88rem;
-        font-weight: 750;
-        margin-bottom: 1rem;
+    @keyframes screenFade {
+        from { opacity: 0; transform: translateY(6px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
     .hero-title {
+        color: var(--primary);
         font-size: 2.35rem;
         font-weight: 850;
-        color: var(--primary);
-        margin-bottom: 0.55rem;
-        letter-spacing: -0.04em;
         line-height: 1.08;
+        letter-spacing: -0.04em;
+        margin-bottom: 0.55rem;
     }
 
     .hero-subtitle {
@@ -244,305 +91,123 @@ st.markdown(
         margin-bottom: 1.2rem;
     }
 
+    .welcome-wrap {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        border-radius: 32px;
+        padding: 2.6rem 1.4rem 2.7rem 1.4rem;
+        margin-bottom: 0.3rem;
+        background:
+            radial-gradient(circle at top left, rgba(49,92,99,0.16), transparent 34%),
+            radial-gradient(circle at bottom right, rgba(242,184,114,0.28), transparent 34%),
+            linear-gradient(135deg, #FAF7F2 0%, #E8F0EF 48%, #F6EBDD 100%);
+        box-shadow: inset 0 0 0 1px rgba(49,92,99,0.08);
+    }
+
+    .welcome-card,
+    .screen-card-info,
+    .screen-card-main,
+    .text-card,
+    .result-hero-card,
+    .thanks-card,
+    .questionnaire-section-card,
+    div[class*="st-key-result_assessment_card"],
+    div[class*="st-key-questionnaire_item_card"] {
+        background: rgba(255,255,255,0.96);
+        border: 1px solid rgba(49,92,99,0.12);
+        box-shadow: 0 18px 42px rgba(49,92,99,0.10);
+    }
+
+    .welcome-card {
+        width: min(720px, 100%);
+        border-radius: 30px;
+        padding: 2.1rem 2.2rem;
+        backdrop-filter: blur(8px);
+        text-align: left;
+    }
+
+    .screen-card-info {
+        width: min(820px, 100%);
+        margin: 0 auto;
+        border-radius: 30px;
+        padding: 1.7rem 1.8rem;
+        line-height: 1.65;
+        text-align: left;
+    }
+
+    .screen-card-info p {
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+
+    .consent-clean-wrap,
+    .pre-questionnaire-clean-wrap {
+        width: 100%;
+        margin: 0 auto 0.75rem auto;
+        padding: 0;
+    }
+
+    .consent-clean-wrap .screen-card-info,
+    .pre-questionnaire-clean-wrap .screen-card-info {
+        background:
+            radial-gradient(circle at top left, rgba(49,92,99,0.05), transparent 34%),
+            radial-gradient(circle at bottom right, rgba(242,184,114,0.08), transparent 34%),
+            rgba(255,255,255,0.96) !important;
+    }
+
     .text-card {
-        background: var(--card);
-        border: 1px solid var(--border);
         border-radius: 24px;
         padding: 1.35rem 1.45rem;
-        box-shadow: 0 16px 38px rgba(49,92,99,0.10);
-        margin-bottom: 1rem;
-        color: var(--text);
-        line-height: 1.65;
-    }
-
-    .topmatch-card {
-        background:
-            radial-gradient(circle at top right, rgba(242,184,114,0.22), transparent 38%),
-            linear-gradient(180deg, #FFFFFF 0%, #F8F4ED 100%);
-        border: 1px solid rgba(49,92,99,0.14);
-        border-radius: 26px;
-        padding: 1.5rem 1.55rem;
-        box-shadow: 0 18px 42px rgba(49,92,99,0.13);
-        margin-bottom: 1rem;
-        color: var(--text);
-        line-height: 1.65;
-    }
-
-    .result-hero-card {
-    background:
-        radial-gradient(circle at top right, rgba(242,184,114,0.26), transparent 38%),
-        radial-gradient(circle at bottom left, rgba(49,92,99,0.10), transparent 40%),
-        linear-gradient(135deg, #FFFFFF 0%, #F8F4ED 100%);
-    border: 1px solid rgba(49,92,99,0.14);
-    border-radius: 28px;
-    padding: 1.55rem 1.65rem;
-    box-shadow: 0 20px 48px rgba(49,92,99,0.13);
-    margin-bottom: 1rem;
-    color: var(--text);
-}
-
-.result-kicker {
-    color: var(--primary);
-    font-size: 0.9rem;
-    font-weight: 800;
-    margin-bottom: 0.45rem;
-}
-
-.result-company {
-    color: var(--primary);
-    font-size: 2.15rem;
-    font-weight: 850;
-    letter-spacing: -0.04em;
-    line-height: 1.08;
-    margin-bottom: 0.75rem;
-}
-
-.result-score-row {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    margin-bottom: 0.8rem;
-    flex-wrap: wrap;
-}
-
-.result-score {
-    background: var(--primary);
-    color: #FFFFFF;
-    border-radius: 999px;
-    padding: 0.55rem 0.95rem;
-    font-size: 1.35rem;
-    font-weight: 850;
-    box-shadow: 0 10px 24px rgba(49,92,99,0.16);
-}
-
-.result-score-label {
-    color: var(--muted);
-    font-size: 0.95rem;
-}
-
-.result-meta-row {
-    display: flex;
-    gap: 0.55rem;
-    flex-wrap: wrap;
-    margin-top: 0.75rem;
-}
-
-.result-pill {
-    display: inline-block;
-    background: rgba(49,92,99,0.09);
-    border: 1px solid rgba(49,92,99,0.16);
-    color: var(--primary);
-    border-radius: 999px;
-    padding: 0.35rem 0.8rem;
-    font-size: 0.86rem;
-    font-weight: 750;
-}
-
-.result-next-note {
-    background: rgba(242,184,114,0.16);
-    border: 1px solid rgba(242,184,114,0.42);
-    border-radius: 18px;
-    padding: 0.9rem 1rem;
-    margin-bottom: 1rem;
-    line-height: 1.55;
-}
-
-.result-details-title {
-    color: var(--primary);
-    font-size: 1.45rem;
-    font-weight: 850;
-    letter-spacing: -0.03em;
-    margin-top: 1.4rem;
-    margin-bottom: 0.75rem;
-}
-
-/* Schöne Streamlit-Karte für die erste Einschätzung */
-div[data-testid="stVerticalBlockBorderWrapper"]:has(.result-assessment-marker) {
-    background: rgba(255,255,255,0.96) !important;
-    border: 1px solid rgba(49,92,99,0.13) !important;
-    border-radius: 26px !important;
-    box-shadow: 0 18px 42px rgba(49,92,99,0.11) !important;
-    margin-top: 0.9rem !important;
-    margin-bottom: 1.25rem !important;
-}
-
-div[data-testid="stVerticalBlockBorderWrapper"]:has(.result-assessment-marker) > div {
-    padding: 1.3rem 1.5rem 1.25rem 1.5rem !important;
-}
-
-div[data-testid="stVerticalBlockBorderWrapper"]:has(.result-assessment-marker) div[data-testid="stVerticalBlock"] {
-    gap: 0.35rem !important;
-}
-
-.result-assessment-marker {
-    display: none;
-}
-
-.result-radio-label {
-    color: var(--muted);
-    font-size: 0.95rem;
-    margin-top: 0.2rem;
-    margin-bottom: -0.15rem;
-}
-
-div[data-testid="stVerticalBlockBorderWrapper"]:has(.result-assessment-marker) div[data-testid="stRadio"] {
-    margin-top: 0 !important;
-    margin-bottom: 0.5rem !important;
-}
-
-div[data-testid="stVerticalBlockBorderWrapper"]:has(.result-assessment-marker) div[role="radiogroup"] {
-    gap: 0.18rem !important;
-}
-
-.result-assessment-hint {
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.95rem;
-    margin-top: 0.2rem;
-}
-
-    .ranking-card {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 18px;
-        padding: 1rem 1.05rem;
         margin-bottom: 0.75rem;
-        box-shadow: 0 10px 25px rgba(49,92,99,0.07);
+        line-height: 1.65;
     }
 
-    .custom-muted {
-        color: var(--muted);
-        font-size: 0.95rem;
-    }
-
-    .small-pill {
-        display: inline-block;
-        background: rgba(49,92,99,0.09);
-        border: 1px solid rgba(49,92,99,0.16);
-        color: var(--primary);
-        border-radius: 999px;
-        padding: 0.28rem 0.75rem;
-        font-size: 0.86rem;
-        font-weight: 700;
-        margin-top: 0.35rem;
-    }
-
-    .big-number {
-        font-size: 2rem;
-        font-weight: 850;
-        color: var(--primary);
-        margin: 0.2rem 0 0.2rem 0;
-        letter-spacing: -0.03em;
-    }
-
-    .assessment-help {
-        text-align: center;
-        color: var(--muted);
-        font-size: 0.95rem;
-        margin-top: 0.4rem;
-        margin-bottom: 0.8rem;
-    }
-
-    .thanks-wrap {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 4.5rem;
-}
-
-.thanks-card {
-    width: min(760px, 100%);
-    background: rgba(255,255,255,0.96);
-    border: 1px solid rgba(49,92,99,0.12);
-    border-radius: 30px;
-    padding: 2.2rem 2.4rem;
-    box-shadow: 0 22px 55px rgba(49,92,99,0.12);
-    text-align: center;
-}
-
-.thanks-icon {
-    width: 54px;
-    height: 54px;
-    border-radius: 999px;
-    background: rgba(107,170,117,0.16);
-    border: 1px solid rgba(107,170,117,0.35);
-    color: var(--success);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    font-weight: 850;
-    margin: 0 auto 1rem auto;
-}
-
-.thanks-title {
-    color: var(--primary);
-    font-size: 2.1rem;
-    font-weight: 850;
-    letter-spacing: -0.04em;
-    line-height: 1.12;
-    margin-bottom: 0.65rem;
-}
-
-.thanks-text {
-    color: var(--text);
-    font-size: 1.05rem;
-    line-height: 1.6;
-}
-
-    .info-grid {
+    .info-grid,
+    .instruction-row,
+    .scale-legend-grid,
+    .study-progress-track {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
         gap: 0.75rem;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
     }
 
-    .info-box {
-        background: #F8F4ED;
+    .info-grid,
+    .scale-legend-grid,
+    .study-progress-track {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .instruction-row {
+        grid-template-columns: repeat(2, 1fr);
+        margin: 1rem 0;
+    }
+
+    .info-box,
+    .instruction-box,
+    .scale-legend-box {
+        background: var(--soft);
         border: 1px solid var(--border);
         border-radius: 18px;
         padding: 0.95rem;
         text-align: center;
     }
 
-    .info-box strong {
-        color: var(--primary);
+    .info-box strong,
+    .instruction-box strong,
+    .scale-legend-box strong {
         display: block;
-        margin-bottom: 0.25rem;
+        color: var(--primary);
+        font-weight: 800;
+        margin-bottom: 0.2rem;
     }
 
-    .info-box span {
+    .info-box span,
+    .instruction-box span,
+    .scale-legend-box span {
+        display: block;
         color: var(--muted);
         font-size: 0.9rem;
-    }
-
-    .instruction-row {
-        display: flex;
-        justify-content: space-between;
-        gap: 1rem;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-    }
-
-    .instruction-box {
-        flex: 1;
-        background: #F8F4ED;
-        border: 1px solid var(--border);
-        border-radius: 18px;
-        padding: 1rem;
-        text-align: center;
-    }
-
-    .instruction-box strong {
-        color: var(--primary);
-        display: block;
-        margin-bottom: 0.3rem;
-    }
-
-    .instruction-box span {
-        color: var(--muted);
-        font-size: 0.95rem;
+        line-height: 1.3;
     }
 
     .study-progress {
@@ -561,12 +226,6 @@ div[data-testid="stVerticalBlockBorderWrapper"]:has(.result-assessment-marker) d
         margin-bottom: 0.55rem;
     }
 
-    .study-progress-track {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.55rem;
-    }
-
     .study-progress-step {
         border-radius: 999px;
         padding: 0.55rem 0.75rem;
@@ -574,7 +233,7 @@ div[data-testid="stVerticalBlockBorderWrapper"]:has(.result-assessment-marker) d
         font-size: 0.86rem;
         border: 1px solid var(--border);
         color: var(--muted);
-        background: #F8F4ED;
+        background: var(--soft);
     }
 
     .study-progress-step.done {
@@ -591,112 +250,29 @@ div[data-testid="stVerticalBlockBorderWrapper"]:has(.result-assessment-marker) d
         font-weight: 750;
     }
 
-    .result-profile-text {
-    font-size: 1rem;
-    line-height: 1.55;
-    color: var(--text) !important;
-    margin-top: 0.75rem;
-    margin-bottom: 0.55rem;
-    max-width: 760px;
-}
-
-.result-method-text {
-    font-size: 0.94rem;
-    line-height: 1.5;
-    color: var(--muted) !important;
-    margin-bottom: 0.75rem;
-}
-
-    .soft-note {
-        background: rgba(242,184,114,0.18);
-        border: 1px solid rgba(242,184,114,0.46);
-        border-radius: 18px;
-        padding: 1rem 1.1rem;
-        color: var(--text);
-        margin-bottom: 1rem;
-        line-height: 1.65;
+    .assessment-help {
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.95rem;
+        margin: 0.4rem 0 0.8rem 0;
     }
 
-    .questionnaire-header {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 24px;
-        padding: 1.35rem 1.45rem;
-        margin-bottom: 1rem;
-        box-shadow: 0 16px 38px rgba(49,92,99,0.10);
+    .stButton {
+        display: flex !important;
+        justify-content: center !important;
     }
 
     .stButton > button {
-        background: var(--primary);
-        color: #FFFFFF;
-        border: 1px solid var(--primary);
-        border-radius: 999px;
-        padding: 0.62rem 1.15rem;
-        font-weight: 750;
-        transition: all 0.18s ease;
-    }
-
-    .stButton > button:hover {
-        background: #274E55;
-        border-color: #274E55;
-        color: #FFFFFF;
-        transform: translateY(-1px);
-        box-shadow: 0 10px 24px rgba(49,92,99,0.18);
-    }
-
-    .stCheckbox label, .stRadio label {
-        color: var(--text) !important;
-    }
-
-    /* Checkbox-Farbe auf Grün/Teal setzen */
-div[data-testid="stCheckbox"] input[type="checkbox"] {
-    accent-color: var(--success) !important;
-}
-
-div[data-testid="stCheckbox"] input[type="checkbox"]:checked {
-    accent-color: var(--success) !important;
-}
-
-/* Fallback für neuere Streamlit/BaseWeb-Checkboxen */
-[data-testid="stCheckbox"] [data-baseweb="checkbox"] div[aria-checked="true"] {
-    background-color: var(--success) !important;
-    border-color: var(--success) !important;
-}
-
-[data-testid="stCheckbox"] [data-baseweb="checkbox"] svg {
-    fill: #FFFFFF !important;
-}
-
-/* Stärkerer Override gegen Streamlit-Standard-Rot */
-[data-testid="stCheckbox"] div[role="checkbox"][aria-checked="true"] {
-    background-color: var(--success) !important;
-    border-color: var(--success) !important;
-}
-
-[data-testid="stCheckbox"] div[role="checkbox"][aria-checked="true"] svg {
-    fill: #FFFFFF !important;
-}
-
-    .stAlert {
-        border-radius: 18px;
-    }
-
-        .stButton > button,
-    .stButton > button *,
-    button[kind="primary"],
-    button[kind="primary"] * {
-        color: #FFFFFF !important;
-    }
-
-    .stButton > button {
+        width: min(360px, 78vw) !important;
+        min-height: 46px !important;
         background: var(--primary) !important;
         color: #FFFFFF !important;
         border: 1px solid var(--primary) !important;
         border-radius: 999px !important;
         padding: 0.68rem 1.25rem !important;
         font-weight: 750 !important;
+        box-shadow: 0 10px 24px rgba(49,92,99,0.16) !important;
         transition: all 0.18s ease !important;
-        box-shadow: 0 10px 24px rgba(49,92,99,0.16);
     }
 
     .stButton > button:hover {
@@ -704,7 +280,7 @@ div[data-testid="stCheckbox"] input[type="checkbox"]:checked {
         border-color: #274E55 !important;
         color: #FFFFFF !important;
         transform: translateY(-1px);
-        box-shadow: 0 10px 24px rgba(49,92,99,0.18);
+        box-shadow: 0 10px 24px rgba(49,92,99,0.18) !important;
     }
 
     .stButton > button:disabled,
@@ -712,3075 +288,321 @@ div[data-testid="stCheckbox"] input[type="checkbox"]:checked {
         color: rgba(255,255,255,0.72) !important;
     }
 
-    div[data-testid="stRadio"] input[type="radio"] {
-        accent-color: var(--primary) !important;
-    }
-
-    div[data-testid="stRadio"] input[type="radio"]:checked {
+    div[data-testid="stCheckbox"] input[type="checkbox"],
+    div[data-testid="stRadio"] input[type="radio"],
+    div[role="radiogroup"] input[type="radio"] {
         accent-color: var(--success) !important;
     }
 
-    .stRadio [role="radiogroup"] label {
-        color: var(--text) !important;
-    }
-
-.welcome-action {
-    margin-top: 0.8rem;
-    margin-bottom: 2rem;
-    position: relative;
-    z-index: 20;
-}
-
-    div[data-testid="stRadio"] input[type="radio"] {
-        accent-color: var(--success) !important;
-    }
-
-    div[data-testid="stRadio"] input[type="radio"]:checked {
-        accent-color: var(--success) !important;
-    }
-
+    div[data-testid="stRadio"] label:has(input[type="radio"]:checked) p,
     div[data-testid="stRadio"] label:has(input[type="radio"]:checked) span {
         color: var(--primary) !important;
         font-weight: 700 !important;
     }
 
-    div[role="radiogroup"] input[type="radio"] {
-        accent-color: var(--success) !important;
-    }
-
-    div[role="radiogroup"] input[type="radio"]:checked {
-        accent-color: var(--success) !important;
-    }
-    
-    /* Ergebnis-Screen: weiße Karte für die erste Einschätzung */
-div[data-testid="column"]:has(.result-assessment-marker) div[data-testid="stVerticalBlockBorderWrapper"] {
-    background: #FFFFFF !important;
-    border: 1px solid rgba(49,92,99,0.12) !important;
-    border-radius: 28px !important;
-    box-shadow: 0 18px 42px rgba(49,92,99,0.10) !important;
-    margin-top: 0.35rem !important;
-    margin-bottom: 1.35rem !important;
-}
-
-div[data-testid="column"]:has(.result-assessment-marker) div[data-testid="stVerticalBlock"] {
-    gap: 0.35rem !important;
-}
-
-.result-assessment-marker {
-    display: none;
-}
-
-.result-radio-label {
-    color: var(--muted);
-    font-size: 0.95rem;
-    margin-top: 0.15rem;
-    margin-bottom: -0.15rem;
-}
-
-div[data-testid="column"]:has(.result-assessment-marker) div[data-testid="stRadio"] {
-    margin-top: 0 !important;
-    margin-bottom: 0.45rem !important;
-}
-
-div[data-testid="column"]:has(.result-assessment-marker) div[role="radiogroup"] {
-    gap: 0.12rem !important;
-}
-
-.result-assessment-hint {
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.95rem;
-    margin-top: 0.25rem;
-}
-
-.result-radio-label {
-    color: var(--muted);
-    font-size: 0.95rem;
-    margin-top: 0.15rem;
-}
-
-.result-assessment-hint {
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.95rem;
-    margin-top: 0.25rem;
-}
-
-    @media (max-width: 700px) {
-        .block-container {
-            padding-top: 1.6rem;
-        .thanks-wrap {
-    margin-top: 2.2rem !important;
-}
-
-.thanks-card {
-    width: 100% !important;
-    padding: 1.45rem 1.15rem !important;
-    border-radius: 22px !important;
-}
-
-.thanks-title {
-    font-size: 1.65rem !important;
-}
-
-.thanks-text {
-    font-size: 0.96rem !important;
-}
-        }
-
-.welcome-wrap {
-    min-height: auto;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    border-radius: 32px;
-    padding: 2.6rem 1.4rem 3.2rem 1.4rem;
-    background:
-        radial-gradient(circle at top left, rgba(49,92,99,0.16), transparent 34%),
-        radial-gradient(circle at bottom right, rgba(242,184,114,0.28), transparent 34%),
-        linear-gradient(135deg, #FAF7F2 0%, #E8F0EF 48%, #F6EBDD 100%);
-    box-shadow: inset 0 0 0 1px rgba(49,92,99,0.08);
-    position: relative;
-}
-
-        .welcome-card {
-            padding: 1.45rem 1.25rem;
-            border-radius: 20px;
-        }
-
-        .info-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .instruction-row {
-            flex-direction: column;
-        }
-
-        .study-progress-track {
-            grid-template-columns: 1fr;
-        }
-
-        .hero-title {
-            font-size: 2rem;
-        }
-    }
-
-/* FINAL OVERRIDE: Einschätzungskarte weiß machen */
-div[data-testid="column"]:has(.result-assessment-marker) {
-    background: #FFFFFF !important;
-    background-color: #FFFFFF !important;
-    border: 1px solid rgba(49,92,99,0.12) !important;
-    border-radius: 28px !important;
-    box-shadow: 0 18px 42px rgba(49,92,99,0.10) !important;
-    padding: 1.25rem 1.45rem 1.15rem 1.45rem !important;
-    margin-top: 0.35rem !important;
-    margin-bottom: 1.35rem !important;
-}
-
-/* Innere Ebenen ebenfalls weiß halten */
-div[data-testid="column"]:has(.result-assessment-marker) > div,
-div[data-testid="column"]:has(.result-assessment-marker) div[data-testid="stVerticalBlock"],
-div[data-testid="column"]:has(.result-assessment-marker) div[data-testid="element-container"],
-div[data-testid="column"]:has(.result-assessment-marker) div[data-testid="stHorizontalBlock"] {
-    background: #FFFFFF !important;
-    background-color: #FFFFFF !important;
-}
-
-.result-assessment-marker {
-    display: none !important;
-}
-
-.result-radio-label {
-    color: var(--muted) !important;
-    font-size: 0.95rem !important;
-    margin-top: 0.15rem !important;
-    margin-bottom: -0.15rem !important;
-}
-
-div[data-testid="column"]:has(.result-assessment-marker) div[data-testid="stRadio"] {
-    margin-top: 0 !important;
-    margin-bottom: 0.45rem !important;
-}
-
-div[data-testid="column"]:has(.result-assessment-marker) div[role="radiogroup"] {
-    gap: 0.12rem !important;
-}
-
-.result-assessment-hint {
-    text-align: center !important;
-    color: var(--muted) !important;
-    font-size: 0.95rem !important;
-    margin-top: 0.25rem !important;
-}
-
-.result-radio-label {
-    color: var(--muted) !important;
-    font-size: 0.95rem !important;
-    margin-top: 0.15rem !important;
-    margin-bottom: -0.15rem !important;
-}
-
-.result-assessment-hint {
-    text-align: center !important;
-    color: var(--muted) !important;
-    font-size: 0.95rem !important;
-    margin-top: 0.25rem !important;
-}
-
-/* Ergebnis-Screen: gesamte Einschätzungsbox als Karte */
-.st-key-result_assessment_card,
-div[class*="st-key-result_assessment_card"] {
-    width: 100% !important;
-    max-width: none !important;
-    box-sizing: border-box !important;
-    background: rgba(255,255,255,0.96) !important;
-    border: 1px solid rgba(49,92,99,0.12) !important;
-    border-radius: 30px !important;
-    box-shadow: 0 20px 48px rgba(49,92,99,0.11) !important;
-    padding: 1.55rem 1.75rem 1.15rem 1.75rem !important;
-    margin: 1.05rem auto 1.85rem auto !important;
-}
-
-.st-key-result_assessment_card div[data-testid="stVerticalBlock"],
-.st-key-result_assessment_card div[data-testid="element-container"],
-.st-key-result_assessment_card div[data-testid="stHorizontalBlock"],
-div[class*="st-key-result_assessment_card"] div[data-testid="stVerticalBlock"],
-div[class*="st-key-result_assessment_card"] div[data-testid="element-container"],
-div[class*="st-key-result_assessment_card"] div[data-testid="stHorizontalBlock"] {
-    background: #FFFFFF !important;
-    background-color: #FFFFFF !important;
-}
-
-.st-key-result_assessment_card div[data-testid="stRadio"],
-div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] {
-    margin-top: 0 !important;
-    margin-bottom: 0.45rem !important;
-}
-
-.st-key-result_assessment_card div[role="radiogroup"],
-div[class*="st-key-result_assessment_card"] div[role="radiogroup"] {
-    gap: 0.12rem !important;
-}
-
-/* Innerer HTML-Block soll keine eigene Karte sein */
-.result-assessment-inner {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    margin: 0 0 0.85rem 0 !important;
-}
-
-.result-assessment-inner h3 {
-    color: var(--primary) !important;
-    font-size: 1.65rem !important;
-    font-weight: 850 !important;
-    letter-spacing: -0.035em !important;
-    margin: 0 0 0.75rem 0 !important;
-}
-
-.result-assessment-inner p {
-    margin: 0 0 0.5rem 0 !important;
-    color: var(--text) !important;
-}
-
-/* Hinweis unter Button zentrieren */
-.result-assessment-hint {
-    text-align: center !important;
-    color: var(--muted) !important;
-    margin-top: 0.8rem !important;
-    font-weight: 650 !important;
-}
-
-.result-radio-label {
-    color: var(--muted) !important;
-    font-size: 0.95rem !important;
-    margin-top: 0.15rem !important;
-    margin-bottom: -0.15rem !important;
-}
-
-.result-assessment-hint {
-    text-align: center !important;
-    color: var(--muted) !important;
-    font-size: 0.95rem !important;
-    margin-top: 0.25rem !important;
-}
-
-/* Radio-Buttons in der Ergebnis-Einschätzung sichtbar machen */
-.st-key-result_assessment_card div[data-testid="stRadio"] label {
-    display: flex !important;
-    align-items: center !important;
-    gap: 0.45rem !important;
-    cursor: pointer !important;
-}
-
-/* Abschlussfragebogen: Header, Progressbar, Legende und Item-Karte */
-.questionnaire-title {
-    text-align: center;
-    color: var(--primary);
-    font-size: 2.35rem;
-    font-weight: 850;
-    letter-spacing: -0.04em;
-    line-height: 1.08;
-    margin-top: 0.4rem;
-    margin-bottom: 0.35rem;
-}
-
-.questionnaire-subtitle {
-    text-align: center;
-    color: var(--muted);
-    font-size: 1.05rem;
-    line-height: 1.5;
-    margin-bottom: 1.1rem;
-}
-
-.questionnaire-progress-wrap {
-    width: min(420px, 100%);
-    margin: 0 auto 1.25rem auto;
-}
-
-.questionnaire-progress-track {
-    width: 100%;
-    height: 7px;
-    border-radius: 999px;
-    background: rgba(49,92,99,0.10);
-    overflow: hidden;
-}
-
-.questionnaire-progress-fill {
-    height: 100%;
-    border-radius: 999px;
-    background: linear-gradient(90deg, var(--primary), var(--accent));
-}
-
-.questionnaire-section-card {
-    background: #FFFFFF;
-    border: 1px solid rgba(49,92,99,0.12);
-    border-radius: 24px;
-    padding: 1.2rem 1.35rem;
-    box-shadow: 0 16px 38px rgba(49,92,99,0.09);
-    margin-bottom: 1rem;
-}
-
-.questionnaire-section-label {
-    color: var(--muted);
-    font-size: 0.86rem;
-    font-weight: 750;
-    margin-bottom: 0.2rem;
-}
-
-.questionnaire-section-title {
-    color: var(--primary);
-    font-size: 1.35rem;
-    font-weight: 850;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.85rem;
-}
-
-.scale-legend-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.65rem;
-}
-
-.scale-legend-box {
-    background: #F8F4ED;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 0.7rem 0.75rem;
-    text-align: center;
-}
-
-.scale-legend-box strong {
-    display: block;
-    color: var(--primary);
-    font-size: 1.05rem;
-    margin-bottom: 0.15rem;
-}
-
-.scale-legend-box span {
-    display: block;
-    color: var(--muted);
-    font-size: 0.86rem;
-    line-height: 1.35;
-}
-
-.st-key-questionnaire_item_card,
-div[class*="st-key-questionnaire_item_card"] {
-    background: #FFFFFF !important;
-    border: 1px solid rgba(49,92,99,0.12) !important;
-    border-radius: 26px !important;
-    box-shadow: 0 18px 42px rgba(49,92,99,0.10) !important;
-    padding: 1.1rem 1.35rem 0.45rem 1.35rem !important;
-    margin-bottom: 1.1rem !important;
-}
-
-.st-key-questionnaire_item_card div[data-testid="stRadio"],
-div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] {
-    margin-bottom: 0.65rem !important;
-}
-
-.st-key-questionnaire_item_card div[data-testid="stRadio"] > label,
-div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label {
-    color: var(--text) !important;
-    font-weight: 500 !important;
-    margin-bottom: 0.35rem !important;
-}
-
-.st-key-questionnaire_item_card div[role="radiogroup"],
-div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] {
-    gap: 0.9rem !important;
-}
-
-.questionnaire-button-row {
-    margin-top: 0.45rem;
-}
-
-.questionnaire-hint {
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.95rem;
-    margin-top: 0.35rem;
-    margin-bottom: 0.5rem;
-}
-
-/* Feinschliff Abschlussfragebogen */
-.questionnaire-section-helper {
-    color: var(--text) !important;
-    font-size: 1rem;
-    line-height: 1.55;
-    margin-top: -0.25rem;
-    margin-bottom: 0.95rem;
-}
-
-.st-key-questionnaire_item_card,
-div[class*="st-key-questionnaire_item_card"] {
-    margin-bottom: 0.45rem !important;
-}
-
-/* Item-Texte größer und besser lesbar */
-.st-key-questionnaire_item_card div[data-testid="stRadio"] > label,
-div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label {
-    margin-bottom: 0.45rem !important;
-}
-
-.st-key-questionnaire_item_card div[data-testid="stRadio"] > label p,
-div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label p {
-    font-size: 1.08rem !important;
-    line-height: 1.5 !important;
-    font-weight: 500 !important;
-    color: var(--text) !important;
-}
-
-/* Skalenwerte etwas besser lesbar */
-.st-key-questionnaire_item_card div[role="radiogroup"] label,
-div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] label {
-    font-size: 1rem !important;
-}
-
-.questionnaire-hint {
-    margin-top: 0.3rem !important;
-}
-
-/* Footer im Abschlussfragebogen näher an die Item-Karte ziehen */
-.st-key-questionnaire_footer,
-div[class*="st-key-questionnaire_footer"] {
-    margin-top: -0.45rem !important;
-    padding-top: 0 !important;
-}
-
-.st-key-questionnaire_footer div[data-testid="stHorizontalBlock"],
-div[class*="st-key-questionnaire_footer"] div[data-testid="stHorizontalBlock"] {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-}
-
-.st-key-questionnaire_footer .stButton,
-div[class*="st-key-questionnaire_footer"] .stButton {
-    margin-top: 0 !important;
-}
-
-.st-key-questionnaire_footer .questionnaire-hint,
-div[class*="st-key-questionnaire_footer"] .questionnaire-hint {
-    text-align: center !important;
-    margin-top: 0.35rem !important;
-}
-
-/* Screen 2: Consent-Bereich sauber unter der Info-Karte platzieren */
-.st-key-consent_action_area,
-div[class*="st-key-consent_action_area"] {
-    margin-top: 0.15rem !important;
-    padding-top: 0 !important;
-}
-
-.st-key-consent_action_area div[data-testid="stCheckbox"],
-div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
-    margin-top: 0 !important;
-    margin-bottom: 0.35rem !important;
-}
-
-.st-key-consent_action_area .stButton,
-div[class*="st-key-consent_action_area"] .stButton {
-    margin-top: 0 !important;
-}
-
-/* FINAL MOBILE OPTIMIZATION */
-@media (max-width: 700px) {
-
-    html, body, .stApp {
-        overflow-x: hidden !important;
-    }
-
-    .block-container {
-        max-width: 100% !important;
-        padding-top: 1rem !important;
-        padding-left: 0.75rem !important;
-        padding-right: 0.75rem !important;
-        padding-bottom: 1.4rem !important;
-    }
-
-    .welcome-wrap,
-    .screen-frame,
-    .screen-frame-soft {
-        border-radius: 22px !important;
-        padding: 1.15rem 0.75rem 1.4rem 0.75rem !important;
-        margin-bottom: 0.8rem !important;
-    }
-
-    .welcome-card,
-    .screen-card-info,
-    .screen-card-main,
-    .text-card,
-    .result-hero-card,
-    .topmatch-card,
-    .thanks-card,
-    .questionnaire-section-card,
-    .st-key-questionnaire_item_card,
-    div[class*="st-key-questionnaire_item_card"],
-    .st-key-result_assessment_card,
-    div[class*="st-key-result_assessment_card"] {
-        border-radius: 20px !important;
-        padding: 1.05rem 1rem !important;
-        box-shadow: 0 12px 28px rgba(49,92,99,0.10) !important;
-    }
-
-    .hero-title,
-    .questionnaire-title {
-        font-size: 1.75rem !important;
-        line-height: 1.12 !important;
-        letter-spacing: -0.04em !important;
-        text-align: center !important;
-        margin-bottom: 0.55rem !important;
-    }
-
-    .hero-subtitle,
-    .questionnaire-subtitle,
-    .assessment-help {
-        font-size: 0.95rem !important;
-        line-height: 1.45 !important;
-        text-align: center !important;
-    }
-
-    .screen-card-info p,
-    .text-card p,
-    .result-profile-text,
-    .result-method-text,
-    .result-next-note {
-        font-size: 0.96rem !important;
-        line-height: 1.55 !important;
-    }
-
-    .info-grid {
-        grid-template-columns: 1fr !important;
-        gap: 0.55rem !important;
-        margin-top: 0.8rem !important;
-        margin-bottom: 0.8rem !important;
-    }
-
-    .info-box,
-    .instruction-box,
-    .scale-legend-box {
-        border-radius: 16px !important;
-        padding: 0.75rem 0.85rem !important;
-    }
-
-    .instruction-row {
-        flex-direction: column !important;
-        gap: 0.55rem !important;
-        margin-top: 0.8rem !important;
-        margin-bottom: 0.8rem !important;
-    }
-
-    .study-progress {
-        border-radius: 18px !important;
-        padding: 0.7rem !important;
-        margin-bottom: 0.9rem !important;
-    }
-
-    .study-progress-label {
-        font-size: 0.78rem !important;
-        margin-bottom: 0.45rem !important;
-    }
-
-    .study-progress-track {
-        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        gap: 0.35rem !important;
-    }
-
-    .study-progress-step {
-        font-size: 0.72rem !important;
-        padding: 0.42rem 0.25rem !important;
-        line-height: 1.2 !important;
-        white-space: normal !important;
-    }
-
-    .result-company {
-        font-size: 1.65rem !important;
-        line-height: 1.12 !important;
-    }
-
-    .result-score-row {
-        gap: 0.55rem !important;
-        align-items: center !important;
-    }
-
-    .result-score {
-        font-size: 1.05rem !important;
-        padding: 0.45rem 0.75rem !important;
-    }
-
-    .result-score-label {
-        font-size: 0.88rem !important;
-    }
-
-    .result-meta-row {
-        gap: 0.4rem !important;
-    }
-
-    .result-pill {
-        font-size: 0.78rem !important;
-        padding: 0.28rem 0.6rem !important;
-    }
-
-    .result-details-title {
-        font-size: 1.25rem !important;
-        margin-top: 1rem !important;
-        margin-bottom: 0.6rem !important;
-    }
-
-    .questionnaire-progress-wrap {
-        width: min(320px, 90%) !important;
-        margin-bottom: 1rem !important;
-    }
-
-    .questionnaire-section-title {
-        font-size: 1.15rem !important;
-        margin-bottom: 0.65rem !important;
-    }
-
-    .questionnaire-section-helper {
-        font-size: 0.94rem !important;
-        line-height: 1.45 !important;
-        margin-bottom: 0.75rem !important;
-    }
-
-    .scale-legend-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        gap: 0.4rem !important;
-    }
-
-    .scale-legend-box strong {
-        font-size: 0.95rem !important;
-    }
-
-    .scale-legend-box span {
-        font-size: 0.74rem !important;
-        line-height: 1.25 !important;
-    }
-
-    .st-key-questionnaire_item_card div[data-testid="stRadio"] > label p,
-    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label p {
-        font-size: 1.02rem !important;
-        line-height: 1.45 !important;
-    }
-
-    .st-key-questionnaire_item_card div[role="radiogroup"],
-    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] {
-        gap: 0.45rem !important;
-        flex-wrap: wrap !important;
-    }
-
-    .st-key-questionnaire_footer,
-    div[class*="st-key-questionnaire_footer"] {
-        margin-top: -0.15rem !important;
-    }
-
-    .questionnaire-hint {
-        font-size: 0.86rem !important;
-        line-height: 1.35 !important;
-        padding-left: 0.3rem !important;
-        padding-right: 0.3rem !important;
-    }
-
-    .stButton > button {
-        min-height: 46px !important;
-        padding: 0.7rem 1rem !important;
-        font-size: 0.96rem !important;
-    }
-
-    .consent-spacing {
-        height: 0.25rem !important;
-    }
-
-    .st-key-consent_action_area,
-div[class*="st-key-consent_action_area"] {
-    margin-top: 0.15rem !important;
-}
-
-.st-key-consent_action_area div[data-testid="stCheckbox"],
-div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
-    margin-top: 0 !important;
-    margin-bottom: 0.25rem !important;
-}
-
-/* Ende FINAL MOBILE OPTIMIZATION */
-}
-
-@media (max-width: 390px) {
-    .hero-title,
-    .questionnaire-title {
-        font-size: 1.55rem !important;
-    }
-
-    .study-progress-step {
-        font-size: 0.66rem !important;
-        padding: 0.38rem 0.18rem !important;
-    }
-
-    .scale-legend-grid {
-        gap: 0.3rem !important;
-    }
-
-    .scale-legend-box {
-        padding: 0.6rem 0.45rem !important;
-    }
-
-    .scale-legend-box span {
-        font-size: 0.68rem !important;
-    }
-
-    .result-company {
-        font-size: 1.45rem !important;
-    }
-}
-
-/* Consent-Interaktion sauber unter der Karte */
-.st-key-consent_action_area,
-div[class*="st-key-consent_action_area"] {
-    margin-top: 0.15rem !important;
-    padding-top: 0 !important;
-}
-
-.st-key-consent_action_area div[data-testid="stCheckbox"],
-div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
-    margin-top: 0 !important;
-    margin-bottom: 0.35rem !important;
-}
-
-.st-key-consent_action_area .stButton,
-div[class*="st-key-consent_action_area"] .stButton {
-    margin-top: 0 !important;
-}
-
-/* Screen 2: saubere Informationskarte ohne äußeren Farbverlaufsrahmen */
-.consent-clean-wrap {
-    width: 100% !important;
-    margin: 0 auto 0.75rem auto !important;
-    padding: 0 !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    border: none !important;
-}
-
-.consent-clean-wrap .screen-card-info {
-    width: min(820px, 100%) !important;
-    margin: 0 auto !important;
-    background: rgba(255,255,255,0.96) !important;
-    border: 1px solid rgba(49,92,99,0.12) !important;
-    border-radius: 30px !important;
-    box-shadow: 0 20px 48px rgba(49,92,99,0.11) !important;
-}
-
-/* Screen 2: Checkbox und Button sauber unter der Karte */
-.st-key-consent_action_area,
-div[class*="st-key-consent_action_area"] {
-    margin-top: 0.25rem !important;
-    padding-top: 0 !important;
-}
-
-.st-key-consent_action_area div[data-testid="stCheckbox"],
-div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
-    margin-top: 0 !important;
-    margin-bottom: 0.35rem !important;
-}
-
-.st-key-consent_action_area .stButton,
-div[class*="st-key-consent_action_area"] .stButton {
-    margin-top: 0 !important;
-}
-
-.consent-clean-wrap .screen-card-info {
-    background:
-        radial-gradient(circle at top left, rgba(49,92,99,0.05), transparent 34%),
-        radial-gradient(circle at bottom right, rgba(242,184,114,0.08), transparent 34%),
-        rgba(255,255,255,0.96) !important;
-}
-
-/* Screen vor Abschlussfragebogen: saubere Informationskarte ohne äußeren Farbverlaufsrahmen */
-.pre-questionnaire-clean-wrap {
-    width: 100% !important;
-    margin: 0 auto 1.35rem auto !important;
-    padding: 0 !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    border: none !important;
-}
-
-.pre-questionnaire-clean-wrap .screen-card-info {
-    width: 100% !important;
-    max-width: none !important;
-    box-sizing: border-box !important;
-    margin: 0 auto !important;
-    background: rgba(255,255,255,0.96) !important;
-    border: 1px solid rgba(49,92,99,0.12) !important;
-    border-radius: 30px !important;
-    box-shadow: 0 20px 48px rgba(49,92,99,0.11) !important;
-}
-
-/* =========================================================
-   FINAL: Native Checkbox & Radio Styling
-   Theme-Farbe nutzen, native Kreise sichtbar lassen
-   ========================================================= */
-
-/* Checkboxen: native Darstellung behalten, nur Akzentfarbe setzen */
-div[data-testid="stCheckbox"] input[type="checkbox"] {
-    appearance: auto !important;
-    -webkit-appearance: checkbox !important;
-    accent-color: var(--success) !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-/* Radio-Buttons: native Darstellung behalten, nur Akzentfarbe setzen */
-div[data-testid="stRadio"] input[type="radio"],
-div[role="radiogroup"] input[type="radio"] {
-    appearance: auto !important;
-    -webkit-appearance: radio !important;
-    accent-color: var(--success) !important;
-    width: 16px !important;
-    height: 16px !important;
-    min-width: 16px !important;
-    min-height: 16px !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    display: inline-block !important;
-    margin-right: 0.45rem !important;
-}
-
-/* Ausgewählte Antwort dezent hervorheben */
-div[data-testid="stRadio"] label:has(input[type="radio"]:checked) p,
-div[data-testid="stRadio"] label:has(input[type="radio"]:checked) span {
-    color: var(--primary) !important;
-    font-weight: 700 !important;
-}
-
-/* =========================================================
-   FINAL MOBILE OVERRIDE V2
-   Kompaktere Darstellung für Smartphone / WhatsApp-Browser
-   ========================================================= */
-
-@media (max-width: 900px) {
-
-    html, body, .stApp {
-        overflow-x: hidden !important;
-    }
-
-    .block-container {
-        max-width: 100% !important;
-        padding-top: 0.85rem !important;
-        padding-left: 0.85rem !important;
-        padding-right: 0.85rem !important;
-        padding-bottom: calc(6.5rem + env(safe-area-inset-bottom)) !important;
-    }
-
-    /* Fortschritt kompakter */
-    .study-progress {
-        border-radius: 18px !important;
-        padding: 0.7rem 0.75rem !important;
-        margin-bottom: 0.9rem !important;
-        box-shadow: 0 10px 24px rgba(49,92,99,0.07) !important;
-    }
-
-    .study-progress-label {
-        font-size: 0.78rem !important;
-        margin-bottom: 0.45rem !important;
-    }
-
-    .study-progress-track {
-        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        gap: 0.35rem !important;
-    }
-
-    .study-progress-step {
-        font-size: 0.72rem !important;
-        padding: 0.45rem 0.18rem !important;
-        line-height: 1.15 !important;
-        min-height: 34px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        white-space: normal !important;
-    }
-
-    /* Allgemeine Karten kompakter */
-    .welcome-wrap,
-    .screen-frame,
-    .screen-frame-soft {
-        border-radius: 22px !important;
-        padding: 0.95rem 0.65rem 1.25rem 0.65rem !important;
-        margin-bottom: 0.75rem !important;
-    }
-
-    .welcome-card,
-    .screen-card-info,
-    .screen-card-main,
-    .text-card,
-    .result-hero-card,
-    .topmatch-card,
-    .thanks-card,
-    .questionnaire-section-card,
-    .st-key-questionnaire_item_card,
-    div[class*="st-key-questionnaire_item_card"],
-    .st-key-result_assessment_card,
-    div[class*="st-key-result_assessment_card"] {
-        border-radius: 21px !important;
-        padding: 1.05rem 1rem !important;
-        box-shadow: 0 12px 28px rgba(49,92,99,0.09) !important;
-    }
-
-    /* Hauptüberschriften */
-    .hero-title,
-    .questionnaire-title {
-        font-size: 1.7rem !important;
-        line-height: 1.12 !important;
-        letter-spacing: -0.04em !important;
-        margin-top: 0.15rem !important;
-        margin-bottom: 0.55rem !important;
-        text-align: center !important;
-    }
-
-    .welcome-card .hero-title {
-        font-size: 1.55rem !important;
-        line-height: 1.12 !important;
-        text-align: left !important;
-    }
-
-    .hero-subtitle,
-    .questionnaire-subtitle,
-    .assessment-help {
-        font-size: 0.94rem !important;
-        line-height: 1.45 !important;
-        margin-bottom: 0.85rem !important;
-    }
-
-    .welcome-card .hero-subtitle {
-        text-align: left !important;
-        font-size: 0.94rem !important;
-        line-height: 1.48 !important;
-    }
-
-    .screen-card-info p,
-    .text-card p,
-    .result-profile-text,
-    .result-method-text,
-    .result-next-note,
-    .soft-note {
-        font-size: 0.95rem !important;
-        line-height: 1.48 !important;
-        margin-bottom: 0.75rem !important;
-    }
-
-    /* Info-Kacheln mobil kompakter */
-    .info-grid {
-        grid-template-columns: 1fr !important;
-        gap: 0.55rem !important;
-        margin-top: 0.75rem !important;
-        margin-bottom: 0.75rem !important;
-    }
-
-    .info-box,
-    .instruction-box,
-    .scale-legend-box {
-        border-radius: 16px !important;
-        padding: 0.68rem 0.75rem !important;
-    }
-
-    .info-box strong,
-    .instruction-box strong {
-        font-size: 0.95rem !important;
-        margin-bottom: 0.15rem !important;
-    }
-
-    .info-box span,
-    .instruction-box span {
-        font-size: 0.86rem !important;
-        line-height: 1.3 !important;
-    }
-
-    .instruction-row {
-        flex-direction: column !important;
-        gap: 0.55rem !important;
-        margin-top: 0.75rem !important;
-        margin-bottom: 0.75rem !important;
-    }
-
-    .text-card h3 {
-        font-size: 1.35rem !important;
-        line-height: 1.15 !important;
-        margin-bottom: 0.65rem !important;
-    }
-
-    /* Buttons kompakter und mit Abstand zur Browserleiste */
-    .stButton > button {
-        min-height: 46px !important;
-        padding: 0.65rem 1rem !important;
-        font-size: 0.94rem !important;
-    }
-
-    .welcome-action,
-    .st-key-consent_action_area,
-    div[class*="st-key-consent_action_area"],
-    .st-key-questionnaire_footer,
-    div[class*="st-key-questionnaire_footer"] {
-        margin-bottom: 1.2rem !important;
-    }
-
-    /* Ergebnis-Screen */
-    .result-company {
-        font-size: 1.55rem !important;
-        line-height: 1.12 !important;
-        margin-bottom: 0.65rem !important;
-    }
-
-    .result-kicker {
-        font-size: 0.78rem !important;
-    }
-
-    .result-score-row {
-        gap: 0.55rem !important;
-        margin-bottom: 0.65rem !important;
-    }
-
-    .result-score {
-        font-size: 1rem !important;
-        padding: 0.42rem 0.72rem !important;
-    }
-
-    .result-score-label {
-        font-size: 0.84rem !important;
-        line-height: 1.25 !important;
-    }
-
-    .result-pill {
-        font-size: 0.76rem !important;
-        padding: 0.28rem 0.58rem !important;
-    }
-
-    .result-next-note {
-        border-radius: 16px !important;
-        padding: 0.78rem 0.85rem !important;
-    }
-
-    .result-details-title {
-        font-size: 1.18rem !important;
-        margin-top: 1rem !important;
-        margin-bottom: 0.55rem !important;
-    }
-
-    .result-assessment-inner h3 {
-        font-size: 1.35rem !important;
-        line-height: 1.15 !important;
-        margin-bottom: 0.65rem !important;
-    }
-
-    .result-assessment-inner p {
-        font-size: 0.95rem !important;
-        line-height: 1.45 !important;
-    }
-
-    .result-radio-label,
-    .result-assessment-hint {
-        font-size: 0.84rem !important;
-        line-height: 1.35 !important;
-    }
-
-    /* Abschlussfragebogen */
-    .questionnaire-progress-wrap {
-        width: min(320px, 90%) !important;
-        margin-bottom: 0.9rem !important;
-    }
-
-    .questionnaire-section-card {
-        margin-bottom: 0.75rem !important;
-    }
-
-    .questionnaire-section-label {
-        font-size: 0.76rem !important;
-    }
-
-    .questionnaire-section-title {
-        font-size: 1.12rem !important;
-        line-height: 1.2 !important;
-        margin-bottom: 0.6rem !important;
-    }
-
-    .questionnaire-section-helper {
-        font-size: 0.9rem !important;
-        line-height: 1.4 !important;
-        margin-bottom: 0.7rem !important;
-    }
-
-    .scale-legend-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        gap: 0.35rem !important;
-    }
-
-    .scale-legend-box {
-        padding: 0.55rem 0.35rem !important;
-    }
-
-    .scale-legend-box strong {
-        font-size: 0.9rem !important;
-    }
-
-    .scale-legend-box span {
-        font-size: 0.68rem !important;
-        line-height: 1.2 !important;
-    }
-
-    .st-key-questionnaire_item_card,
-    div[class*="st-key-questionnaire_item_card"] {
-        padding: 0.95rem 0.9rem 0.45rem 0.9rem !important;
-        margin-bottom: 0.65rem !important;
-    }
-
-    .st-key-questionnaire_item_card div[data-testid="stRadio"] > label p,
-    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label p {
-        font-size: 0.98rem !important;
-        line-height: 1.42 !important;
-    }
-
-    .st-key-questionnaire_item_card div[role="radiogroup"],
-    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] {
-        gap: 0.28rem !important;
-        justify-content: space-between !important;
-        flex-wrap: nowrap !important;
-    }
-
-    .st-key-questionnaire_item_card div[role="radiogroup"] label,
-    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] label {
-        font-size: 0.9rem !important;
-    }
-
-    div[data-testid="stRadio"] input[type="radio"],
-    div[role="radiogroup"] input[type="radio"] {
-        width: 15px !important;
-        height: 15px !important;
-        min-width: 15px !important;
-        min-height: 15px !important;
-        margin-right: 0.28rem !important;
-    }
-
-    .questionnaire-hint {
-        font-size: 0.82rem !important;
-        line-height: 1.35 !important;
-        margin-top: 0.35rem !important;
-        padding-left: 0.25rem !important;
-        padding-right: 0.25rem !important;
-    }
-
-    /* Danke-Screen */
-    .thanks-wrap {
-        margin-top: 2rem !important;
-    }
-
-    .thanks-card {
-        padding: 1.45rem 1.05rem !important;
-    }
-
-    .thanks-icon {
-        width: 46px !important;
-        height: 46px !important;
-        font-size: 1.45rem !important;
-        margin-bottom: 0.75rem !important;
-    }
-
-    .thanks-title {
-        font-size: 1.45rem !important;
-        line-height: 1.15 !important;
-    }
-
-    .thanks-text {
-        font-size: 0.94rem !important;
-        line-height: 1.45 !important;
-    }
-}
-
-@media (max-width: 430px) {
-    .block-container {
-        padding-left: 0.7rem !important;
-        padding-right: 0.7rem !important;
-    }
-
-    .hero-title,
-    .questionnaire-title {
-        font-size: 1.55rem !important;
-    }
-
-    .welcome-card .hero-title {
-        font-size: 1.45rem !important;
-    }
-
-    .hero-subtitle,
-    .questionnaire-subtitle,
-    .assessment-help,
-    .welcome-card .hero-subtitle {
-        font-size: 0.9rem !important;
-    }
-
-    .screen-card-info p,
-    .text-card p,
-    .result-profile-text,
-    .result-method-text,
-    .result-next-note,
-    .soft-note {
-        font-size: 0.9rem !important;
-    }
-
-    .study-progress-step {
-        font-size: 0.66rem !important;
-        padding: 0.38rem 0.14rem !important;
-    }
-
-    .result-company {
-        font-size: 1.42rem !important;
-    }
-
-    .st-key-questionnaire_item_card div[data-testid="stRadio"] > label p,
-    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label p {
-        font-size: 0.94rem !important;
-    }
-}
-
-/* =========================================================
-   FINAL MOBILE POLISH V3
-   Kompakter, ruhiger, einheitlicher auf Smartphone
-   ========================================================= */
-
-@media (max-width: 900px) {
-
-    html, body, .stApp {
-        overflow-x: hidden !important;
-    }
-
-    .block-container {
-        max-width: 100% !important;
-        padding-top: 0.85rem !important;
-        padding-left: 0.85rem !important;
-        padding-right: 0.85rem !important;
-        padding-bottom: calc(6.2rem + env(safe-area-inset-bottom)) !important;
-    }
-
-    /* Einheitliche Buttonbreite mobil */
-    .stButton > button {
-        width: min(360px, 78vw) !important;
-        max-width: 360px !important;
-        min-height: 44px !important;
-        padding: 0.62rem 1rem !important;
-        font-size: 0.95rem !important;
-        display: block !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        border-radius: 999px !important;
-    }
-
-    /* Buttonbereiche näher an Karten ziehen */
-    .st-key-consent_action_area,
+    /* Consent action card */
     div[class*="st-key-consent_action_area"] {
-        margin-top: -0.15rem !important;
-        margin-bottom: 0.75rem !important;
+        max-width: 760px !important;
+        margin: 0.55rem auto 0.75rem auto !important;
+        padding: 1rem 1.05rem 0.9rem 1.05rem !important;
+        background: rgba(255,255,255,0.84) !important;
+        border: 1px solid rgba(49,92,99,0.10) !important;
+        border-radius: 26px !important;
+        box-shadow: 0 14px 34px rgba(49,92,99,0.08) !important;
     }
 
-    .st-key-consent_action_area div[data-testid="stCheckbox"],
     div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
-        margin-bottom: 0.25rem !important;
-    }
-
-    .st-key-questionnaire_footer,
-    div[class*="st-key-questionnaire_footer"] {
-        margin-top: -0.2rem !important;
-        margin-bottom: 0.9rem !important;
-    }
-
-    /* Startscreen kompakter */
-    .welcome-wrap {
-        padding: 1.05rem 0.75rem 1.3rem 0.75rem !important;
-        border-radius: 22px !important;
-        margin-bottom: 0.55rem !important;
-    }
-
-    .welcome-card {
-        padding: 1.2rem 1.05rem !important;
-        border-radius: 22px !important;
-    }
-
-    .welcome-card .hero-title {
-        font-size: 1.55rem !important;
-        line-height: 1.12 !important;
-        text-align: left !important;
-        margin-bottom: 0.8rem !important;
-    }
-
-    .welcome-card .hero-subtitle {
-        font-size: 0.92rem !important;
-        line-height: 1.42 !important;
-        text-align: left !important;
-        margin-bottom: 0 !important;
-    }
-
-    /* etwas weniger Luft zwischen Startscreen-Karte und Button */
-    .start-button-anchor + div,
-    div:has(.start-button-anchor) + div {
-        margin-top: -0.25rem !important;
-    }
-
-    /* Allgemeine Karten */
-    .screen-card-info,
-    .screen-card-main,
-    .text-card,
-    .result-hero-card,
-    .topmatch-card,
-    .questionnaire-section-card,
-    .st-key-questionnaire_item_card,
-    div[class*="st-key-questionnaire_item_card"],
-    .st-key-result_assessment_card,
-    div[class*="st-key-result_assessment_card"] {
-        border-radius: 22px !important;
-        padding: 1rem 1rem !important;
-        box-shadow: 0 12px 28px rgba(49,92,99,0.09) !important;
-    }
-
-    /* Überschriften allgemein */
-    .hero-title,
-    .questionnaire-title {
-        font-size: 1.58rem !important;
-        line-height: 1.12 !important;
-        letter-spacing: -0.04em !important;
-        margin-top: 0.15rem !important;
-        margin-bottom: 0.55rem !important;
-        text-align: center !important;
-    }
-
-    .hero-subtitle,
-    .questionnaire-subtitle,
-    .assessment-help {
-        font-size: 0.92rem !important;
-        line-height: 1.42 !important;
-        margin-bottom: 0.8rem !important;
-    }
-
-    .screen-card-info p,
-    .text-card p,
-    .result-profile-text,
-    .result-method-text,
-    .result-next-note {
-        font-size: 0.92rem !important;
-        line-height: 1.45 !important;
-        margin-bottom: 0.68rem !important;
-    }
-
-    /* Fortschrittsanzeige bleibt kompakt */
-    .study-progress {
-        border-radius: 18px !important;
-        padding: 0.68rem 0.75rem !important;
-        margin-bottom: 0.85rem !important;
-    }
-
-    .study-progress-label {
-        font-size: 0.78rem !important;
-        margin-bottom: 0.45rem !important;
-    }
-
-    .study-progress-track {
-        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        gap: 0.35rem !important;
-    }
-
-    .study-progress-step {
-        font-size: 0.72rem !important;
-        min-height: 34px !important;
-        padding: 0.42rem 0.2rem !important;
+        width: 100% !important;
         display: flex !important;
-        align-items: center !important;
         justify-content: center !important;
-        line-height: 1.15 !important;
+        margin: 0 0 0.7rem 0 !important;
     }
 
-    /* Screen 2: Info-Kacheln nebeneinander, aber kleiner */
-    .consent-clean-wrap .info-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        gap: 0.35rem !important;
-        margin-top: 0.6rem !important;
-        margin-bottom: 0.65rem !important;
-    }
-
-    .consent-clean-wrap .info-box {
-        padding: 0.52rem 0.35rem !important;
-        border-radius: 14px !important;
-        min-height: 64px !important;
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-    }
-
-    .consent-clean-wrap .info-box strong {
-        font-size: 0.78rem !important;
-        margin-bottom: 0.1rem !important;
-    }
-
-    .consent-clean-wrap .info-box span {
-        font-size: 0.68rem !important;
-        line-height: 1.18 !important;
-    }
-
-    /* Pre-Questionnaire: Kacheln untereinander, aber kompakter */
-    .pre-questionnaire-clean-wrap .info-grid {
-        grid-template-columns: 1fr !important;
-        gap: 0.45rem !important;
-        margin-top: 0.65rem !important;
-        margin-bottom: 0.65rem !important;
-    }
-
-    .pre-questionnaire-clean-wrap .info-box {
-        padding: 0.58rem 0.7rem !important;
-        border-radius: 14px !important;
-        min-height: 58px !important;
-    }
-
-    .pre-questionnaire-clean-wrap .info-box strong {
-        font-size: 0.86rem !important;
-        margin-bottom: 0.08rem !important;
-    }
-
-    .pre-questionnaire-clean-wrap .info-box span {
-        font-size: 0.78rem !important;
-        line-height: 1.22 !important;
-    }
-
-    /* Anleitung Swipe/Likert */
-    .text-card h3 {
-        font-size: 1.32rem !important;
-        line-height: 1.15 !important;
-        margin-bottom: 0.45rem !important;
-    }
-
-    .instruction-row {
-        flex-direction: row !important;
-        gap: 0.42rem !important;
-        margin-top: 0.65rem !important;
-        margin-bottom: 0.65rem !important;
-    }
-
-    .instruction-box {
-        border-radius: 15px !important;
-        padding: 0.6rem 0.4rem !important;
-        min-height: 70px !important;
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-    }
-
-    .instruction-box strong {
-        font-size: 0.8rem !important;
-        line-height: 1.2 !important;
-        margin-bottom: 0.15rem !important;
-    }
-
-    .instruction-box span {
-        font-size: 0.72rem !important;
-        line-height: 1.2 !important;
-    }
-
-    /* Ergebnis-Screen kompakter */
-    .result-company {
-        font-size: 1.5rem !important;
-        line-height: 1.12 !important;
-        margin-bottom: 0.6rem !important;
-    }
-
-    .result-kicker {
-        font-size: 0.76rem !important;
-        margin-bottom: 0.35rem !important;
-    }
-
-    .result-score-row {
-        gap: 0.5rem !important;
-        margin-bottom: 0.6rem !important;
-    }
-
-    .result-score {
-        font-size: 1rem !important;
-        padding: 0.4rem 0.72rem !important;
-    }
-
-    .result-score-label {
-        font-size: 0.82rem !important;
-        line-height: 1.25 !important;
-    }
-
-    /* Redundante grüne Pills auf Ergebnis-Screen mobil ausblenden */
-    .result-meta-row {
-        display: none !important;
-    }
-
-    .result-next-note {
-        border-radius: 15px !important;
-        padding: 0.72rem 0.82rem !important;
-        margin-bottom: 0.85rem !important;
-    }
-
-    .result-assessment-inner h3 {
-        font-size: 1.35rem !important;
-        line-height: 1.15 !important;
-        margin-bottom: 0.35rem !important;
-    }
-
-    .result-assessment-inner p {
-        font-size: 0.95rem !important;
-        line-height: 1.38 !important;
-        margin-bottom: 0.4rem !important;
-    }
-
-    .st-key-result_assessment_card div[data-testid="stRadio"] label p,
-    div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] label p {
-        font-size: 0.95rem !important;
-        line-height: 1.35 !important;
-    }
-
-    .result-assessment-hint {
-        font-size: 0.82rem !important;
-        line-height: 1.3 !important;
-        margin-top: 0.55rem !important;
-    }
-
-    .result-details-title {
-        font-size: 1.14rem !important;
-        margin-top: 0.9rem !important;
-        margin-bottom: 0.55rem !important;
-    }
-
-    /* Abschlussfragebogen */
-    .questionnaire-title {
-        font-size: 1.58rem !important;
-        margin-bottom: 0.25rem !important;
-    }
-
-    .questionnaire-subtitle {
-        margin-bottom: 0.75rem !important;
-    }
-
-    .questionnaire-progress-wrap {
-        width: min(330px, 88%) !important;
-        margin-bottom: 0.85rem !important;
-    }
-
-    .questionnaire-section-card {
-        margin-bottom: 0.75rem !important;
-    }
-
-    .questionnaire-section-label {
-        font-size: 0.76rem !important;
-    }
-
-    .questionnaire-section-title {
-        font-size: 1.12rem !important;
-        line-height: 1.2 !important;
-        margin-bottom: 0.5rem !important;
-    }
-
-    .questionnaire-section-helper {
-        font-size: 0.9rem !important;
-        line-height: 1.38 !important;
-        margin-bottom: 0.65rem !important;
-    }
-
-    .scale-legend-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        gap: 0.35rem !important;
-    }
-
-    .scale-legend-box {
-        padding: 0.52rem 0.32rem !important;
-        border-radius: 14px !important;
-    }
-
-    .scale-legend-box strong {
-        font-size: 0.88rem !important;
-    }
-
-    .scale-legend-box span {
-        font-size: 0.66rem !important;
-        line-height: 1.18 !important;
-    }
-
-    .st-key-questionnaire_item_card,
-    div[class*="st-key-questionnaire_item_card"] {
-        padding: 1.1rem 0.95rem 0.55rem 0.95rem !important;
-        margin-bottom: 0.65rem !important;
-    }
-
-    .st-key-questionnaire_item_card div[data-testid="stRadio"],
-    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] {
-        margin-bottom: 0.78rem !important;
-    }
-
-    .st-key-questionnaire_item_card div[data-testid="stRadio"] > label p,
-    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label p {
-        font-size: 0.98rem !important;
-        line-height: 1.42 !important;
-        font-weight: 500 !important;
-        margin-bottom: 0.4rem !important;
-    }
-
-    .st-key-questionnaire_item_card div[role="radiogroup"],
-    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] {
-        gap: 0.25rem !important;
-        justify-content: space-between !important;
-        flex-wrap: nowrap !important;
-    }
-
-    .st-key-questionnaire_item_card div[role="radiogroup"] label,
-    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] label {
-        font-size: 0.98rem !important;
-        line-height: 1.2 !important;
-    }
-
-    div[data-testid="stRadio"] input[type="radio"],
-    div[role="radiogroup"] input[type="radio"] {
-        width: 16px !important;
-        height: 16px !important;
-        min-width: 16px !important;
-        min-height: 16px !important;
-        margin-right: 0.28rem !important;
-    }
-
-    .questionnaire-hint {
-        font-size: 0.82rem !important;
-        line-height: 1.32 !important;
-        margin-top: 0.35rem !important;
-        margin-bottom: 0.65rem !important;
-        padding-left: 0.25rem !important;
-        padding-right: 0.25rem !important;
-    }
-
-    /* Zurück-Button subtiler, falls er in eigenem Container liegt */
-    .st-key-back_button_soft .stButton > button,
-    div[class*="st-key-back_button_soft"] .stButton > button {
-        background: transparent !important;
-        color: var(--primary) !important;
-        border: 1px solid rgba(49,92,99,0.28) !important;
-        box-shadow: none !important;
-    }
-
-    .st-key-back_button_soft .stButton > button:hover,
-    div[class*="st-key-back_button_soft"] .stButton > button:hover {
-        background: rgba(49,92,99,0.06) !important;
-        color: var(--primary) !important;
-        transform: none !important;
-        box-shadow: none !important;
-    }
-}
-
-@media (max-width: 430px) {
-
-    .block-container {
-        padding-left: 0.72rem !important;
-        padding-right: 0.72rem !important;
-    }
-
-    .hero-title,
-    .questionnaire-title {
-        font-size: 1.48rem !important;
-    }
-
-    .welcome-card .hero-title {
-        font-size: 1.42rem !important;
-    }
-
-    .hero-subtitle,
-    .questionnaire-subtitle,
-    .assessment-help,
-    .welcome-card .hero-subtitle {
-        font-size: 0.88rem !important;
-    }
-
-    .screen-card-info p,
-    .text-card p,
-    .result-profile-text,
-    .result-method-text,
-    .result-next-note {
-        font-size: 0.88rem !important;
-    }
-
-    .study-progress-step {
-        font-size: 0.66rem !important;
-        padding: 0.36rem 0.14rem !important;
-    }
-
-    .instruction-box strong {
-        font-size: 0.76rem !important;
-    }
-
-    .instruction-box span {
-        font-size: 0.68rem !important;
-    }
-
-    .result-company {
-        font-size: 1.36rem !important;
-    }
-}
-
-    
-
-/* =========================================================
-   FINAL MOBILE POLISH V4
-   Einheitliches Spacing, schmalere Buttons, klarere Cards
-   ========================================================= */
-
-/* Einheitliche Button-Logik: Primary CTA schmaler und ruhiger */
-@media (max-width: 900px) {
-    .stButton > button {
-        width: min(300px, 70vw) !important;
-        max-width: 300px !important;
-        min-height: 43px !important;
-        padding: 0.58rem 0.95rem !important;
-        font-size: 0.92rem !important;
-        letter-spacing: 0.01em !important;
-        display: block !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        box-shadow: 0 8px 20px rgba(49,92,99,0.13) !important;
-    }
-
-    /* Grundlayout etwas luftiger oben, aber kompakt zwischen Elementen */
-    .block-container {
-        padding-top: 0.85rem !important;
-        padding-left: 0.72rem !important;
-        padding-right: 0.72rem !important;
-        padding-bottom: calc(5.8rem + env(safe-area-inset-bottom)) !important;
-    }
-
-    /* 1. Startscreen: zentriert, Button näher an die Karte */
-    .welcome-wrap {
-        margin-bottom: 0.15rem !important;
-        padding: 1.05rem 0.7rem 1.15rem 0.7rem !important;
-    }
-
-    .welcome-card {
-        text-align: center !important;
-        padding: 1.25rem 1.05rem !important;
-    }
-
-    .welcome-card .hero-title {
-        text-align: center !important;
-        margin-bottom: 0.9rem !important;
-    }
-
-    .welcome-card .hero-subtitle {
-        text-align: center !important;
-        line-height: 1.42 !important;
-    }
-
-    .start-button-anchor {
-        height: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    .start-button-anchor + div,
-    div:has(.start-button-anchor) + div {
-        margin-top: -0.55rem !important;
-    }
-
-    /* 2. Consent: Meta-Elemente zentriert, Fließtext lesbar, CTA näher */
-    .consent-clean-wrap {
-        margin-bottom: 0.25rem !important;
-    }
-
-    .consent-clean-wrap .screen-card-info {
-        padding: 1.1rem 1rem !important;
-    }
-
-    .consent-clean-wrap .hero-title,
-    .consent-clean-wrap .hero-subtitle {
-        text-align: center !important;
-    }
-
-    .consent-clean-wrap .info-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        gap: 0.35rem !important;
-        margin-top: 0.55rem !important;
-        margin-bottom: 0.65rem !important;
-    }
-
-    .consent-clean-wrap .info-box {
-        min-height: 58px !important;
-        padding: 0.46rem 0.25rem !important;
-        border-radius: 14px !important;
-    }
-
-    .consent-clean-wrap .info-box strong {
-        font-size: 0.76rem !important;
-        line-height: 1.15 !important;
-    }
-
-    .consent-clean-wrap .info-box span {
-        font-size: 0.64rem !important;
-        line-height: 1.15 !important;
-        overflow-wrap: anywhere !important;
-    }
-
-    .st-key-consent_action_area,
-    div[class*="st-key-consent_action_area"] {
-        margin-top: -0.45rem !important;
-        margin-bottom: 0.55rem !important;
-        text-align: center !important;
-    }
-
-    .st-key-consent_action_area div[data-testid="stCheckbox"],
-    div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
-        width: fit-content !important;
-        max-width: 100% !important;
-        margin: 0 auto 0.2rem auto !important;
-    }
-
-    .st-key-consent_action_area div[data-testid="stCheckbox"] label,
     div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] label {
-        justify-content: center !important;
-        font-size: 0.9rem !important;
-        line-height: 1.3 !important;
-    }
-
-    /* 3/4. Anleitungen: zentrierter, kompakter, etwas mehr Luft nach Progress */
-    .study-progress {
-        margin-bottom: 1.05rem !important;
-    }
-
-    .text-card {
-        text-align: center !important;
-        padding: 1.05rem 1rem !important;
-        margin-bottom: 0.75rem !important;
-    }
-
-    .text-card h3 {
-        text-align: center !important;
-        margin-bottom: 0.35rem !important;
-    }
-
-    .text-card p {
-        text-align: center !important;
-        margin-bottom: 0.55rem !important;
-    }
-
-    .instruction-row {
-        flex-direction: row !important;
-        gap: 0.45rem !important;
-        margin-top: 0.6rem !important;
-        margin-bottom: 0.6rem !important;
-    }
-
-    .instruction-box {
-        min-height: 58px !important;
-        padding: 0.48rem 0.35rem !important;
-        border-radius: 14px !important;
-    }
-
-    .instruction-box strong {
-        font-size: 0.75rem !important;
-        line-height: 1.15 !important;
-    }
-
-    .instruction-box span {
-        font-size: 0.68rem !important;
-        line-height: 1.16 !important;
-    }
-
-    /* 7. Ergebnis-Screen: Hinweisbox symmetrischer, Einschätzung zentriert */
-    .result-next-note {
-        margin: 0.9rem auto 0.8rem auto !important;
-        padding: 0.78rem 0.9rem !important;
-        text-align: center !important;
-        border-radius: 16px !important;
-    }
-
-    .st-key-result_assessment_card,
-    div[class*="st-key-result_assessment_card"] {
-        text-align: center !important;
-        padding: 1.15rem 1rem 1rem 1rem !important;
-        margin-top: 0.65rem !important;
-        margin-bottom: 1.05rem !important;
-    }
-
-    .result-assessment-inner {
-        margin-bottom: 0.55rem !important;
-        text-align: center !important;
-    }
-
-    .result-assessment-inner h3 {
-        text-align: center !important;
-        margin-bottom: 0.35rem !important;
-    }
-
-    .result-assessment-inner p {
-        text-align: center !important;
-        margin-bottom: 0.35rem !important;
-    }
-
-    .st-key-result_assessment_card div[role="radiogroup"],
-    div[class*="st-key-result_assessment_card"] div[role="radiogroup"] {
-        width: fit-content !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        gap: 0.08rem !important;
-    }
-
-    .st-key-result_assessment_card div[data-testid="stRadio"] label p,
-    div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] label p {
-        font-size: 0.95rem !important;
-        line-height: 1.28 !important;
-    }
-
-    /* 8. Pre-Questionnaire: zentriert, Kacheln nebeneinander */
-    .pre-questionnaire-clean-wrap {
-        margin-bottom: 0.55rem !important;
-    }
-
-    .pre-questionnaire-clean-wrap .screen-card-info {
-        text-align: center !important;
-        padding: 1.1rem 1rem !important;
-    }
-
-    .pre-questionnaire-clean-wrap .screen-card-info p {
-        text-align: center !important;
-    }
-
-    .pre-questionnaire-clean-wrap .info-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        gap: 0.35rem !important;
-        margin-top: 0.55rem !important;
-        margin-bottom: 0.6rem !important;
-    }
-
-    .pre-questionnaire-clean-wrap .info-box {
-        min-height: 58px !important;
-        padding: 0.45rem 0.25rem !important;
-        border-radius: 14px !important;
+        width: min(100%, 640px) !important;
         display: flex !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-    }
-
-    .pre-questionnaire-clean-wrap .info-box strong {
-        font-size: 0.75rem !important;
-        line-height: 1.15 !important;
-    }
-
-    .pre-questionnaire-clean-wrap .info-box span {
-        font-size: 0.63rem !important;
-        line-height: 1.14 !important;
-        overflow-wrap: anywhere !important;
-    }
-
-    /* 9. Abschlussfragebogen: Header zentriert, Items bewusst linksbündig */
-    .questionnaire-section-card {
-        text-align: center !important;
-        padding: 1.0rem 1rem !important;
-        margin-bottom: 0.7rem !important;
-    }
-
-    .questionnaire-section-helper {
-        text-align: center !important;
-    }
-
-    .st-key-questionnaire_item_card,
-    div[class*="st-key-questionnaire_item_card"] {
-        text-align: left !important;
-        padding: 1.15rem 1rem 0.55rem 1rem !important;
-        margin-bottom: 0.7rem !important;
-        border-radius: 22px !important;
-        box-shadow: 0 14px 30px rgba(49,92,99,0.08) !important;
-    }
-
-    .st-key-questionnaire_item_card div[data-testid="stRadio"],
-    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] {
-        padding: 0 0 0.95rem 0 !important;
-        margin-bottom: 0.85rem !important;
-        border-bottom: 1px solid rgba(49,92,99,0.08) !important;
-    }
-
-    .st-key-questionnaire_item_card div[data-testid="stRadio"]:last-of-type,
-    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"]:last-of-type {
-        border-bottom: none !important;
-        margin-bottom: 0.2rem !important;
-    }
-
-    .st-key-questionnaire_item_card div[data-testid="stRadio"] > label p,
-    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label p {
-        font-size: 1.02rem !important;
-        line-height: 1.42 !important;
-        font-weight: 500 !important;
-        margin-bottom: 0.5rem !important;
-        color: var(--text) !important;
-    }
-
-    .st-key-questionnaire_item_card div[role="radiogroup"],
-    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] {
-        justify-content: space-between !important;
-        gap: 0.18rem !important;
-        flex-wrap: nowrap !important;
-        padding-right: 0.1rem !important;
-    }
-
-    .st-key-questionnaire_item_card div[role="radiogroup"] label,
-    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] label {
-        font-size: 0.96rem !important;
-        line-height: 1.15 !important;
-    }
-
-    .st-key-questionnaire_footer,
-    div[class*="st-key-questionnaire_footer"] {
-        margin-top: -0.1rem !important;
-        margin-bottom: 0.75rem !important;
-    }
-
-    /* Secondary Back Button: sichtbar, grün, outlined */
-    .st-key-back_button_soft .stButton > button,
-    div[class*="st-key-back_button_soft"] .stButton > button {
-        background: rgba(255,255,255,0.35) !important;
-        border: 2px solid rgba(49,92,99,0.48) !important;
-        color: var(--primary) !important;
-        box-shadow: none !important;
-    }
-
-    .st-key-back_button_soft .stButton > button *,
-    div[class*="st-key-back_button_soft"] .stButton > button * {
-        color: var(--primary) !important;
-    }
-
-    .st-key-back_button_soft .stButton > button:hover,
-    div[class*="st-key-back_button_soft"] .stButton > button:hover {
-        background: rgba(49,92,99,0.07) !important;
-        border-color: var(--primary) !important;
-        color: var(--primary) !important;
-        transform: none !important;
-        box-shadow: none !important;
-    }
-}
-
-@media (max-width: 430px) {
-    .stButton > button {
-        width: min(285px, 72vw) !important;
-        max-width: 285px !important;
-    }
-
-    .welcome-card .hero-title {
-        font-size: 1.36rem !important;
-    }
-
-    .welcome-card .hero-subtitle {
-        font-size: 0.86rem !important;
-        line-height: 1.4 !important;
-    }
-
-    .consent-clean-wrap .info-box span,
-    .pre-questionnaire-clean-wrap .info-box span {
-        font-size: 0.6rem !important;
-    }
-
-    .instruction-box strong {
-        font-size: 0.7rem !important;
-    }
-
-    .instruction-box span {
-        font-size: 0.64rem !important;
-    }
-}
-
-/* =========================================================
-   FINAL MOBILE POLISH
-   Buttons, Abstände, Kacheln, Ergebnisbox, Fragebogen
-   ========================================================= */
-
-@media (max-width: 700px) {
-
-    /* Grundlayout mobil etwas ruhiger */
-    .block-container {
-        padding-top: 1.25rem !important;
-        padding-left: 0.85rem !important;
-        padding-right: 0.85rem !important;
-        padding-bottom: 2.2rem !important;
-    }
-
-    /* Einheitliche Buttonbreite auf Mobile */
-    .stButton {
-        display: flex !important;
-        justify-content: center !important;
-        margin-top: 0.35rem !important;
-        margin-bottom: 0.35rem !important;
-    }
-
-    .stButton > button {
-        width: min(76vw, 310px) !important;
-        max-width: 310px !important;
-        min-height: 52px !important;
-        padding: 0.62rem 1.1rem !important;
-        font-size: 1.02rem !important;
-        border-radius: 999px !important;
-    }
-
-    /* Startscreen: Button näher an Karte */
-    .start-button-anchor {
-        height: 0.15rem !important;
-        margin: 0 !important;
-    }
-
-    .welcome-wrap {
-        padding-bottom: 1.45rem !important;
-        margin-bottom: 0.15rem !important;
-    }
-
-    .welcome-card {
-        padding: 1.55rem 1.25rem !important;
-    }
-
-    .welcome-card .hero-title {
-        margin-bottom: 0.85rem !important;
-    }
-
-    .welcome-card .hero-subtitle {
-        line-height: 1.58 !important;
-    }
-
-    /* Einwilligung: kompakter und näher an Checkbox/Button */
-    .consent-spacing {
-        height: 0.25rem !important;
-    }
-
-    .consent-clean-wrap,
-    .pre-questionnaire-clean-wrap,
-    .screen-frame-soft {
-        margin-bottom: 0.45rem !important;
-    }
-
-    .screen-card-info {
-        padding: 1.35rem 1.2rem !important;
-        border-radius: 24px !important;
-        line-height: 1.55 !important;
-        text-align: center !important;
-    }
-
-    .screen-card-info p {
-        margin-bottom: 0.8rem !important;
-    }
-
-    .screen-card-info .hero-title,
-    .screen-card-info .hero-subtitle {
-        text-align: center !important;
-    }
-
-    /* Info-Kacheln mobil nebeneinander, aber kompakter */
-    .info-grid {
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 0.45rem !important;
-        margin-top: 0.75rem !important;
-        margin-bottom: 0.75rem !important;
-    }
-
-    .info-box {
-        min-height: auto !important;
-        padding: 0.62rem 0.35rem !important;
-        border-radius: 15px !important;
-    }
-
-    .info-box strong {
-        font-size: 0.9rem !important;
-        margin-bottom: 0.12rem !important;
-        line-height: 1.15 !important;
-    }
-
-    .info-box span {
-        font-size: 0.76rem !important;
-        line-height: 1.22 !important;
-        word-break: normal !important;
-        hyphens: none !important;
-    }
-
-    /* Anleitung: kompaktere Boxen und Button näher heran */
-    .text-card {
-        padding: 1.35rem 1.2rem !important;
-        border-radius: 24px !important;
-        text-align: center !important;
-        margin-bottom: 0.6rem !important;
-    }
-
-    .text-card h3 {
-        margin-bottom: 0.5rem !important;
-    }
-
-    .instruction-row {
-        flex-direction: row !important;
-        gap: 0.55rem !important;
-        margin-top: 0.75rem !important;
-        margin-bottom: 0.75rem !important;
-    }
-
-    .instruction-box {
-        padding: 0.72rem 0.35rem !important;
-        border-radius: 15px !important;
-    }
-
-    .instruction-box strong {
-        font-size: 0.86rem !important;
-        line-height: 1.15 !important;
-        margin-bottom: 0.18rem !important;
-    }
-
-    .instruction-box span {
-        font-size: 0.78rem !important;
-        line-height: 1.2 !important;
-    }
-
-    /* Ergebnis-Screen: Hinweisbox gleichmäßiger */
-    .result-next-note,
-    .soft-note {
-        padding: 0.85rem 0.9rem !important;
-        margin-top: 0.65rem !important;
-        margin-bottom: 0.85rem !important;
-        border-radius: 16px !important;
-        line-height: 1.5 !important;
-        text-align: center !important;
-    }
-
-    /* Ergebnis-Einschätzung: kompakter, zentrierter */
-    .st-key-result_assessment_card,
-    div[class*="st-key-result_assessment_card"] {
-        padding: 1.3rem 1.15rem 1.15rem 1.15rem !important;
-        margin-top: 0.75rem !important;
-        margin-bottom: 1.2rem !important;
-        text-align: center !important;
-    }
-
-    .result-assessment-inner {
-        text-align: center !important;
-        margin-bottom: 0.45rem !important;
-    }
-
-    .result-assessment-inner h3 {
-        font-size: 1.45rem !important;
-        margin-bottom: 0.45rem !important;
-    }
-
-    .result-assessment-inner p {
-        margin-bottom: 0.45rem !important;
-    }
-
-    .st-key-result_assessment_card div[data-testid="stRadio"] label,
-    div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] label {
-        font-size: 1rem !important;
-        justify-content: flex-start !important;
-    }
-
-    .result-assessment-hint {
-        margin-top: 0.55rem !important;
-        margin-bottom: 0 !important;
-        font-size: 0.9rem !important;
-        line-height: 1.35 !important;
-    }
-
-    /* Pre-Questionnaire: Kacheln nebeneinander und kompakter */
-    .pre-questionnaire-clean-wrap .info-grid,
-    .screen-frame-soft .info-grid {
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 0.45rem !important;
-    }
-
-    .pre-questionnaire-clean-wrap .info-box,
-    .screen-frame-soft .info-box {
-        padding: 0.58rem 0.3rem !important;
-    }
-
-    /* Abschlussfragebogen: Box cleaner */
-    .questionnaire-section-card {
-        padding: 1.25rem 1.05rem !important;
-        border-radius: 24px !important;
-        text-align: center !important;
-        margin-bottom: 0.8rem !important;
-    }
-
-    .questionnaire-section-title {
-        font-size: 1.35rem !important;
-        margin-bottom: 0.45rem !important;
-    }
-
-    .questionnaire-section-helper {
-        font-size: 0.98rem !important;
-        line-height: 1.45 !important;
-        margin-bottom: 0.75rem !important;
-    }
-
-    .scale-legend-grid {
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 0.45rem !important;
-    }
-
-    .scale-legend-box {
-        padding: 0.55rem 0.25rem !important;
-        border-radius: 14px !important;
-    }
-
-    .scale-legend-box strong {
-        font-size: 0.95rem !important;
-    }
-
-    .scale-legend-box span {
-        font-size: 0.74rem !important;
-        line-height: 1.15 !important;
-    }
-
-    /* Fragebogen-Items: linksbündig lassen, aber luftiger/cleaner */
-    .st-key-questionnaire_item_card,
-    div[class*="st-key-questionnaire_item_card"] {
-        padding: 1.25rem 1.05rem 1.1rem 1.05rem !important;
-        border-radius: 24px !important;
-        margin-bottom: 0.85rem !important;
-    }
-
-    .st-key-questionnaire_item_card div[data-testid="stRadio"],
-    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] {
-        margin-bottom: 1.3rem !important;
-    }
-
-    .st-key-questionnaire_item_card div[data-testid="stRadio"] > label,
-    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label {
-        font-size: 1.02rem !important;
-        line-height: 1.45 !important;
-        font-weight: 600 !important;
-        margin-bottom: 0.65rem !important;
-    }
-
-    .st-key-questionnaire_item_card div[role="radiogroup"],
-    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] {
-        justify-content: space-between !important;
-        gap: 0.25rem !important;
-    }
-
-    .st-key-questionnaire_item_card div[role="radiogroup"] label,
-    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] label {
-        font-size: 1.02rem !important;
-        line-height: 1.2 !important;
-    }
-
-    /* Fragebogen-Footer: Buttons näher an die Karte */
-    .st-key-questionnaire_footer,
-    div[class*="st-key-questionnaire_footer"] {
-        margin-top: 0.35rem !important;
-    }
-
-    .st-key-questionnaire_footer .stButton,
-    div[class*="st-key-questionnaire_footer"] .stButton {
-        margin-top: 0.25rem !important;
-        margin-bottom: 0.65rem !important;
-    }
-
-    /* Zurück-Button subtil, aber sichtbar */
-    .st-key-back_button_soft button,
-    div[class*="st-key-back_button_soft"] button {
-        background: transparent !important;
-        color: var(--primary) !important;
-        border: 2px solid rgba(49,92,99,0.45) !important;
-        box-shadow: none !important;
-    }
-
-    .st-key-back_button_soft button *,
-    div[class*="st-key-back_button_soft"] button * {
-        color: var(--primary) !important;
-    }
-
-    .st-key-back_button_soft button:hover,
-    div[class*="st-key-back_button_soft"] button:hover {
-        background: rgba(49,92,99,0.06) !important;
-        border-color: var(--primary) !important;
-        color: var(--primary) !important;
-        box-shadow: none !important;
-    }
-
-    .questionnaire-hint {
-        margin-top: 0.45rem !important;
-        font-size: 0.92rem !important;
-        line-height: 1.4 !important;
-    }
-}
-
-/* =========================================================
-   FINAL MOBILE MICRO POLISH
-   Abstände, Kacheln, Buttons, Fragebogen, Ergebnisbox
-   ========================================================= */
-
-@media (max-width: 700px) {
-
-    /* 1. Genereller Abstand oben minimal reduzieren */
-    .block-container {
-        padding-top: 0.75rem !important;
-    }
-
-    /* Einheitliche, etwas schmalere Buttons */
-    .stButton {
-        display: flex !important;
-        justify-content: center !important;
-        margin-top: 0.15rem !important;
-        margin-bottom: 0.25rem !important;
-    }
-
-    .stButton > button {
-        width: min(70vw, 285px) !important;
-        max-width: 285px !important;
-        min-height: 50px !important;
-        padding: 0.58rem 1rem !important;
-        font-size: 1rem !important;
-        border-radius: 999px !important;
-    }
-
-    /* 1. Startscreen: Abstand Box -> Button reduzieren */
-    .welcome-wrap {
-        margin-bottom: 0 !important;
-        padding-bottom: 0.7rem !important;
-    }
-
-    .start-button-anchor {
-        height: 0 !important;
-        margin: 0 !important;
-    }
-
-    /* Startscreen bewusst NICHT komplett zentrieren:
-       Der längere Text bleibt linksbündig besser lesbar. */
-    .welcome-card .hero-title {
-        margin-bottom: 1rem !important;
-    }
-
-    .welcome-card .hero-subtitle {
-        margin-top: 0.15rem !important;
-    }
-
-    .welcome-card p {
-        margin-bottom: 0.9rem !important;
-    }
-
-    /* 2 / 3 / 4 / 8: Info- und Anleitungskacheln wieder etwas größer */
-    .info-grid {
-        gap: 0.55rem !important;
-        margin-top: 0.85rem !important;
-        margin-bottom: 0.85rem !important;
-    }
-
-    .info-box {
-        padding: 0.78rem 0.42rem !important;
-        min-height: 74px !important;
-        border-radius: 16px !important;
-    }
-
-    .info-box strong {
-        font-size: 0.98rem !important;
-        line-height: 1.16 !important;
-        margin-bottom: 0.18rem !important;
-    }
-
-    .info-box span {
-        font-size: 0.82rem !important;
-        line-height: 1.22 !important;
-    }
-
-    /* 2. Einwilligung: Checkbox-Text kleiner und besser ausgerichtet */
-    div[data-testid="stCheckbox"] {
-        display: flex !important;
-        justify-content: center !important;
-        margin-top: 0.25rem !important;
-        margin-bottom: 0.15rem !important;
-    }
-
-    div[data-testid="stCheckbox"] label {
-        font-size: 0.98rem !important;
-        line-height: 1.3 !important;
-        color: #2B2B2B !important;
-        max-width: 88vw !important;
-        text-align: left !important;
-    }
-
-    div[data-testid="stCheckbox"] label p {
-        font-size: 0.98rem !important;
-        line-height: 1.3 !important;
-    }
-
-    .consent-spacing {
-        height: 0 !important;
-        margin: 0 !important;
-    }
-
-    /* 3 / 4. Anleitung: Header-Abstände etwas großzügiger */
-    .progress-card {
-        margin-bottom: 1.05rem !important;
-    }
-
-    .page-title,
-    .screen-title,
-    h1 {
-        margin-top: 0.8rem !important;
-        margin-bottom: 0.7rem !important;
-    }
-
-    .text-card {
-        margin-top: 0.65rem !important;
-        margin-bottom: 0.45rem !important;
-        padding: 1.45rem 1.25rem !important;
-    }
-
-    .text-card h3 {
-        margin-bottom: 0.45rem !important;
-    }
-
-    .instruction-row {
-        gap: 0.65rem !important;
-        margin-top: 0.85rem !important;
-        margin-bottom: 0.85rem !important;
-    }
-
-    .instruction-box {
-        padding: 0.82rem 0.45rem !important;
-        min-height: 74px !important;
-        border-radius: 16px !important;
-    }
-
-    .instruction-box strong {
-        font-size: 0.94rem !important;
-        line-height: 1.18 !important;
-    }
-
-    .instruction-box span {
-        font-size: 0.84rem !important;
-        line-height: 1.2 !important;
-    }
-
-    /* Anleitung: Button näher an Box */
-    .text-card + div .stButton,
-    .text-card ~ div .stButton {
-        margin-top: 0.1rem !important;
-    }
-
-    /* 5. Matcher Likert: Ziffern leicht kleiner */
-    .likert-options,
-    .likert-scale,
-    .likert-number,
-    .option-number {
-        font-size: 0.92em !important;
-    }
-
-    /* 7. Ergebnis-Screen: Hinweisbox gleichmäßig einbetten */
-    .result-next-note,
-    .soft-note {
-        margin-top: 0.75rem !important;
-        margin-bottom: 0.75rem !important;
-        padding: 0.8rem 0.9rem !important;
-        text-align: center !important;
-    }
-
-    /* 7. Box "Deine erste Einschätzung": komplett linksbündig und ruhiger */
-    .st-key-result_assessment_card,
-    div[class*="st-key-result_assessment_card"] {
-        text-align: left !important;
-        padding: 1.45rem 1.25rem 1.1rem 1.25rem !important;
-        margin-top: 0.85rem !important;
-        margin-bottom: 1.05rem !important;
-    }
-
-    .result-assessment-inner {
-        text-align: left !important;
-        margin-bottom: 0.35rem !important;
-    }
-
-    .result-assessment-inner h3 {
-        text-align: left !important;
-        font-size: 1.42rem !important;
-        margin-bottom: 0.65rem !important;
-        line-height: 1.18 !important;
-    }
-
-    .result-assessment-inner p {
-        text-align: left !important;
-        margin-top: 0 !important;
-        margin-bottom: 0.55rem !important;
-        line-height: 1.42 !important;
-    }
-
-    div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] {
-        margin-top: 0.15rem !important;
-        margin-bottom: 0.7rem !important;
-    }
-
-    div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] label {
-        justify-content: flex-start !important;
-        text-align: left !important;
-        font-size: 1rem !important;
-        line-height: 1.3 !important;
-    }
-
-    div[class*="st-key-result_assessment_card"] div[role="radiogroup"] {
-        align-items: flex-start !important;
-        justify-content: flex-start !important;
-    }
-
-    .result-assessment-hint {
-        margin-top: 0.25rem !important;
-        padding-top: 0 !important;
-        font-size: 0.9rem !important;
-        line-height: 1.35 !important;
-        text-align: center !important;
-    }
-
-    /* 8. Pre-Questionnaire: Kacheln etwas größer, Abstände ruhiger */
-    .pre-questionnaire-clean-wrap .info-grid,
-    .screen-frame-soft .info-grid {
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 0.55rem !important;
-        margin-top: 0.9rem !important;
-        margin-bottom: 0.9rem !important;
-    }
-
-    .pre-questionnaire-clean-wrap .info-box,
-    .screen-frame-soft .info-box {
-        min-height: 76px !important;
-        padding: 0.75rem 0.4rem !important;
-    }
-
-    /* 9. Abschlussfragebogen: Abschnittsbox sauber zentrieren */
-    .questionnaire-section-card {
-        text-align: center !important;
-        padding: 1.35rem 1.15rem !important;
-        margin-bottom: 0.7rem !important;
-    }
-
-    .questionnaire-section-card * {
-        text-align: center !important;
-    }
-
-    .questionnaire-section-title {
-        margin-bottom: 0.5rem !important;
-    }
-
-    .questionnaire-section-helper {
-        margin-bottom: 0.8rem !important;
-    }
-
-    .scale-legend-grid {
-        gap: 0.55rem !important;
-    }
-
-    .scale-legend-box {
-        padding: 0.68rem 0.35rem !important;
-        min-height: 68px !important;
-    }
-
-    .scale-legend-box strong {
-        font-size: 0.96rem !important;
-    }
-
-    .scale-legend-box span {
-        font-size: 0.78rem !important;
-        line-height: 1.18 !important;
-    }
-
-    /* 9. Abschlussfragebogen: Itembox clean und responsiv zentriert */
-    .st-key-questionnaire_item_card,
-    div[class*="st-key-questionnaire_item_card"] {
-        padding: 1.35rem 1.05rem 1.15rem 1.05rem !important;
-        margin-bottom: 0.75rem !important;
-        border-radius: 24px !important;
-    }
-
-    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] {
-        margin-bottom: 1.05rem !important;
-    }
-
-    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label {
-        text-align: center !important;
-        justify-content: center !important;
-        font-size: 1.04rem !important;
-        line-height: 1.42 !important;
-        font-weight: 600 !important;
-        margin-bottom: 0.75rem !important;
-        width: 100% !important;
-    }
-
-    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label p {
-        text-align: center !important;
-        width: 100% !important;
-    }
-
-    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] {
-        display: flex !important;
-        justify-content: space-between !important;
         align-items: center !important;
-        width: 100% !important;
-        max-width: 92% !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        gap: 0 !important;
-    }
-
-    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] label {
-        font-size: 1.02rem !important;
-        line-height: 1.2 !important;
-        min-width: auto !important;
-    }
-
-    /* 9. Weiter-/Zurück-Buttons näher an die Box */
-    .st-key-questionnaire_footer,
-    div[class*="st-key-questionnaire_footer"] {
-        margin-top: 0.1rem !important;
-    }
-
-    .st-key-questionnaire_footer .stButton,
-    div[class*="st-key-questionnaire_footer"] .stButton {
-        margin-top: 0.15rem !important;
-        margin-bottom: 0.45rem !important;
-    }
-
-    .st-key-questionnaire_footer + div,
-    div[class*="st-key-questionnaire_footer"] + div {
-        margin-top: 0.25rem !important;
-    }
-
-    /* Zurück-Button: sichtbar, aber weiterhin sekundär */
-    .st-key-back_button_soft button,
-    div[class*="st-key-back_button_soft"] button {
-        background: transparent !important;
-        color: #315C63 !important;
-        border: 2px solid rgba(49, 92, 99, 0.55) !important;
-        box-shadow: none !important;
-    }
-
-    .st-key-back_button_soft button *,
-    div[class*="st-key-back_button_soft"] button * {
-        color: #315C63 !important;
-    }
-
-    .st-key-back_button_soft button:hover,
-    div[class*="st-key-back_button_soft"] button:hover {
-        background: rgba(49, 92, 99, 0.06) !important;
-        border-color: #315C63 !important;
-        color: #315C63 !important;
-    }
-
-    .questionnaire-hint {
-        margin-top: 0.35rem !important;
-        padding-top: 0 !important;
-        font-size: 0.9rem !important;
-        line-height: 1.35 !important;
-    }
-}
-
-/* =========================================================
-   FINAL MOBILE MICRO POLISH V2
-   Letzter Override für mobile Feinausrichtung
-   ========================================================= */
-
-@media (max-width: 700px) {
-
-    /* 1. Startscreen: oben minimal weniger Abstand, Button näher an Karte */
-    .block-container {
-        padding-top: 0.55rem !important;
-    }
-
-    .welcome-wrap {
-        padding-top: 0.8rem !important;
-        padding-bottom: 0.45rem !important;
-        margin-bottom: -0.15rem !important;
-    }
-
-    .welcome-card {
-        padding: 1.45rem 1.2rem !important;
-    }
-
-    .start-button-anchor {
-        height: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    div:has(.start-button-anchor) + div {
-        margin-top: -0.75rem !important;
-    }
-
-    /* Einheitliche Buttongröße: etwas schmaler, aber weiterhin gut klickbar */
-    .stButton {
-        display: flex !important;
-        justify-content: center !important;
-        margin-top: 0.1rem !important;
-        margin-bottom: 0.25rem !important;
-    }
-
-    .stButton > button {
-        width: min(68vw, 280px) !important;
-        max-width: 280px !important;
-        min-height: 48px !important;
-        padding: 0.55rem 0.95rem !important;
-        font-size: 0.98rem !important;
-        border-radius: 999px !important;
-    }
-
-    /* 2 / 8. Info-Kacheln etwas größer und hochwertiger */
-    .consent-clean-wrap .info-grid,
-    .pre-questionnaire-clean-wrap .info-grid,
-    .screen-frame-soft .info-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        gap: 0.5rem !important;
-        margin-top: 0.85rem !important;
-        margin-bottom: 0.85rem !important;
-    }
-
-    .consent-clean-wrap .info-box,
-    .pre-questionnaire-clean-wrap .info-box,
-    .screen-frame-soft .info-box {
-        min-height: 78px !important;
-        padding: 0.72rem 0.34rem !important;
-        border-radius: 16px !important;
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-    }
-
-    .consent-clean-wrap .info-box strong,
-    .pre-questionnaire-clean-wrap .info-box strong,
-    .screen-frame-soft .info-box strong {
-        font-size: 0.92rem !important;
-        line-height: 1.15 !important;
-        margin-bottom: 0.16rem !important;
-    }
-
-    .consent-clean-wrap .info-box span,
-    .pre-questionnaire-clean-wrap .info-box span,
-    .screen-frame-soft .info-box span {
-        font-size: 0.74rem !important;
-        line-height: 1.18 !important;
-        overflow-wrap: normal !important;
-        word-break: normal !important;
-        hyphens: none !important;
-    }
-
-    /* 2. Einwilligung: Checkbox-Text kleiner und sauberer zentriert */
-    .st-key-consent_action_area,
-    div[class*="st-key-consent_action_area"] {
-        margin-top: -0.25rem !important;
-        margin-bottom: 0.55rem !important;
-        text-align: center !important;
-    }
-
-    .st-key-consent_action_area div[data-testid="stCheckbox"],
-    div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
-        width: fit-content !important;
-        max-width: 92vw !important;
-        margin: 0 auto 0.2rem auto !important;
-        display: flex !important;
-        justify-content: center !important;
-    }
-
-    .st-key-consent_action_area div[data-testid="stCheckbox"] label,
-    div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] label {
-        font-size: 0.9rem !important;
-        line-height: 1.28 !important;
+        justify-content: flex-start !important;
+        gap: 0.7rem !important;
+        background: #FFFFFF !important;
+        border: 1px solid rgba(49,92,99,0.12) !important;
+        border-radius: 18px !important;
+        padding: 0.72rem 0.9rem !important;
+        box-shadow: 0 8px 20px rgba(49,92,99,0.055) !important;
         text-align: left !important;
-        align-items: center !important;
     }
 
-    .st-key-consent_action_area div[data-testid="stCheckbox"] label p,
     div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] label p {
-        font-size: 0.9rem !important;
-        line-height: 1.28 !important;
+        font-size: 0.94rem !important;
+        line-height: 1.32 !important;
+        margin: 0 !important;
     }
 
-    /* 3 / 4. Anleitung: Header mehr Luft, Kacheln größer, Button näher */
-    .study-progress {
-        margin-bottom: 1.15rem !important;
+    div[class*="st-key-consent_action_area"] input[type="checkbox"] {
+        position: absolute !important;
+        opacity: 0 !important;
+        width: 1px !important;
+        height: 1px !important;
+        pointer-events: none !important;
     }
 
-    .hero-title[style*="So funktioniert die Bewertung"],
-    div.hero-title {
-        margin-top: 0.95rem !important;
-        margin-bottom: 0.95rem !important;
+    /* Result screen */
+    .result-hero-card {
+        background:
+            radial-gradient(circle at top right, rgba(242,184,114,0.26), transparent 38%),
+            radial-gradient(circle at bottom left, rgba(49,92,99,0.10), transparent 40%),
+            linear-gradient(135deg, #FFFFFF 0%, #F8F4ED 100%);
+        border-radius: 28px;
+        padding: 1.55rem 1.65rem;
+        margin-bottom: 1rem;
     }
 
-    .text-card {
-        margin-top: 0.75rem !important;
-        margin-bottom: 0.25rem !important;
-        padding: 1.45rem 1.2rem !important;
+    .result-kicker {
+        color: var(--primary);
+        font-size: 0.9rem;
+        font-weight: 800;
+        margin-bottom: 0.45rem;
     }
 
-    .instruction-row {
-        gap: 0.62rem !important;
-        margin-top: 0.9rem !important;
-        margin-bottom: 0.9rem !important;
+    .result-company {
+        color: var(--primary);
+        font-size: 2.15rem;
+        font-weight: 850;
+        letter-spacing: -0.04em;
+        line-height: 1.08;
+        margin-bottom: 0.75rem;
     }
 
-    .instruction-box {
-        min-height: 80px !important;
-        padding: 0.82rem 0.42rem !important;
-        border-radius: 16px !important;
+    .result-score-row {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        margin-bottom: 0.8rem;
+        flex-wrap: wrap;
     }
 
-    .instruction-box strong {
-        font-size: 0.92rem !important;
-        line-height: 1.16 !important;
-        margin-bottom: 0.2rem !important;
+    .result-score {
+        background: var(--primary);
+        color: #FFFFFF;
+        border-radius: 999px;
+        padding: 0.55rem 0.95rem;
+        font-size: 1.35rem;
+        font-weight: 850;
     }
 
-    .instruction-box span {
-        font-size: 0.8rem !important;
-        line-height: 1.18 !important;
+    .result-score-label,
+    .result-method-text {
+        color: var(--muted) !important;
+        font-size: 0.95rem;
     }
 
-    .text-card + div .stButton,
-    .text-card ~ div .stButton {
-        margin-top: -0.1rem !important;
+    .result-profile-text {
+        font-size: 1rem;
+        line-height: 1.55;
+        margin: 0.75rem 0 0.55rem 0;
     }
 
-    /* 7. Ergebnis: Box "Deine erste Einschätzung" komplett linksbündig und proportional sauber */
-    .st-key-result_assessment_card,
+    .result-meta-row {
+        display: flex;
+        gap: 0.55rem;
+        flex-wrap: wrap;
+        margin-top: 0.75rem;
+    }
+
+    .result-pill {
+        display: inline-block;
+        background: rgba(49,92,99,0.09);
+        border: 1px solid rgba(49,92,99,0.16);
+        color: var(--primary);
+        border-radius: 999px;
+        padding: 0.35rem 0.8rem;
+        font-size: 0.86rem;
+        font-weight: 750;
+    }
+
+    .result-next-note {
+        background: rgba(242,184,114,0.16);
+        border: 1px solid rgba(242,184,114,0.42);
+        border-radius: 18px;
+        padding: 0.9rem 1rem;
+        margin-bottom: 1rem;
+        line-height: 1.55;
+    }
+
     div[class*="st-key-result_assessment_card"] {
-        text-align: left !important;
-        padding: 1.35rem 1.2rem 1.05rem 1.2rem !important;
-        margin-top: 0.75rem !important;
-        margin-bottom: 1.05rem !important;
+        border-radius: 28px !important;
+        padding: 1.35rem 1.45rem 1rem 1.45rem !important;
+        margin: 0.55rem auto 1.05rem auto !important;
     }
 
-    .result-assessment-inner {
+    .result-assessment-inner,
+    .result-assessment-inner * {
         text-align: left !important;
+    }
+
+    .result-assessment-inner h3 {
+        font-size: 1.55rem !important;
+        line-height: 1.14 !important;
         margin: 0 0 0.45rem 0 !important;
     }
 
-    .result-assessment-inner h3 {
-        text-align: left !important;
-        font-size: 1.4rem !important;
-        line-height: 1.15 !important;
-        margin: 0 0 0.55rem 0 !important;
-    }
-
     .result-assessment-inner p {
-        text-align: left !important;
-        font-size: 0.98rem !important;
-        line-height: 1.38 !important;
-        margin: 0 0 0.55rem 0 !important;
-    }
-
-    .result-radio-question {
-        text-align: left !important;
-        font-size: 0.98rem !important;
-        line-height: 1.35 !important;
-        margin: 0 0 0.3rem 0 !important;
-        color: var(--text) !important;
+        font-size: 1rem !important;
+        line-height: 1.42 !important;
+        margin: 0 0 0.45rem 0 !important;
     }
 
     div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] {
-        margin-top: 0 !important;
-        margin-bottom: 0.55rem !important;
+        margin: 0.15rem 0 0.45rem 0 !important;
     }
 
     div[class*="st-key-result_assessment_card"] div[role="radiogroup"] {
-        width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: auto !important;
-        align-items: flex-start !important;
-        justify-content: flex-start !important;
-        gap: 0.12rem !important;
+        gap: 0.16rem !important;
     }
 
     div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] label {
         justify-content: flex-start !important;
-        text-align: left !important;
-        font-size: 0.98rem !important;
-        line-height: 1.25 !important;
-        min-height: 28px !important;
     }
 
     .result-assessment-hint {
-        margin-top: 0.15rem !important;
-        padding-top: 0 !important;
-        font-size: 0.88rem !important;
-        line-height: 1.28 !important;
         text-align: center !important;
+        color: var(--muted) !important;
+        font-size: 0.95rem !important;
+        margin: 0.35rem 0 0 0 !important;
     }
 
-    /* 9. Abschlussfragebogen: Itembox harmonischer, Aussagen + Skala mittig */
-    .st-key-questionnaire_item_card,
+    .result-details-title {
+        color: var(--primary);
+        font-size: 1.45rem;
+        font-weight: 850;
+        letter-spacing: -0.03em;
+        margin: 1.4rem 0 0.75rem 0;
+    }
+
+    .ranking-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 1rem 1.05rem;
+        margin-bottom: 0.75rem;
+        box-shadow: 0 10px 25px rgba(49,92,99,0.07);
+    }
+
+    .custom-muted {
+        color: var(--muted);
+        font-size: 0.95rem;
+    }
+
+    /* Questionnaire */
+    .questionnaire-title {
+        text-align: center;
+        color: var(--primary);
+        font-size: 2.35rem;
+        font-weight: 850;
+        letter-spacing: -0.04em;
+        line-height: 1.08;
+        margin: 0.4rem 0 0.35rem 0;
+    }
+
+    .questionnaire-subtitle {
+        text-align: center;
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.5;
+        margin-bottom: 1.1rem;
+    }
+
+    .questionnaire-progress-wrap {
+        width: min(420px, 100%);
+        margin: 0 auto 1.25rem auto;
+    }
+
+    .questionnaire-progress-track {
+        width: 100%;
+        height: 7px;
+        border-radius: 999px;
+        background: rgba(49,92,99,0.10);
+        overflow: hidden;
+    }
+
+    .questionnaire-progress-fill {
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+
+    .questionnaire-section-card {
+        border-radius: 24px;
+        padding: 1.2rem 1.35rem;
+        margin-bottom: 0.9rem;
+        text-align: center;
+    }
+
+    .questionnaire-section-label {
+        color: var(--muted);
+        font-size: 0.86rem;
+        font-weight: 750;
+        margin-bottom: 0.2rem;
+    }
+
+    .questionnaire-section-title {
+        color: var(--primary);
+        font-size: 1.35rem;
+        font-weight: 850;
+        letter-spacing: -0.03em;
+        margin-bottom: 0.55rem;
+    }
+
+    .questionnaire-section-helper {
+        font-size: 1rem;
+        line-height: 1.55;
+        margin: 0 0 0.95rem 0;
+    }
+
     div[class*="st-key-questionnaire_item_card"] {
-        padding: 1.3rem 1.05rem 1rem 1.05rem !important;
-        margin-bottom: 0.65rem !important;
-        border-radius: 24px !important;
+        border-radius: 26px !important;
+        padding: 0.55rem !important;
+        margin-bottom: 0.25rem !important;
     }
 
-    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] {
-        margin-bottom: 1.0rem !important;
-        padding-bottom: 0.75rem !important;
-        border-bottom: 1px solid rgba(49,92,99,0.07) !important;
+    div[class*="st-key-questionnaire_single_item"] {
+        background: #FFFFFF !important;
+        border: 1px solid rgba(49,92,99,0.09) !important;
+        border-radius: 20px !important;
+        box-shadow: 0 8px 20px rgba(49,92,99,0.045) !important;
+        padding: 0.95rem 0.85rem 0.85rem 0.85rem !important;
+        margin-bottom: 0.55rem !important;
     }
 
-    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"]:last-of-type {
-        margin-bottom: 0.15rem !important;
-        padding-bottom: 0 !important;
+    div[class*="st-key-questionnaire_single_item"]:last-child {
+        margin-bottom: 0 !important;
+    }
+
+    div[class*="st-key-questionnaire_single_item"] div[data-testid="stRadio"] {
+        margin: 0 !important;
+        padding: 0 !important;
         border-bottom: none !important;
     }
 
-    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label {
+    div[class*="st-key-questionnaire_single_item"] div[data-testid="stRadio"] > label {
+        display: block !important;
         width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-        text-align: center !important;
-        margin-bottom: 0.72rem !important;
+        text-align: left !important;
+        margin-bottom: 0.65rem !important;
     }
 
-    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label p {
-        width: 100% !important;
-        max-width: 94% !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        text-align: center !important;
-        font-size: 1.02rem !important;
+    div[class*="st-key-questionnaire_single_item"] div[data-testid="stRadio"] > label p {
+        text-align: left !important;
+        font-size: 1rem !important;
         line-height: 1.42 !important;
-        font-weight: 560 !important;
+        font-weight: 600 !important;
+        margin: 0 !important;
     }
 
-    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] {
+    div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"] {
         width: 100% !important;
-        max-width: 92% !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
+        max-width: 540px !important;
+        margin: 0.55rem auto 0 auto !important;
         display: grid !important;
         grid-template-columns: repeat(5, 1fr) !important;
         align-items: center !important;
@@ -3788,969 +610,314 @@ div[data-testid="stRadio"] label:has(input[type="radio"]:checked) span {
         gap: 0 !important;
     }
 
-    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] label {
+    div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"] label {
         width: 100% !important;
         justify-content: center !important;
+        margin: 0 !important;
         font-size: 0.98rem !important;
-        line-height: 1.15 !important;
     }
 
-    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] label p {
-        font-size: 0.98rem !important;
-        line-height: 1.15 !important;
-    }
-
-    div[data-testid="stRadio"] input[type="radio"],
-    div[role="radiogroup"] input[type="radio"] {
-        width: 15px !important;
-        height: 15px !important;
-        min-width: 15px !important;
-        min-height: 15px !important;
-        margin-right: 0.25rem !important;
-    }
-
-    /* 9. Fragebogen-Footer: Buttons näher und logischer gestapelt */
-    .st-key-questionnaire_footer,
     div[class*="st-key-questionnaire_footer"] {
         margin-top: -0.05rem !important;
+        margin-bottom: 0 !important;
         padding-top: 0 !important;
     }
 
-    .st-key-questionnaire_footer .stButton,
     div[class*="st-key-questionnaire_footer"] .stButton {
-        margin-top: 0.1rem !important;
-        margin-bottom: 0.45rem !important;
+        margin: 0 0 0.2rem 0 !important;
     }
 
-    .st-key-back_button_soft,
+    .questionnaire-back-spacer {
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
     div[class*="st-key-back_button_soft"] {
-        margin-top: -0.1rem !important;
+        margin-top: -0.15rem !important;
+        margin-bottom: 0 !important;
     }
 
-    .st-key-back_button_soft .stButton,
-    div[class*="st-key-back_button_soft"] .stButton {
-        margin-top: 0 !important;
-    }
-
-    .st-key-back_button_soft button,
     div[class*="st-key-back_button_soft"] button {
-        min-height: 46px !important;
         background: transparent !important;
-        color: #315C63 !important;
-        border: 2px solid rgba(49, 92, 99, 0.55) !important;
+        color: var(--primary) !important;
+        border: 2px solid rgba(49,92,99,0.55) !important;
         box-shadow: none !important;
     }
 
-    .st-key-back_button_soft button *,
     div[class*="st-key-back_button_soft"] button * {
-        color: #315C63 !important;
+        color: var(--primary) !important;
     }
 
     .questionnaire-hint {
-        margin-top: 0.25rem !important;
-        font-size: 0.88rem !important;
-        line-height: 1.3 !important;
-    }
-}
-
-@media (max-width: 430px) {
-
-    .stButton > button {
-        width: min(70vw, 275px) !important;
-        max-width: 275px !important;
+        text-align: center !important;
+        color: var(--muted) !important;
+        font-size: 0.95rem !important;
+        margin: 0.15rem 0 0 0 !important;
     }
 
-    .consent-clean-wrap .info-box,
-    .pre-questionnaire-clean-wrap .info-box,
-    .screen-frame-soft .info-box {
-        min-height: 74px !important;
-        padding-left: 0.28rem !important;
-        padding-right: 0.28rem !important;
+    .thanks-wrap {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 4.5rem;
     }
 
-    .consent-clean-wrap .info-box strong,
-    .pre-questionnaire-clean-wrap .info-box strong,
-    .screen-frame-soft .info-box strong {
-        font-size: 0.86rem !important;
+    .thanks-card {
+        width: min(760px, 100%);
+        border-radius: 30px;
+        padding: 2.2rem 2.4rem;
+        text-align: center;
     }
 
-    .consent-clean-wrap .info-box span,
-    .pre-questionnaire-clean-wrap .info-box span,
-    .screen-frame-soft .info-box span {
-        font-size: 0.68rem !important;
+    .thanks-icon {
+        width: 54px;
+        height: 54px;
+        border-radius: 999px;
+        background: rgba(107,170,117,0.16);
+        border: 1px solid rgba(107,170,117,0.35);
+        color: var(--success);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        font-weight: 850;
+        margin: 0 auto 1rem auto;
     }
 
-    .instruction-box strong {
-        font-size: 0.84rem !important;
+    .thanks-title {
+        color: var(--primary);
+        font-size: 2.1rem;
+        font-weight: 850;
+        letter-spacing: -0.04em;
+        line-height: 1.12;
+        margin-bottom: 0.65rem;
     }
 
-    .instruction-box span {
-        font-size: 0.74rem !important;
+    .thanks-text {
+        font-size: 1.05rem;
+        line-height: 1.6;
     }
 
-    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label p {
-        font-size: 0.98rem !important;
+    @media (max-width: 700px) {
+        .block-container {
+            max-width: 100% !important;
+            padding: 0.55rem 0.72rem calc(5.8rem + env(safe-area-inset-bottom)) 0.72rem !important;
+        }
+
+        .hero-title,
+        .questionnaire-title {
+            font-size: 1.55rem !important;
+            line-height: 1.12 !important;
+            text-align: center !important;
+        }
+
+        .hero-subtitle,
+        .questionnaire-subtitle,
+        .assessment-help,
+        .screen-card-info p,
+        .text-card p,
+        .result-profile-text,
+        .result-method-text,
+        .result-next-note {
+            font-size: 0.9rem !important;
+            line-height: 1.42 !important;
+        }
+
+        .welcome-wrap {
+            border-radius: 22px !important;
+            padding: 0.8rem 0.7rem 0.45rem 0.7rem !important;
+            margin-bottom: -0.15rem !important;
+        }
+
+        .welcome-card,
+        .screen-card-info,
+        .text-card,
+        .result-hero-card,
+        .thanks-card,
+        .questionnaire-section-card,
+        div[class*="st-key-result_assessment_card"],
+        div[class*="st-key-questionnaire_item_card"] {
+            border-radius: 22px !important;
+            padding: 1.05rem 1rem !important;
+            box-shadow: 0 12px 28px rgba(49,92,99,0.09) !important;
+        }
+
+        .welcome-card .hero-title {
+            font-size: 1.42rem !important;
+            text-align: center !important;
+            margin-bottom: 0.9rem !important;
+        }
+
+        .welcome-card .hero-subtitle {
+            text-align: center !important;
+        }
+
+        .start-button-anchor {
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        div:has(.start-button-anchor) + div {
+            margin-top: -0.75rem !important;
+        }
+
+        .stButton > button {
+            width: min(70vw, 280px) !important;
+            min-height: 48px !important;
+            font-size: 0.98rem !important;
+            padding: 0.55rem 0.95rem !important;
+        }
+
+        .study-progress {
+            border-radius: 18px !important;
+            padding: 0.68rem 0.75rem !important;
+            margin-bottom: 1.05rem !important;
+        }
+
+        .study-progress-label {
+            font-size: 0.78rem !important;
+            margin-bottom: 0.45rem !important;
+        }
+
+        .study-progress-track {
+            gap: 0.35rem !important;
+        }
+
+        .study-progress-step {
+            font-size: 0.66rem !important;
+            min-height: 34px !important;
+            padding: 0.36rem 0.14rem !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            line-height: 1.15 !important;
+        }
+
+        .info-grid,
+        .pre-questionnaire-clean-wrap .info-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+            gap: 0.5rem !important;
+            margin: 0.85rem 0 !important;
+        }
+
+        .info-box,
+        .pre-questionnaire-clean-wrap .info-box {
+            min-height: 74px !important;
+            padding: 0.72rem 0.28rem !important;
+            border-radius: 16px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+        }
+
+        .info-box strong { font-size: 0.86rem !important; }
+        .info-box span { font-size: 0.68rem !important; }
+
+        .instruction-row {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 0.62rem !important;
+            margin: 0.9rem 0 !important;
+        }
+
+        .instruction-box {
+            min-height: 80px !important;
+            padding: 0.82rem 0.42rem !important;
+            border-radius: 16px !important;
+        }
+
+        .instruction-box strong { font-size: 0.84rem !important; }
+        .instruction-box span { font-size: 0.74rem !important; }
+
+        div[class*="st-key-consent_action_area"] {
+            margin-top: 0.45rem !important;
+            padding: 0.85rem 0.8rem 0.8rem 0.8rem !important;
+            border-radius: 22px !important;
+        }
+
+        div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] label {
+            width: 100% !important;
+            padding: 0.64rem 0.72rem !important;
+            border-radius: 16px !important;
+            gap: 0.6rem !important;
+        }
+
+        div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] label p {
+            font-size: 0.88rem !important;
+            line-height: 1.28 !important;
+        }
+
+        .result-company { font-size: 1.36rem !important; }
+        .result-meta-row { display: none !important; }
+        .result-score { font-size: 1rem !important; padding: 0.42rem 0.72rem !important; }
+        .result-details-title { font-size: 1.14rem !important; }
+
+        div[class*="st-key-result_assessment_card"] {
+            padding: 1.25rem 1.1rem 0.95rem 1.1rem !important;
+        }
+
+        .result-assessment-inner h3 {
+            font-size: 1.42rem !important;
+        }
+
+        .scale-legend-grid {
+            gap: 0.35rem !important;
+        }
+
+        .scale-legend-box {
+            padding: 0.55rem 0.35rem !important;
+            border-radius: 14px !important;
+        }
+
+        .scale-legend-box strong { font-size: 0.9rem !important; }
+        .scale-legend-box span { font-size: 0.68rem !important; }
+
+        div[class*="st-key-questionnaire_item_card"] {
+            padding: 0.48rem !important;
+            margin-bottom: 0.2rem !important;
+            border-radius: 24px !important;
+        }
+
+        div[class*="st-key-questionnaire_single_item"] {
+            padding: 0.92rem 0.72rem 0.72rem 0.72rem !important;
+            margin-bottom: 0.5rem !important;
+            border-radius: 18px !important;
+        }
+
+        div[class*="st-key-questionnaire_single_item"] div[data-testid="stRadio"] > label p {
+            font-size: 0.98rem !important;
+            line-height: 1.4 !important;
+        }
+
+        div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"] {
+            max-width: 100% !important;
+            margin-top: 0.5rem !important;
+        }
+
+        div[class*="st-key-questionnaire_footer"] {
+            margin-top: -0.1rem !important;
+        }
+
+        div[class*="st-key-back_button_soft"] {
+            margin-top: -0.25rem !important;
+        }
+
+        .questionnaire-hint {
+            margin-top: 0.05rem !important;
+            font-size: 0.86rem !important;
+            line-height: 1.3 !important;
+        }
+
+        .thanks-wrap { margin-top: 2rem !important; }
+        .thanks-title { font-size: 1.45rem !important; }
+        .thanks-text { font-size: 0.94rem !important; }
     }
-
-    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] {
-        max-width: 94% !important;
-    }
-}
-
-/* === FINAL CLEANUP: Consent / Result / Questionnaire === */
-
-/* 1) Screen "Kurz zur Studie" – cleaner Aktionsbereich */
-.st-key-consent_action_area,
-div[class*="st-key-consent_action_area"] {
-    max-width: 620px !important;
-    margin: 0.25rem auto 0 auto !important;
-    padding: 0.85rem 0.95rem 0.35rem 0.95rem !important;
-    background: rgba(255,255,255,0.72) !important;
-    border: 1px solid rgba(49,92,99,0.10) !important;
-    border-radius: 24px !important;
-    box-shadow: 0 12px 30px rgba(49,92,99,0.08) !important;
-}
-
-.st-key-consent_action_area div[data-testid="stCheckbox"],
-div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
-    display: flex !important;
-    justify-content: center !important;
-    margin: 0 0 0.45rem 0 !important;
-}
-
-.st-key-consent_action_area div[data-testid="stCheckbox"] label,
-div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] label {
-    width: auto !important;
-    margin: 0 auto !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 0.6rem !important;
-    font-size: 0.96rem !important;
-    line-height: 1.35 !important;
-    text-align: left !important;
-}
-
-.st-key-consent_action_area .stButton,
-div[class*="st-key-consent_action_area"] .stButton {
-    max-width: 520px !important;
-    margin: 0 auto !important;
-}
-
-/* 2) Ergebnisscreen – Einschätzungsbox sauberer */
-.st-key-result_assessment_card,
-div[class*="st-key-result_assessment_card"] {
-    background: #FFFFFF !important;
-    border: 1px solid rgba(49,92,99,0.12) !important;
-    border-radius: 28px !important;
-    box-shadow: 0 18px 42px rgba(49,92,99,0.10) !important;
-    padding: 1.35rem 1.45rem 1rem 1.45rem !important;
-    margin-top: 0.3rem !important;
-    margin-bottom: 1rem !important;
-}
-
-.result-assessment-inner,
-.result-assessment-inner * {
-    text-align: left !important;
-}
-
-.result-assessment-inner h3 {
-    color: var(--primary) !important;
-    font-size: 1.65rem !important;
-    font-weight: 850 !important;
-    letter-spacing: -0.03em !important;
-    margin-top: 0 !important;
-    margin-bottom: 0.6rem !important;
-}
-
-.result-assessment-inner p {
-    margin-top: 0 !important;
-    margin-bottom: 0.5rem !important;
-    color: var(--text) !important;
-    line-height: 1.45 !important;
-}
-
-.result-radio-label {
-    text-align: left !important;
-    color: var(--text) !important;
-    font-size: 1rem !important;
-    margin-top: 0.05rem !important;
-    margin-bottom: 0.25rem !important;
-}
-
-.st-key-result_assessment_card div[data-testid="stRadio"],
-div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] {
-    margin-top: 0 !important;
-    margin-bottom: 0.15rem !important;
-}
-
-.st-key-result_assessment_card div[role="radiogroup"],
-div[class*="st-key-result_assessment_card"] div[role="radiogroup"] {
-    gap: 0.18rem !important;
-}
-
-.st-key-result_assessment_card div[data-testid="stRadio"] label,
-div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] label {
-    justify-content: flex-start !important;
-}
-
-.st-key-result_assessment_card .stButton,
-div[class*="st-key-result_assessment_card"] .stButton {
-    max-width: 520px !important;
-    margin: 0.3rem auto 0 auto !important;
-}
-
-.result-assessment-hint {
-    text-align: center !important;
-    color: var(--muted) !important;
-    font-size: 0.95rem !important;
-    margin-top: 0.15rem !important;
-    margin-bottom: 0 !important;
-}
-
-/* 3) Abschlussfragebogen – Aussagen lesbarer, klarer getrennt */
-.st-key-questionnaire_item_card,
-div[class*="st-key-questionnaire_item_card"] {
-    background: #FFFFFF !important;
-    border: 1px solid rgba(49,92,99,0.12) !important;
-    border-radius: 26px !important;
-    box-shadow: 0 18px 42px rgba(49,92,99,0.10) !important;
-    padding: 0.8rem 1.15rem 0.35rem 1.15rem !important;
-    margin-bottom: 0.55rem !important;
-}
-
-.st-key-questionnaire_item_card div[data-testid="stRadio"],
-div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] {
-    padding: 0.95rem 0 1rem 0 !important;
-    margin-bottom: 0 !important;
-    border-bottom: 1px solid rgba(49,92,99,0.09) !important;
-}
-
-.st-key-questionnaire_item_card div[data-testid="stRadio"]:last-of-type,
-div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"]:last-of-type {
-    border-bottom: none !important;
-    padding-bottom: 0.4rem !important;
-}
-
-.st-key-questionnaire_item_card div[data-testid="stRadio"] > label,
-div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label {
-    display: block !important;
-    text-align: left !important;
-    margin-bottom: 0.65rem !important;
-}
-
-.st-key-questionnaire_item_card div[data-testid="stRadio"] > label p,
-div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label p {
-    text-align: left !important;
-    width: 100% !important;
-    max-width: none !important;
-    margin: 0 !important;
-    font-size: 1.08rem !important;
-    line-height: 1.5 !important;
-    font-weight: 600 !important;
-    color: var(--text) !important;
-}
-
-.st-key-questionnaire_item_card div[role="radiogroup"],
-div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    gap: 0.35rem !important;
-    max-width: 540px !important;
-    margin: 0 auto !important;
-    padding: 0 0.15rem !important;
-    flex-wrap: nowrap !important;
-}
-
-.st-key-questionnaire_item_card div[role="radiogroup"] label,
-div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] label {
-    margin: 0 !important;
-}
-
-/* Footer enger an die Box ziehen */
-.st-key-questionnaire_footer,
-div[class*="st-key-questionnaire_footer"] {
-    margin-top: 0.05rem !important;
-    padding-top: 0 !important;
-}
-
-.st-key-questionnaire_footer .stButton,
-div[class*="st-key-questionnaire_footer"] .stButton {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-}
-
-.questionnaire-hint {
-    text-align: center !important;
-    color: var(--muted) !important;
-    font-size: 0.95rem !important;
-    margin-top: 0.3rem !important;
-    margin-bottom: 0.1rem !important;
-}
-
-/* =========================================================
-   FINAL FIX: Consent, Result Assessment, Questionnaire Items
-   ========================================================= */
-
-/* Einwilligung: Checkbox als sauberer Consent-Baustein */
-.st-key-consent_action_area,
-div[class*="st-key-consent_action_area"] {
-    max-width: 720px !important;
-    margin: 0.45rem auto 0.7rem auto !important;
-    padding: 1rem 1.1rem 0.9rem 1.1rem !important;
-    background: rgba(255,255,255,0.82) !important;
-    border: 1px solid rgba(49,92,99,0.11) !important;
-    border-radius: 26px !important;
-    box-shadow: 0 14px 34px rgba(49,92,99,0.08) !important;
-}
-
-.st-key-consent_action_area div[data-testid="stCheckbox"],
-div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
-    width: 100% !important;
-    display: flex !important;
-    justify-content: center !important;
-    margin: 0 0 0.75rem 0 !important;
-}
-
-.st-key-consent_action_area div[data-testid="stCheckbox"] label,
-div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] label {
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 0.65rem !important;
-    background: #FFFFFF !important;
-    border: 1px solid rgba(49,92,99,0.12) !important;
-    border-radius: 18px !important;
-    padding: 0.7rem 0.85rem !important;
-    box-shadow: 0 8px 20px rgba(49,92,99,0.06) !important;
-    max-width: 100% !important;
-}
-
-.st-key-consent_action_area div[data-testid="stCheckbox"] label p,
-div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] label p {
-    font-size: 0.95rem !important;
-    line-height: 1.32 !important;
-    margin: 0 !important;
-}
-
-.st-key-consent_action_area input[type="checkbox"],
-div[class*="st-key-consent_action_area"] input[type="checkbox"] {
-    width: 18px !important;
-    height: 18px !important;
-    min-width: 18px !important;
-    min-height: 18px !important;
-}
-
-/* Ergebnisscreen: erste Einschätzung kompakter und proportional sauber */
-.st-key-result_assessment_card,
-div[class*="st-key-result_assessment_card"] {
-    padding: 1.45rem 1.35rem 1.05rem 1.35rem !important;
-    margin-top: 0.55rem !important;
-    margin-bottom: 1.05rem !important;
-}
-
-.result-assessment-inner {
-    margin-bottom: 0.35rem !important;
-}
-
-.result-assessment-inner h3 {
-    font-size: 1.55rem !important;
-    line-height: 1.14 !important;
-    margin: 0 0 0.45rem 0 !important;
-}
-
-.result-assessment-inner p {
-    font-size: 1rem !important;
-    line-height: 1.42 !important;
-    margin: 0 0 0.45rem 0 !important;
-}
-
-.st-key-result_assessment_card div[data-testid="stRadio"],
-div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] {
-    margin-top: 0.15rem !important;
-    margin-bottom: 0.45rem !important;
-}
-
-.st-key-result_assessment_card div[role="radiogroup"],
-div[class*="st-key-result_assessment_card"] div[role="radiogroup"] {
-    gap: 0.16rem !important;
-}
-
-.st-key-result_assessment_card .stButton,
-div[class*="st-key-result_assessment_card"] .stButton {
-    margin-top: 0.35rem !important;
-    margin-bottom: 0.15rem !important;
-}
-
-.result-assessment-hint {
-    margin-top: 0.35rem !important;
-    margin-bottom: 0 !important;
-}
-
-/* Abschlussfragebogen: äußere Karte ruhiger */
-div[class*="st-key-questionnaire_item_card"] {
-    background: #FFFFFF !important;
-    border: 1px solid rgba(49,92,99,0.12) !important;
-    border-radius: 26px !important;
-    box-shadow: 0 18px 42px rgba(49,92,99,0.10) !important;
-    padding: 0.65rem 0.75rem !important;
-    margin-bottom: 0.45rem !important;
-}
-
-/* Jede Aussage als eigener sauberer Mini-Block */
-div[class*="st-key-questionnaire_single_item"] {
-    border-radius: 20px !important;
-    padding: 0.95rem 0.85rem 0.8rem 0.85rem !important;
-    margin-bottom: 0.55rem !important;
-    border: 1px solid rgba(49,92,99,0.08) !important;
-    background: #FFFFFF !important;
-}
-
-div[class*="st-key-questionnaire_single_item"]:nth-of-type(even) {
-    background: #FAF7F2 !important;
-}
-
-div[class*="st-key-questionnaire_single_item"]:last-child {
-    margin-bottom: 0 !important;
-}
-
-/* Aussage linksbündig, Skala zentriert */
-div[class*="st-key-questionnaire_single_item"] div[data-testid="stRadio"] {
-    margin: 0 !important;
-}
-
-div[class*="st-key-questionnaire_single_item"] div[data-testid="stRadio"] > label {
-    display: block !important;
-    text-align: left !important;
-    margin-bottom: 0.7rem !important;
-}
-
-div[class*="st-key-questionnaire_single_item"] div[data-testid="stRadio"] > label p {
-    text-align: left !important;
-    font-size: 1.02rem !important;
-    line-height: 1.45 !important;
-    font-weight: 600 !important;
-    color: var(--text) !important;
-    margin: 0 !important;
-}
-
-div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"] {
-    width: 100% !important;
-    max-width: 540px !important;
-    margin: 0 auto !important;
-    display: grid !important;
-    grid-template-columns: repeat(5, 1fr) !important;
-    justify-items: center !important;
-    align-items: center !important;
-    gap: 0 !important;
-}
-
-div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"] label {
-    justify-content: center !important;
-    margin: 0 !important;
-}
-
-/* Footer direkt näher an Fragebogenbox */
-.st-key-questionnaire_footer,
-div[class*="st-key-questionnaire_footer"] {
-    margin-top: 0.25rem !important;
-    padding-top: 0 !important;
-}
-
-.st-key-questionnaire_footer .stButton,
-div[class*="st-key-questionnaire_footer"] .stButton {
-    margin-top: 0.05rem !important;
-    margin-bottom: 0.35rem !important;
-}
-
-.questionnaire-back-spacer {
-    height: 0.15rem !important;
-}
-
-/* Zurück-Button weiterhin outlined */
-div[class*="st-key-back_button_soft"] button {
-    background: transparent !important;
-    color: #315C63 !important;
-    border: 2px solid rgba(49,92,99,0.55) !important;
-    box-shadow: none !important;
-}
-
-div[class*="st-key-back_button_soft"] button * {
-    color: #315C63 !important;
-}
-
-div[class*="st-key-back_button_soft"] button:hover {
-    background: rgba(49,92,99,0.06) !important;
-    border-color: #315C63 !important;
-    color: #315C63 !important;
-    box-shadow: none !important;
-}
-
-/* Mobile Feinanpassung */
-@media (max-width: 700px) {
-    .st-key-consent_action_area,
-    div[class*="st-key-consent_action_area"] {
-        margin-top: 0.35rem !important;
-        padding: 0.85rem 0.8rem 0.8rem 0.8rem !important;
-        border-radius: 22px !important;
-    }
-
-    .st-key-consent_action_area div[data-testid="stCheckbox"] label,
-    div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] label {
-        padding: 0.62rem 0.7rem !important;
-        border-radius: 16px !important;
-        gap: 0.55rem !important;
-    }
-
-    .st-key-consent_action_area div[data-testid="stCheckbox"] label p,
-    div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] label p {
-        font-size: 0.88rem !important;
-        line-height: 1.28 !important;
-    }
-
-    .st-key-result_assessment_card,
-    div[class*="st-key-result_assessment_card"] {
-        padding: 1.25rem 1.1rem 0.95rem 1.1rem !important;
-    }
-
-    .result-assessment-inner h3 {
-        font-size: 1.42rem !important;
-        margin-bottom: 0.4rem !important;
-    }
-
-    .result-assessment-inner p {
-        font-size: 0.96rem !important;
-        margin-bottom: 0.4rem !important;
-    }
-
-    div[class*="st-key-questionnaire_item_card"] {
-        padding: 0.55rem !important;
-        border-radius: 24px !important;
-    }
-
-    div[class*="st-key-questionnaire_single_item"] {
-        padding: 0.95rem 0.75rem 0.75rem 0.75rem !important;
-        margin-bottom: 0.5rem !important;
-        border-radius: 18px !important;
-    }
-
-    div[class*="st-key-questionnaire_single_item"] div[data-testid="stRadio"] > label p {
-        font-size: 0.98rem !important;
-        line-height: 1.42 !important;
-    }
-
-    div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"] {
-        max-width: 100% !important;
-    }
-
-    .st-key-questionnaire_footer,
-    div[class*="st-key-questionnaire_footer"] {
-        margin-top: 0.1rem !important;
-    }
-
-    .questionnaire-hint {
-        margin-top: 0.25rem !important;
-    }
-}
-
-/* =========================================================
-   FINAL QUESTIONNAIRE ITEM SEPARATION
-   Subtile Hintergrundwechsel pro Aussage
-   ========================================================= */
-
-/* Äußere Fragebogenkarte etwas ruhiger halten */
-div[class*="st-key-questionnaire_item_card"] {
-    background: #FFFFFF !important;
-    border: 1px solid rgba(49, 92, 99, 0.12) !important;
-    border-radius: 26px !important;
-    box-shadow: 0 18px 42px rgba(49, 92, 99, 0.10) !important;
-    padding: 0.55rem !important;
-    margin-bottom: 0.35rem !important;
-}
-
-/* Jede einzelne Aussage als eigener ruhiger Block */
-div[class*="st-key-questionnaire_single_item_odd"],
-div[class*="st-key-questionnaire_single_item_even"] {
-    border-radius: 18px !important;
-    padding: 0.95rem 0.85rem 0.85rem 0.85rem !important;
-    margin-bottom: 0.5rem !important;
-    border: 1px solid rgba(49, 92, 99, 0.07) !important;
-    box-shadow: none !important;
-}
-
-/* Ungerade Aussagen: fast weiß */
-div[class*="st-key-questionnaire_single_item_odd"] {
-    background: rgba(255, 255, 255, 0.86) !important;
-}
-
-/* Gerade Aussagen: minimal warm abgesetzt */
-div[class*="st-key-questionnaire_single_item_even"] {
-    background: rgba(248, 244, 237, 0.86) !important;
-}
-
-/* Letztes Item ohne unnötigen unteren Abstand */
-div[class*="st-key-questionnaire_single_item_odd"]:last-child,
-div[class*="st-key-questionnaire_single_item_even"]:last-child {
-    margin-bottom: 0 !important;
-}
-
-/* Aussage linksbündig für bessere Lesbarkeit */
-div[class*="st-key-questionnaire_single_item_odd"] div[data-testid="stRadio"] > label,
-div[class*="st-key-questionnaire_single_item_even"] div[data-testid="stRadio"] > label {
-    display: block !important;
-    width: 100% !important;
-    text-align: left !important;
-    margin-bottom: 0.65rem !important;
-}
-
-div[class*="st-key-questionnaire_single_item_odd"] div[data-testid="stRadio"] > label p,
-div[class*="st-key-questionnaire_single_item_even"] div[data-testid="stRadio"] > label p {
-    text-align: left !important;
-    font-size: 1.0rem !important;
-    line-height: 1.42 !important;
-    font-weight: 600 !important;
-    color: var(--text) !important;
-    margin: 0 !important;
-}
-
-/* Skala weiterhin zentriert und gleichmäßig */
-div[class*="st-key-questionnaire_single_item_odd"] div[role="radiogroup"],
-div[class*="st-key-questionnaire_single_item_even"] div[role="radiogroup"] {
-    width: 100% !important;
-    max-width: 540px !important;
-    margin: 0.55rem auto 0 auto !important;
-    display: grid !important;
-    grid-template-columns: repeat(5, 1fr) !important;
-    align-items: center !important;
-    justify-items: center !important;
-    gap: 0 !important;
-    padding: 0 !important;
-}
-
-/* Skalenlabels sauber mittig */
-div[class*="st-key-questionnaire_single_item_odd"] div[role="radiogroup"] label,
-div[class*="st-key-questionnaire_single_item_even"] div[role="radiogroup"] label {
-    width: 100% !important;
-    justify-content: center !important;
-    margin: 0 !important;
-    font-size: 0.98rem !important;
-}
-
-/* Keine alten Trennlinien innerhalb der Single-Items */
-div[class*="st-key-questionnaire_single_item_odd"] div[data-testid="stRadio"],
-div[class*="st-key-questionnaire_single_item_even"] div[data-testid="stRadio"] {
-    border-bottom: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-}
-
-/* Footer näher an die Bewertungsbox */
-.st-key-questionnaire_footer,
-div[class*="st-key-questionnaire_footer"] {
-    margin-top: 0.05rem !important;
-    padding-top: 0 !important;
-}
-
-.st-key-questionnaire_footer .stButton,
-div[class*="st-key-questionnaire_footer"] .stButton {
-    margin-top: 0 !important;
-    margin-bottom: 0.25rem !important;
-}
-
-.questionnaire-back-spacer {
-    height: 0.1rem !important;
-}
-
-.questionnaire-hint {
-    margin-top: 0.2rem !important;
-    margin-bottom: 0 !important;
-}
-
-/* =========================================================
-   FINAL OVERRIDE V5
-   Consent Checkbox, Clean Questionnaire, Footer Spacing
-   ========================================================= */
-
-/* ---------------------------------------------------------
-   1) Consent-Screen: doppelte Checkbox entfernen
-   --------------------------------------------------------- */
-
-/* Native Checkbox unsichtbar machen, damit nur Streamlits sichtbare Checkbox bleibt */
-.st-key-consent_action_area input[type="checkbox"],
-div[class*="st-key-consent_action_area"] input[type="checkbox"] {
-    position: absolute !important;
-    opacity: 0 !important;
-    width: 1px !important;
-    height: 1px !important;
-    min-width: 1px !important;
-    min-height: 1px !important;
-    margin: 0 !important;
-    pointer-events: none !important;
-}
-
-/* Consent-Box ruhiger und kompakter */
-.st-key-consent_action_area,
-div[class*="st-key-consent_action_area"] {
-    max-width: 760px !important;
-    margin: 0.55rem auto 0.75rem auto !important;
-    padding: 1rem 1.05rem 0.9rem 1.05rem !important;
-    background: rgba(255,255,255,0.84) !important;
-    border: 1px solid rgba(49,92,99,0.10) !important;
-    border-radius: 26px !important;
-    box-shadow: 0 14px 34px rgba(49,92,99,0.08) !important;
-}
-
-/* Die eigentliche Checkbox-Zeile */
-.st-key-consent_action_area div[data-testid="stCheckbox"],
-div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
-    width: 100% !important;
-    display: flex !important;
-    justify-content: center !important;
-    margin: 0 0 0.7rem 0 !important;
-}
-
-/* Klickbare Consent-Fläche */
-.st-key-consent_action_area div[data-testid="stCheckbox"] label,
-div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] label {
-    width: min(100%, 640px) !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    gap: 0.7rem !important;
-    background: #FFFFFF !important;
-    border: 1px solid rgba(49,92,99,0.12) !important;
-    border-radius: 18px !important;
-    padding: 0.72rem 0.9rem !important;
-    box-shadow: 0 8px 20px rgba(49,92,99,0.055) !important;
-    text-align: left !important;
-}
-
-/* Consent-Text */
-.st-key-consent_action_area div[data-testid="stCheckbox"] label p,
-div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] label p {
-    font-size: 0.94rem !important;
-    line-height: 1.32 !important;
-    margin: 0 !important;
-    color: var(--text) !important;
-}
-
-/* Button näher an Consent-Zeile */
-.st-key-consent_action_area .stButton,
-div[class*="st-key-consent_action_area"] .stButton {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-}
-
-/* ---------------------------------------------------------
-   2) Abschlussfragebogen: clean weiß statt Farbwechsel
-   --------------------------------------------------------- */
-
-/* Äußere Fragebogenkarte */
-div[class*="st-key-questionnaire_item_card"] {
-    background: #FFFFFF !important;
-    border: 1px solid rgba(49,92,99,0.10) !important;
-    border-radius: 26px !important;
-    box-shadow: 0 16px 36px rgba(49,92,99,0.085) !important;
-    padding: 0.55rem !important;
-    margin-bottom: 0.25rem !important;
-}
-
-/* Jede Aussage als eigene weiße Mini-Karte */
-div[class*="st-key-questionnaire_single_item"],
-div[class*="st-key-questionnaire_single_item_odd"],
-div[class*="st-key-questionnaire_single_item_even"] {
-    background: #FFFFFF !important;
-    border: 1px solid rgba(49,92,99,0.09) !important;
-    border-radius: 20px !important;
-    box-shadow: 0 8px 20px rgba(49,92,99,0.045) !important;
-    padding: 0.95rem 0.85rem 0.85rem 0.85rem !important;
-    margin-bottom: 0.55rem !important;
-}
-
-/* Letztes Item ohne Extra-Abstand */
-div[class*="st-key-questionnaire_single_item"]:last-child,
-div[class*="st-key-questionnaire_single_item_odd"]:last-child,
-div[class*="st-key-questionnaire_single_item_even"]:last-child {
-    margin-bottom: 0 !important;
-}
-
-/* Alte alternierende Farbe sicher überschreiben */
-div[class*="st-key-questionnaire_single_item"]:nth-of-type(even),
-div[class*="st-key-questionnaire_single_item_even"] {
-    background: #FFFFFF !important;
-}
-
-/* Aussage linksbündig */
-div[class*="st-key-questionnaire_single_item"] div[data-testid="stRadio"] > label,
-div[class*="st-key-questionnaire_single_item_odd"] div[data-testid="stRadio"] > label,
-div[class*="st-key-questionnaire_single_item_even"] div[data-testid="stRadio"] > label {
-    display: block !important;
-    width: 100% !important;
-    text-align: left !important;
-    margin-bottom: 0.65rem !important;
-}
-
-/* Aussage-Text */
-div[class*="st-key-questionnaire_single_item"] div[data-testid="stRadio"] > label p,
-div[class*="st-key-questionnaire_single_item_odd"] div[data-testid="stRadio"] > label p,
-div[class*="st-key-questionnaire_single_item_even"] div[data-testid="stRadio"] > label p {
-    text-align: left !important;
-    font-size: 1rem !important;
-    line-height: 1.42 !important;
-    font-weight: 600 !important;
-    color: var(--text) !important;
-    margin: 0 !important;
-}
-
-/* Radio-Komponente ohne zusätzliche Trennlinien */
-div[class*="st-key-questionnaire_single_item"] div[data-testid="stRadio"],
-div[class*="st-key-questionnaire_single_item_odd"] div[data-testid="stRadio"],
-div[class*="st-key-questionnaire_single_item_even"] div[data-testid="stRadio"] {
-    margin: 0 !important;
-    padding: 0 !important;
-    border-bottom: none !important;
-}
-
-/* Skala zentriert und gleichmäßig */
-div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"],
-div[class*="st-key-questionnaire_single_item_odd"] div[role="radiogroup"],
-div[class*="st-key-questionnaire_single_item_even"] div[role="radiogroup"] {
-    width: 100% !important;
-    max-width: 540px !important;
-    margin: 0.55rem auto 0 auto !important;
-    display: grid !important;
-    grid-template-columns: repeat(5, 1fr) !important;
-    align-items: center !important;
-    justify-items: center !important;
-    gap: 0 !important;
-    padding: 0 !important;
-}
-
-div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"] label,
-div[class*="st-key-questionnaire_single_item_odd"] div[role="radiogroup"] label,
-div[class*="st-key-questionnaire_single_item_even"] div[role="radiogroup"] label {
-    width: 100% !important;
-    justify-content: center !important;
-    margin: 0 !important;
-    font-size: 0.98rem !important;
-}
-
-/* ---------------------------------------------------------
-   3) Abschlussfragebogen: Button-Abstände korrigieren
-   --------------------------------------------------------- */
-
-/* Footer direkt an die Fragebogenkarte ziehen */
-.st-key-questionnaire_footer,
-div[class*="st-key-questionnaire_footer"] {
-    margin-top: -0.05rem !important;
-    margin-bottom: 0 !important;
-    padding-top: 0 !important;
-}
-
-/* Streamlit-Buttoncontainer im Footer enger setzen */
-.st-key-questionnaire_footer .stButton,
-div[class*="st-key-questionnaire_footer"] .stButton {
-    margin-top: 0 !important;
-    margin-bottom: 0.2rem !important;
-}
-
-/* Zurück-Spacer fast entfernen */
-.questionnaire-back-spacer {
-    height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-/* Zurück-Button näher an Weiter-Button */
-div[class*="st-key-back_button_soft"] {
-    margin-top: -0.15rem !important;
-    margin-bottom: 0 !important;
-    padding-top: 0 !important;
-}
-
-div[class*="st-key-back_button_soft"] .stButton {
-    margin-top: 0 !important;
-    margin-bottom: 0.25rem !important;
-}
-
-/* Hinweis näher an Zurück-Button */
-.questionnaire-hint {
-    margin-top: 0.15rem !important;
-    margin-bottom: 0 !important;
-    padding-top: 0 !important;
-    text-align: center !important;
-}
-
-/* Mobile Feinkorrektur */
-@media (max-width: 700px) {
-    .st-key-consent_action_area,
-    div[class*="st-key-consent_action_area"] {
-        margin-top: 0.45rem !important;
-        padding: 0.85rem 0.8rem 0.8rem 0.8rem !important;
-        border-radius: 22px !important;
-    }
-
-    .st-key-consent_action_area div[data-testid="stCheckbox"] label,
-    div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] label {
-        width: 100% !important;
-        padding: 0.64rem 0.72rem !important;
-        border-radius: 16px !important;
-        gap: 0.6rem !important;
-    }
-
-    .st-key-consent_action_area div[data-testid="stCheckbox"] label p,
-    div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] label p {
-        font-size: 0.88rem !important;
-        line-height: 1.28 !important;
-    }
-
-    div[class*="st-key-questionnaire_item_card"] {
-        padding: 0.48rem !important;
-        margin-bottom: 0.2rem !important;
-        border-radius: 24px !important;
-    }
-
-    div[class*="st-key-questionnaire_single_item"],
-    div[class*="st-key-questionnaire_single_item_odd"],
-    div[class*="st-key-questionnaire_single_item_even"] {
-        padding: 0.92rem 0.72rem 0.72rem 0.72rem !important;
-        margin-bottom: 0.5rem !important;
-        border-radius: 18px !important;
-    }
-
-    div[class*="st-key-questionnaire_single_item"] div[data-testid="stRadio"] > label p,
-    div[class*="st-key-questionnaire_single_item_odd"] div[data-testid="stRadio"] > label p,
-    div[class*="st-key-questionnaire_single_item_even"] div[data-testid="stRadio"] > label p {
-        font-size: 0.98rem !important;
-        line-height: 1.4 !important;
-    }
-
-    div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"],
-    div[class*="st-key-questionnaire_single_item_odd"] div[role="radiogroup"],
-    div[class*="st-key-questionnaire_single_item_even"] div[role="radiogroup"] {
-        max-width: 100% !important;
-        margin-top: 0.5rem !important;
-    }
-
-    .st-key-questionnaire_footer,
-    div[class*="st-key-questionnaire_footer"] {
-        margin-top: -0.1rem !important;
-    }
-
-    div[class*="st-key-back_button_soft"] {
-        margin-top: -0.25rem !important;
-    }
-
-    .questionnaire-hint {
-        margin-top: 0.05rem !important;
-        font-size: 0.86rem !important;
-        line-height: 1.3 !important;
-    }
-}
-
-</style>
+    </style>
     """,
     unsafe_allow_html=True,
 )
+
 
 items = [
     {"id": 1, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Mir ist ein unterstützendes Miteinander im Team wichtig."},
@@ -5373,7 +1540,7 @@ elif st.session_state.phase == "results":
         '<div class="result-score-label">berechnete kulturelle Übereinstimmung</div>'
         '</div>'
         f'<p class="result-profile-text">{escape(top_match["short_profile"])}</p>'
-'<p class="result-method-text">Dieses Ergebnis basiert auf dem Vergleich deiner Antworten mit einem hinterlegten, fiktiven Unternehmensprofil.</p>'
+        '<p class="result-method-text">Dieses Ergebnis basiert auf dem Vergleich deiner Antworten mit einem hinterlegten, fiktiven Unternehmensprofil.</p>'
         '<div class="result-meta-row">'
         '<div class="result-pill">Fiktives Unternehmensprofil</div>'
         f'<div class="result-pill">{escape(top_match["archetype"])}</div>'
@@ -5569,21 +1736,18 @@ elif st.session_state.phase == "questionnaire":
 
     st.markdown(questionnaire_section_html, unsafe_allow_html=True)
 
-    with st.container(key=f"questionnaire_item_card_{current_step}"):
-        for item_index, (key, question_text) in enumerate(current_block["items"], start=1):
-            item_style = "even" if item_index % 2 == 0 else "odd"
+    with st.container(key="questionnaire_item_card"):
+        for key, question_text in current_block["items"]:
+            value = st.radio(
+                question_text,
+                options=[1, 2, 3, 4, 5],
+                index=None,
+                horizontal=True,
+                key=f"{key}_radio",
+            )
 
-            with st.container(key=f"questionnaire_single_item_{item_style}_{current_step}_{item_index}"):
-                value = st.radio(
-                    question_text,
-                    options=[1, 2, 3, 4, 5],
-                    index=None,
-                    horizontal=True,
-                    key=f"{key}_radio",
-                )
-
-                if value is not None:
-                    st.session_state.questionnaire[key] = value
+            if value is not None:
+                st.session_state.questionnaire[key] = value
 
     current_keys = [key for key, _ in current_block["items"]]
     current_complete = all(
@@ -5594,46 +1758,46 @@ elif st.session_state.phase == "questionnaire":
     with st.container(key="questionnaire_footer"):
         primary_left, primary_center, primary_right = st.columns([1.2, 1.7, 1.2])
 
-    with primary_center:
-        if current_step < total_blocks - 1:
-            if st.button(
-                "Weiter",
-                use_container_width=True,
-                disabled=not current_complete,
-                key=f"questionnaire_next_{current_step}",
-            ):
-                st.session_state.questionnaire_step += 1
-                st.rerun()
-        else:
-            if st.button(
-                "Fragebogen absenden",
-                use_container_width=True,
-                disabled=not current_complete,
-                key="questionnaire_submit",
-            ):
-                st.session_state.phase = "end"
-                st.rerun()
-
-    if current_step > 0:
-        st.markdown('<div class="questionnaire-back-spacer"></div>', unsafe_allow_html=True)
-
-        back_left, back_center, back_right = st.columns([1.2, 1.7, 1.2])
-
-        with back_center:
-            with st.container(key=f"back_button_soft_{current_step}"):
+        with primary_center:
+            if current_step < total_blocks - 1:
                 if st.button(
-                    "Zurück",
+                    "Weiter",
                     use_container_width=True,
-                    key=f"questionnaire_back_{current_step}",
+                    disabled=not current_complete,
+                    key=f"questionnaire_next_{current_step}",
                 ):
-                    st.session_state.questionnaire_step -= 1
+                    st.session_state.questionnaire_step += 1
+                    st.rerun()
+            else:
+                if st.button(
+                    "Fragebogen absenden",
+                    use_container_width=True,
+                    disabled=not current_complete,
+                    key="questionnaire_submit",
+                ):
+                    st.session_state.phase = "end"
                     st.rerun()
 
-    if not current_complete:
-        st.markdown(
-            '<div class="questionnaire-hint">Bitte beantworte alle Aussagen in diesem Abschnitt, bevor du fortfährst.</div>',
-            unsafe_allow_html=True,
-        )
+        if current_step > 0:
+            st.markdown('<div class="questionnaire-back-spacer"></div>', unsafe_allow_html=True)
+
+            back_left, back_center, back_right = st.columns([1.2, 1.7, 1.2])
+
+            with back_center:
+                with st.container(key=f"back_button_soft_{current_step}"):
+                    if st.button(
+                        "Zurück",
+                        use_container_width=True,
+                        key=f"questionnaire_back_{current_step}",
+                    ):
+                        st.session_state.questionnaire_step -= 1
+                        st.rerun()
+
+        if not current_complete:
+            st.markdown(
+                '<div class="questionnaire-hint">Bitte beantworte alle Aussagen in diesem Abschnitt, bevor du fortfährst.</div>',
+                unsafe_allow_html=True,
+            )
 
 elif st.session_state.phase == "end":
     if not st.session_state.data_saved:
