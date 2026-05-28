@@ -3507,6 +3507,396 @@ div[data-testid="stRadio"] label:has(input[type="radio"]:checked) span {
     }
 }
 
+/* =========================================================
+   FINAL MOBILE MICRO POLISH V2
+   Letzter Override für mobile Feinausrichtung
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    /* 1. Startscreen: oben minimal weniger Abstand, Button näher an Karte */
+    .block-container {
+        padding-top: 0.55rem !important;
+    }
+
+    .welcome-wrap {
+        padding-top: 0.8rem !important;
+        padding-bottom: 0.45rem !important;
+        margin-bottom: -0.15rem !important;
+    }
+
+    .welcome-card {
+        padding: 1.45rem 1.2rem !important;
+    }
+
+    .start-button-anchor {
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    div:has(.start-button-anchor) + div {
+        margin-top: -0.75rem !important;
+    }
+
+    /* Einheitliche Buttongröße: etwas schmaler, aber weiterhin gut klickbar */
+    .stButton {
+        display: flex !important;
+        justify-content: center !important;
+        margin-top: 0.1rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+
+    .stButton > button {
+        width: min(68vw, 280px) !important;
+        max-width: 280px !important;
+        min-height: 48px !important;
+        padding: 0.55rem 0.95rem !important;
+        font-size: 0.98rem !important;
+        border-radius: 999px !important;
+    }
+
+    /* 2 / 8. Info-Kacheln etwas größer und hochwertiger */
+    .consent-clean-wrap .info-grid,
+    .pre-questionnaire-clean-wrap .info-grid,
+    .screen-frame-soft .info-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 0.5rem !important;
+        margin-top: 0.85rem !important;
+        margin-bottom: 0.85rem !important;
+    }
+
+    .consent-clean-wrap .info-box,
+    .pre-questionnaire-clean-wrap .info-box,
+    .screen-frame-soft .info-box {
+        min-height: 78px !important;
+        padding: 0.72rem 0.34rem !important;
+        border-radius: 16px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+    }
+
+    .consent-clean-wrap .info-box strong,
+    .pre-questionnaire-clean-wrap .info-box strong,
+    .screen-frame-soft .info-box strong {
+        font-size: 0.92rem !important;
+        line-height: 1.15 !important;
+        margin-bottom: 0.16rem !important;
+    }
+
+    .consent-clean-wrap .info-box span,
+    .pre-questionnaire-clean-wrap .info-box span,
+    .screen-frame-soft .info-box span {
+        font-size: 0.74rem !important;
+        line-height: 1.18 !important;
+        overflow-wrap: normal !important;
+        word-break: normal !important;
+        hyphens: none !important;
+    }
+
+    /* 2. Einwilligung: Checkbox-Text kleiner und sauberer zentriert */
+    .st-key-consent_action_area,
+    div[class*="st-key-consent_action_area"] {
+        margin-top: -0.25rem !important;
+        margin-bottom: 0.55rem !important;
+        text-align: center !important;
+    }
+
+    .st-key-consent_action_area div[data-testid="stCheckbox"],
+    div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
+        width: fit-content !important;
+        max-width: 92vw !important;
+        margin: 0 auto 0.2rem auto !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    .st-key-consent_action_area div[data-testid="stCheckbox"] label,
+    div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] label {
+        font-size: 0.9rem !important;
+        line-height: 1.28 !important;
+        text-align: left !important;
+        align-items: center !important;
+    }
+
+    .st-key-consent_action_area div[data-testid="stCheckbox"] label p,
+    div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] label p {
+        font-size: 0.9rem !important;
+        line-height: 1.28 !important;
+    }
+
+    /* 3 / 4. Anleitung: Header mehr Luft, Kacheln größer, Button näher */
+    .study-progress {
+        margin-bottom: 1.15rem !important;
+    }
+
+    .hero-title[style*="So funktioniert die Bewertung"],
+    div.hero-title {
+        margin-top: 0.95rem !important;
+        margin-bottom: 0.95rem !important;
+    }
+
+    .text-card {
+        margin-top: 0.75rem !important;
+        margin-bottom: 0.25rem !important;
+        padding: 1.45rem 1.2rem !important;
+    }
+
+    .instruction-row {
+        gap: 0.62rem !important;
+        margin-top: 0.9rem !important;
+        margin-bottom: 0.9rem !important;
+    }
+
+    .instruction-box {
+        min-height: 80px !important;
+        padding: 0.82rem 0.42rem !important;
+        border-radius: 16px !important;
+    }
+
+    .instruction-box strong {
+        font-size: 0.92rem !important;
+        line-height: 1.16 !important;
+        margin-bottom: 0.2rem !important;
+    }
+
+    .instruction-box span {
+        font-size: 0.8rem !important;
+        line-height: 1.18 !important;
+    }
+
+    .text-card + div .stButton,
+    .text-card ~ div .stButton {
+        margin-top: -0.1rem !important;
+    }
+
+    /* 7. Ergebnis: Box "Deine erste Einschätzung" komplett linksbündig und proportional sauber */
+    .st-key-result_assessment_card,
+    div[class*="st-key-result_assessment_card"] {
+        text-align: left !important;
+        padding: 1.35rem 1.2rem 1.05rem 1.2rem !important;
+        margin-top: 0.75rem !important;
+        margin-bottom: 1.05rem !important;
+    }
+
+    .result-assessment-inner {
+        text-align: left !important;
+        margin: 0 0 0.45rem 0 !important;
+    }
+
+    .result-assessment-inner h3 {
+        text-align: left !important;
+        font-size: 1.4rem !important;
+        line-height: 1.15 !important;
+        margin: 0 0 0.55rem 0 !important;
+    }
+
+    .result-assessment-inner p {
+        text-align: left !important;
+        font-size: 0.98rem !important;
+        line-height: 1.38 !important;
+        margin: 0 0 0.55rem 0 !important;
+    }
+
+    .result-radio-question {
+        text-align: left !important;
+        font-size: 0.98rem !important;
+        line-height: 1.35 !important;
+        margin: 0 0 0.3rem 0 !important;
+        color: var(--text) !important;
+    }
+
+    div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] {
+        margin-top: 0 !important;
+        margin-bottom: 0.55rem !important;
+    }
+
+    div[class*="st-key-result_assessment_card"] div[role="radiogroup"] {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: auto !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        gap: 0.12rem !important;
+    }
+
+    div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] label {
+        justify-content: flex-start !important;
+        text-align: left !important;
+        font-size: 0.98rem !important;
+        line-height: 1.25 !important;
+        min-height: 28px !important;
+    }
+
+    .result-assessment-hint {
+        margin-top: 0.15rem !important;
+        padding-top: 0 !important;
+        font-size: 0.88rem !important;
+        line-height: 1.28 !important;
+        text-align: center !important;
+    }
+
+    /* 9. Abschlussfragebogen: Itembox harmonischer, Aussagen + Skala mittig */
+    .st-key-questionnaire_item_card,
+    div[class*="st-key-questionnaire_item_card"] {
+        padding: 1.3rem 1.05rem 1rem 1.05rem !important;
+        margin-bottom: 0.65rem !important;
+        border-radius: 24px !important;
+    }
+
+    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] {
+        margin-bottom: 1.0rem !important;
+        padding-bottom: 0.75rem !important;
+        border-bottom: 1px solid rgba(49,92,99,0.07) !important;
+    }
+
+    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"]:last-of-type {
+        margin-bottom: 0.15rem !important;
+        padding-bottom: 0 !important;
+        border-bottom: none !important;
+    }
+
+    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        text-align: center !important;
+        margin-bottom: 0.72rem !important;
+    }
+
+    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label p {
+        width: 100% !important;
+        max-width: 94% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
+        font-size: 1.02rem !important;
+        line-height: 1.42 !important;
+        font-weight: 560 !important;
+    }
+
+    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] {
+        width: 100% !important;
+        max-width: 92% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        display: grid !important;
+        grid-template-columns: repeat(5, 1fr) !important;
+        align-items: center !important;
+        justify-items: center !important;
+        gap: 0 !important;
+    }
+
+    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] label {
+        width: 100% !important;
+        justify-content: center !important;
+        font-size: 0.98rem !important;
+        line-height: 1.15 !important;
+    }
+
+    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] label p {
+        font-size: 0.98rem !important;
+        line-height: 1.15 !important;
+    }
+
+    div[data-testid="stRadio"] input[type="radio"],
+    div[role="radiogroup"] input[type="radio"] {
+        width: 15px !important;
+        height: 15px !important;
+        min-width: 15px !important;
+        min-height: 15px !important;
+        margin-right: 0.25rem !important;
+    }
+
+    /* 9. Fragebogen-Footer: Buttons näher und logischer gestapelt */
+    .st-key-questionnaire_footer,
+    div[class*="st-key-questionnaire_footer"] {
+        margin-top: -0.05rem !important;
+        padding-top: 0 !important;
+    }
+
+    .st-key-questionnaire_footer .stButton,
+    div[class*="st-key-questionnaire_footer"] .stButton {
+        margin-top: 0.1rem !important;
+        margin-bottom: 0.45rem !important;
+    }
+
+    .st-key-back_button_soft,
+    div[class*="st-key-back_button_soft"] {
+        margin-top: -0.1rem !important;
+    }
+
+    .st-key-back_button_soft .stButton,
+    div[class*="st-key-back_button_soft"] .stButton {
+        margin-top: 0 !important;
+    }
+
+    .st-key-back_button_soft button,
+    div[class*="st-key-back_button_soft"] button {
+        min-height: 46px !important;
+        background: transparent !important;
+        color: #315C63 !important;
+        border: 2px solid rgba(49, 92, 99, 0.55) !important;
+        box-shadow: none !important;
+    }
+
+    .st-key-back_button_soft button *,
+    div[class*="st-key-back_button_soft"] button * {
+        color: #315C63 !important;
+    }
+
+    .questionnaire-hint {
+        margin-top: 0.25rem !important;
+        font-size: 0.88rem !important;
+        line-height: 1.3 !important;
+    }
+}
+
+@media (max-width: 430px) {
+
+    .stButton > button {
+        width: min(70vw, 275px) !important;
+        max-width: 275px !important;
+    }
+
+    .consent-clean-wrap .info-box,
+    .pre-questionnaire-clean-wrap .info-box,
+    .screen-frame-soft .info-box {
+        min-height: 74px !important;
+        padding-left: 0.28rem !important;
+        padding-right: 0.28rem !important;
+    }
+
+    .consent-clean-wrap .info-box strong,
+    .pre-questionnaire-clean-wrap .info-box strong,
+    .screen-frame-soft .info-box strong {
+        font-size: 0.86rem !important;
+    }
+
+    .consent-clean-wrap .info-box span,
+    .pre-questionnaire-clean-wrap .info-box span,
+    .screen-frame-soft .info-box span {
+        font-size: 0.68rem !important;
+    }
+
+    .instruction-box strong {
+        font-size: 0.84rem !important;
+    }
+
+    .instruction-box span {
+        font-size: 0.74rem !important;
+    }
+
+    div[class*="st-key-questionnaire_item_card"] div[data-testid="stRadio"] > label p {
+        font-size: 0.98rem !important;
+    }
+
+    div[class*="st-key-questionnaire_item_card"] div[role="radiogroup"] {
+        max-width: 94% !important;
+    }
+}
+
 </style>
     """,
     unsafe_allow_html=True,
@@ -4154,14 +4544,15 @@ elif st.session_state.phase == "results":
 
     with st.container(key="result_assessment_card"):
         st.markdown(
-            """
-            <div class="result-assessment-inner">
-                <h3>Deine erste Einschätzung</h3>
-                <p>Wie passend erscheint dir das angezeigte Ergebnis?</p>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+        """
+        <div class="result-assessment-inner">
+            <h3>Deine erste Einschätzung</h3>
+            <p>Wie passend erscheint dir das angezeigte Ergebnis?</p>
+            <div class="result-radio-question">Bitte wähle eine Antwort aus:</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
         self_assessment = st.radio(
             "Bitte wähle eine Antwort aus:",

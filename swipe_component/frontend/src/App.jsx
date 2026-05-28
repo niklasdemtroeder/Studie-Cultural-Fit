@@ -361,7 +361,7 @@ function LikertAssessment({
   onSelect,
 }) {
   const statementFontSize = isSmallMobile ? "18px" : isMobile ? "19px" : "26px";
-  const optionNumberSize = isSmallMobile ? "17px" : isMobile ? "18px" : "24px";
+  const optionNumberSize = isSmallMobile ? "15px" : isMobile ? "16px" : "22px";
 
   return (
     <div
@@ -383,7 +383,7 @@ function LikertAssessment({
           padding: isSmallMobile ? "30px 16px" : isMobile ? "34px 18px" : "34px 30px",
           textAlign: "center",
           color: colors.text,
-          minHeight: isSmallMobile ? "230px" : isMobile ? "255px" : "250px",
+          minHeight: isSmallMobile ? "220px" : isMobile ? "245px" : "250px",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -438,7 +438,7 @@ function LikertAssessment({
                   color: colors.text,
                   fontWeight: 750,
                   fontSize: optionNumberSize,
-                  marginBottom: isMobile ? "5px" : "6px",
+                  marginBottom: isMobile ? "4px" : "6px",
                   lineHeight: 1.1,
                 }}
               >
