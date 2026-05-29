@@ -5768,69 +5768,41 @@ div[class*="st-key-consent_inline_box"] .stButton > button {
 )
 
 items = [
-    {"id": 1, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Mir ist ein unterstützendes Miteinander im Team wichtig."},
+    {"id": 1, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich fühle mich wohl, wenn mein Team zusammenhält."},
+    {"id": 2, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ein gutes Miteinander ist mir wichtiger als interner Wettbewerb."},
+    {"id": 3, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "In Meetings ist mir wichtig, dass offen miteinander gesprochen wird."},
+    {"id": 4, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich treffe Entscheidungen lieber im Austausch mit anderen."},
+    {"id": 5, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Teamharmonie ist mir wichtiger als persönliche Karrierechancen."},
+    {"id": 6, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Spürbarer Zusammenhalt im Team motiviert mich."},
+    {"id": 7, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Bei Problemen suche ich zuerst den Austausch im Team."},
+    {"id": 8, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ein harmonisches Team ist mir wichtiger als maximale Leistung."},
 
-    {"id": 2, "dimension": "Leistung / Wettbewerb", "text": "Klare Ziele und hohe Erwartungen motivieren mich."},
+    {"id": 9, "dimension": "Leistung / Wettbewerb", "text": "Klare Ziele spornen mich im Arbeitsalltag an."},
+    {"id": 10, "dimension": "Leistung / Wettbewerb", "text": "Ein gewisser Wettbewerb bringt mich zu besseren Leistungen."},
+    {"id": 11, "dimension": "Leistung / Wettbewerb", "text": "Ich fühle mich motiviert, wenn meine Erfolge sichtbar werden."},
+    {"id": 12, "dimension": "Leistung / Wettbewerb", "text": "Es motiviert mich, wenn gute Leistung sichtbar anerkannt wird."},
+    {"id": 13, "dimension": "Leistung / Wettbewerb", "text": "Ich möchte beruflich sichtbar erfolgreich sein."},
+    {"id": 14, "dimension": "Leistung / Wettbewerb", "text": "Hohe Anforderungen reizen mich mehr, als sie mich belasten."},
+    {"id": 15, "dimension": "Leistung / Wettbewerb", "text": "Ich finde es motivierend, mich mit anderen zu messen."},
+    {"id": 16, "dimension": "Leistung / Wettbewerb", "text": "Ich arbeite gern in einem Umfeld, das hohe Leistung erwartet."},
 
-    {"id": 3, "dimension": "Innovation / Flexibilität", "text": "Ich bevorzuge ein Arbeitsumfeld, in dem neue Ideen willkommen sind."},
+    {"id": 17, "dimension": "Innovation / Flexibilität", "text": "Ich mag es, wenn neue Ideen schnell ausprobiert werden."},
+    {"id": 18, "dimension": "Innovation / Flexibilität", "text": "Zu viel Routine nimmt mir Energie bei der Arbeit."},
+    {"id": 19, "dimension": "Innovation / Flexibilität", "text": "Ich blühe auf, wenn Dinge weiterentwickelt werden."},
+    {"id": 20, "dimension": "Innovation / Flexibilität", "text": "Wenn sich Pläne ändern, werde ich eher neugierig."},
+    {"id": 21, "dimension": "Innovation / Flexibilität", "text": "In dynamischen Arbeitsumfeldern fühle ich mich lebendig."},
+    {"id": 22, "dimension": "Innovation / Flexibilität", "text": "Unklare Wege stören mich wenig, wenn Neues entstehen kann."},
+    {"id": 23, "dimension": "Innovation / Flexibilität", "text": "Etwas Chaos ist für mich okay, wenn Ideen entstehen."},
+    {"id": 24, "dimension": "Innovation / Flexibilität", "text": "Kreative Freiheit ist mir wichtiger als klare Regeln."},
 
-    {"id": 4, "dimension": "Struktur / Stabilität", "text": "Klare Prozesse und feste Abläufe geben mir Sicherheit."},
-
-    {"id": 5, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ein gutes Arbeitsklima ist mir wichtiger als interner Wettbewerb."},
-
-    {"id": 6, "dimension": "Leistung / Wettbewerb", "text": "Ein gewisser Wettbewerb im Arbeitsalltag spornt mich an."},
-
-    {"id": 7, "dimension": "Innovation / Flexibilität", "text": "Zu viel Routine im Arbeitsalltag empfinde ich als einschränkend."},
-
-    {"id": 8, "dimension": "Struktur / Stabilität", "text": "Ich bevorzuge ein gut organisiertes Arbeitsumfeld."},
-
-    {"id": 9, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Mir ist wichtig, dass im Team offen miteinander kommuniziert wird."},
-
-    {"id": 10, "dimension": "Leistung / Wettbewerb", "text": "Sichtbarer beruflicher Erfolg ist für mich ein wichtiger Antrieb."},
-
-    {"id": 11, "dimension": "Innovation / Flexibilität", "text": "Ich mag es, wenn Dinge ausprobiert und weiterentwickelt werden."},
-
-    {"id": 12, "dimension": "Struktur / Stabilität", "text": "Ein vorhersehbarer Arbeitsalltag ist mir wichtiger als maximale Flexibilität."},
-
-    {"id": 13, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich arbeite lieber in kooperativen als in stark konkurrenzorientierten Teams."},
-
-    {"id": 14, "dimension": "Leistung / Wettbewerb", "text": "Ich arbeite gerne in einem Umfeld, in dem Leistung sichtbar anerkannt wird."},
-
-    {"id": 15, "dimension": "Innovation / Flexibilität", "text": "Veränderung im Arbeitsalltag empfinde ich eher als spannend als belastend."},
-
-    {"id": 16, "dimension": "Struktur / Stabilität", "text": "Feste Strukturen helfen mir dabei, effizient zu arbeiten."},
-
-    {"id": 17, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Mir ist ein harmonisches Teamklima wichtiger als persönliche Karrierechancen."},
-
-    {"id": 18, "dimension": "Leistung / Wettbewerb", "text": "Ich möchte beruflich möglichst erfolgreich sein."},
-
-    {"id": 19, "dimension": "Innovation / Flexibilität", "text": "Ich fühle mich in dynamischen Arbeitsumfeldern wohler als in stark routinierten."},
-
-    {"id": 20, "dimension": "Struktur / Stabilität", "text": "Ich schätze Arbeitsumfelder, in denen Verantwortlichkeiten klar verteilt sind."},
-
-    {"id": 21, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich arbeite am liebsten in einem Umfeld, in dem Zusammenhalt spürbar ist."},
-
-    {"id": 22, "dimension": "Leistung / Wettbewerb", "text": "Hohe Leistungsanforderungen empfinde ich eher als motivierend als belastend."},
-
-    {"id": 23, "dimension": "Innovation / Flexibilität", "text": "Ich nehme unklare Abläufe in Kauf, wenn dadurch mehr Raum für neue Ideen entsteht."},
-
-    {"id": 24, "dimension": "Struktur / Stabilität", "text": "Ich arbeite gerne in einem Umfeld mit eindeutigen Regeln und Zuständigkeiten."},
-
-    {"id": 25, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich lege Wert darauf, dass Kolleginnen und Kollegen sich gegenseitig unterstützen."},
-
-    {"id": 26, "dimension": "Leistung / Wettbewerb", "text": "Ich finde es motivierend, wenn Kolleginnen und Kollegen um die besten Ergebnisse konkurrieren."},
-
-    {"id": 27, "dimension": "Innovation / Flexibilität", "text": "Ich nehme organisatorisches Chaos in Kauf, wenn dadurch Innovation möglich wird."},
-
-    {"id": 28, "dimension": "Struktur / Stabilität", "text": "Zu viel Freiheit im Arbeitsalltag kann die Zusammenarbeit erschweren."},
-
-    {"id": 29, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich arbeite lieber in einem harmonischen Team als in einem leistungsstarken Team mit vielen Konflikten."},
-
-    {"id": 30, "dimension": "Leistung / Wettbewerb", "text": "Karrierechancen sind mir wichtiger als ein besonders familiäres Arbeitsumfeld."},
-
-    {"id": 31, "dimension": "Innovation / Flexibilität", "text": "Klare Regeln sind für mich weniger wichtig als kreative Freiheit."},
-
-    {"id": 32, "dimension": "Struktur / Stabilität", "text": "Ich arbeite lieber nach klaren Vorgaben als völlig eigenständig."},
+    {"id": 25, "dimension": "Struktur / Stabilität", "text": "Klare Abläufe geben mir Sicherheit bei der Arbeit."},
+    {"id": 26, "dimension": "Struktur / Stabilität", "text": "Ich arbeite besser, wenn mein Umfeld gut organisiert ist."},
+    {"id": 27, "dimension": "Struktur / Stabilität", "text": "Planbare Arbeit ist mir lieber als ständige Flexibilität."},
+    {"id": 28, "dimension": "Struktur / Stabilität", "text": "Feste Strukturen helfen mir, fokussiert zu arbeiten."},
+    {"id": 29, "dimension": "Struktur / Stabilität", "text": "Ich arbeite gern, wenn klar ist, wer wofür zuständig ist."},
+    {"id": 30, "dimension": "Struktur / Stabilität", "text": "Eindeutige Regeln erleichtern mir die Zusammenarbeit."},
+    {"id": 31, "dimension": "Struktur / Stabilität", "text": "Zu viel Freiheit macht Arbeit für mich schnell unübersichtlich."},
+    {"id": 32, "dimension": "Struktur / Stabilität", "text": "Klare Vorgaben liegen mir mehr als völlige Eigenständigkeit."},
 ]
 
 companies = {
@@ -5880,61 +5852,61 @@ companies = {
     },
 }
 
-questionnaire_items = [
+closing_questionnaire = [
     {
         "section": "A. Dein Antwortgefühl",
         "items": [
-            ("q1", "Ich habe mich bei meinen Antworten stark auf mein erstes Gefühl verlassen."),
-            ("q2", "Ich habe lange über meine Antworten nachgedacht."),
-            ("q3", "Die Beantwortung fiel mir eher intuitiv als analytisch."),
-            ("q4", "Ich musste meine Antworten stark abwägen."),
+            ("q1", "Ich habe oft aus dem ersten Gefühl heraus geantwortet."),
+            ("q2", "Ich habe über viele Antworten länger nachgedacht."),
+            ("q3", "Meine Antworten kamen eher spontan."),
+            ("q4", "Bei vielen Aussagen musste ich mich bewusst entscheiden."),
         ],
     },
     {
-        "section": "B. Bewusste Antwortsteuerung",
+        "section": "B. Bewusstes Antwortverhalten",
         "items": [
-            ("q5", "Ich habe meine Antworten bewusst gesteuert."),
-            ("q6", "Ich habe während der Bearbeitung stark darauf geachtet, wie ich antworte."),
+            ("q5", "Ich habe meine Antworten bewusst überlegt."),
+            ("q6", "Ich habe während der Bearbeitung genau darauf geachtet, wie ich antworte."),
         ],
     },
     {
         "section": "C. Wirkung der eigenen Antworten",
         "items": [
-            ("q7", "Ich habe darauf geachtet, mit meinen Antworten einen möglichst positiven Eindruck zu vermitteln."),
-            ("q8", "Bei meinen Antworten war mir wichtig, wie diese auf andere wirken könnten."),
-            ("q9", "Ich habe eher so geantwortet, wie es gesellschaftlich erwünscht oder positiv bewertet wird."),
-            ("q10", "Ich habe versucht, mich durch meine Antworten möglichst vorteilhaft darzustellen."),
+            ("q7", "Ich wollte mit meinen Antworten einen möglichst positiven Eindruck machen."),
+            ("q8", "Bei manchen Antworten habe ich überlegt, wie sie auf andere wirken könnten."),
+            ("q9", "Ich habe manchmal so geantwortet, wie es besonders positiv wirken könnte."),
+            ("q10", "Ich wollte mich durch meine Antworten möglichst vorteilhaft darstellen."),
         ],
     },
     {
         "section": "D. Bedienung und Verständlichkeit",
         "items": [
             ("q11", "Das Verfahren war einfach zu bedienen."),
-            ("q12", "Die Bearbeitung war für mich verständlich und nachvollziehbar."),
-            ("q13", "Ich fand die Beantwortung insgesamt angenehm."),
-            ("q14", "Das Verfahren wirkte auf mich unnötig kompliziert."),
+            ("q12", "Ich habe gut verstanden, was ich tun sollte."),
+            ("q13", "Die Beantwortung war für mich angenehm."),
+            ("q14", "Das Verfahren war unnötig kompliziert."),
         ],
     },
     {
         "section": "E. Einschätzung des Ergebnisses",
         "items": [
             ("q15", "Das angezeigte Ergebnis passt gut zu mir."),
-            ("q16", "Das Ergebnis wirkt auf mich plausibel."),
-            ("q17", "Ich kann gut nachvollziehen, warum mir dieses Unternehmen als bestes Match angezeigt wurde."),
+            ("q16", "Das Ergebnis wirkt auf mich nachvollziehbar."),
+            ("q17", "Ich verstehe, warum mir dieses Unternehmen angezeigt wurde."),
         ],
     },
     {
         "section": "F. Interesse am Unternehmen",
         "items": [
-            ("q18", "Ich würde mich näher über das angezeigte Unternehmen informieren."),
-            ("q19", "Ich könnte mir vorstellen, die Karriereseite des angezeigten Unternehmens anzusehen."),
-            ("q20", "Ich könnte mir grundsätzlich vorstellen, mich bei diesem Unternehmen zu bewerben."),
+            ("q18", "Ich würde mehr über das angezeigte Unternehmen erfahren wollen."),
+            ("q19", "Ich könnte mir vorstellen, die Karriereseite des Unternehmens anzusehen."),
+            ("q20", "Ich könnte mir grundsätzlich vorstellen, mich dort zu bewerben."),
         ],
     },
     {
         "section": "G. Gesamtbewertung",
         "items": [
-            ("q21", "Insgesamt halte ich dieses Verfahren für eine sinnvolle Möglichkeit, kulturelle Passung im Recruiting sichtbar zu machen."),
+            ("q21", "Insgesamt finde ich das Verfahren sinnvoll, um kulturelle Passung im Recruiting sichtbar zu machen."),
         ],
     },
 ]
