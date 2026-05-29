@@ -19,6 +19,158 @@ from swipe_component import swipe_component
 
 st.set_page_config(page_title="Cultural Fit Prototype", layout="centered")
 
+st.markdown(
+    """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    
+
+/* =========================================================
+   FINAL CONSENT INTEGRATION
+   Checkbox + Button in die weiße Hauptkarte integrieren
+   ========================================================= */
+
+.st-key-consent_integrated_card,
+div[class*="st-key-consent_integrated_card"] {
+    width: min(820px, 100%) !important;
+    margin: 0 auto 0.95rem auto !important;
+    background:
+        radial-gradient(circle at top left, rgba(49,92,99,0.05), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(242,184,114,0.08), transparent 34%),
+        rgba(255,255,255,0.96) !important;
+    border: 1px solid rgba(49,92,99,0.12) !important;
+    border-radius: 30px !important;
+    box-shadow: 0 20px 48px rgba(49,92,99,0.11) !important;
+    padding: 1.75rem 1.85rem 1.65rem 1.85rem !important;
+    text-align: center !important;
+    line-height: 1.62 !important;
+}
+
+.st-key-consent_integrated_card .hero-title,
+div[class*="st-key-consent_integrated_card"] .hero-title,
+.st-key-consent_integrated_card .hero-subtitle,
+div[class*="st-key-consent_integrated_card"] .hero-subtitle {
+    text-align: center !important;
+}
+
+.st-key-consent_integrated_card p,
+div[class*="st-key-consent_integrated_card"] p {
+    text-align: center !important;
+    margin-bottom: 0.85rem !important;
+}
+
+.st-key-consent_integrated_card .info-grid,
+div[class*="st-key-consent_integrated_card"] .info-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    margin-top: 0.9rem !important;
+    margin-bottom: 0.95rem !important;
+}
+
+.st-key-consent_inline_box,
+div[class*="st-key-consent_inline_box"] {
+    width: min(640px, 100%) !important;
+    margin: 1.05rem auto 1rem auto !important;
+    padding: 0.95rem 1rem 1rem 1rem !important;
+    background: rgba(248,244,237,0.72) !important;
+    border: 1px solid rgba(49,92,99,0.12) !important;
+    border-radius: 22px !important;
+    box-shadow: 0 10px 26px rgba(49,92,99,0.06) !important;
+}
+
+.st-key-consent_inline_box div[data-testid="stCheckbox"],
+div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] {
+    display: flex !important;
+    justify-content: center !important;
+    margin: 0 0 0.55rem 0 !important;
+}
+
+.st-key-consent_inline_box div[data-testid="stCheckbox"] label,
+div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.6rem !important;
+    width: auto !important;
+    max-width: 100% !important;
+    text-align: left !important;
+}
+
+.st-key-consent_inline_box div[data-testid="stCheckbox"] label p,
+div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label p {
+    margin: 0 !important;
+    font-size: 0.95rem !important;
+    line-height: 1.32 !important;
+    text-align: left !important;
+}
+
+.st-key-consent_inline_box input[type="checkbox"],
+div[class*="st-key-consent_inline_box"] input[type="checkbox"] {
+    appearance: auto !important;
+    -webkit-appearance: checkbox !important;
+    accent-color: var(--success) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    width: 18px !important;
+    height: 18px !important;
+    min-width: 18px !important;
+    min-height: 18px !important;
+    margin: 0 !important;
+}
+
+.consent-contact {
+    margin-top: 0.2rem !important;
+    margin-bottom: 0 !important;
+    color: var(--text) !important;
+}
+
+@media (max-width: 700px) {
+    .st-key-consent_integrated_card,
+    div[class*="st-key-consent_integrated_card"] {
+        border-radius: 24px !important;
+        padding: 1.25rem 1rem 1.15rem 1rem !important;
+        margin-bottom: 0.65rem !important;
+    }
+
+    .st-key-consent_integrated_card .info-grid,
+    div[class*="st-key-consent_integrated_card"] .info-grid {
+        gap: 0.5rem !important;
+        margin-top: 0.8rem !important;
+        margin-bottom: 0.85rem !important;
+    }
+
+    .st-key-consent_integrated_card .info-box,
+    div[class*="st-key-consent_integrated_card"] .info-box {
+        min-height: 74px !important;
+        padding: 0.72rem 0.34rem !important;
+    }
+
+    .st-key-consent_inline_box,
+    div[class*="st-key-consent_inline_box"] {
+        width: 100% !important;
+        border-radius: 18px !important;
+        padding: 0.78rem 0.72rem 0.85rem 0.72rem !important;
+        margin: 0.85rem auto 0.85rem auto !important;
+    }
+
+    .st-key-consent_inline_box div[data-testid="stCheckbox"] label p,
+    div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label p {
+        font-size: 0.88rem !important;
+        line-height: 1.28 !important;
+    }
+
+    .st-key-consent_inline_box .stButton,
+    div[class*="st-key-consent_inline_box"] .stButton {
+        margin-top: 0.15rem !important;
+        margin-bottom: 0 !important;
+    }
+}
+
+</style>
+    """,
+    unsafe_allow_html=True,
+)
+
 SHOW_ADMIN_PANEL = False
 CSV_FILEPATH = "responses.csv"
 DEBUG_MODE = False
@@ -4454,288 +4606,6 @@ div[class*="st-key-questionnaire_footer"] .stButton {
     margin-bottom: 0 !important;
 }
 
-/* =========================================================
-   FINAL OVERRIDE V5
-   Consent Checkbox, Clean Questionnaire, Footer Spacing
-   ========================================================= */
-
-/* ---------------------------------------------------------
-   1) Consent-Screen: doppelte Checkbox entfernen
-   --------------------------------------------------------- */
-
-/* Native Checkbox unsichtbar machen, damit nur Streamlits sichtbare Checkbox bleibt */
-.st-key-consent_action_area input[type="checkbox"],
-div[class*="st-key-consent_action_area"] input[type="checkbox"] {
-    position: absolute !important;
-    opacity: 0 !important;
-    width: 1px !important;
-    height: 1px !important;
-    min-width: 1px !important;
-    min-height: 1px !important;
-    margin: 0 !important;
-    pointer-events: none !important;
-}
-
-/* Consent-Box ruhiger und kompakter */
-.st-key-consent_action_area,
-div[class*="st-key-consent_action_area"] {
-    max-width: 760px !important;
-    margin: 0.55rem auto 0.75rem auto !important;
-    padding: 1rem 1.05rem 0.9rem 1.05rem !important;
-    background: rgba(255,255,255,0.84) !important;
-    border: 1px solid rgba(49,92,99,0.10) !important;
-    border-radius: 26px !important;
-    box-shadow: 0 14px 34px rgba(49,92,99,0.08) !important;
-}
-
-/* Die eigentliche Checkbox-Zeile */
-.st-key-consent_action_area div[data-testid="stCheckbox"],
-div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] {
-    width: 100% !important;
-    display: flex !important;
-    justify-content: center !important;
-    margin: 0 0 0.7rem 0 !important;
-}
-
-/* Klickbare Consent-Fläche */
-.st-key-consent_action_area div[data-testid="stCheckbox"] label,
-div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] label {
-    width: min(100%, 640px) !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    gap: 0.7rem !important;
-    background: #FFFFFF !important;
-    border: 1px solid rgba(49,92,99,0.12) !important;
-    border-radius: 18px !important;
-    padding: 0.72rem 0.9rem !important;
-    box-shadow: 0 8px 20px rgba(49,92,99,0.055) !important;
-    text-align: left !important;
-}
-
-/* Consent-Text */
-.st-key-consent_action_area div[data-testid="stCheckbox"] label p,
-div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] label p {
-    font-size: 0.94rem !important;
-    line-height: 1.32 !important;
-    margin: 0 !important;
-    color: var(--text) !important;
-}
-
-/* Button näher an Consent-Zeile */
-.st-key-consent_action_area .stButton,
-div[class*="st-key-consent_action_area"] .stButton {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-}
-
-/* ---------------------------------------------------------
-   2) Abschlussfragebogen: clean weiß statt Farbwechsel
-   --------------------------------------------------------- */
-
-/* Äußere Fragebogenkarte */
-div[class*="st-key-questionnaire_item_card"] {
-    background: #FFFFFF !important;
-    border: 1px solid rgba(49,92,99,0.10) !important;
-    border-radius: 26px !important;
-    box-shadow: 0 16px 36px rgba(49,92,99,0.085) !important;
-    padding: 0.55rem !important;
-    margin-bottom: 0.25rem !important;
-}
-
-/* Jede Aussage als eigene weiße Mini-Karte */
-div[class*="st-key-questionnaire_single_item"],
-div[class*="st-key-questionnaire_single_item_odd"],
-div[class*="st-key-questionnaire_single_item_even"] {
-    background: #FFFFFF !important;
-    border: 1px solid rgba(49,92,99,0.09) !important;
-    border-radius: 20px !important;
-    box-shadow: 0 8px 20px rgba(49,92,99,0.045) !important;
-    padding: 0.95rem 0.85rem 0.85rem 0.85rem !important;
-    margin-bottom: 0.55rem !important;
-}
-
-/* Letztes Item ohne Extra-Abstand */
-div[class*="st-key-questionnaire_single_item"]:last-child,
-div[class*="st-key-questionnaire_single_item_odd"]:last-child,
-div[class*="st-key-questionnaire_single_item_even"]:last-child {
-    margin-bottom: 0 !important;
-}
-
-/* Alte alternierende Farbe sicher überschreiben */
-div[class*="st-key-questionnaire_single_item"]:nth-of-type(even),
-div[class*="st-key-questionnaire_single_item_even"] {
-    background: #FFFFFF !important;
-}
-
-/* Aussage linksbündig */
-div[class*="st-key-questionnaire_single_item"] div[data-testid="stRadio"] > label,
-div[class*="st-key-questionnaire_single_item_odd"] div[data-testid="stRadio"] > label,
-div[class*="st-key-questionnaire_single_item_even"] div[data-testid="stRadio"] > label {
-    display: block !important;
-    width: 100% !important;
-    text-align: left !important;
-    margin-bottom: 0.65rem !important;
-}
-
-/* Aussage-Text */
-div[class*="st-key-questionnaire_single_item"] div[data-testid="stRadio"] > label p,
-div[class*="st-key-questionnaire_single_item_odd"] div[data-testid="stRadio"] > label p,
-div[class*="st-key-questionnaire_single_item_even"] div[data-testid="stRadio"] > label p {
-    text-align: left !important;
-    font-size: 1rem !important;
-    line-height: 1.42 !important;
-    font-weight: 600 !important;
-    color: var(--text) !important;
-    margin: 0 !important;
-}
-
-/* Radio-Komponente ohne zusätzliche Trennlinien */
-div[class*="st-key-questionnaire_single_item"] div[data-testid="stRadio"],
-div[class*="st-key-questionnaire_single_item_odd"] div[data-testid="stRadio"],
-div[class*="st-key-questionnaire_single_item_even"] div[data-testid="stRadio"] {
-    margin: 0 !important;
-    padding: 0 !important;
-    border-bottom: none !important;
-}
-
-/* Skala zentriert und gleichmäßig */
-div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"],
-div[class*="st-key-questionnaire_single_item_odd"] div[role="radiogroup"],
-div[class*="st-key-questionnaire_single_item_even"] div[role="radiogroup"] {
-    width: 100% !important;
-    max-width: 540px !important;
-    margin: 0.55rem auto 0 auto !important;
-    display: grid !important;
-    grid-template-columns: repeat(5, 1fr) !important;
-    align-items: center !important;
-    justify-items: center !important;
-    gap: 0 !important;
-    padding: 0 !important;
-}
-
-div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"] label,
-div[class*="st-key-questionnaire_single_item_odd"] div[role="radiogroup"] label,
-div[class*="st-key-questionnaire_single_item_even"] div[role="radiogroup"] label {
-    width: 100% !important;
-    justify-content: center !important;
-    margin: 0 !important;
-    font-size: 0.98rem !important;
-}
-
-/* ---------------------------------------------------------
-   3) Abschlussfragebogen: Button-Abstände korrigieren
-   --------------------------------------------------------- */
-
-/* Footer direkt an die Fragebogenkarte ziehen */
-.st-key-questionnaire_footer,
-div[class*="st-key-questionnaire_footer"] {
-    margin-top: -0.05rem !important;
-    margin-bottom: 0 !important;
-    padding-top: 0 !important;
-}
-
-/* Streamlit-Buttoncontainer im Footer enger setzen */
-.st-key-questionnaire_footer .stButton,
-div[class*="st-key-questionnaire_footer"] .stButton {
-    margin-top: 0 !important;
-    margin-bottom: 0.2rem !important;
-}
-
-/* Zurück-Spacer fast entfernen */
-.questionnaire-back-spacer {
-    height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-/* Zurück-Button näher an Weiter-Button */
-div[class*="st-key-back_button_soft"] {
-    margin-top: -0.15rem !important;
-    margin-bottom: 0 !important;
-    padding-top: 0 !important;
-}
-
-div[class*="st-key-back_button_soft"] .stButton {
-    margin-top: 0 !important;
-    margin-bottom: 0.25rem !important;
-}
-
-/* Hinweis näher an Zurück-Button */
-.questionnaire-hint {
-    margin-top: 0.15rem !important;
-    margin-bottom: 0 !important;
-    padding-top: 0 !important;
-    text-align: center !important;
-}
-
-/* Mobile Feinkorrektur */
-@media (max-width: 700px) {
-    .st-key-consent_action_area,
-    div[class*="st-key-consent_action_area"] {
-        margin-top: 0.45rem !important;
-        padding: 0.85rem 0.8rem 0.8rem 0.8rem !important;
-        border-radius: 22px !important;
-    }
-
-    .st-key-consent_action_area div[data-testid="stCheckbox"] label,
-    div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] label {
-        width: 100% !important;
-        padding: 0.64rem 0.72rem !important;
-        border-radius: 16px !important;
-        gap: 0.6rem !important;
-    }
-
-    .st-key-consent_action_area div[data-testid="stCheckbox"] label p,
-    div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] label p {
-        font-size: 0.88rem !important;
-        line-height: 1.28 !important;
-    }
-
-    div[class*="st-key-questionnaire_item_card"] {
-        padding: 0.48rem !important;
-        margin-bottom: 0.2rem !important;
-        border-radius: 24px !important;
-    }
-
-    div[class*="st-key-questionnaire_single_item"],
-    div[class*="st-key-questionnaire_single_item_odd"],
-    div[class*="st-key-questionnaire_single_item_even"] {
-        padding: 0.92rem 0.72rem 0.72rem 0.72rem !important;
-        margin-bottom: 0.5rem !important;
-        border-radius: 18px !important;
-    }
-
-    div[class*="st-key-questionnaire_single_item"] div[data-testid="stRadio"] > label p,
-    div[class*="st-key-questionnaire_single_item_odd"] div[data-testid="stRadio"] > label p,
-    div[class*="st-key-questionnaire_single_item_even"] div[data-testid="stRadio"] > label p {
-        font-size: 0.98rem !important;
-        line-height: 1.4 !important;
-    }
-
-    div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"],
-    div[class*="st-key-questionnaire_single_item_odd"] div[role="radiogroup"],
-    div[class*="st-key-questionnaire_single_item_even"] div[role="radiogroup"] {
-        max-width: 100% !important;
-        margin-top: 0.5rem !important;
-    }
-
-    .st-key-questionnaire_footer,
-    div[class*="st-key-questionnaire_footer"] {
-        margin-top: -0.1rem !important;
-    }
-
-    div[class*="st-key-back_button_soft"] {
-        margin-top: -0.25rem !important;
-    }
-
-    .questionnaire-hint {
-        margin-top: 0.05rem !important;
-        font-size: 0.86rem !important;
-        line-height: 1.3 !important;
-    }
-}
-
 </style>
     """,
     unsafe_allow_html=True,
@@ -5216,34 +5086,30 @@ if st.session_state.phase == "welcome":
             st.rerun()
 
 elif st.session_state.phase == "consent":
-    consent_html = (
-        '<div class="consent-clean-wrap screen-fade">'
-        '<div class="screen-card-info">'
-        '<div class="hero-title">Kurz zur Studie</div>'
-        '<div class="hero-subtitle">Bevor es losgeht, erhältst du die wichtigsten Informationen zur Teilnahme.</div>'
-        '<p>Gleich geht es los. Du bewertest kurze Aussagen zu Arbeitsumfeldern. Es geht zum Beispiel um Teamarbeit, Leistung, Veränderung und klare Strukturen.</p>'
-        '<p>Es gibt keine richtigen oder falschen Antworten. Wichtig ist nur, was zu dir passt.</p>'
-        '<div class="info-grid">'
-        '<div class="info-box"><strong>Dauer</strong><span>ca. 8–10 Minuten</span></div>'
-        '<div class="info-box"><strong>Anonym</strong><span>Ohne Personendaten</span></div>'
-        '<div class="info-box"><strong>Freiwillig</strong><span>Abbruch jederzeit möglich</span></div>'
-        '</div>'
-        '<p>Deine Angaben werden <strong>anonym</strong> gespeichert und nur für diese Masterarbeit ausgewertet. Die Teilnahme ist <strong>freiwillig</strong>. Du kannst die Studie jederzeit abbrechen, ohne dass dir dadurch Nachteile entstehen.</p>'
-        '<p>Wenn du die Checkbox unten aktivierst und auf „Studie beginnen“ klickst, stimmst du der Teilnahme zu.</p>'
-        '<p><strong>Bei Fragen kannst du mich kontaktieren:</strong><br>'
-        'Niklas Demtröder - niklas.demtroeder@iu-study.org</p>'
-        '</div>'
-        '</div>'
-    )
+    with st.container(key="consent_integrated_card"):
+        st.markdown(
+            """
+            <div class="screen-fade">
+                <div class="hero-title">Kurz zur Studie</div>
+                <div class="hero-subtitle">Bevor es losgeht, erhältst du die wichtigsten Informationen zur Teilnahme.</div>
 
-    st.markdown(consent_html, unsafe_allow_html=True)
+                <p>Gleich geht es los. Du bewertest kurze Aussagen zu Arbeitsumfeldern. Es geht zum Beispiel um Teamarbeit, Leistung, Veränderung und klare Strukturen.</p>
+                <p>Es gibt keine richtigen oder falschen Antworten. Wichtig ist nur, was zu dir passt.</p>
 
-    st.markdown('<div class="consent-spacing"></div>', unsafe_allow_html=True)
+                <div class="info-grid">
+                    <div class="info-box"><strong>Dauer</strong><span>ca. 8–10 Minuten</span></div>
+                    <div class="info-box"><strong>Anonym</strong><span>Ohne Personendaten</span></div>
+                    <div class="info-box"><strong>Freiwillig</strong><span>Abbruch jederzeit möglich</span></div>
+                </div>
 
-    with st.container(key="consent_action_area"):
-        left, center, right = st.columns([0.85, 2.3, 0.85])
+                <p>Deine Angaben werden <strong>anonym</strong> gespeichert und nur für diese Masterarbeit ausgewertet. Die Teilnahme ist <strong>freiwillig</strong>. Du kannst die Studie jederzeit abbrechen, ohne dass dir dadurch Nachteile entstehen.</p>
+                <p>Wenn du die Checkbox aktivierst und auf „Studie beginnen“ klickst, stimmst du der Teilnahme zu.</p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
-        with center:
+        with st.container(key="consent_inline_box"):
             consent = st.checkbox(
                 "Ich stimme der Teilnahme an der Studie zu.",
                 key="consent_checkbox_unique",
@@ -5258,7 +5124,17 @@ elif st.session_state.phase == "consent":
                 st.session_state.start_time = datetime.utcnow()
                 st.session_state.phase = "instructions"
                 st.rerun()
-            
+
+        st.markdown(
+            """
+            <p class="consent-contact">
+                <strong>Bei Fragen kannst du mich kontaktieren:</strong><br>
+                Niklas Demtröder - niklas.demtroeder@iu-study.org
+            </p>
+            """,
+            unsafe_allow_html=True,
+        )
+
 elif st.session_state.phase == "instructions":
     render_progress(0)
 
@@ -5583,25 +5459,25 @@ elif st.session_state.phase == "questionnaire":
     with st.container(key="questionnaire_footer"):
         primary_left, primary_center, primary_right = st.columns([1.2, 1.7, 1.2])
 
-    with primary_center:
-        if current_step < total_blocks - 1:
-            if st.button(
-                "Weiter",
-                use_container_width=True,
-                disabled=not current_complete,
-                key=f"questionnaire_next_{current_step}",
-            ):
-                st.session_state.questionnaire_step += 1
-                st.rerun()
-        else:
-            if st.button(
-                "Fragebogen absenden",
-                use_container_width=True,
-                disabled=not current_complete,
-                key="questionnaire_submit",
-            ):
-                st.session_state.phase = "end"
-                st.rerun()
+        with primary_center:
+            if current_step < total_blocks - 1:
+                if st.button(
+                    "Weiter",
+                    use_container_width=True,
+                    disabled=not current_complete,
+                    key=f"questionnaire_next_{current_step}",
+                ):
+                    st.session_state.questionnaire_step += 1
+                    st.rerun()
+            else:
+                if st.button(
+                    "Fragebogen absenden",
+                    use_container_width=True,
+                    disabled=not current_complete,
+                    key="questionnaire_submit",
+                ):
+                    st.session_state.phase = "end"
+                    st.rerun()
 
     if current_step > 0:
         st.markdown('<div class="questionnaire-back-spacer"></div>', unsafe_allow_html=True)
