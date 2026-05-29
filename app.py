@@ -5086,28 +5086,26 @@ if st.session_state.phase == "welcome":
             st.rerun()
 
 elif st.session_state.phase == "consent":
+    consent_html = (
+        '<div class="screen-fade">'
+        '<div class="hero-title">Kurz zur Studie</div>'
+        '<div class="hero-subtitle">Bevor es losgeht, erhältst du die wichtigsten Informationen zur Teilnahme.</div>'
+
+        '<p>Gleich geht es los. Du bewertest kurze Aussagen zu Arbeitsumfeldern. Es geht zum Beispiel um Teamarbeit, Leistung, Veränderung und klare Strukturen.</p>'
+        '<p>Es gibt keine richtigen oder falschen Antworten. Wichtig ist nur, was zu dir passt.</p>'
+
+        '<div class="info-grid">'
+        '<div class="info-box"><strong>Dauer</strong><span>ca. 8–10 Minuten</span></div>'
+        '<div class="info-box"><strong>Anonym</strong><span>Ohne Personendaten</span></div>'
+        '<div class="info-box"><strong>Freiwillig</strong><span>Abbruch jederzeit möglich</span></div>'
+        '</div>'
+
+        '<p>Deine Angaben werden <strong>anonym</strong> gespeichert und nur für diese Masterarbeit ausgewertet. Die Teilnahme ist <strong>freiwillig</strong>. Du kannst die Studie jederzeit abbrechen, ohne dass dir dadurch Nachteile entstehen.</p>'
+        '<p>Wenn du die Checkbox aktivierst und auf „Studie beginnen“ klickst, stimmst du der Teilnahme zu.</p>'
+    )
+
     with st.container(key="consent_integrated_card"):
-        st.markdown(
-            dedent("""
-            <div class="screen-fade">
-                <div class="hero-title">Kurz zur Studie</div>
-                <div class="hero-subtitle">Bevor es losgeht, erhältst du die wichtigsten Informationen zur Teilnahme.</div>
-
-                <p>Gleich geht es los. Du bewertest kurze Aussagen zu Arbeitsumfeldern. Es geht zum Beispiel um Teamarbeit, Leistung, Veränderung und klare Strukturen.</p>
-                <p>Es gibt keine richtigen oder falschen Antworten. Wichtig ist nur, was zu dir passt.</p>
-
-                <div class="info-grid">
-                    <div class="info-box"><strong>Dauer</strong><span>ca. 8–10 Minuten</span></div>
-                    <div class="info-box"><strong>Anonym</strong><span>Ohne Personendaten</span></div>
-                    <div class="info-box"><strong>Freiwillig</strong><span>Abbruch jederzeit möglich</span></div>
-                </div>
-
-                <p>Deine Angaben werden <strong>anonym</strong> gespeichert und nur für diese Masterarbeit ausgewertet. Die Teilnahme ist <strong>freiwillig</strong>. Du kannst die Studie jederzeit abbrechen, ohne dass dir dadurch Nachteile entstehen.</p>
-                <p>Wenn du die Checkbox aktivierst und auf „Studie beginnen“ klickst, stimmst du der Teilnahme zu.</p>
-            </div>
-            """).strip(),
-            unsafe_allow_html=True,
-        )
+        st.markdown(consent_html, unsafe_allow_html=True)
 
         with st.container(key="consent_inline_box"):
             consent = st.checkbox(
@@ -5126,12 +5124,10 @@ elif st.session_state.phase == "consent":
                 st.rerun()
 
         st.markdown(
-            dedent("""
-            <p class="consent-contact">
-                <strong>Bei Fragen kannst du mich kontaktieren:</strong><br>
-                Niklas Demtröder - niklas.demtroeder@iu-study.org
-            </p>
-            """).strip(),
+            '<p class="consent-contact">'
+            '<strong>Bei Fragen kannst du mich kontaktieren:</strong><br>'
+            'Niklas Demtröder - niklas.demtroeder@iu-study.org'
+            '</p>',
             unsafe_allow_html=True,
         )
 
