@@ -262,6 +262,133 @@ div[class*="st-key-consent_inline_box"] input[type="checkbox"] {
   }
 }
 
+/* =========================================================
+   FINAL OVERRIDE: Consent Micro Card
+   Kompakte, cleane Einwilligungsbox in Screen 2
+   GANZ AM ENDE DES CSS-BLOCKS EINSETZEN
+   ========================================================= */
+
+.st-key-consent_inline_box,
+div[class*="st-key-consent_inline_box"] {
+    width: min(620px, 94%) !important;
+    margin: 0.8rem auto 0.75rem auto !important;
+    padding: 0.75rem 0.85rem 0.8rem 0.85rem !important;
+    background: rgba(248, 244, 237, 0.58) !important;
+    border: 1px solid rgba(49, 92, 99, 0.10) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 8px 22px rgba(49, 92, 99, 0.055) !important;
+}
+
+/* Checkbox-Zeile kompakt */
+.st-key-consent_inline_box div[data-testid="stCheckbox"],
+div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] {
+    display: flex !important;
+    justify-content: center !important;
+    margin: 0 0 0.55rem 0 !important;
+    padding: 0 !important;
+}
+
+/* Checkbox + Text als ruhige Zeile */
+.st-key-consent_inline_box div[data-testid="stCheckbox"] label,
+div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.55rem !important;
+    width: auto !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-align: left !important;
+}
+
+/* Checkbox sichtbar, aber nicht zu dominant */
+.st-key-consent_inline_box input[type="checkbox"],
+div[class*="st-key-consent_inline_box"] input[type="checkbox"] {
+    width: 17px !important;
+    height: 17px !important;
+    min-width: 17px !important;
+    min-height: 17px !important;
+    margin: 0 !important;
+    accent-color: var(--success) !important;
+}
+
+/* Text kleiner und eleganter */
+.st-key-consent_inline_box div[data-testid="stCheckbox"] label p,
+div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label p {
+    font-size: 0.82rem !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0 !important;
+    margin: 0 !important;
+    color: var(--text) !important;
+}
+
+/* Button innerhalb der Consent-Box kompakter */
+.st-key-consent_inline_box .stButton,
+div[class*="st-key-consent_inline_box"] .stButton {
+    display: flex !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.st-key-consent_inline_box .stButton > button,
+div[class*="st-key-consent_inline_box"] .stButton > button {
+    width: min(280px, 72vw) !important;
+    max-width: 280px !important;
+    min-height: 44px !important;
+    padding: 0.55rem 0.95rem !important;
+    font-size: 0.9rem !important;
+    border-radius: 999px !important;
+    margin: 0 auto !important;
+}
+
+/* Kontakt enger an Consent-Bereich anbinden */
+.consent-contact {
+    margin-top: 0.75rem !important;
+    margin-bottom: 0 !important;
+    font-size: 0.84rem !important;
+    line-height: 1.35 !important;
+    text-align: center !important;
+}
+
+/* Mobile Feinschliff */
+@media (max-width: 700px) {
+    .st-key-consent_inline_box,
+    div[class*="st-key-consent_inline_box"] {
+        width: 94% !important;
+        margin: 0.7rem auto 0.65rem auto !important;
+        padding: 0.68rem 0.65rem 0.72rem 0.65rem !important;
+        border-radius: 17px !important;
+    }
+
+    .st-key-consent_inline_box div[data-testid="stCheckbox"],
+    div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] {
+        margin-bottom: 0.48rem !important;
+    }
+
+    .st-key-consent_inline_box div[data-testid="stCheckbox"] label p,
+    div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label p {
+        font-size: 0.8rem !important;
+        line-height: 1.23 !important;
+    }
+
+    .st-key-consent_inline_box .stButton > button,
+    div[class*="st-key-consent_inline_box"] .stButton > button {
+        width: min(265px, 70vw) !important;
+        max-width: 265px !important;
+        min-height: 42px !important;
+        font-size: 0.88rem !important;
+    }
+
+    .consent-contact {
+        margin-top: 0.7rem !important;
+        font-size: 0.82rem !important;
+    }
+}
+
 </style>
     """,
     unsafe_allow_html=True,
@@ -4717,7 +4844,7 @@ div[class*="st-key-questionnaire_footer"] .stButton {
 
     .st-key-consent_integrated_card .consent-screen-copy p,
     div[class*="st-key-consent_integrated_card"] .consent-screen-copy p {
-        font-size: 0.84rem !important;
+        font-size: 0.86rem !important;
         line-height: 1.42 !important;
         letter-spacing: 0 !important;
         margin-bottom: 0.68rem !important;
