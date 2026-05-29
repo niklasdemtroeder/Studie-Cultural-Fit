@@ -5852,7 +5852,7 @@ companies = {
     },
 }
 
-closing_questionnaire = [
+questionnaire_items = [
     {
         "section": "A. Dein Antwortgefühl",
         "items": [
@@ -5863,7 +5863,7 @@ closing_questionnaire = [
         ],
     },
     {
-        "section": "B. Bewusstes Antwortverhalten",
+        "section": "B. Bewusste Antwortsteuerung",
         "items": [
             ("q5", "Ich habe meine Antworten bewusst überlegt."),
             ("q6", "Ich habe während der Bearbeitung genau darauf geachtet, wie ich antworte."),
