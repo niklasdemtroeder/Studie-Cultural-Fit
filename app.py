@@ -5546,6 +5546,83 @@ div[class*="st-key-consent_inline_box"] .stButton > button {
     }
 }
 
+/* =========================================================
+   ABSOLUTE FINAL OVERRIDE: Questionnaire Footer Buttons
+   Abstand zwischen Weiter und Zurück stark reduzieren
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    /* Footer-Container des Weiter-Buttons ohne zusätzlichen unteren Abstand */
+    .st-key-questionnaire_footer,
+    div[class*="st-key-questionnaire_footer"] {
+        margin-top: 0.05rem !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .st-key-questionnaire_footer .stButton,
+    div[class*="st-key-questionnaire_footer"] .stButton {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .st-key-questionnaire_footer .stButton > button,
+    div[class*="st-key-questionnaire_footer"] .stButton > button {
+        margin-bottom: 0 !important;
+    }
+
+    /* Falls ein künstlicher Spacer zwischen Weiter und Zurück existiert */
+    .questionnaire-back-spacer {
+        height: 0 !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: none !important;
+    }
+
+    /* Zurück-Button näher an den Weiter-Button ziehen */
+    .st-key-back_button_soft,
+    div[class*="st-key-back_button_soft"] {
+        margin-top: 0.18rem !important;
+        margin-bottom: 0.15rem !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .st-key-back_button_soft .stButton,
+    div[class*="st-key-back_button_soft"] .stButton {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .st-key-back_button_soft .stButton > button,
+    div[class*="st-key-back_button_soft"] .stButton > button {
+        margin-top: 0 !important;
+    }
+
+    /* Streamlit-Elementcontainer erzeugen manchmal extra vertikale Luft */
+    .st-key-questionnaire_footer div[data-testid="element-container"],
+    div[class*="st-key-questionnaire_footer"] div[data-testid="element-container"],
+    .st-key-back_button_soft div[data-testid="element-container"],
+    div[class*="st-key-back_button_soft"] div[data-testid="element-container"] {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    /* Hinweistext unter den Buttons wieder etwas näher ziehen */
+    .questionnaire-hint {
+        margin-top: 0.25rem !important;
+    }
+}
+
 </style>
     """,
     unsafe_allow_html=True,
