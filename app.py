@@ -5629,7 +5629,7 @@ div[class*="st-key-consent_inline_box"] .stButton > button {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
-        gap: 0.45rem !important;
+        gap: 0.3rem !important;
         margin-top: 0.2rem !important;
         margin-bottom: 0.4rem !important;
         padding: 0 !important;
@@ -5696,6 +5696,69 @@ div[class*="st-key-consent_inline_box"] .stButton > button {
         color: #315C63 !important;
         margin: 0 !important;
         text-align: center !important;
+    }
+}
+
+/* =========================================================
+   ABSOLUTE FINAL FIX: Abschlussfragebogen weiß + Aussagen zentriert
+   Muss ganz am Ende des CSS-Blocks stehen
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    /* Einzelne Aussage-Blöcke einheitlich weiß */
+    div[class*="st-key-questionnaire_single_item_odd"],
+    div[class*="st-key-questionnaire_single_item_even"],
+    div[class*="questionnaire_single_item_odd"],
+    div[class*="questionnaire_single_item_even"] {
+        background: #FFFFFF !important;
+        background-color: #FFFFFF !important;
+        border: 1px solid rgba(49, 92, 99, 0.09) !important;
+        border-radius: 18px !important;
+        box-shadow: none !important;
+    }
+
+    /* Aussage selbst zentrieren */
+    div[class*="st-key-questionnaire_single_item_odd"] div[data-testid="stRadio"] > label,
+    div[class*="st-key-questionnaire_single_item_even"] div[data-testid="stRadio"] > label,
+    div[class*="questionnaire_single_item_odd"] div[data-testid="stRadio"] > label,
+    div[class*="questionnaire_single_item_even"] div[data-testid="stRadio"] > label {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        text-align: center !important;
+        margin-bottom: 0.7rem !important;
+    }
+
+    div[class*="st-key-questionnaire_single_item_odd"] div[data-testid="stRadio"] > label p,
+    div[class*="st-key-questionnaire_single_item_even"] div[data-testid="stRadio"] > label p,
+    div[class*="questionnaire_single_item_odd"] div[data-testid="stRadio"] > label p,
+    div[class*="questionnaire_single_item_even"] div[data-testid="stRadio"] > label p {
+        text-align: center !important;
+        width: 100% !important;
+        max-width: 94% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        font-size: 0.98rem !important;
+        line-height: 1.42 !important;
+        font-weight: 600 !important;
+        color: var(--text) !important;
+    }
+
+    /* Skala weiterhin sauber zentriert */
+    div[class*="st-key-questionnaire_single_item_odd"] div[role="radiogroup"],
+    div[class*="st-key-questionnaire_single_item_even"] div[role="radiogroup"],
+    div[class*="questionnaire_single_item_odd"] div[role="radiogroup"],
+    div[class*="questionnaire_single_item_even"] div[role="radiogroup"] {
+        width: 100% !important;
+        max-width: 92% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        display: grid !important;
+        grid-template-columns: repeat(5, 1fr) !important;
+        justify-items: center !important;
+        align-items: center !important;
+        gap: 0 !important;
     }
 }
 
