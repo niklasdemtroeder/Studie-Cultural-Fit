@@ -4904,6 +4904,256 @@ div[class*="st-key-questionnaire_footer"] .stButton {
     }
 }
 
+/* =========================================================
+   FINAL CONSENT REDESIGN
+   Einwilligung als kompakter Abschluss der Hauptkarte
+   ========================================================= */
+
+/* Hauptkarte Screen 2 */
+.st-key-consent_integrated_card,
+div[class*="st-key-consent_integrated_card"] {
+    width: min(820px, 100%) !important;
+    margin: 0 auto 0.9rem auto !important;
+    padding: 1.7rem 1.85rem 1.45rem 1.85rem !important;
+    background:
+        radial-gradient(circle at top left, rgba(49,92,99,0.045), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(242,184,114,0.07), transparent 34%),
+        rgba(255,255,255,0.97) !important;
+    border: 1px solid rgba(49,92,99,0.12) !important;
+    border-radius: 30px !important;
+    box-shadow: 0 20px 48px rgba(49,92,99,0.11) !important;
+    text-align: center !important;
+}
+
+/* Textbereich */
+.st-key-consent_integrated_card .consent-screen-copy p,
+div[class*="st-key-consent_integrated_card"] .consent-screen-copy p {
+    text-align: center !important;
+    font-size: 0.95rem !important;
+    line-height: 1.52 !important;
+    margin: 0 0 0.75rem 0 !important;
+}
+
+/* Überschrift und Untertitel */
+.st-key-consent_integrated_card .hero-title,
+div[class*="st-key-consent_integrated_card"] .hero-title {
+    text-align: center !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.st-key-consent_integrated_card .hero-subtitle,
+div[class*="st-key-consent_integrated_card"] .hero-subtitle {
+    text-align: center !important;
+    margin-bottom: 0.9rem !important;
+}
+
+/* Info-Kacheln im Consent-Screen */
+.st-key-consent_integrated_card .info-grid,
+div[class*="st-key-consent_integrated_card"] .info-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 0.65rem !important;
+    margin: 0.85rem 0 0.9rem 0 !important;
+}
+
+.st-key-consent_integrated_card .info-box,
+div[class*="st-key-consent_integrated_card"] .info-box {
+    min-height: 74px !important;
+    padding: 0.78rem 0.42rem !important;
+    border-radius: 17px !important;
+}
+
+/* Feine Trennlinie vor der Einwilligung */
+.consent-divider {
+    width: 100%;
+    height: 1px;
+    margin: 1rem auto 0.75rem auto;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(49,92,99,0.14),
+        transparent
+    );
+}
+
+/* Die Einwilligung ist KEINE eigene große Card mehr */
+.st-key-consent_inline_box,
+div[class*="st-key-consent_inline_box"] {
+    width: min(620px, 100%) !important;
+    margin: 0 auto 0.75rem auto !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+/* Checkbox-Zeile als leichte Pill */
+.st-key-consent_inline_box div[data-testid="stCheckbox"],
+div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] {
+    display: flex !important;
+    justify-content: center !important;
+    margin: 0 0 0.55rem 0 !important;
+    padding: 0 !important;
+}
+
+/* Checkbox-Label */
+.st-key-consent_inline_box div[data-testid="stCheckbox"] label,
+div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.62rem !important;
+    width: auto !important;
+    max-width: 100% !important;
+    padding: 0.55rem 0.72rem !important;
+    background: rgba(248,244,237,0.68) !important;
+    border: 1px solid rgba(49,92,99,0.11) !important;
+    border-radius: 16px !important;
+    box-shadow: none !important;
+    text-align: left !important;
+}
+
+/* Checkbox selbst */
+.st-key-consent_inline_box input[type="checkbox"],
+div[class*="st-key-consent_inline_box"] input[type="checkbox"] {
+    width: 17px !important;
+    height: 17px !important;
+    min-width: 17px !important;
+    min-height: 17px !important;
+    margin: 0 !important;
+    accent-color: var(--success) !important;
+}
+
+/* Checkbox-Text */
+.st-key-consent_inline_box div[data-testid="stCheckbox"] label p,
+div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label p {
+    font-size: 0.88rem !important;
+    line-height: 1.25 !important;
+    margin: 0 !important;
+    color: var(--text) !important;
+}
+
+/* Button kompakter */
+.st-key-consent_inline_box .stButton,
+div[class*="st-key-consent_inline_box"] .stButton {
+    display: flex !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.st-key-consent_inline_box .stButton > button,
+div[class*="st-key-consent_inline_box"] .stButton > button {
+    width: min(300px, 72vw) !important;
+    max-width: 300px !important;
+    min-height: 44px !important;
+    padding: 0.55rem 1rem !important;
+    font-size: 0.92rem !important;
+    border-radius: 999px !important;
+    margin: 0 auto !important;
+}
+
+/* Kontakt klein und ruhig */
+.consent-contact {
+    margin: 0.85rem 0 0 0 !important;
+    padding-top: 0.75rem !important;
+    border-top: 1px solid rgba(49,92,99,0.08) !important;
+    font-size: 0.84rem !important;
+    line-height: 1.35 !important;
+    text-align: center !important;
+    color: var(--muted) !important;
+}
+
+.consent-contact strong {
+    color: var(--text) !important;
+}
+
+/* Mobile Feinschliff */
+@media (max-width: 700px) {
+    .st-key-consent_integrated_card,
+    div[class*="st-key-consent_integrated_card"] {
+        width: 100% !important;
+        padding: 1.2rem 0.95rem 1.05rem 0.95rem !important;
+        border-radius: 24px !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    .st-key-consent_integrated_card .consent-screen-copy p,
+    div[class*="st-key-consent_integrated_card"] .consent-screen-copy p {
+        font-size: 0.86rem !important;
+        line-height: 1.42 !important;
+        margin-bottom: 0.68rem !important;
+    }
+
+    .st-key-consent_integrated_card .hero-title,
+    div[class*="st-key-consent_integrated_card"] .hero-title {
+        font-size: 1.48rem !important;
+        line-height: 1.12 !important;
+    }
+
+    .st-key-consent_integrated_card .hero-subtitle,
+    div[class*="st-key-consent_integrated_card"] .hero-subtitle {
+        font-size: 0.86rem !important;
+        line-height: 1.38 !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    .st-key-consent_integrated_card .info-grid,
+    div[class*="st-key-consent_integrated_card"] .info-grid {
+        gap: 0.45rem !important;
+        margin: 0.75rem 0 0.8rem 0 !important;
+    }
+
+    .st-key-consent_integrated_card .info-box,
+    div[class*="st-key-consent_integrated_card"] .info-box {
+        min-height: 68px !important;
+        padding: 0.58rem 0.3rem !important;
+        border-radius: 15px !important;
+    }
+
+    .st-key-consent_integrated_card .info-box strong,
+    div[class*="st-key-consent_integrated_card"] .info-box strong {
+        font-size: 0.82rem !important;
+    }
+
+    .st-key-consent_integrated_card .info-box span,
+    div[class*="st-key-consent_integrated_card"] .info-box span {
+        font-size: 0.68rem !important;
+        line-height: 1.16 !important;
+    }
+
+    .consent-divider {
+        margin: 0.85rem auto 0.65rem auto !important;
+    }
+
+    .st-key-consent_inline_box div[data-testid="stCheckbox"] label,
+    div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label {
+        padding: 0.52rem 0.62rem !important;
+        gap: 0.5rem !important;
+        border-radius: 15px !important;
+    }
+
+    .st-key-consent_inline_box div[data-testid="stCheckbox"] label p,
+    div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label p {
+        font-size: 0.82rem !important;
+        line-height: 1.24 !important;
+    }
+
+    .st-key-consent_inline_box .stButton > button,
+    div[class*="st-key-consent_inline_box"] .stButton > button {
+        width: min(280px, 70vw) !important;
+        max-width: 280px !important;
+        min-height: 42px !important;
+        font-size: 0.88rem !important;
+    }
+
+    .consent-contact {
+        margin-top: 0.75rem !important;
+        padding-top: 0.65rem !important;
+        font-size: 0.78rem !important;
+        line-height: 1.32 !important;
+    }
+}
+
 </style>
     """,
     unsafe_allow_html=True,
@@ -5385,26 +5635,28 @@ if st.session_state.phase == "welcome":
 
 elif st.session_state.phase == "consent":
     consent_html = (
-    '<div class="screen-fade consent-screen-copy">'
-    '<div class="hero-title">Kurz zur Studie</div>'
-    '<div class="hero-subtitle">Bevor es losgeht, erhältst du die wichtigsten Informationen zur Teilnahme.</div>'
+        '<div class="screen-fade consent-screen-copy">'
+        '<div class="hero-title">Kurz zur Studie</div>'
+        '<div class="hero-subtitle">Bevor es losgeht, erhältst du die wichtigsten Informationen zur Teilnahme.</div>'
 
-    '<p>Gleich geht es los. Du bewertest kurze Aussagen zu Arbeitsumfeldern. Es geht zum Beispiel um Teamarbeit, Leistung, Veränderung und klare Strukturen.</p>'
-    '<p>Es gibt keine richtigen oder falschen Antworten. Wichtig ist nur, was zu dir passt.</p>'
+        '<p>Gleich geht es los. Du bewertest kurze Aussagen zu Arbeitsumfeldern. Es geht zum Beispiel um Teamarbeit, Leistung, Veränderung und klare Strukturen.</p>'
+        '<p>Es gibt keine richtigen oder falschen Antworten. Wichtig ist nur, was zu dir passt.</p>'
 
-    '<div class="info-grid">'
-    '<div class="info-box"><strong>Dauer</strong><span>ca. 8–10 Minuten</span></div>'
-    '<div class="info-box"><strong>Anonym</strong><span>Ohne Personendaten</span></div>'
-    '<div class="info-box"><strong>Freiwillig</strong><span>Abbruch jederzeit möglich</span></div>'
-    '</div>'
+        '<div class="info-grid">'
+        '<div class="info-box"><strong>Dauer</strong><span>ca. 8–10 Minuten</span></div>'
+        '<div class="info-box"><strong>Anonym</strong><span>Ohne Personendaten</span></div>'
+        '<div class="info-box"><strong>Freiwillig</strong><span>Abbruch jederzeit möglich</span></div>'
+        '</div>'
 
-    '<p>Deine Angaben werden <strong>anonym</strong> gespeichert und nur für diese Masterarbeit ausgewertet. Die Teilnahme ist <strong>freiwillig</strong>. Du kannst die Studie jederzeit abbrechen, ohne dass dir dadurch Nachteile entstehen.</p>'
-    '<p>Wenn du die Checkbox aktivierst und auf „Studie beginnen“ klickst, stimmst du der Teilnahme zu.</p>'
-    '</div>'
-)
+        '<p>Deine Angaben werden <strong>anonym</strong> gespeichert und nur für diese Masterarbeit ausgewertet. Die Teilnahme ist <strong>freiwillig</strong>. Du kannst die Studie jederzeit abbrechen, ohne dass dir dadurch Nachteile entstehen.</p>'
+        '<p>Wenn du die Checkbox aktivierst und auf „Studie beginnen“ klickst, stimmst du der Teilnahme zu.</p>'
+        '</div>'
+    )
 
     with st.container(key="consent_integrated_card"):
         st.markdown(consent_html, unsafe_allow_html=True)
+
+        st.markdown('<div class="consent-divider"></div>', unsafe_allow_html=True)
 
         with st.container(key="consent_inline_box"):
             consent = st.checkbox(
