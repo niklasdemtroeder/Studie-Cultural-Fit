@@ -5541,7 +5541,7 @@ div[class*="st-key-consent_inline_box"] .stButton > button {
     .st-key-result_assessment_card .result-assessment-hint *,
     div[class*="st-key-result_assessment_card"] .result-assessment-hint * {
         font-size: 0.74rem !important;
-        line-height: 1.22 !important;
+        line-height: 2 !important;
         font-weight: 400 !important;
     }
 }
