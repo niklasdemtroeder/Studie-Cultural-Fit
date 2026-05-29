@@ -5313,6 +5313,108 @@ div[class*="st-key-consent_inline_box"] .stButton > button {
     }
 }
 
+/* =========================================================
+   ABSOLUTE FINAL CONSENT WIDTH + BUTTON CENTER FIX
+   Muss ganz am Ende vor </style> stehen
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    /* Consent-Bereich nutzt fast die volle Kartenbreite */
+    .st-key-consent_inline_box,
+    div[class*="st-key-consent_inline_box"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto 0.68rem auto !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Checkbox-Zeile rechts deutlich breiter */
+    .st-key-consent_inline_box div[data-testid="stCheckbox"],
+    div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        margin: 0 0 0.62rem 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    .st-key-consent_inline_box div[data-testid="stCheckbox"] label,
+    div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label {
+        width: 94% !important;
+        max-width: 94% !important;
+        min-width: 94% !important;
+        box-sizing: border-box !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 0.58rem !important;
+
+        padding: 0.58rem 0.9rem 0.58rem 0.72rem !important;
+        border-radius: 16px !important;
+        background: rgba(248,244,237,0.78) !important;
+        border: 1px solid rgba(49,92,99,0.12) !important;
+        box-shadow: none !important;
+    }
+
+    .st-key-consent_inline_box div[data-testid="stCheckbox"] label p,
+    div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label p {
+        font-size: 0.82rem !important;
+        line-height: 1.24 !important;
+        margin: 0 !important;
+        text-align: left !important;
+    }
+
+    /* Button: wirklich zentrierter Text */
+    .st-key-consent_inline_box .stButton,
+    div[class*="st-key-consent_inline_box"] .stButton {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .st-key-consent_inline_box .stButton > button,
+    div[class*="st-key-consent_inline_box"] .stButton > button {
+        width: min(285px, 72vw) !important;
+        max-width: 285px !important;
+        height: 46px !important;
+        min-height: 46px !important;
+
+        padding: 0 !important;
+        margin: 0 auto !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        font-size: 0.92rem !important;
+        line-height: 1 !important;
+        text-align: center !important;
+        border-radius: 999px !important;
+    }
+
+    .st-key-consent_inline_box .stButton > button p,
+    .st-key-consent_inline_box .stButton > button span,
+    .st-key-consent_inline_box .stButton > button div,
+    div[class*="st-key-consent_inline_box"] .stButton > button p,
+    div[class*="st-key-consent_inline_box"] .stButton > button span,
+    div[class*="st-key-consent_inline_box"] .stButton > button div {
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+}
+
 </style>
     """,
     unsafe_allow_html=True,
