@@ -5859,7 +5859,7 @@ elif st.session_state.phase == "consent":
 
         with st.container(key="consent_inline_box"):
             consent = st.checkbox(
-                "Ich stimme der Teilnahme an der Studie zu.",
+                "Ich stimme der Teilnahme an dieser Studie zu.",
                 key="consent_checkbox_unique",
             )
 
