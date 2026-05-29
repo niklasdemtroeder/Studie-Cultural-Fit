@@ -5444,6 +5444,108 @@ div[class*="st-key-consent_inline_box"] .stButton > button {
     }
 }
 
+/* =========================================================
+   ABSOLUTE FINAL OVERRIDE: Result Assessment Card V2
+   Muss ganz ans Ende des zweiten CSS-Blocks
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .st-key-result_assessment_card,
+    div[class*="st-key-result_assessment_card"] {
+        padding: 1.05rem 1.1rem 0.8rem 1.1rem !important;
+        margin-top: 0.45rem !important;
+        margin-bottom: 0.75rem !important;
+        border-radius: 24px !important;
+        text-align: left !important;
+    }
+
+    .st-key-result_assessment_card .result-assessment-inner,
+    div[class*="st-key-result_assessment_card"] .result-assessment-inner {
+        margin: 0 0 0.18rem 0 !important;
+        padding: 0 !important;
+        text-align: left !important;
+    }
+
+    .st-key-result_assessment_card .result-assessment-inner h3,
+    div[class*="st-key-result_assessment_card"] .result-assessment-inner h3 {
+        font-size: 1.28rem !important;
+        line-height: 1.12 !important;
+        margin: 0 0 0.28rem 0 !important;
+        padding: 0 !important;
+        text-align: left !important;
+    }
+
+    .st-key-result_assessment_card .result-assessment-inner p,
+    div[class*="st-key-result_assessment_card"] .result-assessment-inner p {
+        font-size: 0.92rem !important;
+        line-height: 1.32 !important;
+        margin: 0 0 0.22rem 0 !important;
+        padding: 0 !important;
+        text-align: left !important;
+    }
+
+    .st-key-result_assessment_card div[data-testid="stRadio"],
+    div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] {
+        margin-top: 0 !important;
+        margin-bottom: 0.18rem !important;
+        padding-top: 0 !important;
+    }
+
+    .st-key-result_assessment_card div[role="radiogroup"],
+    div[class*="st-key-result_assessment_card"] div[role="radiogroup"] {
+        gap: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    .st-key-result_assessment_card div[data-testid="stRadio"] label,
+    div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] label {
+        min-height: 27px !important;
+        padding-top: 0.02rem !important;
+        padding-bottom: 0.02rem !important;
+        justify-content: flex-start !important;
+    }
+
+    .st-key-result_assessment_card div[data-testid="stRadio"] label p,
+    div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] label p {
+        font-size: 0.91rem !important;
+        line-height: 1.2 !important;
+        margin: 0 !important;
+    }
+
+    .st-key-result_assessment_card .stButton,
+    div[class*="st-key-result_assessment_card"] .stButton {
+        margin-top: 0.12rem !important;
+        margin-bottom: 0.05rem !important;
+    }
+
+    .st-key-result_assessment_card .stButton > button,
+    div[class*="st-key-result_assessment_card"] .stButton > button {
+        min-height: 44px !important;
+        height: 44px !important;
+        padding: 0 !important;
+        font-size: 0.9rem !important;
+    }
+
+    .st-key-result_assessment_card .result-assessment-hint,
+    div[class*="st-key-result_assessment_card"] .result-assessment-hint {
+        font-size: 0.74rem !important;
+        line-height: 1.22 !important;
+        font-weight: 400 !important;
+        color: var(--muted) !important;
+        text-align: center !important;
+        margin: 0.22rem 0 0 0 !important;
+        padding: 0 !important;
+    }
+
+    .st-key-result_assessment_card .result-assessment-hint *,
+    div[class*="st-key-result_assessment_card"] .result-assessment-hint * {
+        font-size: 0.74rem !important;
+        line-height: 1.22 !important;
+        font-weight: 400 !important;
+    }
+}
+
 </style>
     """,
     unsafe_allow_html=True,
