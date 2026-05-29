@@ -4951,15 +4951,17 @@ div[class*="st-key-consent_integrated_card"] .hero-subtitle {
 .st-key-consent_integrated_card .info-grid,
 div[class*="st-key-consent_integrated_card"] .info-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 0.65rem !important;
-    margin: 0.85rem 0 0.9rem 0 !important;
+    gap: 0.75rem !important;
+    margin: 0.95rem 0 1rem 0 !important;
 }
 
 .st-key-consent_integrated_card .info-box,
 div[class*="st-key-consent_integrated_card"] .info-box {
-    min-height: 74px !important;
-    padding: 0.78rem 0.42rem !important;
-    border-radius: 17px !important;
+    min-height: 88px !important;
+    padding: 0.88rem 0.48rem !important;
+    border-radius: 19px !important;
+    background: rgba(248,244,237,0.92) !important;
+    border: 1px solid rgba(49,92,99,0.10) !important;
 }
 
 /* Feine Trennlinie vor der Einwilligung */
@@ -4999,15 +5001,17 @@ div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] {
 /* Checkbox-Label */
 .st-key-consent_inline_box div[data-testid="stCheckbox"] label,
 div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label {
-    display: inline-flex !important;
+    display: flex !important;
     align-items: center !important;
-    gap: 0.62rem !important;
-    width: auto !important;
+    justify-content: flex-start !important;
+    gap: 0.72rem !important;
+    width: 100% !important;
     max-width: 100% !important;
-    padding: 0.55rem 0.72rem !important;
-    background: rgba(248,244,237,0.68) !important;
-    border: 1px solid rgba(49,92,99,0.11) !important;
-    border-radius: 16px !important;
+    box-sizing: border-box !important;
+    padding: 0.62rem 1.05rem 0.62rem 0.78rem !important;
+    background: rgba(248,244,237,0.78) !important;
+    border: 1px solid rgba(49,92,99,0.12) !important;
+    border-radius: 18px !important;
     box-shadow: none !important;
     text-align: left !important;
 }
@@ -5027,9 +5031,10 @@ div[class*="st-key-consent_inline_box"] input[type="checkbox"] {
 .st-key-consent_inline_box div[data-testid="stCheckbox"] label p,
 div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label p {
     font-size: 0.88rem !important;
-    line-height: 1.25 !important;
+    line-height: 1.28 !important;
     margin: 0 !important;
     color: var(--text) !important;
+    flex: 1 1 auto !important;
 }
 
 /* Button kompakter */
@@ -5043,11 +5048,11 @@ div[class*="st-key-consent_inline_box"] .stButton {
 
 .st-key-consent_inline_box .stButton > button,
 div[class*="st-key-consent_inline_box"] .stButton > button {
-    width: min(300px, 72vw) !important;
-    max-width: 300px !important;
-    min-height: 44px !important;
-    padding: 0.55rem 1rem !important;
-    font-size: 0.92rem !important;
+    width: min(290px, 78vw) !important;
+    max-width: 290px !important;
+    min-height: 46px !important;
+    padding: 0.48rem 1rem !important;
+    font-size: 0.91rem !important;
     border-radius: 999px !important;
     margin: 0 auto !important;
 }
@@ -5105,20 +5110,20 @@ div[class*="st-key-consent_inline_box"] .stButton > button {
 
     .st-key-consent_integrated_card .info-box,
     div[class*="st-key-consent_integrated_card"] .info-box {
-        min-height: 68px !important;
-        padding: 0.58rem 0.3rem !important;
-        border-radius: 15px !important;
+        min-height: 82px !important;
+        padding: 0.72rem 0.34rem !important;
+        border-radius: 17px !important;
     }
 
     .st-key-consent_integrated_card .info-box strong,
     div[class*="st-key-consent_integrated_card"] .info-box strong {
-        font-size: 0.82rem !important;
+        font-size: 0.88rem !important;
     }
 
     .st-key-consent_integrated_card .info-box span,
     div[class*="st-key-consent_integrated_card"] .info-box span {
-        font-size: 0.68rem !important;
-        line-height: 1.16 !important;
+        font-size: 0.72rem !important;
+        line-height: 1.22 !important;
     }
 
     .consent-divider {
@@ -5127,9 +5132,9 @@ div[class*="st-key-consent_inline_box"] .stButton > button {
 
     .st-key-consent_inline_box div[data-testid="stCheckbox"] label,
     div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label {
-        padding: 0.52rem 0.62rem !important;
-        gap: 0.5rem !important;
-        border-radius: 15px !important;
+        padding: 0.56rem 0.92rem 0.56rem 0.68rem !important;
+        gap: 0.56rem !important;
+        border-radius: 16px !important;
     }
 
     .st-key-consent_inline_box div[data-testid="stCheckbox"] label p,
@@ -5140,10 +5145,11 @@ div[class*="st-key-consent_inline_box"] .stButton > button {
 
     .st-key-consent_inline_box .stButton > button,
     div[class*="st-key-consent_inline_box"] .stButton > button {
-        width: min(280px, 70vw) !important;
-        max-width: 280px !important;
-        min-height: 42px !important;
+        width: min(276px, 76vw) !important;
+        max-width: 276px !important;
+        min-height: 44px !important;
         font-size: 0.88rem !important;
+        padding: 0.46rem 0.95rem !important;
     }
 
     .consent-contact {
