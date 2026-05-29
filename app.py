@@ -389,6 +389,97 @@ div[class*="st-key-consent_inline_box"] .stButton > button {
     }
 }
 
+/* =========================================================
+   ABSOLUTE FINAL OVERRIDE: Result Assessment Card
+   Kompaktere Abstände + dezenter Hinweistext
+   ========================================================= */
+
+/* Gesamte Einschätzungskarte kompakter */
+.st-key-result_assessment_card,
+div[class*="st-key-result_assessment_card"] {
+    padding: 1.15rem 1.15rem 0.9rem 1.15rem !important;
+    margin-top: 0.55rem !important;
+    margin-bottom: 0.8rem !important;
+    border-radius: 26px !important;
+}
+
+/* Innerer Textblock: weniger Abstand nach unten */
+.result-assessment-inner {
+    margin: 0 0 0.25rem 0 !important;
+    padding: 0 !important;
+}
+
+/* Überschrift kompakter */
+.result-assessment-inner h3 {
+    font-size: 1.42rem !important;
+    line-height: 1.12 !important;
+    margin: 0 0 0.38rem 0 !important;
+    padding: 0 !important;
+}
+
+/* Frage direkt unter der Überschrift */
+.result-assessment-inner p {
+    font-size: 0.98rem !important;
+    line-height: 1.35 !important;
+    margin: 0 0 0.25rem 0 !important;
+    padding: 0 !important;
+}
+
+/* Streamlit-Radio-Block näher an die Frage ziehen */
+.st-key-result_assessment_card div[data-testid="stRadio"],
+div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] {
+    margin-top: 0 !important;
+    margin-bottom: 0.25rem !important;
+    padding-top: 0 !important;
+}
+
+/* Abstand zwischen den Radio-Optionen etwas reduzieren */
+.st-key-result_assessment_card div[role="radiogroup"],
+div[class*="st-key-result_assessment_card"] div[role="radiogroup"] {
+    gap: 0.04rem !important;
+}
+
+/* Einzelne Antwortzeilen kompakter */
+.st-key-result_assessment_card div[data-testid="stRadio"] label,
+div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] label {
+    min-height: 30px !important;
+    padding-top: 0.08rem !important;
+    padding-bottom: 0.08rem !important;
+}
+
+/* Text der Antwortoptionen etwas ruhiger */
+.st-key-result_assessment_card div[data-testid="stRadio"] label p,
+div[class*="st-key-result_assessment_card"] div[data-testid="stRadio"] label p {
+    font-size: 0.96rem !important;
+    line-height: 1.25 !important;
+    margin: 0 !important;
+}
+
+/* Button näher an die Antwortliste */
+.st-key-result_assessment_card .stButton,
+div[class*="st-key-result_assessment_card"] .stButton {
+    margin-top: 0.2rem !important;
+    margin-bottom: 0.1rem !important;
+}
+
+/* Hinweis unten: kleiner, nicht fett, dezenter */
+.result-assessment-hint {
+    font-size: 0.78rem !important;
+    line-height: 1.28 !important;
+    font-weight: 400 !important;
+    color: var(--muted) !important;
+    text-align: center !important;
+    margin-top: 0.35rem !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+}
+
+/* Falls Streamlit/Browser den Hinweistext intern fett macht */
+.result-assessment-hint,
+.result-assessment-hint * {
+    font-weight: 400 !important;
+}
+
 </style>
     """,
     unsafe_allow_html=True,
