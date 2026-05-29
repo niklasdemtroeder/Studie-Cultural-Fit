@@ -5648,6 +5648,57 @@ div[class*="st-key-consent_inline_box"] .stButton > button {
     }
 }
 
+/* =========================================================
+   ABSOLUTE FINAL FIX: Zurück-Button im Fragebogen zentrieren
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    div[class*="st-key-back_button_soft"] {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin: 0.35rem auto 0.15rem auto !important;
+        padding: 0 !important;
+    }
+
+    div[class*="st-key-back_button_soft"] div[data-testid="stVerticalBlock"],
+    div[class*="st-key-back_button_soft"] div[data-testid="element-container"],
+    div[class*="st-key-back_button_soft"] .stButton {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+    }
+
+    div[class*="st-key-back_button_soft"] .stButton > button {
+        width: min(70vw, 285px) !important;
+        max-width: 285px !important;
+        min-height: 48px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        background: transparent !important;
+        color: #315C63 !important;
+        border: 2px solid rgba(49, 92, 99, 0.55) !important;
+        box-shadow: none !important;
+        border-radius: 999px !important;
+    }
+
+    div[class*="st-key-back_button_soft"] .stButton > button * {
+        color: #315C63 !important;
+        margin: 0 !important;
+        text-align: center !important;
+    }
+}
+
 </style>
     """,
     unsafe_allow_html=True,
