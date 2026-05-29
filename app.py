@@ -4702,6 +4702,81 @@ div[class*="st-key-questionnaire_footer"] .stButton {
     margin-bottom: 0 !important;
 }
 
+/* =========================================================
+   FINAL FIX: Consent Screen Text wieder kompakter
+   Muss ganz ans Ende des CSS-Blocks
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .st-key-consent_integrated_card,
+    div[class*="st-key-consent_integrated_card"] {
+        padding: 1.15rem 0.95rem 1.05rem 0.95rem !important;
+        border-radius: 24px !important;
+    }
+
+    .st-key-consent_integrated_card .consent-screen-copy p,
+    div[class*="st-key-consent_integrated_card"] .consent-screen-copy p {
+        font-size: 0.84rem !important;
+        line-height: 1.42 !important;
+        letter-spacing: 0 !important;
+        margin-bottom: 0.68rem !important;
+        text-align: center !important;
+    }
+
+    .st-key-consent_integrated_card .consent-screen-copy .hero-title,
+    div[class*="st-key-consent_integrated_card"] .consent-screen-copy .hero-title {
+        font-size: 1.48rem !important;
+        line-height: 1.12 !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .st-key-consent_integrated_card .consent-screen-copy .hero-subtitle,
+    div[class*="st-key-consent_integrated_card"] .consent-screen-copy .hero-subtitle {
+        font-size: 0.86rem !important;
+        line-height: 1.38 !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    .st-key-consent_integrated_card .consent-screen-copy .info-grid,
+    div[class*="st-key-consent_integrated_card"] .consent-screen-copy .info-grid {
+        margin-top: 0.7rem !important;
+        margin-bottom: 0.75rem !important;
+        gap: 0.45rem !important;
+    }
+
+    .st-key-consent_integrated_card .consent-screen-copy .info-box,
+    div[class*="st-key-consent_integrated_card"] .consent-screen-copy .info-box {
+        min-height: 68px !important;
+        padding: 0.58rem 0.3rem !important;
+        border-radius: 15px !important;
+    }
+
+    .st-key-consent_integrated_card .consent-screen-copy .info-box strong,
+    div[class*="st-key-consent_integrated_card"] .consent-screen-copy .info-box strong {
+        font-size: 0.82rem !important;
+        line-height: 1.14 !important;
+    }
+
+    .st-key-consent_integrated_card .consent-screen-copy .info-box span,
+    div[class*="st-key-consent_integrated_card"] .consent-screen-copy .info-box span {
+        font-size: 0.68rem !important;
+        line-height: 1.16 !important;
+    }
+
+    .st-key-consent_inline_box,
+    div[class*="st-key-consent_inline_box"] {
+        margin-top: 0.75rem !important;
+        padding: 0.72rem 0.65rem 0.75rem 0.65rem !important;
+    }
+
+    .st-key-consent_inline_box div[data-testid="stCheckbox"] label p,
+    div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label p {
+        font-size: 0.86rem !important;
+        line-height: 1.25 !important;
+    }
+}
+
 </style>
     """,
     unsafe_allow_html=True,
