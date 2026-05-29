@@ -6233,12 +6233,6 @@ elif st.session_state.phase == "results":
                 st.session_state.phase = "pre_questionnaire"
                 st.rerun()
 
-        if self_assessment is None:
-            st.markdown(
-                '<div class="result-assessment-hint">Bitte wähle eine Einschätzung aus, um fortzufahren.</div>',
-                unsafe_allow_html=True,
-            )
-
     st.markdown('<div class="result-details-title">Mehr zum Ergebnis anzeigen</div>', unsafe_allow_html=True)
 
     with st.expander("Warum dieses Ergebnis?"):
