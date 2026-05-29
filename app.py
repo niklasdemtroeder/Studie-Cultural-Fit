@@ -5623,6 +5623,31 @@ div[class*="st-key-consent_inline_box"] .stButton > button {
     }
 }
 
+@media (max-width: 700px) {
+    .st-key-questionnaire_footer,
+    div[class*="st-key-questionnaire_footer"] {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0.45rem !important;
+        margin-top: 0.2rem !important;
+        margin-bottom: 0.4rem !important;
+        padding: 0 !important;
+    }
+
+    .st-key-questionnaire_footer .stButton,
+    div[class*="st-key-questionnaire_footer"] .stButton {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .st-key-back_button_soft,
+    div[class*="st-key-back_button_soft"] {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+}
+
 </style>
     """,
     unsafe_allow_html=True,
@@ -6467,42 +6492,34 @@ elif st.session_state.phase == "questionnaire":
     )
 
     with st.container(key="questionnaire_footer"):
-        primary_left, primary_center, primary_right = st.columns([1.2, 1.7, 1.2])
-
-        with primary_center:
-            if current_step < total_blocks - 1:
-                if st.button(
-                    "Weiter",
-                    use_container_width=True,
-                    disabled=not current_complete,
-                    key=f"questionnaire_next_{current_step}",
-                ):
-                    st.session_state.questionnaire_step += 1
-                    st.rerun()
-            else:
-                if st.button(
-                    "Fragebogen absenden",
-                    use_container_width=True,
-                    disabled=not current_complete,
-                    key="questionnaire_submit",
-                ):
-                    st.session_state.phase = "end"
-                    st.rerun()
+        if current_step < total_blocks - 1:
+            if st.button(
+                "Weiter",
+                use_container_width=False,
+                disabled=not current_complete,
+                key=f"questionnaire_next_{current_step}",
+            ):
+                st.session_state.questionnaire_step += 1
+                st.rerun()
+        else:
+            if st.button(
+                "Fragebogen absenden",
+                use_container_width=False,
+                disabled=not current_complete,
+                key="questionnaire_submit",
+            ):
+                st.session_state.phase = "end"
+                st.rerun()
 
     if current_step > 0:
-        st.markdown('<div class="questionnaire-back-spacer"></div>', unsafe_allow_html=True)
-
-        back_left, back_center, back_right = st.columns([1.2, 1.7, 1.2])
-
-        with back_center:
-            with st.container(key=f"back_button_soft_{current_step}"):
-                if st.button(
-                    "Zurück",
-                    use_container_width=True,
-                    key=f"questionnaire_back_{current_step}",
-                ):
-                    st.session_state.questionnaire_step -= 1
-                    st.rerun()
+        with st.container(key=f"back_button_soft_{current_step}"):
+            if st.button(
+                "Zurück",
+                use_container_width=False,
+                key=f"questionnaire_back_{current_step}",
+            ):
+                st.session_state.questionnaire_step -= 1
+                st.rerun()
 
     if not current_complete:
         st.markdown(
