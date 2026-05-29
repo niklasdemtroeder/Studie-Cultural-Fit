@@ -5088,7 +5088,7 @@ if st.session_state.phase == "welcome":
 elif st.session_state.phase == "consent":
     with st.container(key="consent_integrated_card"):
         st.markdown(
-            """
+            dedent("""
             <div class="screen-fade">
                 <div class="hero-title">Kurz zur Studie</div>
                 <div class="hero-subtitle">Bevor es losgeht, erhältst du die wichtigsten Informationen zur Teilnahme.</div>
@@ -5105,7 +5105,7 @@ elif st.session_state.phase == "consent":
                 <p>Deine Angaben werden <strong>anonym</strong> gespeichert und nur für diese Masterarbeit ausgewertet. Die Teilnahme ist <strong>freiwillig</strong>. Du kannst die Studie jederzeit abbrechen, ohne dass dir dadurch Nachteile entstehen.</p>
                 <p>Wenn du die Checkbox aktivierst und auf „Studie beginnen“ klickst, stimmst du der Teilnahme zu.</p>
             </div>
-            """,
+            """).strip(),
             unsafe_allow_html=True,
         )
 
@@ -5126,12 +5126,12 @@ elif st.session_state.phase == "consent":
                 st.rerun()
 
         st.markdown(
-            """
+            dedent("""
             <p class="consent-contact">
                 <strong>Bei Fragen kannst du mich kontaktieren:</strong><br>
                 Niklas Demtröder - niklas.demtroeder@iu-study.org
             </p>
-            """,
+            """).strip(),
             unsafe_allow_html=True,
         )
 
