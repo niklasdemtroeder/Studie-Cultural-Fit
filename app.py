@@ -166,6 +166,102 @@ div[class*="st-key-consent_inline_box"] input[type="checkbox"] {
     }
 }
 
+/* ================================
+   MOBILE FIX: Consent Screen Typography
+   gezielt nur für Screen 2
+   ================================ */
+
+@media (max-width: 640px) {
+
+  .st-key-consent_integrated_card,
+  div[class*="st-key-consent_integrated_card"] {
+    padding: 1.2rem 1rem 1.05rem 1rem !important;
+    border-radius: 24px !important;
+  }
+
+  .st-key-consent_integrated_card .consent-screen-copy p,
+  div[class*="st-key-consent_integrated_card"] .consent-screen-copy p {
+    font-size: 0.9rem !important;
+    line-height: 1.48 !important;
+    letter-spacing: 0.005em !important;
+    margin: 0 0 0.78rem 0 !important;
+    text-align: center !important;
+  }
+
+  .st-key-consent_integrated_card .consent-screen-copy .hero-title,
+  div[class*="st-key-consent_integrated_card"] .consent-screen-copy .hero-title {
+    font-size: 1.55rem !important;
+    line-height: 1.12 !important;
+    margin-bottom: 0.55rem !important;
+  }
+
+  .st-key-consent_integrated_card .consent-screen-copy .hero-subtitle,
+  div[class*="st-key-consent_integrated_card"] .consent-screen-copy .hero-subtitle {
+    font-size: 0.9rem !important;
+    line-height: 1.42 !important;
+    margin-bottom: 0.85rem !important;
+  }
+
+  .st-key-consent_integrated_card .consent-screen-copy .info-grid,
+  div[class*="st-key-consent_integrated_card"] .consent-screen-copy .info-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 0.48rem !important;
+    margin: 0.8rem 0 0.85rem 0 !important;
+  }
+
+  .st-key-consent_integrated_card .consent-screen-copy .info-box,
+  div[class*="st-key-consent_integrated_card"] .consent-screen-copy .info-box {
+    min-height: 72px !important;
+    padding: 0.68rem 0.35rem !important;
+    border-radius: 16px !important;
+  }
+
+  .st-key-consent_integrated_card .consent-screen-copy .info-box strong,
+  div[class*="st-key-consent_integrated_card"] .consent-screen-copy .info-box strong {
+    font-size: 0.88rem !important;
+    line-height: 1.15 !important;
+    margin-bottom: 0.16rem !important;
+  }
+
+  .st-key-consent_integrated_card .consent-screen-copy .info-box span,
+  div[class*="st-key-consent_integrated_card"] .consent-screen-copy .info-box span {
+    font-size: 0.72rem !important;
+    line-height: 1.18 !important;
+  }
+
+  .st-key-consent_inline_box,
+  div[class*="st-key-consent_inline_box"] {
+    margin: 0.85rem auto 0.85rem auto !important;
+    padding: 0.78rem 0.72rem 0.85rem 0.72rem !important;
+    border-radius: 18px !important;
+  }
+
+  .st-key-consent_inline_box div[data-testid="stCheckbox"] label p,
+  div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label p {
+    font-size: 0.88rem !important;
+    line-height: 1.28 !important;
+  }
+
+  .st-key-consent_inline_box .stButton,
+  div[class*="st-key-consent_inline_box"] .stButton {
+    margin-top: 0.15rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  .st-key-consent_inline_box .stButton > button,
+  div[class*="st-key-consent_inline_box"] .stButton > button {
+    max-width: 78% !important;
+    min-height: 3.05rem !important;
+    font-size: 0.98rem !important;
+  }
+
+  .consent-contact {
+    font-size: 0.88rem !important;
+    line-height: 1.38 !important;
+    margin-top: 0.75rem !important;
+  }
+}
+
 </style>
     """,
     unsafe_allow_html=True,
@@ -5087,22 +5183,23 @@ if st.session_state.phase == "welcome":
 
 elif st.session_state.phase == "consent":
     consent_html = (
-        '<div class="screen-fade">'
-        '<div class="hero-title">Kurz zur Studie</div>'
-        '<div class="hero-subtitle">Bevor es losgeht, erhältst du die wichtigsten Informationen zur Teilnahme.</div>'
+    '<div class="screen-fade consent-screen-copy">'
+    '<div class="hero-title">Kurz zur Studie</div>'
+    '<div class="hero-subtitle">Bevor es losgeht, erhältst du die wichtigsten Informationen zur Teilnahme.</div>'
 
-        '<p>Gleich geht es los. Du bewertest kurze Aussagen zu Arbeitsumfeldern. Es geht zum Beispiel um Teamarbeit, Leistung, Veränderung und klare Strukturen.</p>'
-        '<p>Es gibt keine richtigen oder falschen Antworten. Wichtig ist nur, was zu dir passt.</p>'
+    '<p>Gleich geht es los. Du bewertest kurze Aussagen zu Arbeitsumfeldern. Es geht zum Beispiel um Teamarbeit, Leistung, Veränderung und klare Strukturen.</p>'
+    '<p>Es gibt keine richtigen oder falschen Antworten. Wichtig ist nur, was zu dir passt.</p>'
 
-        '<div class="info-grid">'
-        '<div class="info-box"><strong>Dauer</strong><span>ca. 8–10 Minuten</span></div>'
-        '<div class="info-box"><strong>Anonym</strong><span>Ohne Personendaten</span></div>'
-        '<div class="info-box"><strong>Freiwillig</strong><span>Abbruch jederzeit möglich</span></div>'
-        '</div>'
+    '<div class="info-grid">'
+    '<div class="info-box"><strong>Dauer</strong><span>ca. 8–10 Minuten</span></div>'
+    '<div class="info-box"><strong>Anonym</strong><span>Ohne Personendaten</span></div>'
+    '<div class="info-box"><strong>Freiwillig</strong><span>Abbruch jederzeit möglich</span></div>'
+    '</div>'
 
-        '<p>Deine Angaben werden <strong>anonym</strong> gespeichert und nur für diese Masterarbeit ausgewertet. Die Teilnahme ist <strong>freiwillig</strong>. Du kannst die Studie jederzeit abbrechen, ohne dass dir dadurch Nachteile entstehen.</p>'
-        '<p>Wenn du die Checkbox aktivierst und auf „Studie beginnen“ klickst, stimmst du der Teilnahme zu.</p>'
-    )
+    '<p>Deine Angaben werden <strong>anonym</strong> gespeichert und nur für diese Masterarbeit ausgewertet. Die Teilnahme ist <strong>freiwillig</strong>. Du kannst die Studie jederzeit abbrechen, ohne dass dir dadurch Nachteile entstehen.</p>'
+    '<p>Wenn du die Checkbox aktivierst und auf „Studie beginnen“ klickst, stimmst du der Teilnahme zu.</p>'
+    '</div>'
+)
 
     with st.container(key="consent_integrated_card"):
         st.markdown(consent_html, unsafe_allow_html=True)
