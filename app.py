@@ -6319,6 +6319,91 @@ div[class*="st-key-consent_inline_box"] .stButton > button {
     }
 }
 
+/* =========================================================
+   ABSOLUTE FINAL MOBILE FIX:
+   Fragebogen-Skala exakt zentrieren
+   Desktop bleibt unberührt
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    /* Radio-Widget in jeder Aussagebox vollständig zentrieren */
+    div[class*="st-key-questionnaire_single_item"] div[data-testid="stRadio"] {
+        width: 100% !important;
+        max-width: 100% !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding: 0 !important;
+        text-align: center !important;
+    }
+
+    /* Skala bewusst kompakter machen, damit sie optisch wirklich mittig steht */
+    div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"] {
+        width: min(285px, 76vw) !important;
+        min-width: 0 !important;
+        max-width: min(285px, 76vw) !important;
+
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+
+        padding: 0 !important;
+        box-sizing: border-box !important;
+
+        display: grid !important;
+        grid-template-columns: repeat(5, 1fr) !important;
+        justify-items: center !important;
+        align-items: center !important;
+        gap: 0 !important;
+
+        text-align: center !important;
+    }
+
+    /* Jede Antwortoption exakt in ihrer Spalte zentrieren */
+    div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"] label {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+
+        text-align: center !important;
+    }
+
+    /* Radio-Kreis + Zahl als kompakte Einheit */
+    div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"] input[type="radio"] {
+        width: 16px !important;
+        height: 16px !important;
+        min-width: 16px !important;
+        min-height: 16px !important;
+
+        margin: 0 0.25rem 0 0 !important;
+        padding: 0 !important;
+        flex: 0 0 auto !important;
+    }
+
+    div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"] label p,
+    div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"] label span {
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1 !important;
+        text-align: center !important;
+    }
+}
+
 </style>
     """,
     unsafe_allow_html=True,
