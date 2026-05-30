@@ -6196,6 +6196,129 @@ div[class*="st-key-consent_inline_box"] .stButton > button {
     }
 }
 
+/* =========================================================
+   ABSOLUTE FINAL MOBILE FIX:
+   Abschlussfragebogen Aussagen + Skalen zentrieren
+   Desktop bleibt unberührt
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    /* Äußere Fragebogenkarte */
+    div[class*="st-key-questionnaire_item_card"] {
+        text-align: center !important;
+    }
+
+    /* Einzelne Aussage-Karten zentrieren */
+    div[class*="st-key-questionnaire_single_item"] {
+        width: 100% !important;
+        box-sizing: border-box !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        text-align: center !important;
+        background: #FFFFFF !important;
+        background-color: #FFFFFF !important;
+    }
+
+    /* Neuer separater Aussage-Text */
+    .questionnaire-question-text {
+        width: 100% !important;
+        max-width: 100% !important;
+
+        margin: 0 auto 1.05rem auto !important;
+        padding: 0 0.15rem !important;
+
+        display: block !important;
+        text-align: center !important;
+
+        font-size: 1.02rem !important;
+        line-height: 1.45 !important;
+        font-weight: 600 !important;
+        color: var(--text) !important;
+    }
+
+    .questionnaire-question-text,
+    .questionnaire-question-text * {
+        text-align: center !important;
+    }
+
+    /* Radio-Widget selbst zentrieren */
+    div[class*="st-key-questionnaire_single_item"] div[data-testid="stRadio"] {
+        width: 100% !important;
+        max-width: 100% !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        margin: 0 auto !important;
+        padding: 0 !important;
+        text-align: center !important;
+    }
+
+    /* Leeres Streamlit-Radio-Label ausblenden */
+    div[class*="st-key-questionnaire_single_item"] div[data-testid="stRadio"] > label,
+    div[class*="st-key-questionnaire_single_item"] div[data-testid="stWidgetLabel"] {
+        display: none !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* 1–5-Skala: feste mobile Breite und mittig */
+    div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"] {
+        width: min(330px, 92vw) !important;
+        max-width: min(330px, 92vw) !important;
+        min-width: 0 !important;
+
+        margin: 0 auto !important;
+        padding: 0 !important;
+
+        display: grid !important;
+        grid-template-columns: repeat(5, 1fr) !important;
+        justify-items: center !important;
+        align-items: center !important;
+        gap: 0 !important;
+
+        text-align: center !important;
+    }
+
+    /* Jede Antwortoption gleich breit */
+    div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"] label {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: none !important;
+
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: center !important;
+    }
+
+    /* Zahl neben dem Radio-Button sauber ausrichten */
+    div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"] label p,
+    div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"] label span {
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: center !important;
+        line-height: 1.1 !important;
+    }
+
+    /* Radio-Kreis etwas ruhiger platzieren */
+    div[class*="st-key-questionnaire_single_item"] input[type="radio"] {
+        margin-right: 0.28rem !important;
+    }
+}
+
 </style>
     """,
     unsafe_allow_html=True,
