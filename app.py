@@ -104,20 +104,6 @@ div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label p {
     text-align: left !important;
 }
 
-.st-key-consent_inline_box input[type="checkbox"],
-div[class*="st-key-consent_inline_box"] input[type="checkbox"] {
-    appearance: auto !important;
-    -webkit-appearance: checkbox !important;
-    accent-color: var(--success) !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    width: 18px !important;
-    height: 18px !important;
-    min-width: 18px !important;
-    min-height: 18px !important;
-    margin: 0 !important;
-}
-
 .consent-contact {
     margin-top: 0.2rem !important;
     margin-bottom: 0 !important;
@@ -304,17 +290,6 @@ div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label {
     text-align: left !important;
 }
 
-/* Checkbox sichtbar, aber nicht zu dominant */
-.st-key-consent_inline_box input[type="checkbox"],
-div[class*="st-key-consent_inline_box"] input[type="checkbox"] {
-    width: 17px !important;
-    height: 17px !important;
-    min-width: 17px !important;
-    min-height: 17px !important;
-    margin: 0 !important;
-    accent-color: var(--success) !important;
-}
-
 /* Text kleiner und eleganter */
 .st-key-consent_inline_box div[data-testid="stCheckbox"] label p,
 div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label p {
@@ -479,6 +454,8 @@ div[class*="st-key-result_assessment_card"] .stButton {
 .result-assessment-hint * {
     font-weight: 400 !important;
 }
+
+
 
 </style>
     """,
@@ -2016,15 +1993,6 @@ div[class*="st-key-consent_action_area"] .stButton {
    FINAL: Native Checkbox & Radio Styling
    Theme-Farbe nutzen, native Kreise sichtbar lassen
    ========================================================= */
-
-/* Checkboxen: native Darstellung behalten, nur Akzentfarbe setzen */
-div[data-testid="stCheckbox"] input[type="checkbox"] {
-    appearance: auto !important;
-    -webkit-appearance: checkbox !important;
-    accent-color: var(--success) !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
 
 /* Radio-Buttons: native Darstellung behalten, nur Akzentfarbe setzen */
 div[data-testid="stRadio"] input[type="radio"],
@@ -4587,14 +4555,6 @@ div[class*="st-key-consent_action_area"] div[data-testid="stCheckbox"] label p {
     margin: 0 !important;
 }
 
-.st-key-consent_action_area input[type="checkbox"],
-div[class*="st-key-consent_action_area"] input[type="checkbox"] {
-    width: 18px !important;
-    height: 18px !important;
-    min-width: 18px !important;
-    min-height: 18px !important;
-}
-
 /* Ergebnisscreen: erste Einschätzung kompakter und proportional sauber */
 .st-key-result_assessment_card,
 div[class*="st-key-result_assessment_card"] {
@@ -4848,15 +4808,6 @@ div[class*="st-key-questionnaire_single_item_even"]:last-child {
     margin-bottom: 0 !important;
 }
 
-/* Aussage linksbündig für bessere Lesbarkeit */
-div[class*="st-key-questionnaire_single_item_odd"] div[data-testid="stRadio"] > label,
-div[class*="st-key-questionnaire_single_item_even"] div[data-testid="stRadio"] > label {
-    display: block !important;
-    width: 100% !important;
-    text-align: left !important;
-    margin-bottom: 0.65rem !important;
-}
-
 div[class*="st-key-questionnaire_single_item_odd"] div[data-testid="stRadio"] > label p,
 div[class*="st-key-questionnaire_single_item_even"] div[data-testid="stRadio"] > label p {
     text-align: left !important;
@@ -5107,17 +5058,6 @@ div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label {
     text-align: left !important;
 }
 
-/* Checkbox selbst */
-.st-key-consent_inline_box input[type="checkbox"],
-div[class*="st-key-consent_inline_box"] input[type="checkbox"] {
-    width: 17px !important;
-    height: 17px !important;
-    min-width: 17px !important;
-    min-height: 17px !important;
-    margin: 0 !important;
-    accent-color: var(--success) !important;
-}
-
 /* Checkbox-Text */
 .st-key-consent_inline_box div[data-testid="stCheckbox"] label p,
 div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label p {
@@ -5362,17 +5302,6 @@ div[class*="st-key-consent_inline_box"] .stButton > button {
         border: 1px solid rgba(49,92,99,0.12) !important;
         box-shadow: none !important;
         text-align: left !important;
-    }
-
-    .st-key-consent_inline_box input[type="checkbox"],
-    div[class*="st-key-consent_inline_box"] input[type="checkbox"] {
-        width: 17px !important;
-        height: 17px !important;
-        min-width: 17px !important;
-        min-height: 17px !important;
-        margin: 0 !important;
-        flex: 0 0 17px !important;
-        accent-color: var(--success) !important;
     }
 
     .st-key-consent_inline_box div[data-testid="stCheckbox"] label p,
@@ -5759,6 +5688,511 @@ div[class*="st-key-consent_inline_box"] .stButton > button {
         justify-items: center !important;
         align-items: center !important;
         gap: 0 !important;
+    }
+}
+
+@media (min-width: 901px) {
+
+    /* =========================================================
+       SCREEN 2 DESKTOP FIX
+       Nur Desktop – Mobile bleibt unberührt
+       ========================================================= */
+
+    /* Hauptkarte etwas luftiger */
+    .st-key-consent_integrated_card,
+    div[class*="st-key-consent_integrated_card"] {
+        padding: 1.9rem 2rem 1.65rem 2rem !important;
+    }
+
+    /* Titel / Untertitel / Fließtext etwas mehr Luft */
+    .st-key-consent_integrated_card .hero-title,
+    div[class*="st-key-consent_integrated_card"] .hero-title {
+        margin-bottom: 0.6rem !important;
+    }
+
+    .st-key-consent_integrated_card .hero-subtitle,
+    div[class*="st-key-consent_integrated_card"] .hero-subtitle {
+        margin-bottom: 1.15rem !important;
+    }
+
+    .st-key-consent_integrated_card .consent-screen-copy p,
+    div[class*="st-key-consent_integrated_card"] .consent-screen-copy p {
+        margin: 0 0 1rem 0 !important;
+        line-height: 1.6 !important;
+        text-align: center !important;
+    }
+
+    .st-key-consent_integrated_card .info-grid,
+    div[class*="st-key-consent_integrated_card"] .info-grid {
+        margin: 1.15rem 0 1.15rem 0 !important;
+    }
+
+    .consent-divider {
+        margin: 1.1rem auto 0.95rem auto !important;
+    }
+
+    /* Checkbox-Bereich insgesamt mittig */
+    .st-key-consent_inline_box,
+    div[class*="st-key-consent_inline_box"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto 0.8rem auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .st-key-consent_inline_box div[data-testid="stCheckbox"],
+    div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        margin: 0 0 0.7rem 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Checkbox-Pill kompakt und zentriert */
+    .st-key-consent_inline_box div[data-testid="stCheckbox"] label,
+    div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label {
+        width: fit-content !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.7rem !important;
+        padding: 0.68rem 1.1rem !important;
+        text-align: center !important;
+    }
+
+    .st-key-consent_inline_box div[data-testid="stCheckbox"] label p,
+    div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label p {
+        margin: 0 !important;
+        text-align: center !important;
+        line-height: 1.3 !important;
+    }
+
+    /* Button-Wrapper mittig */
+    .st-key-consent_inline_box .stButton,
+    div[class*="st-key-consent_inline_box"] .stButton {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Button selbst: Text exakt mittig */
+    .st-key-consent_inline_box .stButton > button,
+    div[class*="st-key-consent_inline_box"] .stButton > button {
+        width: min(290px, 100%) !important;
+        max-width: 290px !important;
+        min-height: 52px !important;
+        padding: 0.68rem 1.35rem !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        text-align: center !important;
+        line-height: 1.1 !important;
+        border-radius: 999px !important;
+        box-sizing: border-box !important;
+    }
+
+    .st-key-consent_inline_box .stButton > button p,
+    .st-key-consent_inline_box .stButton > button span,
+    .st-key-consent_inline_box .stButton > button div,
+    div[class*="st-key-consent_inline_box"] .stButton > button p,
+    div[class*="st-key-consent_inline_box"] .stButton > button span,
+    div[class*="st-key-consent_inline_box"] .stButton > button div {
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1.1 !important;
+        text-align: center !important;
+    }
+}
+
+/* =========================================================
+   DESKTOP FINAL: Abschlussfragebogen wirklich zentrieren
+   Mobile bleibt unberührt
+   ========================================================= */
+
+@media (min-width: 901px) {
+
+    /* Einzelne Aussage-Karten */
+    div[class*="st-key-questionnaire_single_item"] {
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    /* Neuer separater Aussage-Text */
+    .questionnaire-question-text {
+        width: 100% !important;
+        max-width: 900px !important;
+        margin: 0 auto 1rem auto !important;
+        text-align: center !important;
+        font-size: 1.05rem !important;
+        line-height: 1.45 !important;
+        font-weight: 650 !important;
+        color: var(--text) !important;
+    }
+
+    /* Radio-Komponente über volle Itembreite */
+    div[class*="st-key-questionnaire_single_item"] div[data-testid="stRadio"] {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+    }
+
+    /* Die eigentliche 1–5-Skala bekommt eine feste Breite */
+    div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"] {
+        width: 560px !important;
+        min-width: 560px !important;
+        max-width: 560px !important;
+
+        margin: 0.25rem auto 0 auto !important;
+        padding: 0 !important;
+
+        display: grid !important;
+        grid-template-columns: repeat(5, 1fr) !important;
+        justify-items: center !important;
+        align-items: center !important;
+        gap: 0 !important;
+    }
+
+    /* Jede Antwortoption gleich breit */
+    div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"] label {
+        width: 100% !important;
+        margin: 0 !important;
+
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+
+        text-align: center !important;
+    }
+
+    div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"] label p {
+        margin: 0 !important;
+        text-align: center !important;
+    }
+}
+
+/* =========================================================
+   DESKTOP FINAL POLISH: Fragebogen
+   Button zentrieren, Items einheitlich weiß,
+   Skala kompakter
+   Mobile bleibt unberührt
+   ========================================================= */
+
+@media (min-width: 901px) {
+
+    /* 1) Alle Aussage-Blöcke einheitlich weiß */
+    div[class*="st-key-questionnaire_single_item_odd"],
+    div[class*="st-key-questionnaire_single_item_even"],
+    div[class*="questionnaire_single_item_odd"],
+    div[class*="questionnaire_single_item_even"] {
+        background: #FFFFFF !important;
+        background-color: #FFFFFF !important;
+        border: 1px solid rgba(49, 92, 99, 0.08) !important;
+    }
+
+    /* 2) Weiter-Button im Footer sauber zentrieren */
+    .st-key-questionnaire_footer,
+    div[class*="st-key-questionnaire_footer"] {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin-top: 0.2rem !important;
+        padding-top: 0 !important;
+    }
+
+    .st-key-questionnaire_footer div[data-testid="stVerticalBlock"],
+    .st-key-questionnaire_footer div[data-testid="element-container"],
+    .st-key-questionnaire_footer .stButton,
+    div[class*="st-key-questionnaire_footer"] div[data-testid="stVerticalBlock"],
+    div[class*="st-key-questionnaire_footer"] div[data-testid="element-container"],
+    div[class*="st-key-questionnaire_footer"] .stButton {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+    }
+
+    .st-key-questionnaire_footer .stButton > button,
+    div[class*="st-key-questionnaire_footer"] .stButton > button {
+        margin: 0 auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-width: 130px !important;
+    }
+
+    /* 3) Skalen kompakter machen */
+    div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"] {
+        width: 440px !important;
+        min-width: 440px !important;
+        max-width: 440px !important;
+
+        margin: 0.15rem auto 0 auto !important;
+        padding: 0 !important;
+
+        display: grid !important;
+        grid-template-columns: repeat(5, 1fr) !important;
+        justify-items: center !important;
+        align-items: center !important;
+        gap: 0 !important;
+    }
+
+    /* Zahlen/Optionen enger und sauber mittig */
+    div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"] label {
+        width: 100% !important;
+        margin: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+}
+
+/* =========================================================
+   DESKTOP FIX: Zurück-Button im Fragebogen zentrieren
+   Mobile bleibt unberührt
+   ========================================================= */
+
+@media (min-width: 901px) {
+
+    .st-key-back_button_soft,
+    div[class*="st-key-back_button_soft"] {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin: 0.35rem auto 0 auto !important;
+        padding: 0 !important;
+    }
+
+    .st-key-back_button_soft div[data-testid="stVerticalBlock"],
+    .st-key-back_button_soft div[data-testid="element-container"],
+    .st-key-back_button_soft .stButton,
+    div[class*="st-key-back_button_soft"] div[data-testid="stVerticalBlock"],
+    div[class*="st-key-back_button_soft"] div[data-testid="element-container"],
+    div[class*="st-key-back_button_soft"] .stButton {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+    }
+
+    .st-key-back_button_soft .stButton > button,
+    div[class*="st-key-back_button_soft"] .stButton > button {
+        margin: 0 auto !important;
+        min-width: 140px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+}
+
+/* =========================================================
+   DESKTOP FIX: Anleitungstext zentrieren
+   Mobile bleibt unberührt
+   ========================================================= */
+
+@media (min-width: 901px) {
+
+    /* Anleitungskarte insgesamt zentrieren */
+    .text-card,
+    .text-card * {
+        text-align: center !important;
+    }
+
+    /* Überschrift "Deine Aufgabe" */
+    .text-card h3 {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    /* Fließtexte in der Anleitung */
+    .text-card p {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        max-width: 980px !important;
+    }
+
+    /* Swipe-/Likert-Hinweisboxen bleiben sauber zentriert */
+    .instruction-row {
+        justify-content: center !important;
+    }
+
+    .instruction-box,
+    .instruction-box * {
+        text-align: center !important;
+    }
+}
+
+/* =========================================================
+   DESKTOP FIX: obere Fragebogen-Box zentrieren
+   Mobile bleibt unberührt
+   ========================================================= */
+
+@media (min-width: 901px) {
+
+    .questionnaire-section-card {
+        text-align: center !important;
+        padding-left: 1.6rem !important;
+        padding-right: 1.6rem !important;
+    }
+
+    .questionnaire-section-label,
+    .questionnaire-section-title,
+    .questionnaire-section-helper {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .questionnaire-section-title {
+        margin-bottom: 0.9rem !important;
+    }
+
+    .questionnaire-section-helper {
+        max-width: 920px !important;
+        margin-bottom: 1.15rem !important;
+    }
+
+    .scale-legend-grid {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        justify-content: center !important;
+    }
+
+    .scale-legend-box,
+    .scale-legend-box * {
+        text-align: center !important;
+    }
+}
+
+/* =========================================================
+   DESKTOP FIX: Pre-Questionnaire-Box zentrieren
+   Mobile bleibt unberührt
+   ========================================================= */
+
+@media (min-width: 901px) {
+
+    .pre-questionnaire-clean-wrap .screen-card-info {
+        text-align: center !important;
+        padding-left: 1.8rem !important;
+        padding-right: 1.8rem !important;
+    }
+
+    .pre-questionnaire-clean-wrap .screen-card-info p,
+    .pre-questionnaire-clean-wrap .screen-card-info div,
+    .pre-questionnaire-clean-wrap .screen-card-info span {
+        text-align: center !important;
+    }
+
+    .pre-questionnaire-clean-wrap .screen-card-info p {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        max-width: 1100px !important;
+    }
+
+    .pre-questionnaire-clean-wrap .info-grid {
+        width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        justify-content: center !important;
+    }
+
+    .pre-questionnaire-clean-wrap .info-box,
+    .pre-questionnaire-clean-wrap .info-box *,
+    .pre-questionnaire-clean-wrap .screen-card-info .info-box,
+    .pre-questionnaire-clean-wrap .screen-card-info .info-box * {
+        text-align: center !important;
+    }
+}
+
+/* =========================================================
+   DESKTOP FIX: Fragebogen-Buttons sauber untereinander zentrieren
+   Mobile bleibt unberührt
+   ========================================================= */
+
+@media (min-width: 901px) {
+
+    .st-key-questionnaire_footer,
+    div[class*="st-key-questionnaire_footer"],
+    .st-key-back_button_soft,
+    div[class*="st-key-back_button_soft"] {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding: 0 !important;
+    }
+
+    /* Weiter-Button */
+    .st-key-questionnaire_footer,
+    div[class*="st-key-questionnaire_footer"] {
+        margin-top: 0.65rem !important;
+        margin-bottom: 0.45rem !important;
+    }
+
+    /* Zurück-Button */
+    .st-key-back_button_soft,
+    div[class*="st-key-back_button_soft"] {
+        margin-top: 0.15rem !important;
+        margin-bottom: 0.35rem !important;
+    }
+
+    .st-key-questionnaire_footer .stButton,
+    div[class*="st-key-questionnaire_footer"] .stButton,
+    .st-key-back_button_soft .stButton,
+    div[class*="st-key-back_button_soft"] .stButton {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+    }
+
+    .st-key-questionnaire_footer .stButton > button,
+    div[class*="st-key-questionnaire_footer"] .stButton > button,
+    .st-key-back_button_soft .stButton > button,
+    div[class*="st-key-back_button_soft"] .stButton > button {
+        width: 180px !important;
+        min-width: 180px !important;
+        max-width: 180px !important;
+        min-height: 50px !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        margin: 0 auto !important;
+        text-align: center !important;
+        border-radius: 999px !important;
     }
 }
 
@@ -6155,7 +6589,7 @@ def load_responses_df(filepath=CSV_FILEPATH):
 def render_admin_panel():
     st.sidebar.markdown("## Admin / Daten")
     password = st.sidebar.text_input("Admin-Passwort", type="password", key="admin_password_input")
-    ADMIN_PASSWORD = "Flietzpiepe11!"
+    ADMIN_PASSWORD = st.secrets.get("ADMIN_PASSWORD", "")
 
     if password == ADMIN_PASSWORD:
         st.session_state.admin_unlocked = True
@@ -6367,8 +6801,6 @@ elif st.session_state.phase == "results":
         f'<p class="result-profile-text">{escape(top_match["short_profile"])}</p>'
 '<p class="result-method-text">Dieses Ergebnis basiert auf dem Vergleich deiner Antworten mit einem hinterlegten, fiktiven Unternehmensprofil.</p>'
         '<div class="result-meta-row">'
-        '<div class="result-pill">Fiktives Unternehmensprofil</div>'
-        f'<div class="result-pill">{escape(top_match["archetype"])}</div>'
         '</div>'
         '</div>'
     )
@@ -6560,12 +6992,18 @@ elif st.session_state.phase == "questionnaire":
             item_style = "even" if item_index % 2 == 0 else "odd"
 
             with st.container(key=f"questionnaire_single_item_{item_style}_{current_step}_{item_index}"):
+                st.markdown(
+                    f'<div class="questionnaire-question-text">{escape(question_text)}</div>',
+                    unsafe_allow_html=True,
+                )
+
                 value = st.radio(
-                    question_text,
+                    " ",
                     options=[1, 2, 3, 4, 5],
                     index=None,
                     horizontal=True,
                     key=f"{key}_radio",
+                    label_visibility="collapsed",
                 )
 
                 if value is not None:
