@@ -6404,6 +6404,84 @@ div[class*="st-key-consent_inline_box"] .stButton > button {
     }
 }
 
+/* =========================================================
+   ABSOLUTE FINAL MOBILE FIX: Consent-Checkbox zentrieren
+   Nur Mobile – Desktop bleibt unberührt
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    /* Consent-Bereich insgesamt mittig halten */
+    .st-key-consent_inline_box,
+    div[class*="st-key-consent_inline_box"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* Checkbox-Wrapper mittig */
+    .st-key-consent_inline_box div[data-testid="stCheckbox"],
+    div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] {
+        width: 100% !important;
+        max-width: 100% !important;
+
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+
+        margin: 0 auto 0.58rem auto !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Checkbox-Pill NICHT mehr volle Breite, sondern kompakt und zentriert */
+    .st-key-consent_inline_box div[data-testid="stCheckbox"] label,
+    div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label {
+        width: fit-content !important;
+        min-width: 0 !important;
+        max-width: min(100%, 92vw) !important;
+
+        margin-left: auto !important;
+        margin-right: auto !important;
+
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        gap: 0.58rem !important;
+        padding: 0.58rem 0.78rem !important;
+
+        border-radius: 16px !important;
+        background: rgba(248,244,237,0.78) !important;
+        border: 1px solid rgba(49,92,99,0.12) !important;
+        box-shadow: none !important;
+
+        box-sizing: border-box !important;
+        text-align: left !important;
+    }
+
+    /* Text darf umbrechen, aber die gesamte Pill bleibt mittig */
+    .st-key-consent_inline_box div[data-testid="stCheckbox"] label p,
+    div[class*="st-key-consent_inline_box"] div[data-testid="stCheckbox"] label p {
+        flex: 0 1 auto !important;
+        width: auto !important;
+        max-width: 100% !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        font-size: 0.82rem !important;
+        line-height: 1.24 !important;
+        text-align: left !important;
+    }
+}
+
 </style>
     """,
     unsafe_allow_html=True,
