@@ -57,7 +57,7 @@ const fontSize = isSmallMobile ? "19px" : isMobile ? "20px" : "28px";
 useEffect(() => {
   Streamlit.setComponentReady();
 
-  if (mode === "closing_questionnaire") {
+  if (mode === "closing_questionnaire" || mode === "result_assessment") {
     return;
   }
 
@@ -81,6 +81,15 @@ if (mode === "closing_questionnaire") {
   return (
     <ClosingQuestionnaire
       blocks={items}
+      isMobile={isMobile}
+      isSmallMobile={isSmallMobile}
+    />
+  );
+}
+
+if (mode === "result_assessment") {
+  return (
+    <ResultAssessment
       isMobile={isMobile}
       isSmallMobile={isSmallMobile}
     />
@@ -521,8 +530,8 @@ function ClosingQuestionnaire({ blocks, isMobile, isSmallMobile }) {
   const itemCount = currentBlock?.items?.length || 0;
 
   const frameHeight = isMobile
-    ? 360 + itemCount * 96
-    : 430 + itemCount * 92;
+    ? 470 + itemCount * 110
+    : 470 + itemCount * 96;
 
   Streamlit.setFrameHeight(frameHeight);
 }, [currentStep, currentBlock, isMobile]);
@@ -585,7 +594,7 @@ function ClosingQuestionnaire({ blocks, isMobile, isSmallMobile }) {
       background: "linear-gradient(180deg, #FAF7F2 0%, #F8F4ED 100%)",
       fontFamily: '"Source Sans Pro", "Source Sans 3", Arial, Helvetica, sans-serif',
       color: colors.text,
-      padding: isMobile ? "12px 10px 70px" : "20px 24px 34px",
+      padding: isMobile ? "12px 10px 120px" : "20px 24px 34px",
       display: "flex",
       justifyContent: "flex-start",
       overflow: "visible",
@@ -891,8 +900,8 @@ function ClosingQuestionItem({
         background: "#FFFFFF",
         border: `1px solid rgba(49,92,99,0.08)`,
         borderRadius: isMobile ? "18px" : "20px",
-        padding: isMobile ? "10px 9px" : "12px 14px",
-        marginBottom: isLast ? 0 : isMobile ? "7px" : "9px",
+        padding: isMobile ? "14px 10px" : "12px 14px",
+        marginBottom: isLast ? 0 : isMobile ? "9px" : "9px",
         boxSizing: "border-box",
       }}
     >
@@ -901,7 +910,7 @@ function ClosingQuestionItem({
           color: colors.text,
           fontSize: isSmallMobile ? "13px" : isMobile ? "14px" : "16px",
           lineHeight: 1.38,
-          fontWeight: 600,
+          fontWeight: 550,
           letterSpacing: "-0.01em",
         }}
       >
@@ -913,10 +922,10 @@ function ClosingQuestionItem({
           display: "grid",
           gridTemplateColumns: "repeat(4, 1fr)",
           gap: isMobile ? "5px" : "0",
-          width: isMobile ? "104px" : "100%",
+          width: isMobile ? "132px" : "100%",
           border: isMobile ? "none" : `1px solid ${colors.border}`,
           borderRadius: isMobile ? "999px" : "12px",
-          overflow: "hidden",
+          overflow: "visible",
           background: isMobile ? "transparent" : colors.soft,
         }}
       >
@@ -931,8 +940,9 @@ function ClosingQuestionItem({
               aria-label={`Antwort ${option}`}
               style={{
                 fontFamily: '"Source Sans 3", "Source Sans Pro", Arial, Helvetica, sans-serif',
-                height: isMobile ? "28px" : "38px",
-                minWidth: isMobile ? "24px" : "auto",
+                width: isMobile ? "31px" : "auto",
+                height: isMobile ? "31px" : "38px",
+                minWidth: isMobile ? "31px" : "auto",
                 borderRadius: isMobile ? "999px" : "0",
                 border: isMobile
                   ? selected
@@ -959,6 +969,191 @@ function ClosingQuestionItem({
             </button>
           );
         })}
+      </div>
+    </div>
+  );
+}
+
+function ResultAssessment({ isMobile, isSmallMobile }) {
+  const [selectedValue, setSelectedValue] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
+
+  const options = [
+    "Sehr passend",
+    "Eher passend",
+    "Teils / teils",
+    "Eher nicht passend",
+    "Gar nicht passend",
+  ];
+
+  useEffect(() => {
+    Streamlit.setComponentReady();
+
+    const frameHeight = isMobile ? 520 : 350;
+    Streamlit.setFrameHeight(frameHeight);
+  }, [isMobile]);
+
+  if (submitted) {
+    return <div style={centerMessageStyle}>Antwort wird verarbeitet …</div>;
+  }
+
+  const submitAssessment = () => {
+    if (!selectedValue) return;
+
+    setSubmitted(true);
+    Streamlit.setComponentValue({
+      completed: true,
+      value: selectedValue,
+    });
+  };
+
+  return (
+    <div
+      style={{
+        width: "100%",
+        boxSizing: "border-box",
+        background: "transparent",
+        fontFamily: '"Source Sans 3", "Source Sans Pro", Arial, Helvetica, sans-serif',
+        color: colors.text,
+        padding: isMobile ? "8px 10px 32px" : "8px 0 18px",
+        overflow: "visible",
+      }}
+    >
+      <style>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800;900&display=swap');
+
+          * {
+            font-family: "Source Sans 3", "Source Sans Pro", Arial, Helvetica, sans-serif;
+          }
+        `}
+      </style>
+
+      <div
+        style={{
+          width: "100%",
+          maxWidth: isMobile ? "100%" : "860px",
+          margin: "0 auto",
+          background:
+            "radial-gradient(circle at top left, rgba(49,92,99,0.045), transparent 34%), radial-gradient(circle at bottom right, rgba(242,184,114,0.08), transparent 34%), rgba(255,255,255,0.97)",
+          border: `1px solid rgba(49,92,99,0.12)`,
+          borderRadius: isMobile ? "24px" : "30px",
+          boxShadow: "0 20px 48px rgba(49,92,99,0.11)",
+          padding: isMobile ? "20px 16px 18px" : "26px 28px 24px",
+          boxSizing: "border-box",
+        }}
+      >
+        <div
+          style={{
+            color: colors.primary,
+            fontSize: isMobile ? "27px" : "32px",
+            fontWeight: 800,
+            letterSpacing: "-0.04em",
+            lineHeight: 1.08,
+            marginBottom: "8px",
+            textAlign: isMobile ? "center" : "left",
+          }}
+        >
+          Deine erste Einschätzung
+        </div>
+
+        <div
+          style={{
+            color: colors.text,
+            fontSize: isMobile ? "16px" : "18px",
+            lineHeight: 1.45,
+            marginBottom: isMobile ? "18px" : "20px",
+            textAlign: isMobile ? "center" : "left",
+          }}
+        >
+          Wie passend erscheint dir das angezeigte Ergebnis?
+        </div>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: isMobile
+              ? "1fr"
+              : "repeat(5, minmax(0, 1fr))",
+            gap: isMobile ? "9px" : "10px",
+            marginBottom: isMobile ? "20px" : "22px",
+          }}
+        >
+          {options.map((option) => {
+            const selected = selectedValue === option;
+
+            return (
+              <button
+                key={option}
+                type="button"
+                onClick={() => setSelectedValue(option)}
+                style={{
+                  minHeight: isMobile ? "50px" : "60px",
+                  borderRadius: isMobile ? "17px" : "18px",
+                  border: selected
+                    ? `2px solid ${colors.primary}`
+                    : `1px solid ${colors.border}`,
+                  background: selected
+                    ? "rgba(107,170,117,0.18)"
+                    : colors.soft,
+                  color: selected ? colors.primary : colors.text,
+                  fontSize: isMobile ? "15px" : "15px",
+                  fontWeight: selected ? 800 : 700,
+                  cursor: "pointer",
+                  boxShadow: selected
+                    ? "0 10px 22px rgba(49,92,99,0.12)"
+                    : "0 6px 14px rgba(49,92,99,0.045)",
+                  transition: "all 0.15s ease",
+                  padding: isMobile ? "0 12px" : "0 8px",
+                  textAlign: "center",
+                }}
+              >
+                {option}
+              </button>
+            );
+          })}
+        </div>
+
+        <button
+          type="button"
+          onClick={submitAssessment}
+          disabled={!selectedValue}
+          style={{
+            width: isMobile ? "100%" : "min(520px, 76%)",
+            height: isMobile ? "50px" : "54px",
+            display: "block",
+            margin: "0 auto",
+            borderRadius: "999px",
+            border: `1px solid ${colors.primary}`,
+            background: selectedValue
+              ? colors.primary
+              : "rgba(49,92,99,0.32)",
+            color: "#FFFFFF",
+            fontSize: isMobile ? "15px" : "16px",
+            fontWeight: 850,
+            cursor: selectedValue ? "pointer" : "not-allowed",
+            boxShadow: selectedValue
+              ? "0 12px 26px rgba(49,92,99,0.18)"
+              : "none",
+            transition: "all 0.15s ease",
+          }}
+        >
+          Zum Abschlussfragebogen →
+        </button>
+
+        {!selectedValue && (
+          <div
+            style={{
+              color: colors.muted,
+              textAlign: "center",
+              fontSize: isMobile ? "12px" : "13px",
+              lineHeight: 1.35,
+              marginTop: "10px",
+            }}
+          >
+            Bitte wähle eine Einschätzung aus, um fortzufahren.
+          </div>
+        )}
       </div>
     </div>
   );

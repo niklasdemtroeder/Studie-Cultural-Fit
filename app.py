@@ -6553,40 +6553,44 @@ div[class*="questionnaire_single_item"] div[role="radiogroup"] label {
 
 items = [
     {"id": 1, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich fühle mich wohl, wenn mein Team zusammenhält."},
-    {"id": 2, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ein gutes Miteinander ist mir wichtiger als Konkurrenz im Team."},
-    {"id": 3, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "In Meetings ist mir wichtig, dass offen miteinander gesprochen wird."},
-    {"id": 4, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Wichtige Entscheidungen treffe ich lieber mit anderen."},
-    {"id": 5, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich arbeite gern in einem Team, in dem man aufeinander achtet."},
-    {"id": 6, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich fühle mich unwohl, wenn im Team jeder nur an sich denkt."},
-    {"id": 7, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Bei Problemen suche ich zuerst den Austausch im Team."},
-    {"id": 8, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich möchte möglichst wenig Konflikte im Arbeitsalltag."},
+    {"id": 2, "dimension": "Leistung / Wettbewerb", "text": "Klare Ziele motivieren mich im Arbeitsalltag."},
+    {"id": 3, "dimension": "Innovation / Flexibilität", "text": "Ich mag es, wenn neue Ideen schnell ausprobiert werden."},
+    {"id": 4, "dimension": "Struktur / Stabilität", "text": "Klare Abläufe geben mir Sicherheit bei der Arbeit."},
 
-    {"id": 9, "dimension": "Leistung / Wettbewerb", "text": "Klare Ziele motivieren mich im Arbeitsalltag."},
-    {"id": 10, "dimension": "Leistung / Wettbewerb", "text": "Ein bisschen Konkurrenz bringt mich zu besseren Leistungen."},
-    {"id": 11, "dimension": "Leistung / Wettbewerb", "text": "Ich setze mir gern höhere Ziele als nötig."},
-    {"id": 12, "dimension": "Leistung / Wettbewerb", "text": "Es motiviert mich, wenn gute Arbeit klar anerkannt wird."},
-    {"id": 13, "dimension": "Leistung / Wettbewerb", "text": "Ich möchte, dass mein beruflicher Erfolg sichtbar ist."},
-    {"id": 14, "dimension": "Leistung / Wettbewerb", "text": "Hohe Anforderungen motivieren mich mehr, als sie mich belasten."},
-    {"id": 15, "dimension": "Leistung / Wettbewerb", "text": "Mich mit anderen zu messen, motiviert mich."},
-    {"id": 16, "dimension": "Leistung / Wettbewerb", "text": "Ich arbeite gern dort, wo viel Leistung erwartet wird."},
+    {"id": 5, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "In Meetings ist mir wichtig, dass offen miteinander gesprochen wird."},
+    {"id": 6, "dimension": "Leistung / Wettbewerb", "text": "Es motiviert mich, wenn gute Arbeit klar anerkannt wird."},
+    {"id": 7, "dimension": "Innovation / Flexibilität", "text": "Wenn sich Pläne ändern, werde ich eher neugierig."},
+    {"id": 8, "dimension": "Struktur / Stabilität", "text": "Ich arbeite gern, wenn klar ist, wer wofür zuständig ist."},
 
-    {"id": 17, "dimension": "Innovation / Flexibilität", "text": "Ich mag es, wenn neue Ideen schnell ausprobiert werden."},
-    {"id": 18, "dimension": "Innovation / Flexibilität", "text": "Zu viel Routine nimmt mir Energie bei der Arbeit."},
-    {"id": 19, "dimension": "Innovation / Flexibilität", "text": "Ich blühe auf, wenn man Dinge besser machen kann."},
-    {"id": 20, "dimension": "Innovation / Flexibilität", "text": "Wenn sich Pläne ändern, werde ich eher neugierig."},
-    {"id": 21, "dimension": "Innovation / Flexibilität", "text": "Ich fühle mich lebendig, wenn sich bei der Arbeit viel bewegt."},
-    {"id": 22, "dimension": "Innovation / Flexibilität", "text": "Es stört mich nicht, wenn beim Ausprobieren noch nicht alles klar ist."},
-    {"id": 23, "dimension": "Innovation / Flexibilität", "text": "Etwas Chaos ist für mich okay, wenn daraus neue Ideen entstehen."},
-    {"id": 24, "dimension": "Innovation / Flexibilität", "text": "Frei ausprobieren zu können ist mir wichtiger als klare Regeln."},
+    {"id": 9, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Bei Problemen suche ich zuerst den Austausch im Team."},
+    {"id": 10, "dimension": "Leistung / Wettbewerb", "text": "Ich setze mir gern höhere Ziele als nötig."},
+    {"id": 11, "dimension": "Innovation / Flexibilität", "text": "Zu viel Routine nimmt mir Energie bei der Arbeit."},
+    {"id": 12, "dimension": "Struktur / Stabilität", "text": "Ich arbeite besser, wenn bei der Arbeit alles gut organisiert ist."},
 
-    {"id": 25, "dimension": "Struktur / Stabilität", "text": "Klare Abläufe geben mir Sicherheit bei der Arbeit."},
-    {"id": 26, "dimension": "Struktur / Stabilität", "text": "Ich arbeite besser, wenn bei der Arbeit alles gut organisiert ist."},
-    {"id": 27, "dimension": "Struktur / Stabilität", "text": "Ich arbeite lieber planbar, statt ständig flexibel sein zu müssen."},
-    {"id": 28, "dimension": "Struktur / Stabilität", "text": "Ich möchte nicht ständig Höchstleistung bringen müssen."},
-    {"id": 29, "dimension": "Struktur / Stabilität", "text": "Ich arbeite gern, wenn klar ist, wer wofür zuständig ist."},
-    {"id": 30, "dimension": "Struktur / Stabilität", "text": "Klare Regeln machen die Zusammenarbeit für mich leichter."},
-    {"id": 31, "dimension": "Struktur / Stabilität", "text": "Zu viel Freiheit macht Arbeit für mich schnell unübersichtlich."},
-    {"id": 32, "dimension": "Struktur / Stabilität", "text": "Ich werde unsicher, wenn Aufgaben sehr offen formuliert sind."},
+    {"id": 13, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich fühle mich unwohl, wenn im Team jeder nur an sich denkt."},
+    {"id": 14, "dimension": "Leistung / Wettbewerb", "text": "Mich mit anderen zu messen, motiviert mich."},
+    {"id": 15, "dimension": "Innovation / Flexibilität", "text": "Ich blühe auf, wenn man Dinge besser machen kann."},
+    {"id": 16, "dimension": "Struktur / Stabilität", "text": "Klare Regeln machen die Zusammenarbeit für mich leichter."},
+
+    {"id": 17, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ein gutes Miteinander ist mir wichtiger als Konkurrenz im Team."},
+    {"id": 18, "dimension": "Leistung / Wettbewerb", "text": "Ich möchte, dass mein beruflicher Erfolg sichtbar ist."},
+    {"id": 19, "dimension": "Innovation / Flexibilität", "text": "Ich fühle mich lebendig, wenn sich bei der Arbeit viel bewegt."},
+    {"id": 20, "dimension": "Struktur / Stabilität", "text": "Ich arbeite lieber planbar, statt ständig flexibel sein zu müssen."},
+
+    {"id": 21, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich möchte möglichst wenig Konflikte im Arbeitsalltag."},
+    {"id": 22, "dimension": "Leistung / Wettbewerb", "text": "Ein bisschen Konkurrenz bringt mich zu besseren Leistungen."},
+    {"id": 23, "dimension": "Innovation / Flexibilität", "text": "Es stört mich nicht, wenn beim Ausprobieren noch nicht alles klar ist."},
+    {"id": 24, "dimension": "Struktur / Stabilität", "text": "Ich werde unsicher, wenn Aufgaben sehr offen formuliert sind."},
+
+    {"id": 25, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Wichtige Entscheidungen treffe ich lieber mit anderen."},
+    {"id": 26, "dimension": "Leistung / Wettbewerb", "text": "Hohe Anforderungen motivieren mich mehr, als sie mich belasten."},
+    {"id": 27, "dimension": "Innovation / Flexibilität", "text": "Etwas Chaos ist für mich okay, wenn daraus neue Ideen entstehen."},
+    {"id": 28, "dimension": "Struktur / Stabilität", "text": "Zu viel Freiheit macht Arbeit für mich schnell unübersichtlich."},
+
+    {"id": 29, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich arbeite gern in einem Team, in dem man aufeinander achtet."},
+    {"id": 30, "dimension": "Leistung / Wettbewerb", "text": "Ich arbeite gern dort, wo viel Leistung erwartet wird."},
+    {"id": 31, "dimension": "Innovation / Flexibilität", "text": "Frei ausprobieren zu können ist mir wichtiger als klare Regeln."},
+    {"id": 32, "dimension": "Struktur / Stabilität", "text": "Ich möchte nicht ständig Höchstleistung bringen müssen."},
 ]
 
 companies = {
@@ -7147,42 +7151,16 @@ elif st.session_state.phase == "results":
         unsafe_allow_html=True,
     )
 
-    with st.container(key="result_assessment_card"):
-        st.markdown(
-            """
-            <div class="result-assessment-inner">
-                <h3>Deine erste Einschätzung</h3>
-                <p>Wie passend erscheint dir das angezeigte Ergebnis?</p>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+    assessment_result = swipe_component(
+        items=[],
+        mode="result_assessment",
+        key="result_assessment_component",
+    )
 
-        self_assessment = st.radio(
-            " ",
-            options=[
-                "Sehr passend",
-                "Eher passend",
-                "Teils / teils",
-                "Eher nicht passend",
-                "Gar nicht passend",
-            ],
-            index=None,
-            key="result_self_assessment",
-            label_visibility="collapsed",
-        )
-
-        btn_left, btn_center, btn_right = st.columns([0.12, 0.76, 0.12])
-        with btn_center:
-            if st.button(
-                "Zum Abschlussfragebogen",
-                use_container_width=True,
-                disabled=self_assessment is None,
-                key="continue_to_questionnaire",
-            ):
-                st.session_state.self_assessment = self_assessment
-                st.session_state.phase = "pre_questionnaire"
-                st.rerun()
+    if isinstance(assessment_result, dict) and assessment_result.get("completed") is True:
+        st.session_state.self_assessment = assessment_result.get("value")
+        st.session_state.phase = "pre_questionnaire"
+        st.rerun()
 
     st.markdown('<div class="result-details-title">Mehr zum Ergebnis anzeigen</div>', unsafe_allow_html=True)
 
