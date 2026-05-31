@@ -466,7 +466,7 @@ SHOW_ADMIN_PANEL = False
 CSV_FILEPATH = "responses.csv"
 DEBUG_MODE = False
 
-GOOGLE_SHEET_ID = "1F43LmzUGQRqwCpcHsuAMMEEV6xB95FVXa8nVzMDD-rE"
+GOOGLE_SHEET_ID = "1Qeip6sDtnu_FkVw9S7UEndy7PfQXPmCNcAWKqHdeR2E"
 
 st.markdown(
     """
@@ -6482,6 +6482,70 @@ div[class*="st-key-consent_inline_box"] .stButton > button {
     }
 }
 
+/* =========================================================
+   ABSCHLUSSFRAGEBOGEN: 4er-Skala final
+   Nur Abschlussfragebogen, Hauptfragebogen bleibt unverändert
+   ========================================================= */
+
+.scale-legend-grid-4,
+.questionnaire-section-card .scale-legend-grid-4 {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 0.55rem !important;
+}
+
+/* 4er-Radio-Skala im Abschlussfragebogen */
+div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"],
+div[class*="questionnaire_single_item"] div[role="radiogroup"] {
+    width: 100% !important;
+    max-width: 480px !important;
+    margin: 0.55rem auto 0 auto !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    justify-items: center !important;
+    align-items: center !important;
+    gap: 0 !important;
+}
+
+/* Jede Antwortoption gleichmäßig zentrieren */
+div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"] label,
+div[class*="questionnaire_single_item"] div[role="radiogroup"] label {
+    width: 100% !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    text-align: center !important;
+}
+
+/* Mobile: 4er-Legende kompakt halten */
+@media (max-width: 700px) {
+    .scale-legend-grid-4,
+    .questionnaire-section-card .scale-legend-grid-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        gap: 0.35rem !important;
+    }
+
+    .scale-legend-grid-4 .scale-legend-box {
+        padding: 0.55rem 0.22rem !important;
+        min-height: 64px !important;
+        border-radius: 14px !important;
+    }
+
+    .scale-legend-grid-4 .scale-legend-box strong {
+        font-size: 0.9rem !important;
+    }
+
+    .scale-legend-grid-4 .scale-legend-box span {
+        font-size: 0.62rem !important;
+        line-height: 1.15 !important;
+    }
+
+    div[class*="st-key-questionnaire_single_item"] div[role="radiogroup"],
+    div[class*="questionnaire_single_item"] div[role="radiogroup"] {
+        max-width: 94% !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+}
+
 </style>
     """,
     unsafe_allow_html=True,
@@ -6489,40 +6553,40 @@ div[class*="st-key-consent_inline_box"] .stButton > button {
 
 items = [
     {"id": 1, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich fühle mich wohl, wenn mein Team zusammenhält."},
-    {"id": 2, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ein gutes Miteinander ist mir wichtiger als interner Wettbewerb."},
+    {"id": 2, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ein gutes Miteinander ist mir wichtiger als Konkurrenz im Team."},
     {"id": 3, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "In Meetings ist mir wichtig, dass offen miteinander gesprochen wird."},
-    {"id": 4, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich treffe Entscheidungen lieber im Austausch mit anderen."},
-    {"id": 5, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Teamharmonie ist mir wichtiger als persönliche Karrierechancen."},
-    {"id": 6, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Spürbarer Zusammenhalt im Team motiviert mich."},
+    {"id": 4, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Wichtige Entscheidungen treffe ich lieber mit anderen."},
+    {"id": 5, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich arbeite gern in einem Team, in dem man aufeinander achtet."},
+    {"id": 6, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich fühle mich unwohl, wenn im Team jeder nur an sich denkt."},
     {"id": 7, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Bei Problemen suche ich zuerst den Austausch im Team."},
-    {"id": 8, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ein harmonisches Team ist mir wichtiger als maximale Leistung."},
+    {"id": 8, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich möchte möglichst wenig Konflikte im Arbeitsalltag."},
 
-    {"id": 9, "dimension": "Leistung / Wettbewerb", "text": "Klare Ziele spornen mich im Arbeitsalltag an."},
-    {"id": 10, "dimension": "Leistung / Wettbewerb", "text": "Ein gewisser Wettbewerb bringt mich zu besseren Leistungen."},
-    {"id": 11, "dimension": "Leistung / Wettbewerb", "text": "Ich fühle mich motiviert, wenn meine Erfolge sichtbar werden."},
-    {"id": 12, "dimension": "Leistung / Wettbewerb", "text": "Es motiviert mich, wenn gute Leistung sichtbar anerkannt wird."},
-    {"id": 13, "dimension": "Leistung / Wettbewerb", "text": "Ich möchte beruflich sichtbar erfolgreich sein."},
-    {"id": 14, "dimension": "Leistung / Wettbewerb", "text": "Hohe Anforderungen reizen mich mehr, als sie mich belasten."},
-    {"id": 15, "dimension": "Leistung / Wettbewerb", "text": "Ich finde es motivierend, mich mit anderen zu messen."},
-    {"id": 16, "dimension": "Leistung / Wettbewerb", "text": "Ich arbeite gern in einem Umfeld, das hohe Leistung erwartet."},
+    {"id": 9, "dimension": "Leistung / Wettbewerb", "text": "Klare Ziele motivieren mich im Arbeitsalltag."},
+    {"id": 10, "dimension": "Leistung / Wettbewerb", "text": "Ein bisschen Konkurrenz bringt mich zu besseren Leistungen."},
+    {"id": 11, "dimension": "Leistung / Wettbewerb", "text": "Ich setze mir gern höhere Ziele als nötig."},
+    {"id": 12, "dimension": "Leistung / Wettbewerb", "text": "Es motiviert mich, wenn gute Arbeit klar anerkannt wird."},
+    {"id": 13, "dimension": "Leistung / Wettbewerb", "text": "Ich möchte, dass mein beruflicher Erfolg sichtbar ist."},
+    {"id": 14, "dimension": "Leistung / Wettbewerb", "text": "Hohe Anforderungen motivieren mich mehr, als sie mich belasten."},
+    {"id": 15, "dimension": "Leistung / Wettbewerb", "text": "Mich mit anderen zu messen, motiviert mich."},
+    {"id": 16, "dimension": "Leistung / Wettbewerb", "text": "Ich arbeite gern dort, wo viel Leistung erwartet wird."},
 
     {"id": 17, "dimension": "Innovation / Flexibilität", "text": "Ich mag es, wenn neue Ideen schnell ausprobiert werden."},
     {"id": 18, "dimension": "Innovation / Flexibilität", "text": "Zu viel Routine nimmt mir Energie bei der Arbeit."},
-    {"id": 19, "dimension": "Innovation / Flexibilität", "text": "Ich blühe auf, wenn Dinge weiterentwickelt werden."},
+    {"id": 19, "dimension": "Innovation / Flexibilität", "text": "Ich blühe auf, wenn man Dinge besser machen kann."},
     {"id": 20, "dimension": "Innovation / Flexibilität", "text": "Wenn sich Pläne ändern, werde ich eher neugierig."},
-    {"id": 21, "dimension": "Innovation / Flexibilität", "text": "In dynamischen Arbeitsumfeldern fühle ich mich lebendig."},
-    {"id": 22, "dimension": "Innovation / Flexibilität", "text": "Unklare Wege stören mich wenig, wenn Neues entstehen kann."},
-    {"id": 23, "dimension": "Innovation / Flexibilität", "text": "Etwas Chaos ist für mich okay, wenn Ideen entstehen."},
-    {"id": 24, "dimension": "Innovation / Flexibilität", "text": "Kreative Freiheit ist mir wichtiger als klare Regeln."},
+    {"id": 21, "dimension": "Innovation / Flexibilität", "text": "Ich fühle mich lebendig, wenn sich bei der Arbeit viel bewegt."},
+    {"id": 22, "dimension": "Innovation / Flexibilität", "text": "Es stört mich nicht, wenn beim Ausprobieren noch nicht alles klar ist."},
+    {"id": 23, "dimension": "Innovation / Flexibilität", "text": "Etwas Chaos ist für mich okay, wenn daraus neue Ideen entstehen."},
+    {"id": 24, "dimension": "Innovation / Flexibilität", "text": "Frei ausprobieren zu können ist mir wichtiger als klare Regeln."},
 
     {"id": 25, "dimension": "Struktur / Stabilität", "text": "Klare Abläufe geben mir Sicherheit bei der Arbeit."},
-    {"id": 26, "dimension": "Struktur / Stabilität", "text": "Ich arbeite besser, wenn mein Umfeld gut organisiert ist."},
-    {"id": 27, "dimension": "Struktur / Stabilität", "text": "Planbare Arbeit ist mir lieber als ständige Flexibilität."},
-    {"id": 28, "dimension": "Struktur / Stabilität", "text": "Feste Strukturen helfen mir, fokussiert zu arbeiten."},
+    {"id": 26, "dimension": "Struktur / Stabilität", "text": "Ich arbeite besser, wenn bei der Arbeit alles gut organisiert ist."},
+    {"id": 27, "dimension": "Struktur / Stabilität", "text": "Ich arbeite lieber planbar, statt ständig flexibel sein zu müssen."},
+    {"id": 28, "dimension": "Struktur / Stabilität", "text": "Ich möchte nicht ständig Höchstleistung bringen müssen."},
     {"id": 29, "dimension": "Struktur / Stabilität", "text": "Ich arbeite gern, wenn klar ist, wer wofür zuständig ist."},
-    {"id": 30, "dimension": "Struktur / Stabilität", "text": "Eindeutige Regeln erleichtern mir die Zusammenarbeit."},
+    {"id": 30, "dimension": "Struktur / Stabilität", "text": "Klare Regeln machen die Zusammenarbeit für mich leichter."},
     {"id": 31, "dimension": "Struktur / Stabilität", "text": "Zu viel Freiheit macht Arbeit für mich schnell unübersichtlich."},
-    {"id": 32, "dimension": "Struktur / Stabilität", "text": "Klare Vorgaben liegen mir mehr als völlige Eigenständigkeit."},
+    {"id": 32, "dimension": "Struktur / Stabilität", "text": "Ich werde unsicher, wenn Aufgaben sehr offen formuliert sind."},
 ]
 
 companies = {
@@ -6574,59 +6638,40 @@ companies = {
 
 questionnaire_items = [
     {
-        "section": "A. Dein Antwortgefühl",
+        "section": "A. Antworterleben",
+        "prompt": "Wie hast du das Antworten erlebt?",
         "items": [
             ("q1", "Ich habe oft aus dem ersten Gefühl heraus geantwortet."),
             ("q2", "Ich habe über viele Antworten länger nachgedacht."),
-            ("q3", "Meine Antworten kamen eher spontan."),
-            ("q4", "Bei vielen Aussagen musste ich mich bewusst entscheiden."),
+            ("q3", "Bei vielen Aussagen fiel mir die Entscheidung leicht."),
+            ("q4", "Ich habe genau darauf geachtet, wie ich antworte."),
+            ("q5", "Bei manchen Antworten habe ich überlegt, wie sie auf andere wirken könnten."),
+            ("q6", "Ich wollte mich durch meine Antworten möglichst positiv darstellen."),
         ],
     },
     {
-        "section": "B. Bewusste Antwortsteuerung",
+        "section": "B. Nutzungserleben",
+        "prompt": "Wie hat sich das Verfahren für dich angefühlt?",
         "items": [
-            ("q5", "Ich habe meine Antworten bewusst überlegt."),
-            ("q6", "Ich habe während der Bearbeitung genau darauf geachtet, wie ich antworte."),
+            ("q7", "Die Beantwortung hat mich wenig angestrengt."),
+            ("q8", "Die Art der Beantwortung fühlte sich für mich natürlich an."),
+            ("q9", "Ich konnte meine Einschätzung gut über das Verfahren ausdrücken."),
+            ("q10", "Das Verfahren war einfach zu bedienen."),
+            ("q11", "Ich habe gut verstanden, was ich tun sollte."),
+            ("q12", "Das Verfahren war unnötig kompliziert."),
         ],
     },
     {
-        "section": "C. Wirkung der eigenen Antworten",
+        "section": "C. Ergebnis und Wirkung",
+        "prompt": "Wie bewertest du dein Ergebnis?",
         "items": [
-            ("q7", "Ich wollte mit meinen Antworten einen möglichst positiven Eindruck machen."),
-            ("q8", "Bei manchen Antworten habe ich überlegt, wie sie auf andere wirken könnten."),
-            ("q9", "Ich habe manchmal so geantwortet, wie es besonders positiv wirken könnte."),
-            ("q10", "Ich wollte mich durch meine Antworten möglichst vorteilhaft darstellen."),
-        ],
-    },
-    {
-        "section": "D. Bedienung und Verständlichkeit",
-        "items": [
-            ("q11", "Das Verfahren war einfach zu bedienen."),
-            ("q12", "Ich habe gut verstanden, was ich tun sollte."),
-            ("q13", "Die Beantwortung war für mich angenehm."),
-            ("q14", "Das Verfahren war unnötig kompliziert."),
-        ],
-    },
-    {
-        "section": "E. Einschätzung des Ergebnisses",
-        "items": [
-            ("q15", "Das angezeigte Ergebnis passt gut zu mir."),
-            ("q16", "Das Ergebnis wirkt auf mich nachvollziehbar."),
-            ("q17", "Ich verstehe, warum mir dieses Unternehmen angezeigt wurde."),
-        ],
-    },
-    {
-        "section": "F. Interesse am Unternehmen",
-        "items": [
-            ("q18", "Ich würde mehr über das angezeigte Unternehmen erfahren wollen."),
-            ("q19", "Ich könnte mir vorstellen, die Karriereseite des Unternehmens anzusehen."),
-            ("q20", "Ich könnte mir grundsätzlich vorstellen, mich dort zu bewerben."),
-        ],
-    },
-    {
-        "section": "G. Gesamtbewertung",
-        "items": [
-            ("q21", "Insgesamt finde ich das Verfahren sinnvoll, um kulturelle Passung im Recruiting sichtbar zu machen."),
+            ("q13", "Die Aussagen haben mich zum Nachdenken über meine Arbeitsweise gebracht."),
+            ("q14", "Durch das Verfahren wurden mir eigene Arbeitspräferenzen bewusster."),
+            ("q15", "Das Ergebnis fühlte sich für mich stimmig an."),
+            ("q16", "Das Ergebnis wirkte auf mich glaubwürdig."),
+            ("q17", "Ich würde mehr über das angezeigte Unternehmen erfahren wollen."),
+            ("q18", "Ich könnte mir grundsätzlich vorstellen, mich dort zu bewerben."),
+            ("q19", "Insgesamt finde ich das Verfahren sinnvoll, um kulturelle Passung im Recruiting sichtbar zu machen."),
         ],
     },
 ]
@@ -7259,17 +7304,18 @@ elif st.session_state.phase == "questionnaire":
         section_title = section_text
 
     questionnaire_section_html = (
-    '<div class="questionnaire-section-card">'
-    f'<div class="questionnaire-section-label">Abschnitt {escape(section_letter)}</div>'
-    f'<div class="questionnaire-section-title">{escape(section_title)}</div>'
-    '<p class="questionnaire-section-helper">Bitte bewerte die folgenden Aussagen danach, wie sehr du ihnen zustimmst.</p>'
-    '<div class="scale-legend-grid">'
-    '<div class="scale-legend-box"><strong>1</strong><span>stimme gar nicht zu</span></div>'
-    '<div class="scale-legend-box"><strong>3</strong><span>teils / teils</span></div>'
-    '<div class="scale-legend-box"><strong>5</strong><span>stimme voll zu</span></div>'
-    '</div>'
-    '</div>'
-)
+        '<div class="questionnaire-section-card">'
+        f'<div class="questionnaire-section-label">Abschnitt {escape(section_letter)}</div>'
+        f'<div class="questionnaire-section-title">{escape(section_title)}</div>'
+        f'<p class="questionnaire-section-helper">{escape(current_block.get("prompt", "Bitte bewerte die folgenden Aussagen danach, wie sehr du ihnen zustimmst."))}</p>'
+        '<div class="scale-legend-grid scale-legend-grid-4">'
+        '<div class="scale-legend-box"><strong>1</strong><span>stimme nicht zu</span></div>'
+        '<div class="scale-legend-box"><strong>2</strong><span>stimme eher nicht zu</span></div>'
+        '<div class="scale-legend-box"><strong>3</strong><span>stimme eher zu</span></div>'
+        '<div class="scale-legend-box"><strong>4</strong><span>stimme zu</span></div>'
+        '</div>'
+        '</div>'
+    )
 
     st.markdown(questionnaire_section_html, unsafe_allow_html=True)
 
@@ -7285,7 +7331,7 @@ elif st.session_state.phase == "questionnaire":
 
                 value = st.radio(
                     " ",
-                    options=[1, 2, 3, 4, 5],
+                    options=[1, 2, 3, 4],
                     index=None,
                     horizontal=True,
                     key=f"{key}_radio",
