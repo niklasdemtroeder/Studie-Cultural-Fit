@@ -1046,7 +1046,7 @@ function ResultAssessment({ isMobile, isSmallMobile }) {
         <div
           style={{
             color: colors.primary,
-            fontSize: isMobile ? "24px" : "32px",
+            fontSize: isMobile ? "22px" : "32px",
             fontWeight: 800,
             letterSpacing: "-0.04em",
             lineHeight: 1.08,
@@ -1060,9 +1060,9 @@ function ResultAssessment({ isMobile, isSmallMobile }) {
         <div
           style={{
             color: colors.text,
-            fontSize: isMobile ? "16px" : "18px",
-            lineHeight: 1.45,
-            marginBottom: isMobile ? "18px" : "20px",
+            fontSize: isMobile ? "14px" : "18px",
+            lineHeight: 1.4,
+            marginBottom: isMobile ? "16px" : "20px",
             textAlign: isMobile ? "center" : "left",
           }}
         >
@@ -1075,8 +1075,8 @@ function ResultAssessment({ isMobile, isSmallMobile }) {
             gridTemplateColumns: isMobile
               ? "1fr"
               : "repeat(5, minmax(0, 1fr))",
-            gap: isMobile ? "7px" : "10px",
-            marginBottom: isMobile ? "20px" : "22px",
+            gap: isMobile ? "6px" : "10px",
+            marginBottom: isMobile ? "18px" : "22px",
           }}
         >
           {options.map((option) => {
@@ -1088,7 +1088,7 @@ function ResultAssessment({ isMobile, isSmallMobile }) {
                 type="button"
                 onClick={() => setSelectedValue(option)}
                 style={{
-                  minHeight: isMobile ? "44px" : "60px",
+                  minHeight: isMobile ? "40px" : "60px",
                   borderRadius: isMobile ? "17px" : "18px",
                   border: selected
                     ? `2px solid ${colors.primary}`
@@ -1097,14 +1097,14 @@ function ResultAssessment({ isMobile, isSmallMobile }) {
                     ? "rgba(107,170,117,0.18)"
                     : colors.soft,
                   color: selected ? colors.primary : colors.text,
-                  fontSize: isMobile ? "15px" : "15px",
-                  fontWeight: selected ? 800 : 700,
+                  fontSize: isMobile ? "13px" : "15px",
+                  fontWeight: selected ? 700 : 600,
                   cursor: "pointer",
                   boxShadow: selected
                     ? "0 10px 22px rgba(49,92,99,0.12)"
                     : "0 6px 14px rgba(49,92,99,0.045)",
                   transition: "all 0.15s ease",
-                  padding: isMobile ? "0 12px" : "0 8px",
+                  padding: isMobile ? "0 10px" : "0 8px",
                   textAlign: "center",
                 }}
               >
@@ -1120,25 +1120,23 @@ function ResultAssessment({ isMobile, isSmallMobile }) {
           disabled={!selectedValue}
           style={{
             width: isMobile ? "100%" : "min(520px, 76%)",
-            height: isMobile ? "50px" : "54px",
+            height: isMobile ? "46px" : "50px",
             display: "block",
             margin: "0 auto",
             borderRadius: "999px",
             border: `1px solid ${colors.primary}`,
             background: selectedValue
-              ? colors.primary
-              : "rgba(49,92,99,0.32)",
+            ? colors.primary
+            : "rgba(49,92,99,0.32)",
             color: "#FFFFFF",
-            fontSize: isMobile ? "15px" : "16px",
-            fontWeight: 850,
+            fontSize: isMobile ? "14px" : "15px",
+            fontWeight: 700,
             cursor: selectedValue ? "pointer" : "not-allowed",
-            boxShadow: selectedValue
-              ? "0 12px 26px rgba(49,92,99,0.18)"
-              : "none",
+            boxShadow: "none",
             transition: "all 0.15s ease",
           }}
         >
-          Zum Abschlussfragebogen →
+          Zum Abschlussfragebogen
         </button>
 
         {!selectedValue && (
