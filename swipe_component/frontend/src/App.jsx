@@ -585,7 +585,7 @@ function ClosingQuestionnaire({ blocks, isMobile, isSmallMobile }) {
       background: "linear-gradient(180deg, #FAF7F2 0%, #F8F4ED 100%)",
       fontFamily: '"Source Sans Pro", "Source Sans 3", Arial, Helvetica, sans-serif',
       color: colors.text,
-      padding: isMobile ? "12px 10px 24px" : "20px 24px 34px",
+      padding: isMobile ? "12px 10px 70px" : "20px 24px 34px",
       display: "flex",
       justifyContent: "flex-start",
       overflow: "visible",
@@ -630,7 +630,7 @@ function ClosingQuestionnaire({ blocks, isMobile, isSmallMobile }) {
             style={{
               color: colors.muted,
               fontSize: isMobile ? "13px" : "15px",
-              fontWeight: 650,
+              fontWeight: 600,
               marginBottom: isMobile ? "9px" : "13px",
             }}
           >
@@ -861,7 +861,7 @@ function ScaleLegend({ isMobile }) {
               color: colors.muted,
               fontSize: isMobile ? "10px" : "12px",
               lineHeight: 1.18,
-              fontWeight: 650,
+              fontWeight: 600,
             }}
           >
             {label}
@@ -901,7 +901,7 @@ function ClosingQuestionItem({
           color: colors.text,
           fontSize: isSmallMobile ? "13px" : isMobile ? "14px" : "16px",
           lineHeight: 1.38,
-          fontWeight: 650,
+          fontWeight: 600,
           letterSpacing: "-0.01em",
         }}
       >
@@ -913,7 +913,7 @@ function ClosingQuestionItem({
           display: "grid",
           gridTemplateColumns: "repeat(4, 1fr)",
           gap: isMobile ? "5px" : "0",
-          width: isMobile ? "112px" : "100%",
+          width: isMobile ? "104px" : "100%",
           border: isMobile ? "none" : `1px solid ${colors.border}`,
           borderRadius: isMobile ? "999px" : "12px",
           overflow: "hidden",
