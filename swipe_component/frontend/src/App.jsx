@@ -1046,7 +1046,7 @@ function ResultAssessment({ isMobile, isSmallMobile }) {
         <div
           style={{
             color: colors.primary,
-            fontSize: isMobile ? "27px" : "32px",
+            fontSize: isMobile ? "24px" : "32px",
             fontWeight: 800,
             letterSpacing: "-0.04em",
             lineHeight: 1.08,
@@ -1075,7 +1075,7 @@ function ResultAssessment({ isMobile, isSmallMobile }) {
             gridTemplateColumns: isMobile
               ? "1fr"
               : "repeat(5, minmax(0, 1fr))",
-            gap: isMobile ? "9px" : "10px",
+            gap: isMobile ? "7px" : "10px",
             marginBottom: isMobile ? "20px" : "22px",
           }}
         >
@@ -1088,7 +1088,7 @@ function ResultAssessment({ isMobile, isSmallMobile }) {
                 type="button"
                 onClick={() => setSelectedValue(option)}
                 style={{
-                  minHeight: isMobile ? "50px" : "60px",
+                  minHeight: isMobile ? "44px" : "60px",
                   borderRadius: isMobile ? "17px" : "18px",
                   border: selected
                     ? `2px solid ${colors.primary}`
