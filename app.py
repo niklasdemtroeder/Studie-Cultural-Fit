@@ -466,7 +466,7 @@ SHOW_ADMIN_PANEL = False
 CSV_FILEPATH = "responses.csv"
 DEBUG_MODE = False
 
-GOOGLE_SHEET_ID = "1Qeip6sDtnu_FkVw9S7UEndy7PfQXPmCNcAWKqHdeR2E"
+GOOGLE_SHEET_ID = "1F43LmzUGQRqwCpcHsuAMMEEV6xB95FVXa8nVzMDD-rE"
 
 st.markdown(
     """
@@ -7268,120 +7268,16 @@ elif st.session_state.phase == "pre_questionnaire":
             st.rerun()
 
 elif st.session_state.phase == "questionnaire":
-    render_progress(3)
-
-    current_step = st.session_state.questionnaire_step
-    current_block = questionnaire_items[current_step]
-    total_blocks = len(questionnaire_items)
-
-    progress_percent = round(((current_step + 1) / total_blocks) * 100, 1)
-
-    st.markdown(
-        '<div class="questionnaire-title">Deine Einschätzung</div>',
-        unsafe_allow_html=True,
-    )
-    st.markdown(
-        f'<div class="questionnaire-subtitle">Abschnitt {current_step + 1} von {total_blocks}</div>',
-        unsafe_allow_html=True,
+    result = swipe_component(
+        items=questionnaire_items,
+        mode="closing_questionnaire",
+        key="closing_questionnaire_component",
     )
 
-    st.markdown(
-        f"""
-        <div class="questionnaire-progress-wrap">
-            <div class="questionnaire-progress-track">
-                <div class="questionnaire-progress-fill" style="width: {progress_percent}%;"></div>
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    section_text = current_block["section"]
-    if ". " in section_text:
-        section_letter, section_title = section_text.split(". ", 1)
-    else:
-        section_letter = f"{current_step + 1}"
-        section_title = section_text
-
-    questionnaire_section_html = (
-        '<div class="questionnaire-section-card">'
-        f'<div class="questionnaire-section-label">Abschnitt {escape(section_letter)}</div>'
-        f'<div class="questionnaire-section-title">{escape(section_title)}</div>'
-        f'<p class="questionnaire-section-helper">{escape(current_block.get("prompt", "Bitte bewerte die folgenden Aussagen danach, wie sehr du ihnen zustimmst."))}</p>'
-        '<div class="scale-legend-grid scale-legend-grid-4">'
-        '<div class="scale-legend-box"><strong>1</strong><span>stimme nicht zu</span></div>'
-        '<div class="scale-legend-box"><strong>2</strong><span>stimme eher nicht zu</span></div>'
-        '<div class="scale-legend-box"><strong>3</strong><span>stimme eher zu</span></div>'
-        '<div class="scale-legend-box"><strong>4</strong><span>stimme zu</span></div>'
-        '</div>'
-        '</div>'
-    )
-
-    st.markdown(questionnaire_section_html, unsafe_allow_html=True)
-
-    with st.container(key=f"questionnaire_item_card_{current_step}"):
-        for item_index, (key, question_text) in enumerate(current_block["items"], start=1):
-            item_style = "even" if item_index % 2 == 0 else "odd"
-
-            with st.container(key=f"questionnaire_single_item_{item_style}_{current_step}_{item_index}"):
-                st.markdown(
-                    f'<div class="questionnaire-question-text">{escape(question_text)}</div>',
-                    unsafe_allow_html=True,
-                )
-
-                value = st.radio(
-                    " ",
-                    options=[1, 2, 3, 4],
-                    index=None,
-                    horizontal=True,
-                    key=f"{key}_radio",
-                    label_visibility="collapsed",
-                )
-
-                if value is not None:
-                    st.session_state.questionnaire[key] = value
-
-    current_keys = [key for key, _ in current_block["items"]]
-    current_complete = all(
-        key in st.session_state.questionnaire
-        for key in current_keys
-    )
-
-    with st.container(key="questionnaire_footer"):
-        if current_step < total_blocks - 1:
-            if st.button(
-                "Weiter",
-                use_container_width=False,
-                disabled=not current_complete,
-                key=f"questionnaire_next_{current_step}",
-            ):
-                st.session_state.questionnaire_step += 1
-                st.rerun()
-        else:
-            if st.button(
-                "Fragebogen absenden",
-                use_container_width=False,
-                disabled=not current_complete,
-                key="questionnaire_submit",
-            ):
-                st.session_state.phase = "end"
-                st.rerun()
-
-    if current_step > 0:
-        with st.container(key=f"back_button_soft_{current_step}"):
-            if st.button(
-                "Zurück",
-                use_container_width=False,
-                key=f"questionnaire_back_{current_step}",
-            ):
-                st.session_state.questionnaire_step -= 1
-                st.rerun()
-
-    if not current_complete:
-        st.markdown(
-            '<div class="questionnaire-hint">Bitte beantworte alle Aussagen in diesem Abschnitt, bevor du fortfährst.</div>',
-            unsafe_allow_html=True,
-        )
+    if isinstance(result, dict) and result.get("completed") is True:
+        st.session_state.questionnaire = result.get("answers", {})
+        st.session_state.phase = "end"
+        st.rerun()
 
 elif st.session_state.phase == "end":
     if not st.session_state.data_saved:
