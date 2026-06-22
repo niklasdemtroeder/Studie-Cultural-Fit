@@ -3,6 +3,7 @@
 # DEBUG_MODE vor echter Erhebung auf False lassen.
 # credentials.json nicht auf GitHub hochladen.
 
+import base64
 import csv
 import os
 import random
@@ -464,9 +465,63 @@ div[class*="st-key-result_assessment_card"] .stButton {
 
 SHOW_ADMIN_PANEL = False
 CSV_FILEPATH = "responses.csv"
+GIVEAWAY_CSV_FILEPATH = "giveaway_entries.csv"
 DEBUG_MODE = False
 
 GOOGLE_SHEET_ID = "1F43LmzUGQRqwCpcHsuAMMEEV6xB95FVXa8nVzMDD-rE"
+
+BOOK_COVER_PATH = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    "assets",
+    "crashkurs_cover_sharp.png",
+)
+
+
+def image_to_base64(image_path):
+    if not os.path.exists(image_path):
+        return ""
+
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode("utf-8")
+
+
+def render_giveaway_banner():
+    cover_b64 = image_to_base64(BOOK_COVER_PATH)
+
+    if cover_b64:
+        cover_html = (
+            '<div class="book-giveaway-cover-box-v2">'
+            f'<img class="book-giveaway-cover-v2" src="data:image/png;base64,{cover_b64}" '
+            'alt="Crashkurs People, Culture & Change" />'
+            '</div>'
+        )
+        card_class = "book-giveaway-card-v2 screen-fade has-book-cover-v2"
+    else:
+        cover_html = ""
+        card_class = "book-giveaway-card-v2 screen-fade no-book-cover-v2"
+
+    return (
+        f'<div class="{card_class}">'
+        '<div class="book-giveaway-inner-v2">'
+        f'{cover_html}'
+        '<div class="book-giveaway-content-v2">'
+        '<div class="book-giveaway-title-v2">Deine Teilnahme kann sich doppelt lohnen</div>'
+        '<p class="book-giveaway-text-v2">'
+        'Finde heraus, welches Arbeitsumfeld zu dir passt — und sichere dir die Chance auf eines von fünf Exemplaren von '
+        '<strong>„Crashkurs People, Culture &amp; Change“</strong>.'
+        '</p>'
+        '<p class="book-giveaway-text-v2">'
+        'Das Buch zeigt kompakt und praxisnah, wie moderne Transformation im Bereich People &amp; Culture verstanden, '
+        'gestaltet und mit konkreten Tools umgesetzt werden kann.'
+        '</p>'
+        '<div class="book-giveaway-note-v2">'
+        '<span class="book-giveaway-note-icon-v2">i</span>'
+        '<span>Die Teilnahme an der Verlosung ist am Ende der Studie freiwillig möglich.</span>'
+        '</div>'
+        '</div>'
+        '</div>'
+        '</div>'
+    )
 
 st.markdown(
     """
@@ -6559,8 +6614,8 @@ items = [
 
     {"id": 5, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "In Meetings ist mir wichtig, dass offen miteinander gesprochen wird."},
     {"id": 6, "dimension": "Leistung / Wettbewerb", "text": "Es motiviert mich, wenn gute Arbeit klar anerkannt wird."},
-    {"id": 7, "dimension": "Innovation / Flexibilität", "text": "Wenn sich Pläne ändern, werde ich eher neugierig."},
-    {"id": 8, "dimension": "Struktur / Stabilität", "text": "Ich arbeite gern, wenn klar ist, wer wofür zuständig ist."},
+    {"id": 7, "dimension": "Innovation / Flexibilität", "text": "Wenn sich Pläne ändern, werde ich neugierig."},
+    {"id": 8, "dimension": "Struktur / Stabilität", "text": "Ich arbeite gern, wenn Zuständigkeiten klar verteilt sind."},
 
     {"id": 9, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Bei Problemen suche ich zuerst den Austausch im Team."},
     {"id": 10, "dimension": "Leistung / Wettbewerb", "text": "Ich setze mir gern höhere Ziele als nötig."},
@@ -6575,11 +6630,11 @@ items = [
     {"id": 17, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ein gutes Miteinander ist mir wichtiger als Konkurrenz im Team."},
     {"id": 18, "dimension": "Leistung / Wettbewerb", "text": "Ich möchte, dass mein beruflicher Erfolg sichtbar ist."},
     {"id": 19, "dimension": "Innovation / Flexibilität", "text": "Ich fühle mich lebendig, wenn sich bei der Arbeit viel bewegt."},
-    {"id": 20, "dimension": "Struktur / Stabilität", "text": "Ich arbeite lieber planbar, statt ständig flexibel sein zu müssen."},
+    {"id": 20, "dimension": "Struktur / Stabilität", "text": "Ich bevorzuge Planung statt ständiger Flexibilität."},
 
     {"id": 21, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich möchte möglichst wenig Konflikte im Arbeitsalltag."},
     {"id": 22, "dimension": "Leistung / Wettbewerb", "text": "Ein bisschen Konkurrenz bringt mich zu besseren Leistungen."},
-    {"id": 23, "dimension": "Innovation / Flexibilität", "text": "Es stört mich nicht, wenn beim Ausprobieren noch nicht alles klar ist."},
+    {"id": 23, "dimension": "Innovation / Flexibilität", "text": "Ich brauche nicht immer einen fertigen Plan, um loszulegen."},
     {"id": 24, "dimension": "Struktur / Stabilität", "text": "Ich werde unsicher, wenn Aufgaben sehr offen formuliert sind."},
 
     {"id": 25, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Wichtige Entscheidungen treffe ich lieber mit anderen."},
@@ -6588,7 +6643,7 @@ items = [
     {"id": 28, "dimension": "Struktur / Stabilität", "text": "Zu viel Freiheit macht Arbeit für mich schnell unübersichtlich."},
 
     {"id": 29, "dimension": "Zusammenarbeit / Gemeinschaft", "text": "Ich arbeite gern in einem Team, in dem man aufeinander achtet."},
-    {"id": 30, "dimension": "Leistung / Wettbewerb", "text": "Ich arbeite gern dort, wo viel Leistung erwartet wird."},
+    {"id": 30, "dimension": "Leistung / Wettbewerb", "text": "Ich blühe dort auf, wo viel Leistung erwartet wird."},
     {"id": 31, "dimension": "Innovation / Flexibilität", "text": "Frei ausprobieren zu können ist mir wichtiger als klare Regeln."},
     {"id": 32, "dimension": "Struktur / Stabilität", "text": "Ich möchte nicht ständig Höchstleistung bringen müssen."},
 ]
@@ -6675,7 +6730,6 @@ questionnaire_items = [
             ("q16", "Das Ergebnis wirkte auf mich glaubwürdig."),
             ("q17", "Ich würde mehr über das angezeigte Unternehmen erfahren wollen."),
             ("q18", "Ich könnte mir grundsätzlich vorstellen, mich dort zu bewerben."),
-            ("q19", "Insgesamt finde ich das Verfahren sinnvoll, um kulturelle Passung im Recruiting sichtbar zu machen."),
         ],
     },
 ]
@@ -6706,6 +6760,15 @@ if "admin_unlocked" not in st.session_state:
 
 if "self_assessment" not in st.session_state:
     st.session_state.self_assessment = None
+
+if "giveaway" not in st.session_state:
+    st.session_state.giveaway = {
+        "participates": False,
+        "email": "",
+    }
+
+if "giveaway_saved" not in st.session_state:
+    st.session_state.giveaway_saved = False
 
 
 def render_progress(active_step=0):
@@ -6752,6 +6815,11 @@ def reset_app():
     st.session_state.condition = random.choice(["swipe", "likert"])
     st.session_state.data_saved = False
     st.session_state.self_assessment = None
+    st.session_state.giveaway = {
+    "participates": False,
+    "email": "",
+}
+    st.session_state.giveaway_saved = False
 
     for block in questionnaire_items:
         for key, _ in block["items"]:
@@ -6914,6 +6982,79 @@ def save_response():
     except Exception:
         save_response_to_csv(CSV_FILEPATH)
 
+def build_giveaway_row():
+    giveaway = st.session_state.get("giveaway", {})
+    email = giveaway.get("email", "").strip()
+
+    if not giveaway.get("participates") or not email:
+        return None
+
+    return {
+        "giveaway_timestamp_utc": datetime.utcnow().isoformat(),
+        "giveaway_id": str(uuid.uuid4()),
+        "email": email,
+        "source": "cultural_fit_study",
+    }
+
+
+def save_giveaway_to_csv(filepath=GIVEAWAY_CSV_FILEPATH):
+    row = build_giveaway_row()
+
+    if row is None:
+        return False
+
+    file_exists = os.path.exists(filepath)
+
+    with open(filepath, mode="a", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=list(row.keys()))
+        if not file_exists:
+            writer.writeheader()
+        writer.writerow(row)
+
+    return True
+
+
+def save_giveaway_to_google_sheets():
+    row = build_giveaway_row()
+
+    if row is None:
+        return False
+
+    creds = get_google_credentials()
+
+    if creds is None:
+        return False
+
+    client = gspread.authorize(creds)
+    spreadsheet = client.open_by_key(GOOGLE_SHEET_ID)
+
+    try:
+        worksheet = spreadsheet.worksheet("giveaway")
+    except gspread.WorksheetNotFound:
+        worksheet = spreadsheet.add_worksheet(
+            title="giveaway",
+            rows="1000",
+            cols="10",
+        )
+
+    columns = list(row.keys())
+    existing_values = worksheet.get_all_values()
+
+    if len(existing_values) == 0:
+        worksheet.append_row(columns)
+
+    worksheet.append_row([row.get(column, "") for column in columns])
+    return True
+
+
+def save_giveaway_entry():
+    google_saved = save_giveaway_to_google_sheets()
+
+    if not google_saved:
+        save_giveaway_to_csv()
+
+    return True
+
 
 def load_responses_df(filepath=CSV_FILEPATH):
     if not os.path.exists(filepath):
@@ -6955,6 +7096,1185 @@ if DEBUG_MODE:
         reset_app()
         st.rerun()
 
+st.markdown(
+    """
+    <style>
+    /* =========================================================
+       SCREEN 1: Giveaway Banner / Verlosungskarte
+       ========================================================= */
+
+    .giveaway-card {
+        width: min(720px, 100%);
+        margin: 1rem auto 1rem auto;
+        background:
+            radial-gradient(circle at top left, rgba(49,92,99,0.045), transparent 34%),
+            radial-gradient(circle at bottom right, rgba(242,184,114,0.08), transparent 34%),
+            rgba(255,255,255,0.97);
+        border: 1px solid rgba(49,92,99,0.12);
+        border-radius: 26px;
+        box-shadow: 0 18px 42px rgba(49,92,99,0.10);
+        padding: 1.05rem 1.15rem;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: 150px minmax(0, 1fr);
+        gap: 1.25rem;
+        align-items: center;
+    }
+
+    .giveaway-cover-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .giveaway-cover {
+        width: 132px;
+        height: auto;
+        display: block;
+        border-radius: 8px;
+        filter: drop-shadow(0 14px 24px rgba(49,92,99,0.16));
+    }
+
+    .giveaway-content {
+        min-width: 0;
+    }
+
+    .giveaway-head-row {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.55rem;
+    }
+
+    .giveaway-icon {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+        border-radius: 999px;
+        background: rgba(242,184,114,0.18);
+        border: 1px solid rgba(242,184,114,0.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+    }
+
+    .giveaway-title {
+        color: var(--primary);
+        font-size: 1.22rem;
+        line-height: 1.18;
+        font-weight: 850;
+        letter-spacing: -0.035em;
+    }
+
+    .giveaway-text {
+        color: var(--text) !important;
+        font-size: 0.93rem;
+        line-height: 1.48;
+        margin: 0 0 0.55rem 0;
+    }
+
+    .giveaway-text strong {
+        color: var(--primary);
+        font-weight: 800;
+    }
+
+    .giveaway-note {
+        margin-top: 0.65rem;
+        padding: 0.62rem 0.75rem;
+        border-radius: 16px;
+        background: rgba(49,92,99,0.055);
+        border: 1px solid rgba(49,92,99,0.09);
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        color: var(--text);
+        font-size: 0.84rem;
+        line-height: 1.35;
+    }
+
+    .giveaway-note-icon {
+        width: 22px;
+        height: 22px;
+        min-width: 22px;
+        border-radius: 999px;
+        background: rgba(49,92,99,0.10);
+        color: var(--primary);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 850;
+        font-size: 0.82rem;
+    }
+
+    @media (max-width: 700px) {
+        .giveaway-card {
+            width: 100%;
+            margin: 0.75rem auto 0.65rem auto;
+            padding: 0.9rem 0.82rem;
+            border-radius: 22px;
+            grid-template-columns: 68px minmax(0, 1fr);
+            gap: 0.78rem;
+            align-items: start;
+            box-shadow: 0 14px 30px rgba(49,92,99,0.09);
+        }
+
+        .giveaway-cover-wrap {
+            align-self: start;
+            padding-top: 0.18rem;
+        }
+
+        .giveaway-cover {
+            width: 62px;
+            border-radius: 7px;
+            filter: drop-shadow(0 8px 16px rgba(49,92,99,0.14));
+        }
+
+        .giveaway-head-row {
+            gap: 0.45rem;
+            margin-bottom: 0.42rem;
+        }
+
+        .giveaway-icon {
+            width: 30px;
+            height: 30px;
+            min-width: 30px;
+            font-size: 0.95rem;
+        }
+
+        .giveaway-title {
+            font-size: 1rem;
+            line-height: 1.16;
+            letter-spacing: -0.03em;
+        }
+
+        .giveaway-text {
+            font-size: 0.8rem;
+            line-height: 1.36;
+            margin-bottom: 0.45rem;
+        }
+
+        .giveaway-note {
+            grid-column: 1 / -1;
+            margin-top: 0.35rem;
+            padding: 0.56rem 0.62rem;
+            border-radius: 14px;
+            font-size: 0.76rem;
+            line-height: 1.28;
+            gap: 0.48rem;
+        }
+
+        .giveaway-note-icon {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            font-size: 0.74rem;
+        }
+
+        .welcome-wrap {
+            padding-bottom: 0.85rem !important;
+        }
+
+        .start-button-anchor {
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+    }
+
+    @media (max-width: 390px) {
+        .giveaway-card {
+            grid-template-columns: 58px minmax(0, 1fr);
+            gap: 0.65rem;
+            padding: 0.82rem 0.72rem;
+        }
+
+        .giveaway-cover {
+            width: 54px;
+        }
+
+        .giveaway-title {
+            font-size: 0.94rem;
+        }
+
+        .giveaway-text {
+            font-size: 0.76rem;
+        }
+
+        .giveaway-note {
+            font-size: 0.72rem;
+        }
+    }
+
+    /* =========================================================
+   FINAL CLEAN VERSION: Giveaway Card ohne Cover-Spalte
+   ========================================================= */
+
+.giveaway-card {
+    width: min(720px, 100%) !important;
+    margin: 1rem auto 1rem auto !important;
+    padding: 1.25rem 1.35rem !important;
+    display: block !important;
+    background:
+        radial-gradient(circle at top left, rgba(49,92,99,0.045), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(242,184,114,0.08), transparent 34%),
+        rgba(255,255,255,0.98) !important;
+    border: 1px solid rgba(49,92,99,0.12) !important;
+    border-radius: 26px !important;
+    box-shadow: 0 16px 38px rgba(49,92,99,0.09) !important;
+    box-sizing: border-box !important;
+}
+
+.giveaway-content {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.giveaway-head-row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.7rem !important;
+    margin-bottom: 0.75rem !important;
+    text-align: center !important;
+}
+
+.giveaway-icon {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    border-radius: 999px !important;
+    background: rgba(242,184,114,0.18) !important;
+    border: 1px solid rgba(242,184,114,0.35) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.15rem !important;
+}
+
+.giveaway-title {
+    color: var(--primary) !important;
+    font-size: 1.32rem !important;
+    line-height: 1.15 !important;
+    font-weight: 850 !important;
+    letter-spacing: -0.035em !important;
+    text-align: left !important;
+}
+
+.giveaway-text {
+    max-width: 620px !important;
+    margin: 0 auto 0.58rem auto !important;
+    color: var(--text) !important;
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+    text-align: center !important;
+}
+
+.giveaway-text strong {
+    color: var(--primary) !important;
+    font-weight: 850 !important;
+}
+
+.giveaway-note {
+    width: fit-content !important;
+    max-width: 100% !important;
+    margin: 0.85rem auto 0 auto !important;
+    padding: 0.62rem 0.85rem !important;
+    border-radius: 16px !important;
+    background: rgba(49,92,99,0.055) !important;
+    border: 1px solid rgba(49,92,99,0.09) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.55rem !important;
+    color: var(--text) !important;
+    font-size: 0.84rem !important;
+    line-height: 1.35 !important;
+    text-align: left !important;
+}
+
+.giveaway-note-icon {
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
+    border-radius: 999px !important;
+    background: rgba(49,92,99,0.10) !important;
+    color: var(--primary) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-weight: 850 !important;
+    font-size: 0.82rem !important;
+}
+
+@media (max-width: 700px) {
+    .giveaway-card {
+        width: 100% !important;
+        margin: 0.75rem auto 0.75rem auto !important;
+        padding: 1rem 0.9rem !important;
+        border-radius: 22px !important;
+        box-shadow: 0 12px 28px rgba(49,92,99,0.08) !important;
+    }
+
+    .giveaway-head-row {
+        justify-content: flex-start !important;
+        align-items: center !important;
+        gap: 0.55rem !important;
+        margin-bottom: 0.6rem !important;
+        text-align: left !important;
+    }
+
+    .giveaway-icon {
+        width: 32px !important;
+        height: 32px !important;
+        min-width: 32px !important;
+        font-size: 1rem !important;
+    }
+
+    .giveaway-title {
+        font-size: 1.05rem !important;
+        line-height: 1.15 !important;
+        text-align: left !important;
+    }
+
+    .giveaway-text {
+        max-width: 100% !important;
+        font-size: 0.82rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 0.5rem !important;
+        text-align: left !important;
+    }
+
+    .giveaway-note {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        margin-top: 0.7rem !important;
+        padding: 0.58rem 0.65rem !important;
+        border-radius: 14px !important;
+        font-size: 0.76rem !important;
+        line-height: 1.3 !important;
+        justify-content: flex-start !important;
+    }
+
+    .giveaway-note-icon {
+        width: 20px !important;
+        height: 20px !important;
+        min-width: 20px !important;
+        font-size: 0.74rem !important;
+    }
+}
+
+@media (max-width: 390px) {
+    .giveaway-card {
+        padding: 0.9rem 0.78rem !important;
+    }
+
+    .giveaway-title {
+        font-size: 0.98rem !important;
+    }
+
+    .giveaway-text {
+        font-size: 0.78rem !important;
+    }
+
+    .giveaway-note {
+        font-size: 0.72rem !important;
+    }
+}
+
+/* =========================================================
+   FINAL POLISH: Giveaway Card harmonischer auf Screen 1
+   ========================================================= */
+
+.giveaway-card {
+    width: min(620px, 92%) !important;
+    margin: 0.85rem auto 0.9rem auto !important;
+    padding: 1.05rem 1.15rem !important;
+    border-radius: 22px !important;
+    box-shadow: 0 12px 30px rgba(49,92,99,0.075) !important;
+}
+
+.giveaway-head-row {
+    justify-content: flex-start !important;
+    max-width: 540px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 0.55rem !important;
+}
+
+.giveaway-icon {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    font-size: 1rem !important;
+}
+
+.giveaway-title {
+    font-size: 1.08rem !important;
+    line-height: 1.16 !important;
+    text-align: left !important;
+}
+
+.giveaway-text {
+    max-width: 540px !important;
+    text-align: left !important;
+    font-size: 0.88rem !important;
+    line-height: 1.45 !important;
+    margin-bottom: 0.48rem !important;
+}
+
+.giveaway-note {
+    max-width: 540px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin-top: 0.7rem !important;
+    padding: 0.55rem 0.7rem !important;
+    font-size: 0.78rem !important;
+}
+
+@media (max-width: 700px) {
+    .giveaway-card {
+        width: 100% !important;
+        margin: 0.7rem auto 0.65rem auto !important;
+        padding: 0.95rem 0.85rem !important;
+        border-radius: 20px !important;
+    }
+
+    .giveaway-head-row {
+        max-width: 100% !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .giveaway-title {
+        font-size: 1rem !important;
+    }
+
+    .giveaway-text {
+        max-width: 100% !important;
+        font-size: 0.8rem !important;
+        line-height: 1.38 !important;
+        margin-bottom: 0.45rem !important;
+    }
+
+    .giveaway-note {
+        max-width: 100% !important;
+        font-size: 0.74rem !important;
+        line-height: 1.28 !important;
+        margin-top: 0.6rem !important;
+    }
+}
+
+/* =========================================================
+   FINAL POLISH: Giveaway Card mit kleinem Buchcover
+   ========================================================= */
+
+.giveaway-card {
+    width: min(620px, 92%) !important;
+    margin: 0.85rem auto 0.9rem auto !important;
+    padding: 1.05rem 1.15rem !important;
+    border-radius: 22px !important;
+    box-shadow: 0 12px 30px rgba(49,92,99,0.075) !important;
+    display: block !important;
+}
+
+.giveaway-inner {
+    width: 100% !important;
+    max-width: 540px !important;
+    margin: 0 auto !important;
+    display: grid !important;
+    grid-template-columns: 72px minmax(0, 1fr) !important;
+    gap: 0.95rem !important;
+    align-items: center !important;
+}
+
+.giveaway-card.no-cover .giveaway-inner {
+    grid-template-columns: 1fr !important;
+}
+
+.giveaway-cover-wrap {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.giveaway-cover {
+    display: block !important;
+    width: 66px !important;
+    height: auto !important;
+    border-radius: 7px !important;
+    filter: drop-shadow(0 8px 16px rgba(49,92,99,0.16)) !important;
+}
+
+.giveaway-content {
+    width: 100% !important;
+    min-width: 0 !important;
+}
+
+.giveaway-head-row {
+    display: block !important;
+    margin: 0 0 0.45rem 0 !important;
+    text-align: left !important;
+}
+
+.giveaway-icon {
+    display: none !important;
+}
+
+.giveaway-title {
+    color: var(--primary) !important;
+    font-size: 1.08rem !important;
+    line-height: 1.16 !important;
+    font-weight: 850 !important;
+    letter-spacing: -0.035em !important;
+    text-align: left !important;
+}
+
+.giveaway-text {
+    max-width: 100% !important;
+    text-align: left !important;
+    font-size: 0.88rem !important;
+    line-height: 1.45 !important;
+    margin: 0 0 0.48rem 0 !important;
+    color: var(--text) !important;
+}
+
+.giveaway-text strong {
+    color: var(--primary) !important;
+    font-weight: 850 !important;
+}
+
+.giveaway-note {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0.65rem 0 0 0 !important;
+    padding: 0.55rem 0.7rem !important;
+    border-radius: 15px !important;
+    background: rgba(49,92,99,0.055) !important;
+    border: 1px solid rgba(49,92,99,0.09) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0.55rem !important;
+    color: var(--text) !important;
+    font-size: 0.78rem !important;
+    line-height: 1.32 !important;
+    text-align: left !important;
+}
+
+.giveaway-note-icon {
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
+    border-radius: 999px !important;
+    background: rgba(49,92,99,0.10) !important;
+    color: var(--primary) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-weight: 850 !important;
+    font-size: 0.72rem !important;
+}
+
+/* Mobile: Cover sehr kompakt, Text bleibt gut lesbar */
+@media (max-width: 700px) {
+    .giveaway-card {
+        width: 100% !important;
+        margin: 0.7rem auto 0.65rem auto !important;
+        padding: 0.9rem 0.8rem !important;
+        border-radius: 20px !important;
+    }
+
+    .giveaway-inner {
+        max-width: 100% !important;
+        grid-template-columns: 54px minmax(0, 1fr) !important;
+        gap: 0.68rem !important;
+        align-items: start !important;
+    }
+
+    .giveaway-card.no-cover .giveaway-inner {
+        grid-template-columns: 1fr !important;
+    }
+
+    .giveaway-cover {
+        width: 50px !important;
+        border-radius: 6px !important;
+        filter: drop-shadow(0 6px 12px rgba(49,92,99,0.14)) !important;
+    }
+
+    .giveaway-title {
+        font-size: 0.98rem !important;
+        line-height: 1.14 !important;
+    }
+
+    .giveaway-text {
+        font-size: 0.78rem !important;
+        line-height: 1.36 !important;
+        margin-bottom: 0.42rem !important;
+    }
+
+    .giveaway-note {
+        grid-column: 1 / -1 !important;
+        font-size: 0.72rem !important;
+        line-height: 1.28 !important;
+        margin-top: 0.55rem !important;
+        padding: 0.52rem 0.62rem !important;
+    }
+}
+
+/* =========================================================
+   ABSOLUTE FINAL FIX: Buchcover im Giveaway sichtbar machen
+   ========================================================= */
+
+.giveaway-card.has-cover .giveaway-inner {
+    display: grid !important;
+    grid-template-columns: 76px minmax(0, 1fr) !important;
+    gap: 0.95rem !important;
+    align-items: center !important;
+}
+
+.giveaway-cover-wrap {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 76px !important;
+    min-width: 76px !important;
+}
+
+.giveaway-cover {
+    display: block !important;
+    width: 68px !important;
+    height: auto !important;
+    max-width: 68px !important;
+    border-radius: 7px !important;
+    object-fit: contain !important;
+    filter: drop-shadow(0 8px 16px rgba(49,92,99,0.16)) !important;
+}
+
+.giveaway-card.no-cover .giveaway-inner {
+    display: block !important;
+}
+
+@media (max-width: 700px) {
+    .giveaway-card.has-cover .giveaway-inner {
+        grid-template-columns: 58px minmax(0, 1fr) !important;
+        gap: 0.68rem !important;
+        align-items: start !important;
+    }
+
+    .giveaway-cover-wrap {
+        width: 58px !important;
+        min-width: 58px !important;
+        padding-top: 0.1rem !important;
+    }
+
+    .giveaway-cover {
+        width: 52px !important;
+        max-width: 52px !important;
+        border-radius: 6px !important;
+    }
+
+    .giveaway-note {
+        grid-column: 1 / -1 !important;
+    }
+}
+
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+st.markdown(
+    """
+    <style>
+    /* =========================================================
+       BOOK GIVEAWAY CARD V2
+       Isolierte Version ohne Konflikt mit alten Giveaway-Styles
+       ========================================================= */
+
+    .book-giveaway-card-v2 {
+        width: min(620px, 92%) !important;
+        margin: 0.85rem auto 0.9rem auto !important;
+        padding: 1.05rem 1.15rem !important;
+        border-radius: 22px !important;
+        background:
+            radial-gradient(circle at top left, rgba(49,92,99,0.045), transparent 34%),
+            radial-gradient(circle at bottom right, rgba(242,184,114,0.08), transparent 34%),
+            rgba(255,255,255,0.98) !important;
+        border: 1px solid rgba(49,92,99,0.12) !important;
+        box-shadow: 0 12px 30px rgba(49,92,99,0.075) !important;
+        box-sizing: border-box !important;
+    }
+
+    .book-giveaway-inner-v2 {
+        width: 100% !important;
+        max-width: 540px !important;
+        margin: 0 auto !important;
+        display: grid !important;
+        grid-template-columns: 72px minmax(0, 1fr) !important;
+        gap: 0.95rem !important;
+        align-items: center !important;
+    }
+
+    .book-giveaway-card-v2.no-book-cover-v2 .book-giveaway-inner-v2 {
+        grid-template-columns: 1fr !important;
+    }
+
+    .book-giveaway-cover-box-v2 {
+        width: 72px !important;
+        min-width: 72px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .book-giveaway-cover-v2 {
+        display: block !important;
+        width: 66px !important;
+        max-width: 66px !important;
+        height: auto !important;
+        border-radius: 7px !important;
+        object-fit: contain !important;
+        filter: drop-shadow(0 8px 16px rgba(49,92,99,0.16)) !important;
+    }
+
+    .book-giveaway-content-v2 {
+        min-width: 0 !important;
+        width: 100% !important;
+    }
+
+    .book-giveaway-title-v2 {
+        color: var(--primary) !important;
+        font-size: 1.08rem !important;
+        line-height: 1.16 !important;
+        font-weight: 850 !important;
+        letter-spacing: -0.035em !important;
+        text-align: left !important;
+        margin-bottom: 0.45rem !important;
+    }
+
+    .book-giveaway-text-v2 {
+        color: var(--text) !important;
+        font-size: 0.88rem !important;
+        line-height: 1.45 !important;
+        text-align: left !important;
+        margin: 0 0 0.48rem 0 !important;
+    }
+
+    .book-giveaway-text-v2 strong {
+        color: var(--primary) !important;
+        font-weight: 850 !important;
+    }
+
+    .book-giveaway-note-v2 {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        margin: 0.65rem 0 0 0 !important;
+        padding: 0.55rem 0.7rem !important;
+        border-radius: 15px !important;
+        background: rgba(49,92,99,0.055) !important;
+        border: 1px solid rgba(49,92,99,0.09) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 0.55rem !important;
+        color: var(--text) !important;
+        font-size: 0.78rem !important;
+        line-height: 1.32 !important;
+        text-align: left !important;
+    }
+
+    .book-giveaway-note-icon-v2 {
+        width: 20px !important;
+        height: 20px !important;
+        min-width: 20px !important;
+        border-radius: 999px !important;
+        background: rgba(49,92,99,0.10) !important;
+        color: var(--primary) !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-weight: 850 !important;
+        font-size: 0.72rem !important;
+    }
+
+    @media (max-width: 700px) {
+        .book-giveaway-card-v2 {
+            width: 100% !important;
+            margin: 0.7rem auto 0.65rem auto !important;
+            padding: 0.9rem 0.8rem !important;
+            border-radius: 20px !important;
+        }
+
+        .book-giveaway-inner-v2 {
+            max-width: 100% !important;
+            grid-template-columns: 54px minmax(0, 1fr) !important;
+            gap: 0.68rem !important;
+            align-items: start !important;
+        }
+
+        .book-giveaway-card-v2.no-book-cover-v2 .book-giveaway-inner-v2 {
+            grid-template-columns: 1fr !important;
+        }
+
+        .book-giveaway-cover-box-v2 {
+            width: 54px !important;
+            min-width: 54px !important;
+            padding-top: 0.1rem !important;
+        }
+
+        .book-giveaway-cover-v2 {
+            width: 50px !important;
+            max-width: 50px !important;
+            border-radius: 6px !important;
+            filter: drop-shadow(0 6px 12px rgba(49,92,99,0.14)) !important;
+        }
+
+        .book-giveaway-title-v2 {
+            font-size: 0.98rem !important;
+            line-height: 1.14 !important;
+            margin-bottom: 0.38rem !important;
+        }
+
+        .book-giveaway-text-v2 {
+            font-size: 0.78rem !important;
+            line-height: 1.36 !important;
+            margin-bottom: 0.42rem !important;
+        }
+
+        .book-giveaway-note-v2 {
+            grid-column: 1 / -1 !important;
+            font-size: 0.72rem !important;
+            line-height: 1.28 !important;
+            margin-top: 0.55rem !important;
+            padding: 0.52rem 0.62rem !important;
+        }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+st.markdown(
+    """
+    <style>
+    /* =========================================================
+       BOOK GIVEAWAY NATIVE STREAMLIT VERSION
+       Cleaner refined design
+       ========================================================= */
+
+    .st-key-book_giveaway_native,
+    div[class*="st-key-book_giveaway_native"] {
+        width: min(980px, 98%) !important;
+        margin: 0.9rem auto 0.9rem auto !important;
+        padding: 1.15rem 1.2rem !important;
+        border-radius: 24px !important;
+        background:
+            radial-gradient(circle at top left, rgba(49,92,99,0.04), transparent 34%),
+            radial-gradient(circle at bottom right, rgba(242,184,114,0.07), transparent 34%),
+            rgba(255,255,255,0.98) !important;
+        border: 1px solid rgba(49,92,99,0.10) !important;
+        box-shadow: 0 10px 26px rgba(49,92,99,0.06) !important;
+        box-sizing: border-box !important;
+    }
+
+    .st-key-book_giveaway_native div[data-testid="stImage"],
+    div[class*="st-key-book_giveaway_native"] div[data-testid="stImage"] {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: flex-start !important;
+        margin-top: 0.15rem !important;
+    }
+
+    .st-key-book_giveaway_native img,
+    div[class*="st-key-book_giveaway_native"] img {
+        border-radius: 8px !important;
+        filter: drop-shadow(0 8px 16px rgba(49,92,99,0.14)) !important;
+    }
+
+    .book-native-title {
+        color: var(--primary) !important;
+        font-size: 1.02rem !important;
+        line-height: 1.18 !important;
+        font-weight: 800 !important;
+        letter-spacing: -0.02em !important;
+        margin-bottom: 0.35rem !important;
+        text-align: left !important;
+    }
+
+    .book-native-text {
+        color: var(--text) !important;
+        font-size: 0.93rem !important;
+        line-height: 1.48 !important;
+        margin: 0 0 0.42rem 0 !important;
+        text-align: left !important;
+    }
+
+    .book-native-text strong {
+        color: var(--primary) !important;
+        font-weight: 800 !important;
+    }
+
+    .book-native-note {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        margin: 0.65rem 0 0 0 !important;
+        padding: 0.52rem 0.72rem !important;
+        border-radius: 14px !important;
+        background: rgba(49,92,99,0.045) !important;
+        border: 1px solid rgba(49,92,99,0.08) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 0.5rem !important;
+        color: var(--text) !important;
+        font-size: 0.78rem !important;
+        line-height: 1.3 !important;
+        text-align: left !important;
+    }
+
+    .book-native-note-icon {
+        width: 18px !important;
+        height: 18px !important;
+        min-width: 18px !important;
+        border-radius: 999px !important;
+        background: rgba(49,92,99,0.10) !important;
+        color: var(--primary) !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-weight: 800 !important;
+        font-size: 0.68rem !important;
+    }
+
+    @media (max-width: 700px) {
+        .st-key-book_giveaway_native,
+        div[class*="st-key-book_giveaway_native"] {
+            width: min(860px, 96%) !important;
+            margin: 0.85rem auto 0.9rem auto !important;
+            padding: 1.02rem 1.22rem 1.14rem 1.22rem !important;
+            border-radius: 22px !important;
+            box-shadow: 0 10px 24px rgba(49,92,99,0.06) !important;
+        }
+
+        .st-key-book_giveaway_native img,
+        div[class*="st-key-book_giveaway_native"] img {
+            max-width: 58px !important;
+            border-radius: 7px !important;
+        }
+
+        .book-native-title {
+            font-size: 0.94rem !important;
+            line-height: 1.16 !important;
+            margin-bottom: 0.28rem !important;
+        }
+
+        .book-native-text {
+            font-size: 0.79rem !important;
+            line-height: 1.38 !important;
+            margin-bottom: 0.36rem !important;
+        }
+
+        .book-native-note {
+            font-size: 0.71rem !important;
+            line-height: 1.26 !important;
+            margin-top: 0.5rem !important;
+            padding: 0.48rem 0.58rem !important;
+            border-radius: 12px !important;
+        }
+
+        .book-native-note-icon {
+            width: 17px !important;
+            height: 17px !important;
+            min-width: 17px !important;
+            font-size: 0.65rem !important;
+        }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+st.markdown(
+    """
+    <style>
+    /* =========================================================
+       ABSOLUTE FINAL: Book Giveaway Banner
+       Überschrift luftiger + Feld etwas höher/länger
+       ========================================================= */
+
+    .st-key-book_giveaway_native,
+    div[class*="st-key-book_giveaway_native"] {
+        width: min(980px, 98%) !important;
+        margin: 0.9rem auto 0.45rem auto !important;
+        padding: 1.08rem 1.35rem 1.75rem 1.35rem !important;
+        border-radius: 24px !important;
+        background:
+            radial-gradient(circle at top left, rgba(49,92,99,0.04), transparent 34%),
+            radial-gradient(circle at bottom right, rgba(242,184,114,0.07), transparent 34%),
+            rgba(255,255,255,0.985) !important;
+        border: 1px solid rgba(49,92,99,0.10) !important;
+        box-shadow: 0 10px 26px rgba(49,92,99,0.06) !important;
+        box-sizing: border-box !important;
+    }
+
+    .st-key-book_giveaway_native div[data-testid="column"],
+    div[class*="st-key-book_giveaway_native"] div[data-testid="column"] {
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    .st-key-book_giveaway_native div[data-testid="stImage"],
+    div[class*="st-key-book_giveaway_native"] div[data-testid="stImage"] {
+        margin-top: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .st-key-book_giveaway_native img,
+    div[class*="st-key-book_giveaway_native"] img {
+        max-width: 125px !important;
+        border-radius: 8px !important;
+        filter: drop-shadow(0 7px 14px rgba(49,92,99,0.13)) !important;
+    }
+
+    .book-native-title {
+        color: #315C63 !important;
+        font-size: 1.14rem !important;
+        line-height: 1.18 !important;
+        font-weight: 850 !important;
+        letter-spacing: -0.015em !important;
+        margin-bottom: 0.72rem !important;
+        text-align: left !important;
+    }
+
+    .book-native-text {
+        color: #2B2B2B !important;
+        font-size: 0.91rem !important;
+        line-height: 1.42 !important;
+        margin: 0 0 0.36rem 0 !important;
+        text-align: left !important;
+    }
+
+    .book-native-text strong {
+        color: #315C63 !important;
+        font-weight: 850 !important;
+    }
+
+    .book-native-note {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        margin-top: 0.72rem !important;
+        padding: 0.55rem 0.8rem !important;
+        border-radius: 14px !important;
+        background: rgba(49,92,99,0.045) !important;
+        border: 1px solid rgba(49,92,99,0.10) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 0.55rem !important;
+        color: #2B2B2B !important;
+        font-size: 0.74rem !important;
+        line-height: 1.28 !important;
+        text-align: left !important;
+        font-weight: 700 !important;
+    }
+
+    .book-native-note-icon {
+        width: 18px !important;
+        height: 18px !important;
+        min-width: 18px !important;
+        border-radius: 999px !important;
+        background: rgba(49,92,99,0.10) !important;
+        color: #315C63 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-weight: 700 !important;
+        font-size: 0.60rem !important;
+    }
+
+    @media (max-width: 700px) {
+        .st-key-book_giveaway_native,
+        div[class*="st-key-book_giveaway_native"] {
+            width: 100% !important;
+            margin: 0.75rem auto 0.85rem auto !important;
+            padding: 0.92rem 0.82rem 1.05rem 0.82rem !important;
+            border-radius: 20px !important;
+        }
+
+        .st-key-book_giveaway_native img,
+        div[class*="st-key-book_giveaway_native"] img {
+            max-width: 58px !important;
+            border-radius: 7px !important;
+        }
+
+        .book-native-title {
+            font-size: 0.98rem !important;
+            line-height: 1.16 !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .book-native-text {
+            font-size: 0.77rem !important;
+            line-height: 1.34 !important;
+            margin-bottom: 0.36rem !important;
+        }
+
+        .book-native-note {
+            margin-top: 0.58rem !important;
+            padding: 0.5rem 0.58rem !important;
+            font-size: 0.60rem !important;
+            line-height: 1.25 !important;
+            border-radius: 12px !important;
+        }
+
+        .book-native-note-icon {
+            width: 17px !important;
+            height: 17px !important;
+            min-width: 17px !important;
+            font-size: 0.55rem !important;
+        }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+st.markdown(
+    """
+    <style>
+    /* =========================================================
+       FINAL FIX: Abstand Buchbanner zu Weiter-Button reduzieren
+       ========================================================= */
+
+    .start-button-anchor {
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .st-key-welcome_button_area,
+    div[class*="st-key-welcome_button_area"] {
+        margin-top: -1.45rem !important;
+        padding-top: 0 !important;
+    }
+
+    .st-key-welcome_button_area .stButton,
+    div[class*="st-key-welcome_button_area"] .stButton {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+
+    .st-key-welcome_button_area .stButton > button,
+    div[class*="st-key-welcome_button_area"] .stButton > button {
+        margin-top: 0 !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 if st.session_state.phase == "welcome":
     st.markdown(
         """
@@ -6974,13 +8294,44 @@ if st.session_state.phase == "welcome":
         unsafe_allow_html=True,
     )
 
+    with st.container(key="book_giveaway_native"):
+        book_col, text_col = st.columns([0.14, 0.86], gap="medium")
+
+        with book_col:
+            if os.path.exists(BOOK_COVER_PATH):
+                st.image(BOOK_COVER_PATH, width=125)
+
+        with text_col:
+            st.markdown(
+                """
+                <div class="book-native-title">Deine Teilnahme kann sich doppelt lohnen</div>
+
+                <div class="book-native-text">
+                    Finde heraus, welches Arbeitsumfeld zu dir passt — und sichere dir die Chance auf eines von fünf Exemplaren von
+                    <strong>„Crashkurs People, Culture &amp; Change“</strong>.
+                </div>
+
+                <div class="book-native-text">
+                    Das Buch zeigt kompakt und praxisnah, wie moderne Transformation im Bereich People &amp; Culture verstanden,
+                    gestaltet und mit konkreten Tools umgesetzt werden kann.
+                </div>
+
+                <div class="book-native-note">
+                    <span class="book-native-note-icon">i</span>
+                    <span>Die Teilnahme an der Verlosung ist am Ende der Studie freiwillig möglich.</span>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
     st.markdown('<div class="start-button-anchor"></div>', unsafe_allow_html=True)
 
-    left, center, right = st.columns([1.7, 1.0, 1.7])
-    with center:
-        if st.button("Weiter", use_container_width=True):
-            st.session_state.phase = "consent"
-            st.rerun()
+    with st.container(key="welcome_button_area"):
+        left, center, right = st.columns([1.7, 1.0, 1.7])
+        with center:
+            if st.button("Weiter", use_container_width=True):
+                st.session_state.phase = "consent"
+                st.rerun()
 
 elif st.session_state.phase == "consent":
     consent_html = (
@@ -7246,14 +8597,26 @@ elif st.session_state.phase == "pre_questionnaire":
             st.rerun()
 
 elif st.session_state.phase == "questionnaire":
+    questionnaire_payload = [
+        {
+            **block,
+            "cover_b64": image_to_base64(BOOK_COVER_PATH),
+        }
+        for block in questionnaire_items
+    ]
+
     result = swipe_component(
-        items=questionnaire_items,
+        items=questionnaire_payload,
         mode="closing_questionnaire",
         key="closing_questionnaire_component",
     )
 
     if isinstance(result, dict) and result.get("completed") is True:
         st.session_state.questionnaire = result.get("answers", {})
+        st.session_state.giveaway = {
+            "participates": bool(result.get("giveaway_participation", False)),
+            "email": result.get("giveaway_email", "").strip(),
+        }
         st.session_state.phase = "end"
         st.rerun()
 
@@ -7261,6 +8624,10 @@ elif st.session_state.phase == "end":
     if not st.session_state.data_saved:
         save_response()
         st.session_state.data_saved = True
+
+    if not st.session_state.giveaway_saved:
+        save_giveaway_entry()
+        st.session_state.giveaway_saved = True
 
     st.markdown(
         """
