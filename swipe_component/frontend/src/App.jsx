@@ -796,7 +796,7 @@ const finishWithGiveaway = () => {
                 border: `1.5px solid rgba(49,92,99,0.34)`,
                 background: "rgba(255,255,255,0.42)",
                 color: colors.primary,
-                fontSize: isMobile ? "14px" : "15px",
+                fontSize: isMobile ? "13px" : "15px",
                 fontWeight: 800,
                 cursor: "pointer",
                 boxShadow: "none",
@@ -818,7 +818,7 @@ const finishWithGiveaway = () => {
                 ? colors.primary
                 : "rgba(49,92,99,0.32)",
               color: "#FFFFFF",
-              fontSize: isMobile ? "14px" : "15px",
+              fontSize: isMobile ? "13px" : "15px",
               fontWeight: 850,
               cursor: currentComplete ? "pointer" : "not-allowed",
               boxShadow: currentComplete
@@ -899,7 +899,7 @@ function GiveawayModal({
           border: `1px solid rgba(49,92,99,0.14)`,
           borderRadius: isMobile ? "26px" : "30px",
           boxShadow: "0 24px 60px rgba(49,92,99,0.18)",
-          padding: isMobile ? "22px 18px 20px" : "28px 30px 26px",
+          padding: isMobile ? "18px 16px 17px" : "28px 30px 26px",
           boxSizing: "border-box",
           textAlign: "center",
         }}
@@ -909,10 +909,10 @@ function GiveawayModal({
             src={`data:image/png;base64,${coverB64}`}
             alt="Crashkurs People, Culture & Change"
             style={{
-              width: isMobile ? "82px" : "96px",
+              width: isMobile ? "68px" : "96px",
               height: "auto",
               display: "block",
-              margin: "0 auto 14px",
+              margin: isMobile ? "0 auto 10px" : "0 auto 14px",
               borderRadius: "9px",
               boxShadow: "0 10px 24px rgba(49,92,99,0.16)",
             }}
@@ -922,11 +922,11 @@ function GiveawayModal({
         <div
           style={{
             color: colors.primary,
-            fontSize: isMobile ? "24px" : "30px",
+            fontSize: isMobile ? "21px" : "30px",
             lineHeight: 1.08,
             fontWeight: 850,
             letterSpacing: "-0.045em",
-            marginBottom: "10px",
+            marginBottom: isMobile ? "8px" : "10px",
           }}
         >
           Möchtest du an der Verlosung teilnehmen?
@@ -935,9 +935,9 @@ function GiveawayModal({
         <div
           style={{
             color: colors.text,
-            fontSize: isMobile ? "14px" : "16px",
-            lineHeight: 1.48,
-            marginBottom: "12px",
+            fontSize: isMobile ? "13px" : "16px",
+            lineHeight: isMobile ? 1.42 : 1.48,
+            marginBottom: isMobile ? "9px" : "12px",
           }}
         >
           Als Dankeschön für deine Teilnahme kannst du freiwillig an der Verlosung von einem von fünf Exemplaren von{" "}
@@ -947,9 +947,9 @@ function GiveawayModal({
         <div
           style={{
             color: colors.muted,
-            fontSize: isMobile ? "13px" : "14px",
-            lineHeight: 1.42,
-            marginBottom: "16px",
+            fontSize: isMobile ? "12px" : "14px",
+            lineHeight: isMobile ? 1.36 : 1.42,
+            marginBottom: isMobile ? "12px" : "16px",
           }}
         >
           Deine E-Mail-Adresse wird ausschließlich für die Verlosung verwendet und getrennt von deinen Studienantworten gespeichert.
@@ -965,9 +965,9 @@ function GiveawayModal({
             style={{
               display: "block",
               color: colors.primary,
-              fontSize: isMobile ? "13px" : "14px",
+              fontSize: isMobile ? "12px" : "14px",
               fontWeight: 800,
-              marginBottom: "7px",
+              marginBottom: isMobile ? "6px" : "7px",
             }}
           >
             E-Mail-Adresse für die Verlosung
@@ -986,8 +986,8 @@ function GiveawayModal({
               boxSizing: "border-box",
               border: `1px solid ${error ? colors.danger : colors.border}`,
               borderRadius: "16px",
-              padding: isMobile ? "12px 13px" : "13px 14px",
-              fontSize: isMobile ? "14px" : "15px",
+              padding: isMobile ? "10px 12px" : "13px 14px",
+              fontSize: isMobile ? "13px" : "15px",
               outline: "none",
               color: colors.text,
               background: "#FFFFFF",
@@ -1015,16 +1015,16 @@ function GiveawayModal({
           onClick={onConfirm}
           style={{
             width: "100%",
-            minHeight: isMobile ? "46px" : "50px",
+            minHeight: isMobile ? "42px" : "50px",
             borderRadius: "999px",
             border: `1px solid ${colors.primary}`,
             background: colors.primary,
             color: "#FFFFFF",
-            fontSize: isMobile ? "14px" : "15px",
+            fontSize: isMobile ? "13px" : "15px",
             fontWeight: 850,
             cursor: "pointer",
             boxShadow: "0 12px 26px rgba(49,92,99,0.18)",
-            marginBottom: "10px",
+            marginBottom: isMobile ? "8px" : "10px",
           }}
         >
           Teilnahme speichern & Studie abschließen
@@ -1035,12 +1035,12 @@ function GiveawayModal({
           onClick={onSkip}
           style={{
             width: "100%",
-            minHeight: isMobile ? "44px" : "48px",
+            minHeight: isMobile ? "40px" : "48px",
             borderRadius: "999px",
             border: `1.5px solid rgba(49,92,99,0.30)`,
             background: "rgba(255,255,255,0.55)",
             color: colors.primary,
-            fontSize: isMobile ? "14px" : "15px",
+            fontSize: isMobile ? "13px" : "15px",
             fontWeight: 800,
             cursor: "pointer",
             boxShadow: "none",
@@ -1360,7 +1360,7 @@ function ResultAssessment({ isMobile, isSmallMobile }) {
             ? colors.primary
             : "rgba(49,92,99,0.32)",
             color: "#FFFFFF",
-            fontSize: isMobile ? "14px" : "15px",
+            fontSize: isMobile ? "13px" : "15px",
             fontWeight: 700,
             cursor: selectedValue ? "pointer" : "not-allowed",
             boxShadow: "none",

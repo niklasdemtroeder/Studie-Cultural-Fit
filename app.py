@@ -8275,6 +8275,137 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+st.markdown(
+    """
+    <style>
+    /* =========================================================
+       MOBILE ONLY: Book Giveaway Banner kompakter
+       Buch neben Text statt isoliert oben
+       ========================================================= */
+
+    @media (max-width: 700px) {
+
+        .st-key-book_giveaway_native,
+        div[class*="st-key-book_giveaway_native"] {
+            width: 100% !important;
+            margin: 0.7rem auto 0.55rem auto !important;
+            padding: 1rem 0.95rem 1rem 0.95rem !important;
+            border-radius: 22px !important;
+        }
+
+        /* Streamlit-Spalten mobil nebeneinander halten */
+        .st-key-book_giveaway_native div[data-testid="stHorizontalBlock"],
+        div[class*="st-key-book_giveaway_native"] div[data-testid="stHorizontalBlock"] {
+            display: grid !important;
+            grid-template-columns: 76px minmax(0, 1fr) !important;
+            gap: 0.85rem !important;
+            align-items: start !important;
+        }
+
+        /* Buch-Spalte fixieren */
+        .st-key-book_giveaway_native div[data-testid="column"]:first-child,
+        div[class*="st-key-book_giveaway_native"] div[data-testid="column"]:first-child {
+            width: 76px !important;
+            min-width: 76px !important;
+            max-width: 76px !important;
+            flex: 0 0 76px !important;
+            padding: 0 !important;
+        }
+
+        /* Text-Spalte nimmt den Rest */
+        .st-key-book_giveaway_native div[data-testid="column"]:nth-child(2),
+        div[class*="st-key-book_giveaway_native"] div[data-testid="column"]:nth-child(2) {
+            width: auto !important;
+            min-width: 0 !important;
+            max-width: none !important;
+            flex: 1 1 auto !important;
+            padding: 0 !important;
+        }
+
+        .st-key-book_giveaway_native div[data-testid="stImage"],
+        div[class*="st-key-book_giveaway_native"] div[data-testid="stImage"] {
+            margin: 0 !important;
+            padding: 0 !important;
+            display: flex !important;
+            justify-content: flex-start !important;
+            align-items: flex-start !important;
+        }
+
+        .st-key-book_giveaway_native img,
+        div[class*="st-key-book_giveaway_native"] img {
+            width: 72px !important;
+            max-width: 72px !important;
+            height: auto !important;
+            border-radius: 8px !important;
+            filter: drop-shadow(0 7px 14px rgba(49,92,99,0.14)) !important;
+        }
+
+        .book-native-title {
+            font-size: 1rem !important;
+            line-height: 1.14 !important;
+            margin: 0 0 0.42rem 0 !important;
+            letter-spacing: -0.02em !important;
+            text-align: left !important;
+        }
+
+        .book-native-text {
+            font-size: 0.82rem !important;
+            line-height: 1.36 !important;
+            margin-bottom: 0.42rem !important;
+            text-align: left !important;
+        }
+
+        .book-native-note {
+            grid-column: 1 / -1 !important;
+            margin-top: 0.55rem !important;
+            padding: 0.52rem 0.62rem !important;
+            font-size: 0.72rem !important;
+            line-height: 1.25 !important;
+            border-radius: 13px !important;
+        }
+
+        .book-native-note-icon {
+            width: 18px !important;
+            height: 18px !important;
+            min-width: 18px !important;
+            font-size: 0.66rem !important;
+        }
+    }
+
+    @media (max-width: 390px) {
+        .st-key-book_giveaway_native div[data-testid="stHorizontalBlock"],
+        div[class*="st-key-book_giveaway_native"] div[data-testid="stHorizontalBlock"] {
+            grid-template-columns: 66px minmax(0, 1fr) !important;
+            gap: 0.72rem !important;
+        }
+
+        .st-key-book_giveaway_native div[data-testid="column"]:first-child,
+        div[class*="st-key-book_giveaway_native"] div[data-testid="column"]:first-child {
+            width: 66px !important;
+            min-width: 66px !important;
+            max-width: 66px !important;
+            flex: 0 0 66px !important;
+        }
+
+        .st-key-book_giveaway_native img,
+        div[class*="st-key-book_giveaway_native"] img {
+            width: 62px !important;
+            max-width: 62px !important;
+        }
+
+        .book-native-title {
+            font-size: 0.94rem !important;
+        }
+
+        .book-native-text {
+            font-size: 0.78rem !important;
+        }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 if st.session_state.phase == "welcome":
     st.markdown(
         """
