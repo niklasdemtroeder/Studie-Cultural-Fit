@@ -8624,6 +8624,18 @@ st.markdown(
 st.markdown(
     """
     <style>
+    /* Reine CSS-Markdown-Blöcke aus dem sichtbaren Layout entfernen */
+div[data-testid="stElementContainer"]:has(style),
+div[data-testid="element-container"]:has(style),
+div[data-testid="stMarkdownContainer"]:has(style) {
+    display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
     /* =========================================================
        ABSOLUTE FINAL FIX: Abstand oben reduzieren
        Entfernt unsichtbaren Streamlit-Header + reduziert Top-Padding
