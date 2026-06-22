@@ -8656,7 +8656,7 @@ div[data-testid="stMarkdownContainer"]:has(style) {
     main .block-container,
     section.main .block-container,
     div[data-testid="stAppViewContainer"] .block-container {
-        padding-top: 0.75rem !important;
+        padding-top: 3rem !important;
     }
 
     @media (max-width: 700px) {
@@ -8664,7 +8664,7 @@ div[data-testid="stMarkdownContainer"]:has(style) {
         main .block-container,
         section.main .block-container,
         div[data-testid="stAppViewContainer"] .block-container {
-            padding-top: 0.25rem !important;
+            padding-top: 0.5rem !important;
         }
 
         .welcome-wrap {
