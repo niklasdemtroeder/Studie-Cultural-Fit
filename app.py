@@ -8664,7 +8664,7 @@ div[data-testid="stMarkdownContainer"]:has(style) {
         main .block-container,
         section.main .block-container,
         div[data-testid="stAppViewContainer"] .block-container {
-            padding-top: 0.5rem !important;
+            padding-top: 2rem !important;
         }
 
         .welcome-wrap {
