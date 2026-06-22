@@ -507,7 +507,7 @@ def render_giveaway_banner():
         '<div class="book-giveaway-content-v2">'
         '<div class="book-giveaway-title-v2">Deine Teilnahme kann sich doppelt lohnen</div>'
         '<p class="book-giveaway-text-v2">'
-        'Finde heraus, welches Arbeitsumfeld zu dir passt — und sichere dir die Chance auf eines von fünf Exemplaren von '
+        'Finde heraus, welches Arbeitsumfeld zu dir passt und sichere dir die Chance auf eines von fünf Exemplaren von '
         '<strong>„Crashkurs People, Culture &amp; Change“</strong>.'
         '</p>'
         '<p class="book-giveaway-text-v2">'
@@ -8406,6 +8406,221 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+st.markdown(
+    """
+    <style>
+    /* =========================================================
+       FINAL: Clean Book Giveaway Banner
+       Desktop bleibt ruhig, Mobile wird komplett neu sauber aufgebaut
+       ========================================================= */
+
+    .book-giveaway-card-v2 {
+        width: min(980px, 98%) !important;
+        margin: 0.9rem auto 0.45rem auto !important;
+        padding: 1.08rem 1.35rem 1.35rem 1.35rem !important;
+        border-radius: 24px !important;
+        background:
+            radial-gradient(circle at top left, rgba(49,92,99,0.04), transparent 34%),
+            radial-gradient(circle at bottom right, rgba(242,184,114,0.07), transparent 34%),
+            rgba(255,255,255,0.985) !important;
+        border: 1px solid rgba(49,92,99,0.10) !important;
+        box-shadow: 0 10px 26px rgba(49,92,99,0.06) !important;
+        box-sizing: border-box !important;
+    }
+
+    .book-giveaway-inner-v2 {
+        display: grid !important;
+        grid-template-columns: 112px minmax(0, 1fr) !important;
+        gap: 1.25rem !important;
+        align-items: center !important;
+    }
+
+    .book-giveaway-cover-box-v2 {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .book-giveaway-cover-v2 {
+        width: 104px !important;
+        max-width: 104px !important;
+        height: auto !important;
+        display: block !important;
+        border-radius: 9px !important;
+        filter: drop-shadow(0 8px 16px rgba(49,92,99,0.14)) !important;
+    }
+
+    .book-giveaway-content-v2 {
+        min-width: 0 !important;
+    }
+
+    .book-giveaway-title-v2 {
+        color: #315C63 !important;
+        font-size: 1.14rem !important;
+        line-height: 1.18 !important;
+        font-weight: 850 !important;
+        letter-spacing: -0.015em !important;
+        margin: 0 0 0.62rem 0 !important;
+        text-align: left !important;
+    }
+
+    .book-giveaway-text-v2 {
+        color: #2B2B2B !important;
+        font-size: 0.91rem !important;
+        line-height: 1.42 !important;
+        margin: 0 0 0.4rem 0 !important;
+        text-align: left !important;
+    }
+
+    .book-giveaway-text-v2 strong {
+        color: #315C63 !important;
+        font-weight: 850 !important;
+    }
+
+    .book-giveaway-note-v2 {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        margin-top: 0.65rem !important;
+        padding: 0.52rem 0.78rem !important;
+        border-radius: 14px !important;
+        background: rgba(49,92,99,0.045) !important;
+        border: 1px solid rgba(49,92,99,0.10) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 0.55rem !important;
+        color: #2B2B2B !important;
+        font-size: 0.74rem !important;
+        line-height: 1.28 !important;
+        font-weight: 700 !important;
+        text-align: left !important;
+    }
+
+    .book-giveaway-note-icon-v2 {
+        width: 18px !important;
+        height: 18px !important;
+        min-width: 18px !important;
+        border-radius: 999px !important;
+        background: rgba(49,92,99,0.10) !important;
+        color: #315C63 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-weight: 850 !important;
+        font-size: 0.68rem !important;
+    }
+
+    /* MOBILE: Buch + Headline oben, Texte danach über volle Breite */
+    @media (max-width: 700px) {
+        .book-giveaway-card-v2 {
+            width: 100% !important;
+            margin: 0.75rem auto 0.5rem auto !important;
+            padding: 0.95rem 0.92rem 1rem 0.92rem !important;
+            border-radius: 22px !important;
+            box-shadow: 0 12px 30px rgba(49,92,99,0.08) !important;
+        }
+
+        .book-giveaway-inner-v2 {
+            display: grid !important;
+            grid-template-columns: 78px minmax(0, 1fr) !important;
+            gap: 0.9rem !important;
+            align-items: center !important;
+        }
+
+        .book-giveaway-content-v2 {
+            display: contents !important;
+        }
+
+        .book-giveaway-cover-box-v2 {
+            grid-column: 1 !important;
+            grid-row: 1 !important;
+            align-self: center !important;
+            justify-content: center !important;
+        }
+
+        .book-giveaway-cover-v2 {
+            width: 72px !important;
+            max-width: 72px !important;
+            border-radius: 8px !important;
+            filter: drop-shadow(0 7px 14px rgba(49,92,99,0.14)) !important;
+        }
+
+        .book-giveaway-title-v2 {
+            grid-column: 2 !important;
+            grid-row: 1 !important;
+            align-self: center !important;
+            font-size: 1.12rem !important;
+            line-height: 1.14 !important;
+            margin: 0 !important;
+            letter-spacing: -0.025em !important;
+            text-align: left !important;
+        }
+
+        .book-giveaway-text-v2 {
+            grid-column: 1 / -1 !important;
+            font-size: 0.9rem !important;
+            line-height: 1.36 !important;
+            margin: 0.72rem 0 0 0 !important;
+            text-align: left !important;
+        }
+
+        .book-giveaway-text-v2 + .book-giveaway-text-v2 {
+            margin-top: 0.5rem !important;
+        }
+
+        .book-giveaway-note-v2 {
+            grid-column: 1 / -1 !important;
+            margin-top: 0.72rem !important;
+            padding: 0.58rem 0.66rem !important;
+            border-radius: 14px !important;
+            font-size: 0.78rem !important;
+            line-height: 1.25 !important;
+            gap: 0.5rem !important;
+        }
+
+        .book-giveaway-note-icon-v2 {
+            width: 20px !important;
+            height: 20px !important;
+            min-width: 20px !important;
+            font-size: 0.72rem !important;
+        }
+    }
+
+    @media (max-width: 390px) {
+        .book-giveaway-card-v2 {
+            padding: 0.88rem 0.8rem 0.95rem 0.8rem !important;
+        }
+
+        .book-giveaway-inner-v2 {
+            grid-template-columns: 68px minmax(0, 1fr) !important;
+            gap: 0.76rem !important;
+        }
+
+        .book-giveaway-cover-v2 {
+            width: 62px !important;
+            max-width: 62px !important;
+        }
+
+        .book-giveaway-title-v2 {
+            font-size: 1.02rem !important;
+            line-height: 1.14 !important;
+        }
+
+        .book-giveaway-text-v2 {
+            font-size: 0.84rem !important;
+            line-height: 1.34 !important;
+        }
+
+        .book-giveaway-note-v2 {
+            font-size: 0.72rem !important;
+            line-height: 1.24 !important;
+        }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 if st.session_state.phase == "welcome":
     st.markdown(
         """
@@ -8425,35 +8640,7 @@ if st.session_state.phase == "welcome":
         unsafe_allow_html=True,
     )
 
-    with st.container(key="book_giveaway_native"):
-        book_col, text_col = st.columns([0.14, 0.86], gap="medium")
-
-        with book_col:
-            if os.path.exists(BOOK_COVER_PATH):
-                st.image(BOOK_COVER_PATH, width=125)
-
-        with text_col:
-            st.markdown(
-                """
-                <div class="book-native-title">Deine Teilnahme kann sich doppelt lohnen</div>
-
-                <div class="book-native-text">
-                    Finde heraus, welches Arbeitsumfeld zu dir passt — und sichere dir die Chance auf eines von fünf Exemplaren von
-                    <strong>„Crashkurs People, Culture &amp; Change“</strong>.
-                </div>
-
-                <div class="book-native-text">
-                    Das Buch zeigt kompakt und praxisnah, wie moderne Transformation im Bereich People &amp; Culture verstanden,
-                    gestaltet und mit konkreten Tools umgesetzt werden kann.
-                </div>
-
-                <div class="book-native-note">
-                    <span class="book-native-note-icon">i</span>
-                    <span>Die Teilnahme an der Verlosung ist am Ende der Studie freiwillig möglich.</span>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
+    st.markdown(render_giveaway_banner(), unsafe_allow_html=True)
 
     st.markdown('<div class="start-button-anchor"></div>', unsafe_allow_html=True)
 
