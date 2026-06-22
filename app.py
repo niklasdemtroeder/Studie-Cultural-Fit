@@ -8621,6 +8621,49 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+st.markdown(
+    """
+    <style>
+    /* =========================================================
+       ABSOLUTE FINAL FIX: Abstand oben reduzieren
+       Entfernt unsichtbaren Streamlit-Header + reduziert Top-Padding
+       ========================================================= */
+
+    header,
+    header[data-testid="stHeader"],
+    div[data-testid="stHeader"],
+    .stAppHeader {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        max-height: 0 !important;
+    }
+
+    .block-container,
+    main .block-container,
+    section.main .block-container,
+    div[data-testid="stAppViewContainer"] .block-container {
+        padding-top: 0.75rem !important;
+    }
+
+    @media (max-width: 700px) {
+        .block-container,
+        main .block-container,
+        section.main .block-container,
+        div[data-testid="stAppViewContainer"] .block-container {
+            padding-top: 0.25rem !important;
+        }
+
+        .welcome-wrap {
+            margin-top: 0 !important;
+        }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 if st.session_state.phase == "welcome":
     st.markdown(
         """
@@ -8657,7 +8700,7 @@ elif st.session_state.phase == "consent":
         '<div class="hero-title">Kurz zur Studie</div>'
         '<div class="hero-subtitle">Bevor es losgeht, erhältst du die wichtigsten Informationen zur Teilnahme.</div>'
 
-        '<p>Gleich geht es los. Du bewertest kurze Aussagen zu Arbeitsumfeldern. Es geht zum Beispiel um Teamarbeit, Leistung, Veränderung und klare Strukturen.</p>'
+        '<p>Du bewertest kurze Aussagen zu Arbeitsumfeldern. Es geht zum Beispiel um Teamarbeit, Leistung, Veränderung und klare Strukturen.</p>'
         '<p>Es gibt keine richtigen oder falschen Antworten. Wichtig ist nur, was zu dir passt.</p>'
 
         '<div class="info-grid">'
@@ -8755,7 +8798,7 @@ elif st.session_state.phase == "assessment":
         st.markdown(
             """
             <div class="assessment-help">
-                Wische die Karte nach links oder rechts – je nachdem, ob die Aussage zu dir passt.
+                Wische die Karte nach links oder rechts - je nachdem, ob die Aussage zu dir passt.
             </div>
             """,
             unsafe_allow_html=True,
