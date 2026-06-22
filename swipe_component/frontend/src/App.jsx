@@ -520,9 +520,13 @@ function ClosingQuestionnaire({ blocks, isMobile, isSmallMobile }) {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [showGiveawayModal, setShowGiveawayModal] = useState(false);
+  const [giveawayEmail, setGiveawayEmail] = useState("");
+  const [giveawayError, setGiveawayError] = useState("");
 
   const totalSteps = blocks.length;
   const currentBlock = blocks[currentStep];
+  const coverB64 = blocks?.[0]?.cover_b64 || "";
 
   useEffect(() => {
   Streamlit.setComponentReady();
@@ -571,19 +575,43 @@ function ClosingQuestionnaire({ blocks, isMobile, isSmallMobile }) {
   };
 
   const goNext = () => {
-    if (!currentComplete) return;
+  if (!currentComplete) return;
 
-    if (currentStep < totalSteps - 1) {
-      setCurrentStep((step) => step + 1);
-      return;
-    }
+  if (currentStep < totalSteps - 1) {
+    setCurrentStep((step) => step + 1);
+    return;
+  }
 
-    setSubmitted(true);
-    Streamlit.setComponentValue({
-      completed: true,
-      answers,
-    });
-  };
+  setShowGiveawayModal(true);
+};
+
+const finishWithoutGiveaway = () => {
+  setSubmitted(true);
+  Streamlit.setComponentValue({
+    completed: true,
+    answers,
+    giveaway_participation: false,
+    giveaway_email: "",
+  });
+};
+
+const finishWithGiveaway = () => {
+  const trimmedEmail = giveawayEmail.trim();
+  const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail);
+
+  if (!emailIsValid) {
+    setGiveawayError("Bitte gib eine gültige E-Mail-Adresse ein.");
+    return;
+  }
+
+  setSubmitted(true);
+  Streamlit.setComponentValue({
+    completed: true,
+    answers,
+    giveaway_participation: true,
+    giveaway_email: trimmedEmail,
+  });
+};
 
   return (
   <div
@@ -817,6 +845,209 @@ function ClosingQuestionnaire({ blocks, isMobile, isSmallMobile }) {
             Bitte beantworte alle Aussagen, um fortzufahren.
           </div>
         )}
+      </div>
+
+      {showGiveawayModal && (
+  <GiveawayModal
+    isMobile={isMobile}
+    coverB64={coverB64}
+    email={giveawayEmail}
+    setEmail={setGiveawayEmail}
+    error={giveawayError}
+    setError={setGiveawayError}
+    onConfirm={finishWithGiveaway}
+    onSkip={finishWithoutGiveaway}
+  />
+)}
+
+    </div>
+  );
+}
+
+function GiveawayModal({
+  isMobile,
+  coverB64,
+  email,
+  setEmail,
+  error,
+  setError,
+  onConfirm,
+  onSkip,
+}) {
+  return (
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 9999,
+        background: "rgba(250,247,242,0.88)",
+        backdropFilter: "blur(8px)",
+        WebkitBackdropFilter: "blur(8px)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: isMobile ? "18px 14px" : "28px",
+        boxSizing: "border-box",
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          maxWidth: isMobile ? "390px" : "560px",
+          background:
+            "radial-gradient(circle at top left, rgba(49,92,99,0.055), transparent 34%), radial-gradient(circle at bottom right, rgba(242,184,114,0.10), transparent 34%), rgba(255,255,255,0.98)",
+          border: `1px solid rgba(49,92,99,0.14)`,
+          borderRadius: isMobile ? "26px" : "30px",
+          boxShadow: "0 24px 60px rgba(49,92,99,0.18)",
+          padding: isMobile ? "22px 18px 20px" : "28px 30px 26px",
+          boxSizing: "border-box",
+          textAlign: "center",
+        }}
+      >
+        {coverB64 && (
+          <img
+            src={`data:image/png;base64,${coverB64}`}
+            alt="Crashkurs People, Culture & Change"
+            style={{
+              width: isMobile ? "82px" : "96px",
+              height: "auto",
+              display: "block",
+              margin: "0 auto 14px",
+              borderRadius: "9px",
+              boxShadow: "0 10px 24px rgba(49,92,99,0.16)",
+            }}
+          />
+        )}
+
+        <div
+          style={{
+            color: colors.primary,
+            fontSize: isMobile ? "24px" : "30px",
+            lineHeight: 1.08,
+            fontWeight: 850,
+            letterSpacing: "-0.045em",
+            marginBottom: "10px",
+          }}
+        >
+          Möchtest du an der Verlosung teilnehmen?
+        </div>
+
+        <div
+          style={{
+            color: colors.text,
+            fontSize: isMobile ? "14px" : "16px",
+            lineHeight: 1.48,
+            marginBottom: "12px",
+          }}
+        >
+          Als Dankeschön für deine Teilnahme kannst du freiwillig an der Verlosung von einem von fünf Exemplaren von{" "}
+          <strong>„Crashkurs People, Culture & Change“</strong> teilnehmen.
+        </div>
+
+        <div
+          style={{
+            color: colors.muted,
+            fontSize: isMobile ? "13px" : "14px",
+            lineHeight: 1.42,
+            marginBottom: "16px",
+          }}
+        >
+          Deine E-Mail-Adresse wird ausschließlich für die Verlosung verwendet und getrennt von deinen Studienantworten gespeichert.
+        </div>
+
+        <div
+          style={{
+            textAlign: "left",
+            marginBottom: "12px",
+          }}
+        >
+          <label
+            style={{
+              display: "block",
+              color: colors.primary,
+              fontSize: isMobile ? "13px" : "14px",
+              fontWeight: 800,
+              marginBottom: "7px",
+            }}
+          >
+            E-Mail-Adresse für die Verlosung
+          </label>
+
+          <input
+            type="email"
+            value={email}
+            onChange={(event) => {
+              setEmail(event.target.value);
+              setError("");
+            }}
+            placeholder="name@example.com"
+            style={{
+              width: "100%",
+              boxSizing: "border-box",
+              border: `1px solid ${error ? colors.danger : colors.border}`,
+              borderRadius: "16px",
+              padding: isMobile ? "12px 13px" : "13px 14px",
+              fontSize: isMobile ? "14px" : "15px",
+              outline: "none",
+              color: colors.text,
+              background: "#FFFFFF",
+              boxShadow: "0 8px 18px rgba(49,92,99,0.06)",
+            }}
+          />
+
+          {error && (
+            <div
+              style={{
+                color: colors.danger,
+                fontSize: "12px",
+                lineHeight: 1.35,
+                marginTop: "7px",
+                fontWeight: 700,
+              }}
+            >
+              {error}
+            </div>
+          )}
+        </div>
+
+        <button
+          type="button"
+          onClick={onConfirm}
+          style={{
+            width: "100%",
+            minHeight: isMobile ? "46px" : "50px",
+            borderRadius: "999px",
+            border: `1px solid ${colors.primary}`,
+            background: colors.primary,
+            color: "#FFFFFF",
+            fontSize: isMobile ? "14px" : "15px",
+            fontWeight: 850,
+            cursor: "pointer",
+            boxShadow: "0 12px 26px rgba(49,92,99,0.18)",
+            marginBottom: "10px",
+          }}
+        >
+          Teilnahme speichern & Studie abschließen
+        </button>
+
+        <button
+          type="button"
+          onClick={onSkip}
+          style={{
+            width: "100%",
+            minHeight: isMobile ? "44px" : "48px",
+            borderRadius: "999px",
+            border: `1.5px solid rgba(49,92,99,0.30)`,
+            background: "rgba(255,255,255,0.55)",
+            color: colors.primary,
+            fontSize: isMobile ? "14px" : "15px",
+            fontWeight: 800,
+            cursor: "pointer",
+            boxShadow: "none",
+          }}
+        >
+          Ohne Teilnahme abschließen
+        </button>
       </div>
     </div>
   );
@@ -1060,7 +1291,7 @@ function ResultAssessment({ isMobile, isSmallMobile }) {
         <div
           style={{
             color: colors.text,
-            fontSize: isMobile ? "14px" : "18px",
+            fontSize: isMobile ? "12px" : "16px",
             lineHeight: 1.4,
             marginBottom: isMobile ? "16px" : "20px",
             textAlign: isMobile ? "center" : "left",
