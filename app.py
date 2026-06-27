@@ -8664,7 +8664,7 @@ div[data-testid="stMarkdownContainer"]:has(style) {
         main .block-container,
         section.main .block-container,
         div[data-testid="stAppViewContainer"] .block-container {
-            padding-top: 2rem !important;
+            padding-top: 1.75rem !important;
         }
 
         .welcome-wrap {
@@ -8857,8 +8857,8 @@ elif st.session_state.phase == "results":
         f'<div class="result-score">{top_match["score"]} %</div>'
         '<div class="result-score-label">berechnete kulturelle Übereinstimmung</div>'
         '</div>'
-        f'<p class="result-profile-text">{escape(top_match["short_profile"])}</p>'
-'<p class="result-method-text">Dieses Ergebnis basiert auf dem Vergleich deiner Antworten mit einem hinterlegten, fiktiven Unternehmensprofil.</p>'
+        f'<p class="result-profile-text">{escape(top_match["description"])}</p>'
+        '<p class="result-method-text">Dieses Ergebnis basiert auf dem Vergleich deiner Antworten mit einem hinterlegten, fiktiven Unternehmensprofil.</p>'
         '<div class="result-meta-row">'
         '</div>'
         '</div>'
