@@ -8781,7 +8781,7 @@ elif st.session_state.phase == "consent":
         '<p>Es gibt keine richtigen oder falschen Antworten. Wichtig ist nur, was zu dir passt.</p>'
 
         '<div class="info-grid">'
-        '<div class="info-box"><strong>Dauer</strong><span>ca. 8–10 Minuten</span></div>'
+        '<div class="info-box"><strong>Dauer</strong><span>ca. 7 Minuten</span></div>'
         '<div class="info-box"><strong>Anonym</strong><span>Ohne Personendaten</span></div>'
         '<div class="info-box"><strong>Freiwillig</strong><span>Abbruch jederzeit möglich</span></div>'
         '</div>'
