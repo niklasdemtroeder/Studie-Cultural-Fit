@@ -8676,6 +8676,71 @@ div[data-testid="stMarkdownContainer"]:has(style) {
     unsafe_allow_html=True,
 )
 
+st.markdown(
+    """
+    <style>
+    /* =========================================================
+       ABSOLUTE FINAL FIX: Streamlit Branding unten ausblenden
+       Entfernt "Created by", Profilbild und "Hosted with Streamlit"
+       ========================================================= */
+
+    #MainMenu,
+    footer,
+    header,
+    [data-testid="stToolbar"],
+    [data-testid="stDecoration"],
+    [data-testid="stStatusWidget"],
+    [data-testid="stHeader"],
+    .stDeployButton,
+    .stAppDeployButton,
+    .viewerBadge_container__1QSob,
+    .viewerBadge_link__1S137,
+    .viewerBadge_text__1JaDK {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        max-height: 0 !important;
+        width: 0 !important;
+        min-width: 0 !important;
+        max-width: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+    /* Streamlit-Footer/Badge unten rechts/links aggressiv entfernen */
+    div[class*="viewerBadge"],
+    div[class*="stDeployButton"],
+    div[class*="stToolbar"],
+    div[class*="stDecoration"],
+    a[href*="streamlit.io"],
+    a[href*="share.streamlit.io"],
+    a[href*="github.com"] {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        width: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+    /* Falls unten durch die Leiste extra Platz entsteht */
+    @media (max-width: 700px) {
+        .block-container {
+            padding-bottom: 1.2rem !important;
+        }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 if st.session_state.phase == "welcome":
     st.markdown(
         """
