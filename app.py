@@ -9077,7 +9077,8 @@ elif st.session_state.phase == "end":
                     Deine Antworten wurden erfolgreich gespeichert.
                     <br>
                     Du kannst das Browserfenster nun schließen.
-                </div>
+                    <br><br>
+                    <strong>Survey Code mit einem Klick einlösen: https://www.surveycircle.com/PRQX-PT1E-5T82-NLJG/</strong>
             </div>
         </div>
         """,
