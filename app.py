@@ -9079,6 +9079,8 @@ elif st.session_state.phase == "end":
                     Du kannst das Browserfenster nun schließen.
                     <br><br>
                     <strong>Survey Code mit einem Klick einlösen: https://www.surveycircle.com/PRQX-PT1E-5T82-NLJG/</strong>
+                    <br><br>
+                    Oder durch manuelle Eingabe des Codes: <strong>PRQX-PT1E-5T82-NLJG</strong>
             </div>
         </div>
         """,
