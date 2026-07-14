@@ -6761,6 +6761,9 @@ if "admin_unlocked" not in st.session_state:
 if "self_assessment" not in st.session_state:
     st.session_state.self_assessment = None
 
+if "demographics" not in st.session_state:
+    st.session_state.demographics = {}
+
 if "giveaway" not in st.session_state:
     st.session_state.giveaway = {
         "participates": False,
@@ -6811,6 +6814,7 @@ def reset_app():
     st.session_state.phase = "welcome"
     st.session_state.answers = []
     st.session_state.questionnaire = {}
+    st.session_state.demographics = {}
     st.session_state.questionnaire_step = 0
     st.session_state.condition = random.choice(["swipe", "likert"])
     st.session_state.data_saved = False
@@ -6909,6 +6913,23 @@ def build_export_row():
     for i, entry in enumerate(ranking, start=1):
         row[f"ranking_{i}_company"] = entry["company"]
         row[f"ranking_{i}_score"] = entry["score"]
+
+    demographics = st.session_state.get("demographics", {})
+
+    row["demographic_age"] = demographics.get("age", "")
+    row["demographic_gender"] = demographics.get("gender", "")
+    row["demographic_employment_status"] = demographics.get(
+        "employment_status",
+        "",
+    )
+    row["demographic_work_experience"] = demographics.get(
+        "work_experience",
+        "",
+    )
+    row["demographic_format_experience"] = demographics.get(
+        "format_experience",
+        "",
+    )
 
     return row
 
@@ -9039,6 +9060,7 @@ elif st.session_state.phase == "questionnaire":
         {
             **block,
             "cover_b64": image_to_base64(BOOK_COVER_PATH),
+            "condition": st.session_state.condition,
         }
         for block in questionnaire_items
     ]
@@ -9051,6 +9073,7 @@ elif st.session_state.phase == "questionnaire":
 
     if isinstance(result, dict) and result.get("completed") is True:
         st.session_state.questionnaire = result.get("answers", {})
+        st.session_state.demographics = result.get("demographics", {})
         st.session_state.giveaway = {
             "participates": bool(result.get("giveaway_participation", False)),
             "email": result.get("giveaway_email", "").strip(),

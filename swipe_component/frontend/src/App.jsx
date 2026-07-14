@@ -523,13 +523,28 @@ function ClosingQuestionnaire({ blocks, isMobile, isSmallMobile }) {
   const [showGiveawayModal, setShowGiveawayModal] = useState(false);
   const [giveawayEmail, setGiveawayEmail] = useState("");
   const [giveawayError, setGiveawayError] = useState("");
+  const [showDemographics, setShowDemographics] = useState(false);
+  const [demographicError, setDemographicError] = useState("");
+
+  const [demographics, setDemographics] = useState({
+    age: "",
+    gender: "",
+    employment_status: "",
+    work_experience: "",
+    format_experience: "",
+  });
 
   const totalSteps = blocks.length;
   const currentBlock = blocks[currentStep];
   const coverB64 = blocks?.[0]?.cover_b64 || "";
+  const condition = blocks?.[0]?.condition || "swipe";
 
   useEffect(() => {
   Streamlit.setComponentReady();
+
+  if (showDemographics) {
+    return;
+  }
 
   const itemCount = currentBlock?.items?.length || 0;
 
@@ -538,7 +553,7 @@ function ClosingQuestionnaire({ blocks, isMobile, isSmallMobile }) {
     : 470 + itemCount * 96;
 
   Streamlit.setFrameHeight(frameHeight);
-}, [currentStep, currentBlock, isMobile]);
+}, [currentStep, currentBlock, isMobile, showDemographics]);
 
   if (submitted) {
     return <div style={centerMessageStyle}>Antworten werden verarbeitet …</div>;
@@ -582,6 +597,28 @@ function ClosingQuestionnaire({ blocks, isMobile, isSmallMobile }) {
     return;
   }
 
+  setShowDemographics(true);
+};
+
+const ageValue = Number(demographics.age);
+
+const demographicsComplete =
+  demographics.age.trim() !== "" &&
+  Number.isFinite(ageValue) &&
+  ageValue >= 18 &&
+  ageValue <= 120 &&
+  demographics.gender !== "" &&
+  demographics.employment_status !== "" &&
+  demographics.work_experience !== "" &&
+  demographics.format_experience !== "";
+
+const submitDemographics = () => {
+  if (!demographicsComplete) {
+    setDemographicError("Bitte fülle alle Angaben aus.");
+    return;
+  }
+
+  setDemographicError("");
   setShowGiveawayModal(true);
 };
 
@@ -590,6 +627,7 @@ const finishWithoutGiveaway = () => {
   Streamlit.setComponentValue({
     completed: true,
     answers,
+    demographics,
     giveaway_participation: false,
     giveaway_email: "",
   });
@@ -608,10 +646,44 @@ const finishWithGiveaway = () => {
   Streamlit.setComponentValue({
     completed: true,
     answers,
+    demographics,
     giveaway_participation: true,
     giveaway_email: trimmedEmail,
   });
 };
+
+if (showDemographics) {
+  return (
+    <>
+      <DemographicScreen
+        demographics={demographics}
+        setDemographics={setDemographics}
+        condition={condition}
+        demographicsComplete={demographicsComplete}
+        error={demographicError}
+        onSubmit={submitDemographics}
+        onBack={() => {
+          setShowDemographics(false);
+          setDemographicError("");
+        }}
+        isMobile={isMobile}
+      />
+
+      {showGiveawayModal && (
+        <GiveawayModal
+          isMobile={isMobile}
+          coverB64={coverB64}
+          email={giveawayEmail}
+          setEmail={setGiveawayEmail}
+          error={giveawayError}
+          setError={setGiveawayError}
+          onConfirm={finishWithGiveaway}
+          onSkip={finishWithoutGiveaway}
+        />
+      )}
+    </>
+  );
+}
 
   return (
   <div
@@ -827,7 +899,7 @@ const finishWithGiveaway = () => {
               transition: "all 0.15s ease",
             }}
           >
-            {currentStep < totalSteps - 1 ? "Weiter →" : "Abschließen"}
+            {currentStep < totalSteps - 1 ? "Weiter →" : "Weiter zu deinen Angaben →"}
           </button>
         </div>
 
@@ -846,20 +918,519 @@ const finishWithGiveaway = () => {
           </div>
         )}
       </div>
+    </div>
+  );
+}
 
-      {showGiveawayModal && (
-  <GiveawayModal
-    isMobile={isMobile}
-    coverB64={coverB64}
-    email={giveawayEmail}
-    setEmail={setGiveawayEmail}
-    error={giveawayError}
-    setError={setGiveawayError}
-    onConfirm={finishWithGiveaway}
-    onSkip={finishWithoutGiveaway}
-  />
-)}
+function DemographicScreen({
+  demographics,
+  setDemographics,
+  condition,
+  demographicsComplete,
+  error,
+  onSubmit,
+  onBack,
+  isMobile,
+}) {
+  useEffect(() => {
+    Streamlit.setComponentReady();
 
+    // Ausreichende Höhe für den vollständigen Demografie-Screen
+    Streamlit.setFrameHeight(isMobile ? 1180 : 940);
+  }, [isMobile, error]);
+
+  const updateField = (field, value) => {
+    setDemographics((previous) => ({
+      ...previous,
+      [field]: value,
+    }));
+  };
+
+  const experienceQuestion =
+    condition === "swipe"
+      ? "Hast du bereits Erfahrung mit Swipe-Apps?"
+      : "Hast du bereits Erfahrung mit Antwortskalen?";
+
+  const experienceHelper =
+    condition === "swipe"
+      ? "Zum Beispiel durch Dating-Apps oder andere Anwendungen mit einer Swipe-Funktion."
+      : "Zum Beispiel durch Online-Umfragen, Persönlichkeitstests oder Bewertungsfragebögen.";
+
+  const employmentOptions = [
+    "Schüler:in",
+    "Studierend",
+    "In Ausbildung",
+    "Angestellt",
+    "Selbstständig / freiberuflich",
+    "Arbeitssuchend",
+    "Nicht erwerbstätig",
+    "In Elternzeit",
+    "Im Ruhestand",
+    "Sonstiges",
+  ];
+
+  const workExperienceOptions = [
+    "Keine Berufserfahrung",
+    "Unter 2 Jahre",
+    "2–5 Jahre",
+    "6–10 Jahre",
+    "Mehr als 10 Jahre",
+  ];
+
+  const rowStyle = {
+    display: "grid",
+    gridTemplateColumns: isMobile
+      ? "1fr"
+      : "minmax(220px, 0.9fr) minmax(0, 1.1fr)",
+    gap: isMobile ? "9px" : "22px",
+    alignItems: "center",
+    background: colors.soft,
+    border: `1px solid ${colors.border}`,
+    borderRadius: isMobile ? "18px" : "20px",
+    padding: isMobile ? "14px 13px" : "16px 18px",
+    boxSizing: "border-box",
+  };
+
+  const labelStyle = {
+    color: colors.primary,
+    fontSize: isMobile ? "14px" : "16px",
+    fontWeight: 800,
+    lineHeight: 1.3,
+  };
+
+  const helperStyle = {
+    color: colors.muted,
+    fontSize: isMobile ? "11px" : "13px",
+    lineHeight: 1.35,
+    marginTop: "4px",
+    fontWeight: 500,
+  };
+
+  const inputStyle = {
+    width: "100%",
+    minHeight: isMobile ? "44px" : "48px",
+    boxSizing: "border-box",
+    border: `1px solid ${colors.border}`,
+    borderRadius: "15px",
+    background: "#FFFFFF",
+    color: colors.text,
+    padding: isMobile ? "10px 12px" : "11px 14px",
+    fontSize: isMobile ? "14px" : "15px",
+    fontWeight: 600,
+    outline: "none",
+    boxShadow: "0 7px 18px rgba(49,92,99,0.055)",
+  };
+
+  return (
+    <div
+      style={{
+        width: "100%",
+        minHeight: "auto",
+        boxSizing: "border-box",
+        background:
+          "linear-gradient(180deg, #FAF7F2 0%, #F8F4ED 100%)",
+        fontFamily:
+          '"Source Sans 3", "Source Sans Pro", Arial, Helvetica, sans-serif',
+        color: colors.text,
+        padding: isMobile ? "12px 10px 90px" : "20px 24px 38px",
+        overflow: "visible",
+      }}
+    >
+      <style>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800;900&display=swap');
+
+          * {
+            font-family: "Source Sans 3", "Source Sans Pro", Arial, Helvetica, sans-serif;
+          }
+
+          input:focus,
+          select:focus {
+            border-color: ${colors.primary} !important;
+            box-shadow: 0 0 0 3px rgba(49, 92, 99, 0.10) !important;
+          }
+        `}
+      </style>
+
+      <div
+        style={{
+          width: "100%",
+          maxWidth: isMobile ? "100%" : "860px",
+          margin: "0 auto",
+        }}
+      >
+        {/* Überschrift */}
+        <div
+          style={{
+            textAlign: "center",
+            marginBottom: isMobile ? "13px" : "18px",
+          }}
+        >
+          <div
+            style={{
+              color: colors.primary,
+              fontSize: isMobile ? "28px" : "38px",
+              fontWeight: 850,
+              letterSpacing: "-0.045em",
+              lineHeight: 1.08,
+              marginBottom: "7px",
+            }}
+          >
+            Deine Angaben
+          </div>
+
+          <div
+            style={{
+              color: colors.muted,
+              fontSize: isMobile ? "13px" : "15px",
+              fontWeight: 600,
+              marginBottom: isMobile ? "10px" : "14px",
+            }}
+          >
+            Letzter Schritt vor dem Abschluss
+          </div>
+
+          <div
+            style={{
+              width: isMobile ? "82%" : "420px",
+              height: "7px",
+              margin: "0 auto",
+              borderRadius: "999px",
+              background: "rgba(49,92,99,0.10)",
+              overflow: "hidden",
+            }}
+          >
+            <div
+              style={{
+                width: "100%",
+                height: "100%",
+                borderRadius: "999px",
+                background: `linear-gradient(90deg, ${colors.primary}, ${colors.accent})`,
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Erklärungskarte */}
+        <div
+          style={{
+            background:
+              "radial-gradient(circle at top left, rgba(49,92,99,0.05), transparent 34%), radial-gradient(circle at bottom right, rgba(242,184,114,0.09), transparent 34%), rgba(255,255,255,0.98)",
+            border: `1px solid rgba(49,92,99,0.12)`,
+            borderRadius: isMobile ? "24px" : "30px",
+            boxShadow: "0 18px 42px rgba(49,92,99,0.10)",
+            padding: isMobile ? "18px 15px" : "24px 28px",
+            marginBottom: isMobile ? "12px" : "16px",
+            textAlign: "center",
+            boxSizing: "border-box",
+          }}
+        >
+          <div
+            style={{
+              display: "inline-block",
+              padding: "5px 11px",
+              borderRadius: "999px",
+              background: "rgba(49,92,99,0.08)",
+              color: colors.primary,
+              fontSize: isMobile ? "11px" : "13px",
+              fontWeight: 750,
+              marginBottom: "9px",
+            }}
+          >
+            Kurzer Zwischenabschnitt
+          </div>
+
+          <div
+            style={{
+              color: colors.primary,
+              fontSize: isMobile ? "21px" : "27px",
+              fontWeight: 850,
+              letterSpacing: "-0.035em",
+              lineHeight: 1.12,
+              marginBottom: "9px",
+            }}
+          >
+            Allgemeine Angaben
+          </div>
+
+          <div
+            style={{
+              maxWidth: "680px",
+              margin: "0 auto",
+              color: colors.text,
+              fontSize: isMobile ? "13px" : "16px",
+              lineHeight: 1.5,
+            }}
+          >
+            Abschließend bitten wir dich um einige kurze Angaben zu deiner
+            Person. Die Angaben werden anonym ausgewertet und ausschließlich
+            für wissenschaftliche Zwecke verwendet.
+          </div>
+        </div>
+
+        {/* Formular */}
+        <div
+          style={{
+            background: colors.card,
+            border: `1px solid rgba(49,92,99,0.12)`,
+            borderRadius: isMobile ? "24px" : "28px",
+            boxShadow: "0 20px 48px rgba(49,92,99,0.11)",
+            padding: isMobile ? "10px" : "14px",
+            display: "grid",
+            gap: isMobile ? "9px" : "11px",
+            boxSizing: "border-box",
+          }}
+        >
+          {/* Alter */}
+          <div style={rowStyle}>
+            <div>
+              <div style={labelStyle}>Alter</div>
+              <div style={helperStyle}>
+                Bitte gib dein Alter in Jahren an.
+              </div>
+            </div>
+
+            <input
+              type="text"
+              inputMode="numeric"
+              autoComplete="off"
+              value={demographics.age}
+              placeholder="Bitte eingeben"
+              aria-label="Alter"
+              onChange={(event) => {
+                const value = event.target.value
+                  .replace(/\D/g, "")
+                  .slice(0, 3);
+
+                updateField("age", value);
+              }}
+              style={inputStyle}
+            />
+          </div>
+
+          {/* Geschlecht */}
+          <div style={rowStyle}>
+            <div>
+              <div style={labelStyle}>Geschlecht</div>
+              <div style={helperStyle}>
+                Bitte wähle die passende Angabe aus.
+              </div>
+            </div>
+
+            <select
+              value={demographics.gender}
+              aria-label="Geschlecht"
+              onChange={(event) =>
+                updateField("gender", event.target.value)
+              }
+              style={{
+                ...inputStyle,
+                cursor: "pointer",
+              }}
+            >
+              <option value="">Bitte auswählen</option>
+              <option value="männlich">männlich</option>
+              <option value="weiblich">weiblich</option>
+              <option value="divers">divers</option>
+            </select>
+          </div>
+
+          {/* Beruflicher Status */}
+          <div style={rowStyle}>
+            <div>
+              <div style={labelStyle}>Aktueller beruflicher Status</div>
+              <div style={helperStyle}>
+                Bitte wähle deine derzeitige Haupttätigkeit aus.
+              </div>
+            </div>
+
+            <select
+              value={demographics.employment_status}
+              aria-label="Aktueller beruflicher Status"
+              onChange={(event) =>
+                updateField("employment_status", event.target.value)
+              }
+              style={{
+                ...inputStyle,
+                cursor: "pointer",
+              }}
+            >
+              <option value="">Bitte auswählen</option>
+
+              {employmentOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Berufserfahrung */}
+          <div style={rowStyle}>
+            <div>
+              <div style={labelStyle}>Berufserfahrung</div>
+              <div style={helperStyle}>
+                Gemeint ist deine bisherige gesamte Berufserfahrung.
+              </div>
+            </div>
+
+            <select
+              value={demographics.work_experience}
+              aria-label="Berufserfahrung"
+              onChange={(event) =>
+                updateField("work_experience", event.target.value)
+              }
+              style={{
+                ...inputStyle,
+                cursor: "pointer",
+              }}
+            >
+              <option value="">Bitte auswählen</option>
+
+              {workExperienceOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Erfahrung mit dem Antwortformat */}
+          <div style={rowStyle}>
+            <div>
+              <div style={labelStyle}>{experienceQuestion}</div>
+              <div style={helperStyle}>{experienceHelper}</div>
+            </div>
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+                gap: "9px",
+              }}
+            >
+              {["Ja", "Nein"].map((option) => {
+                const selected =
+                  demographics.format_experience === option;
+
+                return (
+                  <button
+                    key={option}
+                    type="button"
+                    onClick={() =>
+                      updateField("format_experience", option)
+                    }
+                    aria-pressed={selected}
+                    style={{
+                      minHeight: isMobile ? "44px" : "48px",
+                      borderRadius: "15px",
+                      border: selected
+                        ? `2px solid ${colors.primary}`
+                        : `1px solid ${colors.border}`,
+                      background: selected
+                        ? "rgba(107,170,117,0.18)"
+                        : "#FFFFFF",
+                      color: selected ? colors.primary : colors.text,
+                      fontSize: isMobile ? "14px" : "15px",
+                      fontWeight: selected ? 800 : 650,
+                      cursor: "pointer",
+                      boxShadow: selected
+                        ? "0 8px 18px rgba(49,92,99,0.12)"
+                        : "0 6px 14px rgba(49,92,99,0.04)",
+                      transition: "all 0.15s ease",
+                    }}
+                  >
+                    {option}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* Navigation */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+            gap: isMobile ? "10px" : "14px",
+            marginTop: isMobile ? "13px" : "18px",
+          }}
+        >
+          <button
+            type="button"
+            onClick={onBack}
+            style={{
+              minHeight: isMobile ? "46px" : "50px",
+              borderRadius: "999px",
+              border: `1.5px solid rgba(49,92,99,0.34)`,
+              background: "rgba(255,255,255,0.45)",
+              color: colors.primary,
+              fontSize: isMobile ? "13px" : "15px",
+              fontWeight: 800,
+              cursor: "pointer",
+              boxShadow: "none",
+            }}
+          >
+            ← Zurück
+          </button>
+
+          <button
+            type="button"
+            onClick={onSubmit}
+            disabled={!demographicsComplete}
+            style={{
+              minHeight: isMobile ? "46px" : "50px",
+              borderRadius: "999px",
+              border: `1px solid ${colors.primary}`,
+              background: demographicsComplete
+                ? colors.primary
+                : "rgba(49,92,99,0.32)",
+              color: "#FFFFFF",
+              fontSize: isMobile ? "13px" : "15px",
+              fontWeight: 850,
+              cursor: demographicsComplete
+                ? "pointer"
+                : "not-allowed",
+              boxShadow: demographicsComplete
+                ? "0 12px 26px rgba(49,92,99,0.18)"
+                : "none",
+              transition: "all 0.15s ease",
+            }}
+          >
+            Abschließen
+          </button>
+        </div>
+
+        {error && (
+          <div
+            style={{
+              color: colors.danger,
+              textAlign: "center",
+              fontSize: isMobile ? "12px" : "14px",
+              lineHeight: 1.35,
+              fontWeight: 700,
+              marginTop: "10px",
+            }}
+          >
+            {error}
+          </div>
+        )}
+
+        {!demographicsComplete && !error && (
+          <div
+            style={{
+              color: colors.muted,
+              textAlign: "center",
+              fontSize: isMobile ? "12px" : "14px",
+              lineHeight: 1.35,
+              marginTop: "10px",
+            }}
+          >
+            Bitte fülle alle Angaben aus, um die Studie abzuschließen.
+          </div>
+        )}
+      </div>
     </div>
   );
 }
