@@ -9107,7 +9107,7 @@ elif st.session_state.phase == "end":
                     <br><br>
                     <strong>SurveySwap Code mit einem Klick einlösen: https://surveyswap.io/sr/CSDF-4GL2-UKRE</strong>
                     <br><br>
-                    Oder durch manuelle Eingabe des Codes: CSDF-4GL2-UKRE
+                    Oder durch manuelle Eingabe des Codes: <strong>CSDF-4GL2-UKRE</strong>
             </div>
         </div>
         """,
