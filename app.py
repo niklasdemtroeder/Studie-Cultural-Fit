@@ -9101,13 +9101,13 @@ elif st.session_state.phase == "end":
                     <br>
                     Du kannst das Browserfenster nun schließen.
                     <br><br>
-                    <strong>Survey-Circle Code mit einem Klick einlösen: https://www.surveycircle.com/PRQX-PT1E-5T82-NLJG/</strong>
+                    <strong>SurveyCircle Code mit einem Klick einlösen: https://www.surveycircle.com/PRQX-PT1E-5T82-NLJG/</strong>
                     <br><br>
                     Oder durch manuelle Eingabe des Codes: <strong>PRQX-PT1E-5T82-NLJG</strong>
                     <br><br>
-                    The following code gives you Karma that can be used to get free research participants at SurveySwap.io. Go to: https://surveyswap.io/sr/CSDF-4GL2-UKRE
-                    <br>
-                    Or, alternatively, enter the code manually: CSDF-4GL2-UKRE
+                    <strong>SurveySwap Code mit einem Klick einlösen: https://surveyswap.io/sr/CSDF-4GL2-UKRE</strong>
+                    <br><br>
+                    Oder durch manuelle Eingabe des Codes: CSDF-4GL2-UKRE
             </div>
         </div>
         """,
